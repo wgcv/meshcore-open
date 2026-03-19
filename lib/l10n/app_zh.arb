@@ -1894,5 +1894,36 @@
   "tcpErrorTimedOut": "TCP 连接超时。",
   "tcpConnectionFailed": "TCP 连接失败：{error}",
   "map_showDiscoveryContacts": "显示发现联系人",
-  "map_setAsMyLocation": "设置为我的位置"
+  "map_setAsMyLocation": "设置为我的位置",
+  "settings_privacySubtitle": "控制要共享的信息。",
+  "settings_privacySettingsDescription": "选择您的设备与他人共享的信息。",
+  "settings_telemetryBaseMode": "遥测基础模式",
+  "settings_telemetryLocationMode": "遥测位置模式",
+  "settings_advertLocation": "广告位置",
+  "settings_advertLocationSubtitle": "在广告中包含位置",
+  "settings_allowByContact": "按联系人标志允许",
+  "settings_denyAll": "拒绝所有",
+  "settings_privacy": "隐私设置",
+  "settings_allowAll": "允许全部",
+  "contact_info": "联系信息",
+  "contact_teleBase": "遥测基站",
+  "contact_teleBaseSubtitle": "允许共享电池电量和基本遥测数据",
+  "settings_telemetryEnvironmentMode": "遥测环境模式",
+  "contact_teleLoc": "遥测位置",
+  "contact_teleEnv": "遥测环境",
+  "contact_teleEnvSubtitle": "允许共享环境传感器数据",
+  "contact_clearChat": "清除聊天记录",
+  "contact_lastSeen": "最近出现",
+  "contact_settings": "联系人设置",
+  "contact_teleLocSubtitle": "允许共享位置数据",
+  "contact_telemetry": "遥测数据",
+  "@settings_multiAck": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "settings_multiAck": "多重ACK：{value}",
+  "settings_telemetryModeUpdated": "遥测模式已更新"
 }

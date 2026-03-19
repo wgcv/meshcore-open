@@ -1889,5 +1889,36 @@
   "tcpErrorTimedOut": "La connessione TCP è scaduta.",
   "tcpConnectionFailed": "Impossibile stabilire la connessione TCP: {error}",
   "map_showDiscoveryContacts": "Mostra Contatti di Discovery",
-  "map_setAsMyLocation": "Imposta come la mia posizione"
+  "map_setAsMyLocation": "Imposta come la mia posizione",
+  "settings_privacySettingsDescription": "Scegli le informazioni che il tuo dispositivo condivide con gli altri.",
+  "settings_allowByContact": "Consenti in base ai flag di contatto",
+  "settings_telemetryLocationMode": "Modalità di posizionamento telemetrico",
+  "settings_telemetryEnvironmentMode": "Modalità di ambiente di telemetria",
+  "settings_advertLocation": "Posizione dell'annuncio",
+  "settings_advertLocationSubtitle": "Includi la posizione nell'annuncio",
+  "settings_privacy": "Impostazioni sulla privacy",
+  "settings_denyAll": "Negare tutto",
+  "settings_privacySubtitle": "Controlla le informazioni che vengono condivise.",
+  "settings_allowAll": "Consenti tutto",
+  "contact_info": "Informazioni di Contatto",
+  "settings_telemetryBaseMode": "Modalità di base di telemetria",
+  "contact_teleBase": "Base di telemetria",
+  "contact_teleLoc": "Posizione telemetria",
+  "contact_teleLocSubtitle": "Consenti la condivisione dei dati di posizione",
+  "contact_clearChat": "Cancella chat",
+  "contact_telemetry": "Telemetria",
+  "contact_settings": "Impostazioni di contatto",
+  "contact_lastSeen": "Ultimo accesso",
+  "contact_teleBaseSubtitle": "Consenti la condivisione del livello della batteria e della telemetria di base",
+  "contact_teleEnvSubtitle": "Consenti la condivisione dei dati del sensore ambientale",
+  "contact_teleEnv": "Ambiente di telemetria",
+  "@settings_multiAck": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "settings_telemetryModeUpdated": "Modalità telemetria aggiornata",
+  "settings_multiAck": "Multi-ACKs: {value}"
 }

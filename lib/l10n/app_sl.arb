@@ -1889,5 +1889,36 @@
   "tcpErrorTimedOut": "Povezava TCP je presegla časovno obdobje.",
   "tcpConnectionFailed": "Napaka pri povezavi TCP: {error}",
   "map_showDiscoveryContacts": "Prikaži odkritja kontaktov",
-  "map_setAsMyLocation": "Nastavite to kot mojo lokacijo"
+  "map_setAsMyLocation": "Nastavite to kot mojo lokacijo",
+  "settings_privacy": "Nastavitve zasebnosti",
+  "settings_privacySettingsDescription": "Izberite, katere informacije vaš naprava deli z drugimi.",
+  "settings_telemetryBaseMode": "Osnovni način telemetrije",
+  "settings_telemetryLocationMode": "Način delovanja telemetrije",
+  "settings_telemetryEnvironmentMode": "Način delovanja okolja telemetrije",
+  "settings_advertLocation": "Lokacija oglasa",
+  "settings_allowByContact": "Dovoli po kontaktnih zastavah",
+  "settings_denyAll": "Zavrniti vse",
+  "settings_allowAll": "Dovoli vse",
+  "settings_privacySubtitle": "Kontrolirajte, katere informacije so deljene.",
+  "contact_info": "Kontaktni podatki",
+  "contact_teleBase": "Baza telemetrije",
+  "contact_teleBaseSubtitle": "Dovoli deljenje stanja baterije in osnovne telemetrije",
+  "contact_teleLoc": "Lokacija telemetrije",
+  "contact_lastSeen": "Zadnjič videno",
+  "contact_settings": "Nastavitve stika",
+  "settings_advertLocationSubtitle": "Vključi lokacijo v oglas.",
+  "contact_telemetry": "Telemetrija",
+  "contact_clearChat": "Počisti klepet",
+  "contact_teleEnv": "Okolje telemetrije",
+  "contact_teleEnvSubtitle": "Dovoli deljenje podatkov okoljskih senzorjev",
+  "contact_teleLocSubtitle": "Dovoli deljenje podatkov o lokaciji",
+  "@settings_multiAck": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "settings_multiAck": "Večkratni potrditvi: {value}",
+  "settings_telemetryModeUpdated": "Način telemetrije posodobljen"
 }

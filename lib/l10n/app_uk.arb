@@ -1889,5 +1889,36 @@
   "tcpErrorTimedOut": "З'єднання TCP завершилося через закінчення часу очікування.",
   "tcpConnectionFailed": "Не вдалося встановити з'єднання TCP: {error}",
   "map_showDiscoveryContacts": "Показати контакти Відкриття",
-  "map_setAsMyLocation": "Встановити моє місцезнаходження"
+  "map_setAsMyLocation": "Встановити моє місцезнаходження",
+  "settings_privacySubtitle": "Керуйте інформацією, яку буде спільно використовуватися",
+  "settings_privacy": "Налаштування приватності",
+  "settings_telemetryBaseMode": "Режим базової телеметрії",
+  "settings_telemetryLocationMode": "Режим місця телеметрії",
+  "settings_advertLocation": "Розміщення реклами",
+  "settings_advertLocationSubtitle": "Включити місце розташування в оголошення",
+  "settings_privacySettingsDescription": "Виберіть, яку інформацію ваш пристрій буде передавати іншим.",
+  "settings_allowAll": "Дозволити все",
+  "settings_denyAll": "Відхилити все",
+  "settings_allowByContact": "Дозволити за контактними прапорцями",
+  "settings_telemetryEnvironmentMode": "Режим середовища телеметрії",
+  "contact_info": "Контактна інформація",
+  "contact_teleBaseSubtitle": "Дозволити спільний доступ до рівня заряду батареї та базової телеметрії",
+  "contact_teleLoc": "Розташування телеметрії",
+  "contact_teleBase": "Базовий телебачення",
+  "contact_teleLocSubtitle": "Дозволити спільне використання даних про місцеположення",
+  "contact_settings": "Налаштування контактів",
+  "contact_telemetry": "Телеметрія",
+  "contact_clearChat": "Очистити чат",
+  "contact_lastSeen": "Останній раз бачили",
+  "contact_teleEnv": "Середовище телеметрії",
+  "contact_teleEnvSubtitle": "Дозволити спільний доступ до даних датчиків середовища",
+  "@settings_multiAck": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "settings_telemetryModeUpdated": "Режим телеметрії оновлено",
+  "settings_multiAck": "Багатократне підтвердження: {value}"
 }

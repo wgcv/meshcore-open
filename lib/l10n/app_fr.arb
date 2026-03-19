@@ -1889,5 +1889,36 @@
   "tcpErrorTimedOut": "La connexion TCP a expiré.",
   "tcpConnectionFailed": "Échec de la connexion TCP : {error}",
   "map_showDiscoveryContacts": "Afficher les contacts de découverte",
-  "map_setAsMyLocation": "Définir comme ma localisation"
+  "map_setAsMyLocation": "Définir comme ma localisation",
+  "settings_privacy": "Paramètres de confidentialité",
+  "settings_privacySubtitle": "Contrôlez les informations partagées",
+  "settings_telemetryLocationMode": "Mode d'emplacement de télémétrie",
+  "settings_telemetryEnvironmentMode": "Mode d'environnement de télémétrie",
+  "settings_advertLocation": "Emplacement de l'annonce",
+  "settings_advertLocationSubtitle": "Inclure l'emplacement dans l'annonce",
+  "settings_denyAll": "Refuser tout",
+  "settings_allowByContact": "Autoriser par drapeaux de contact",
+  "settings_privacySettingsDescription": "Choisissez les informations que votre appareil partage avec les autres.",
+  "settings_allowAll": "Autoriser tout",
+  "contact_info": "Informations de contact",
+  "settings_telemetryBaseMode": "Mode de base Télémétrie",
+  "contact_teleBase": "Base de télémétrie",
+  "contact_teleLoc": "Emplacement de télémétrie",
+  "contact_teleLocSubtitle": "Autoriser le partage des données de localisation",
+  "contact_teleEnv": "Environnement Télémétrie",
+  "contact_teleEnvSubtitle": "Autoriser le partage des données des capteurs d'environnement",
+  "contact_telemetry": "Télémétrie",
+  "contact_settings": "Paramètres de contact",
+  "contact_lastSeen": "Dernière fois vu",
+  "contact_clearChat": "Effacer la conversation",
+  "contact_teleBaseSubtitle": "Autoriser le partage du niveau de batterie et de la télémétrie de base",
+  "@settings_multiAck": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "settings_multiAck": "Multi-ACKs : {value}",
+  "settings_telemetryModeUpdated": "Le mode télémétrie a été mis à jour"
 }

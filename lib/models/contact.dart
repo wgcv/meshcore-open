@@ -202,4 +202,7 @@ class Contact {
 
   @override
   int get hashCode => publicKeyHex.hashCode;
+  bool get teleBaseEnabled => (flags & contactFlagTeleBase) != 0;
+  bool get teleLocEnabled => (flags & contactFlagTeleLoc) != 0;
+  bool get teleEnvEnabled => (flags & contactFlagTeleEnv) != 0;
 }

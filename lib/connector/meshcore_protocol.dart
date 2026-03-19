@@ -210,7 +210,7 @@ const int cmdSetChannel = 32;
 const int cmdSendTracePath = 36;
 const int cmdSetOtherParams = 38;
 const int cmdSendAnonReq = 57;
-const int cmdGetTelemetryReq = 39;
+const int cmdSendTelemetryReq = 39;
 const int cmdGetCustomVar = 40;
 const int cmdSetCustomVar = 41;
 const int cmdSendBinaryReq = 50;
@@ -271,6 +271,10 @@ const int advTypeChat = 1;
 const int advTypeRepeater = 2;
 const int advTypeRoom = 3;
 const int advTypeSensor = 4;
+
+const int teleModeDeny = 0;
+const int teleModeAllowFlags = 1; // use contact.flags
+const int teleModeAllowAll = 2;
 
 // Payload Types
 const int payloadTypeREQ =
@@ -352,6 +356,9 @@ const int contactPubKeyOffset = 1;
 const int contactTypeOffset = 33;
 const int contactFlagsOffset = 34;
 const int contactFlagFavorite = 0x01;
+const int contactFlagTeleBase = 0x02; // 'base' permission includes battery
+const int contactFlagTeleLoc = 0x04;
+const int contactFlagTeleEnv = 0x08; //access environment sensors
 const int contactPathLenOffset = 35;
 const int contactPathOffset = 36;
 const int contactNameOffset = 100;
@@ -935,5 +942,20 @@ Uint8List buildSetAutoAddConfigFrame({
   if (autoAddSensor) flags |= autoAddSensorFlag;
   if (overwriteOldest) flags |= autoAddOverwriteOldestFlag;
   writer.writeByte(flags);
+  return writer.toBytes();
+}
+
+//Build CMD_SEND_TELEMETRY_REQ
+// Format: [cmd][reserved x3][pub_key? x32]
+Uint8List buildSendTelemetryReq(Uint8List? pubKey) {
+  final writer = BufferWriter();
+  writer.writeByte(cmdSendTelemetryReq);
+
+  if (pubKey != null && pubKey.length == pubKeySize) {
+    writer.writeBytes(Uint8List(3)); // reserved bytes
+    writer.writeBytes(pubKey);
+  } else {
+    writer.writeBytes(Uint8List(4)); // reserved bytes
+  }
   return writer.toBytes();
 }

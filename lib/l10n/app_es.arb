@@ -1917,5 +1917,36 @@
   "tcpErrorTimedOut": "La conexión TCP ha caducado.",
   "tcpConnectionFailed": "Error en la conexión TCP: {error}",
   "map_showDiscoveryContacts": "Mostrar Contactos de Descubrimiento",
-  "map_setAsMyLocation": "Establecer mi ubicación"
+  "map_setAsMyLocation": "Establecer mi ubicación",
+  "settings_privacySubtitle": "Controlar qué información se comparte.",
+  "settings_allowByContact": "Permitir por banderas de contacto",
+  "settings_denyAll": "Denegar todo",
+  "settings_telemetryBaseMode": "Modo base de telemetría",
+  "settings_telemetryEnvironmentMode": "Modo de entorno de telemetría",
+  "settings_advertLocationSubtitle": "Incluir ubicación en anuncio",
+  "contact_info": "Información de contacto",
+  "settings_privacySettingsDescription": "Elige qué información comparte tu dispositivo con otros.",
+  "settings_allowAll": "Permitir todo",
+  "settings_privacy": "Configuración de privacidad",
+  "contact_settings": "Configuración de contacto",
+  "settings_telemetryLocationMode": "Modo de ubicación de telemetría",
+  "contact_teleBase": "Base de Telemetría",
+  "contact_teleLoc": "Ubicación de telemetría",
+  "settings_advertLocation": "Ubicación de anuncio",
+  "contact_teleLocSubtitle": "Permitir el intercambio de datos de ubicación",
+  "contact_clearChat": "Borrar chat",
+  "contact_telemetry": "Telemetría",
+  "contact_lastSeen": "Visto por última vez",
+  "contact_teleBaseSubtitle": "Permitir el intercambio de nivel de batería y telemetría básica",
+  "contact_teleEnv": "Entorno de Telemetría",
+  "contact_teleEnvSubtitle": "Permitir el intercambio de datos de sensores de entorno",
+  "@settings_multiAck": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "settings_telemetryModeUpdated": "Modo de telemetría actualizado",
+  "settings_multiAck": "Multi-ACKs: {value}"
 }

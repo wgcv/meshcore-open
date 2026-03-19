@@ -1889,5 +1889,36 @@
   "tcpErrorTimedOut": "Połączenie TCP zakończyło się bez powodzenia.",
   "tcpConnectionFailed": "Błąd połączenia TCP: {error}",
   "map_showDiscoveryContacts": "Pokaż kontakty odkrywania",
-  "map_setAsMyLocation": "Ustaw jako moje lokalizację"
+  "map_setAsMyLocation": "Ustaw jako moje lokalizację",
+  "settings_allowByContact": "Zezwalaj według flag kontaktowych",
+  "settings_allowAll": "Zezwalaj na wszystko",
+  "settings_telemetryLocationMode": "Tryb położenia telemetrycznego",
+  "settings_telemetryEnvironmentMode": "Tryb środowiska telemetrycznego",
+  "settings_advertLocation": "Lokalizacja reklamowa",
+  "settings_advertLocationSubtitle": "Uwzględnij lokalizację w ogłoszeniu",
+  "settings_denyAll": "Odmów wszystkim",
+  "settings_privacySubtitle": "Kontroluj jakie informacje są udostępniane.",
+  "settings_privacy": "Ustawienia prywatności",
+  "settings_privacySettingsDescription": "Wybierz jakie informacje urządzenie udostępni innym.",
+  "contact_info": "Informacje kontaktowe",
+  "settings_telemetryBaseMode": "Tryb podstawowy telemetrii",
+  "contact_teleBase": "Baza telemetryczna",
+  "contact_teleLoc": "Lokalizacja telemetryczna",
+  "contact_teleLocSubtitle": "Zezwalaj na udostępnianie danych lokalizacji",
+  "contact_teleEnv": "Środowisko telemetryczne",
+  "contact_teleEnvSubtitle": "Zezwalaj na udostępnianie danych czujników środowiskowych",
+  "contact_telemetry": "Telemetryka",
+  "contact_clearChat": "Wyczyść czat",
+  "contact_settings": "Ustawienia kontaktowe",
+  "contact_lastSeen": "Ostatnio widziany",
+  "contact_teleBaseSubtitle": "Pozwól na udostępnianie poziomu naładowania baterii i podstawowych danych telemetrycznych",
+  "@settings_multiAck": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "settings_telemetryModeUpdated": "Tryb telemetryczny zaktualizowany",
+  "settings_multiAck": "Wiele potwierdzeń: {value}"
 }

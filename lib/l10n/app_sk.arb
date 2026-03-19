@@ -1889,5 +1889,36 @@
   "tcpErrorTimedOut": "Pripojenie TCP vypršalo.",
   "tcpConnectionFailed": "Neúspešné vytvorenie TCP spojenia: {error}",
   "map_showDiscoveryContacts": "Zobraziť kontakty objavov",
-  "map_setAsMyLocation": "Nastavte ako moju polohu"
+  "map_setAsMyLocation": "Nastavte ako moju polohu",
+  "settings_privacy": "Nastavenia súkromia",
+  "settings_privacySubtitle": "Ovládni, aké informácie sa zdieľajú.",
+  "settings_telemetryLocationMode": "Režim umiestnenia telemetrie",
+  "settings_telemetryBaseMode": "Základný režim telemetrie",
+  "settings_advertLocation": "Umiestnenie inzerátu",
+  "settings_telemetryEnvironmentMode": "Režim prostredia telemetrie",
+  "settings_advertLocationSubtitle": "Zahrnúť polohu do inzerátu",
+  "settings_allowAll": "Povoliť všetko",
+  "settings_privacySettingsDescription": "Vyberte, ktoré informácie váš zariadenie zdieľa s ostatnými.",
+  "settings_denyAll": "Zamietnuť všetko",
+  "settings_allowByContact": "Povoliť podľa kontaktových vlajok",
+  "contact_info": "Kontaktné informácie",
+  "contact_settings": "Nastavenia kontaktov",
+  "contact_teleBaseSubtitle": "Povoliť zdieľanie úrovne batérie a základnej telemetrie",
+  "contact_teleLoc": "Lokácia telemetrie",
+  "contact_teleLocSubtitle": "Povoliť zdieľanie údajov o lokalite",
+  "contact_teleEnv": "Prostredie telemetrie",
+  "contact_telemetry": "Telemetria",
+  "contact_clearChat": "Vymazať chat",
+  "contact_lastSeen": "Naposledy videný",
+  "contact_teleBase": "Báza telemetrie",
+  "contact_teleEnvSubtitle": "Povoliť zdieľanie údajov senzorov prostredia",
+  "@settings_multiAck": {
+    "placeholders": {
+      "value": {
+        "type": "String"
+      }
+    }
+  },
+  "settings_telemetryModeUpdated": "Režim telemetrie bol aktualizovaný",
+  "settings_multiAck": "Viaceré ACK: {value}"
 }

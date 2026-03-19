@@ -324,6 +324,11 @@ class MeshCoreConnector extends ChangeNotifier {
   bool? get autoAddRoomServers => _autoAddRoomServers;
   bool? get autoAddSensors => _autoAddSensors;
   bool? get autoAddOverwriteOldest => _overwriteOldest;
+  int get telemetryModeBase => _telemetryModeBase;
+  int get telemetryModeLoc => _telemetryModeLoc;
+  int get telemetryModeEnv => _telemetryModeEnv;
+  int get advertLocationPolicy => _advertLocPolicy;
+  int get multiAcks => _multiAcks;
   bool? get clientRepeat => _clientRepeat;
   int? get firmwareVerCode => _firmwareVerCode;
   Map<String, String>? get currentCustomVars => _currentCustomVars;
@@ -1813,13 +1818,36 @@ class MeshCoreConnector extends ChangeNotifier {
     }
   }
 
-  Future<void> setContactFavorite(Contact contact, bool isFavorite) async {
+  Future<void> setContactFlags(
+    Contact contact, {
+    bool? isFavorite,
+    bool? teleBase,
+    bool? teleLoc,
+    bool? teleEnv,
+  }) async {
     if (!isConnected) return;
     final latestContact =
         await _fetchContactSnapshotFromDevice(contact.publicKey) ?? contact;
-    final updatedFlags = isFavorite
-        ? (latestContact.flags | contactFlagFavorite)
-        : (latestContact.flags & ~contactFlagFavorite);
+    int updatedFlags = isFavorite != null
+        ? (isFavorite
+              ? (latestContact.flags | contactFlagFavorite)
+              : (latestContact.flags & ~contactFlagFavorite))
+        : latestContact.flags;
+    updatedFlags = teleBase != null
+        ? (teleBase
+              ? (updatedFlags | contactFlagTeleBase)
+              : (updatedFlags & ~contactFlagTeleBase))
+        : updatedFlags;
+    updatedFlags = teleLoc != null
+        ? (teleLoc
+              ? (updatedFlags | contactFlagTeleLoc)
+              : (updatedFlags & ~contactFlagTeleLoc))
+        : updatedFlags;
+    updatedFlags = teleEnv != null
+        ? (teleEnv
+              ? (updatedFlags | contactFlagTeleEnv)
+              : (updatedFlags & ~contactFlagTeleEnv))
+        : updatedFlags;
 
     await sendFrame(
       buildUpdateContactPathFrame(
@@ -2354,6 +2382,31 @@ class MeshCoreConnector extends ChangeNotifier {
 
   Future<void> setPrivacyMode(bool enabled) async {
     await sendCliCommand('set privacy ${enabled ? 'on' : 'off'}');
+  }
+
+  Future<void> setTelemetryModeBase(
+    int base,
+    int location,
+    int env,
+    int advert,
+    int multiAcks,
+  ) async {
+    if (!isConnected) return;
+    _telemetryModeBase = base.clamp(teleModeDeny, teleModeAllowAll).toInt();
+    _telemetryModeLoc = location.clamp(teleModeDeny, teleModeAllowAll).toInt();
+    _telemetryModeEnv = env.clamp(teleModeDeny, teleModeAllowAll).toInt();
+    _advertLocPolicy = advert.clamp(0, 1).toInt();
+    _multiAcks = multiAcks.clamp(0, 2).toInt();
+    await sendFrame(
+      buildSetOtherParamsFrame(
+        (_telemetryModeEnv << 4) |
+            (_telemetryModeLoc << 2) |
+            _telemetryModeBase,
+        _advertLocPolicy,
+        _multiAcks,
+      ),
+    );
+    notifyListeners();
   }
 
   Future<void> getChannels({int? maxChannels, bool force = false}) async {
@@ -4973,6 +5026,25 @@ class MeshCoreConnector extends ChangeNotifier {
   void removeAllDiscoveredContacts() {
     _discoveredContacts.clear();
     unawaited(_persistDiscoveredContacts());
+    notifyListeners();
+  }
+
+  void clearMessagesForContact(Contact contact) {
+    final contactKeyHex = contact.publicKeyHex;
+    final messages = _conversations[contactKeyHex];
+    if (messages == null) return;
+    messages.clear();
+    unawaited(_messageStore.saveMessages(contactKeyHex, messages));
+    markContactRead(contactKeyHex);
+    notifyListeners();
+  }
+
+  void clearMessagesForChannel(int channelIndex) {
+    final messages = _channelMessages[channelIndex];
+    if (messages == null) return;
+    messages.clear();
+    unawaited(_channelMessageStore.saveChannelMessages(channelIndex, messages));
+    markChannelRead(channelIndex);
     notifyListeners();
   }
 }
