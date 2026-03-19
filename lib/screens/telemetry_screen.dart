@@ -38,6 +38,24 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
 
   int _tripTime = 0;
 
+  int _resolveContactIndex = -1;
+
+  Contact _resolveContact(MeshCoreConnector connector) {
+    if (_resolveContactIndex >= 0 &&
+        _resolveContactIndex < connector.contacts.length &&
+        connector.contacts[_resolveContactIndex].publicKeyHex ==
+            widget.contact.publicKeyHex) {
+      return connector.contacts[_resolveContactIndex];
+    }
+    _resolveContactIndex = connector.contacts.indexWhere(
+      (c) => c.publicKeyHex == widget.contact.publicKeyHex,
+    );
+    if (_resolveContactIndex == -1) {
+      return widget.contact;
+    }
+    return connector.contacts[_resolveContactIndex];
+  }
+
   @override
   void initState() {
     super.initState();
@@ -144,7 +162,7 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
     try {
       final connector = Provider.of<MeshCoreConnector>(context, listen: false);
       final selection = await connector.preparePathForContactSend(
-        widget.contact,
+        _resolveContact(connector),
       );
       _pendingStatusSelection = selection;
       Uint8List frame;
