@@ -64,6 +64,7 @@ class _MapScreenState extends State<MapScreen> {
   bool _hasInitializedMap = false;
   bool _removedMarkersLoaded = false;
   final List<int> _pathTrace = [];
+  final List<Contact> _pathTraceContacts = [];
   final List<LatLng> _points = [];
   final List<Polyline> _polylines = [];
   bool _legendExpanded = false;
@@ -488,11 +489,10 @@ class _MapScreenState extends State<MapScreen> {
                               ),
                             ),
                           ),
-                        if (!_isBuildingPathTrace)
-                          ..._buildGuessedMarker(
-                            guessedLocations,
-                            showLabels: _showNodeLabels,
-                          ),
+                        ..._buildGuessedMarker(
+                          guessedLocations,
+                          showLabels: _showNodeLabels,
+                        ),
                         ..._buildMarkers(
                           contactsWithLocation,
                           settings,
@@ -788,17 +788,26 @@ class _MapScreenState extends State<MapScreen> {
     final markers = <Marker>[];
 
     for (final guess in guessed) {
+      if (guess.contact.type == advTypeChat && _isBuildingPathTrace) {
+        continue;
+      }
+
       final color = _getNodeColor(guess.contact.type);
       final marker = Marker(
         point: guess.position,
         width: 35,
         height: 35,
         child: GestureDetector(
-          onTap: () => _showNodeInfo(
-            context,
-            guess.contact,
-            guessedPosition: guess.position,
-          ),
+          onLongPress: () => _isBuildingPathTrace
+              ? _showNodeInfo(context, guess.contact)
+              : null,
+          onTap: () => _isBuildingPathTrace
+              ? _addToPath(context, guess.contact, position: guess.position)
+              : _showNodeInfo(
+                  context,
+                  guess.contact,
+                  guessedPosition: guess.position,
+                ),
           child: Container(
             padding: const EdgeInsets.all(4),
             decoration: BoxDecoration(
@@ -2121,12 +2130,18 @@ class _MapScreenState extends State<MapScreen> {
     }
   }
 
-  void _addToPath(BuildContext context, Contact contact) {
+  void _addToPath(BuildContext context, Contact contact, {LatLng? position}) {
     setState(() {
       _pathTrace.add(
         contact.publicKey[0],
       ); // Add first 16 bytes of public key to path trace
-      _points.add(LatLng(contact.latitude!, contact.longitude!));
+      _pathTraceContacts.add(
+        contact.copyWith(
+          latitude: position?.latitude ?? contact.latitude,
+          longitude: position?.longitude ?? contact.longitude,
+        ),
+      ); // Add contact to path trace contacts
+      _points.add(position ?? LatLng(contact.latitude!, contact.longitude!));
     });
   }
 
@@ -2134,6 +2149,7 @@ class _MapScreenState extends State<MapScreen> {
     setState(() {
       _isBuildingPathTrace = true;
       _pathTrace.clear();
+      _pathTraceContacts.clear();
       _points.clear();
       _polylines.clear();
       _points.add(position);
@@ -2143,6 +2159,9 @@ class _MapScreenState extends State<MapScreen> {
   void _removePath() {
     setState(() {
       _pathTrace.removeLast(); // Remove last node from path trace
+      _pathTraceContacts.remove(
+        _pathTrace.last,
+      ); // Remove last contact from path trace
       _points.removeLast(); // Remove last point from points list
       _polylines.clear(); // Clear polylines
     });
@@ -2201,6 +2220,7 @@ class _MapScreenState extends State<MapScreen> {
                               title: l10n.contacts_pathTrace,
                               path: Uint8List.fromList(_pathTrace),
                               pathHashByteWidth: hashW,
+                              pathContacts: _pathTraceContacts,
                             ),
                           ),
                         );

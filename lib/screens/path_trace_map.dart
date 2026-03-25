@@ -56,6 +56,7 @@ class PathTraceMapScreen extends StatefulWidget {
   final bool reversePathAround;
   final Contact? targetContact;
   final int pathHashByteWidth;
+  final List<Contact>? pathContacts;
 
   const PathTraceMapScreen({
     super.key,
@@ -66,6 +67,7 @@ class PathTraceMapScreen extends StatefulWidget {
     this.reversePathAround = false,
     this.targetContact,
     this.pathHashByteWidth = pathHashSize,
+    this.pathContacts,
   });
 
   @override
@@ -266,17 +268,21 @@ class _PathTraceMapScreenState extends State<PathTraceMapScreen> {
           .toList();
 
       Map<int, Contact> pathContacts = {};
-      final contacts = connector.allContacts;
-      contacts.where((c) => c.type != advTypeChat).forEach((repeater) {
-        for (var repeaterData in pathData) {
-          if (listEquals(
-            repeater.publicKey.sublist(0, 1),
-            Uint8List.fromList([repeaterData]),
-          )) {
-            pathContacts[repeaterData] = repeater;
+      if (widget.pathContacts != null) {
+        pathContacts = {for (var c in widget.pathContacts!) c.publicKey[0]: c};
+      } else {
+        final contacts = connector.allContacts;
+        contacts.where((c) => c.type != advTypeChat).forEach((repeater) {
+          for (var repeaterData in pathData) {
+            if (listEquals(
+              repeater.publicKey.sublist(0, 1),
+              Uint8List.fromList([repeaterData]),
+            )) {
+              pathContacts[repeaterData] = repeater;
+            }
           }
-        }
-      });
+        });
+      }
 
       // For hops with no GPS contact, infer position from other contacts
       // with known GPS that share the same last-hop byte.

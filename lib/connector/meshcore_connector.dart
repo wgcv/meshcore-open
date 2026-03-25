@@ -323,8 +323,11 @@ class MeshCoreConnector extends ChangeNotifier {
 
   List<Contact> get allContacts => List.unmodifiable([
     ..._contacts,
-    ..._discoveredContacts.where((c) => !c.isActive),
+    ..._discoveredContacts.where(
+      (c) => !c.isActive && c.publicKeyHex != selfPublicKeyHex,
+    ),
   ]);
+
   List<Contact> get discoveredContacts {
     return List.unmodifiable(_discoveredContacts);
   }
