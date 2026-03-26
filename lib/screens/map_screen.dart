@@ -139,7 +139,9 @@ class _MapScreenState extends State<MapScreen> {
       builder: (context, connector, settingsService, pathHistory, child) {
         final tileCache = context.read<MapTileCacheService>();
         final settings = settingsService.settings;
-        final allContacts = connector.allContacts;
+        final allContacts = connector.allContacts
+            .map((c) => connector.getFromDiscovered(c))
+            .toList();
 
         final contacts = settings.mapShowDiscoveryContacts
             ? allContacts
@@ -2158,10 +2160,10 @@ class _MapScreenState extends State<MapScreen> {
 
   void _removePath() {
     setState(() {
-      _pathTrace.removeLast(); // Remove last node from path trace
       _pathTraceContacts.remove(
         _pathTrace.last,
       ); // Remove last contact from path trace
+      _pathTrace.removeLast(); // Remove last node from path trace
       _points.removeLast(); // Remove last point from points list
       _polylines.clear(); // Clear polylines
     });

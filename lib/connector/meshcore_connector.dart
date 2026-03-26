@@ -328,6 +328,9 @@ class MeshCoreConnector extends ChangeNotifier {
     ),
   ]);
 
+  List<Contact> get allContactsUnfiltered =>
+      List.unmodifiable([..._contacts, ..._discoveredContacts]);
+
   List<Contact> get discoveredContacts {
     return List.unmodifiable(_discoveredContacts);
   }
@@ -2370,6 +2373,18 @@ class MeshCoreConnector extends ChangeNotifier {
       }
       unawaited(sendFrame(buildAppStartFrame()));
     });
+  }
+
+  Contact getFromDiscovered(Contact contact) {
+    final tmp = _discoveredContacts.firstWhere(
+      (c) => c.publicKeyHex == contact.publicKeyHex,
+      orElse: () => contact,
+    );
+    return contact.copyWith(
+      rawPacket: tmp.rawPacket,
+      latitude: tmp.latitude,
+      longitude: tmp.longitude,
+    );
   }
 
   Future<void> getContacts({int? since, bool preserveExisting = false}) async {

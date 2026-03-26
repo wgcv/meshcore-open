@@ -40,7 +40,12 @@ class ChannelMessagePathScreen extends StatelessWidget {
         final primaryPath = !channelMessage && !message.isOutgoing
             ? Uint8List.fromList(primaryPathTmp.reversed.toList())
             : primaryPathTmp;
+<<<<<<< HEAD
         final hops = _buildPathHops(primaryPath, connector, l10n);
+=======
+        final contacts = connector.allContactsUnfiltered;
+        final hops = _buildPathHops(primaryPath, contacts, l10n);
+>>>>>>> da74560 (Enhance contact handling and UI updates across multiple screens)
         final hasHopDetails = primaryPath.isNotEmpty;
         final observedLabel = _formatObservedHops(
           primaryPath.length,
@@ -385,7 +390,10 @@ class _ChannelMessagePathMapScreenState
             : selectedPathTmp;
 
         final selectedIndex = _indexForPath(selectedPath, observedPaths);
-        final hops = _buildPathHops(selectedPath, connector, context.l10n);
+        final contacts = connector.allContactsUnfiltered
+            .map((c) => connector.getFromDiscovered(c))
+            .toList();
+        final hops = _buildPathHops(selectedPath, contacts, context.l10n);
 
         final points = <LatLng>[];
 

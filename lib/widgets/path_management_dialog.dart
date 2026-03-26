@@ -1,6 +1,7 @@
 import 'dart:typed_data';
 
 import 'package:flutter/material.dart';
+import 'package:meshcore_open/connector/meshcore_protocol.dart';
 import 'package:meshcore_open/models/path_history.dart';
 import 'package:meshcore_open/screens/path_trace_map.dart';
 import 'package:meshcore_open/widgets/elements_ui.dart';
