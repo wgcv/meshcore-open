@@ -3766,6 +3766,14 @@ class MeshCoreConnector extends ChangeNotifier {
   void _handleContact(Uint8List frame, {bool isContact = true}) {
     final contactTmp = Contact.fromFrame(frame);
     if (contactTmp != null) {
+      if (listEquals(contactTmp.publicKey, _selfPublicKey)) {
+        appLogger.info(
+          'Ignoring contact with self public key: ${contactTmp.name}',
+          tag: 'Connector',
+        );
+        removeContact(contactTmp);
+        return;
+      }
       final contact = getFromDiscovered(contactTmp);
       _handleDiscovery(contact, frame, noNotify: true, addActive: true);
 
