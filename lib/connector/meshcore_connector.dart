@@ -431,7 +431,10 @@ class MeshCoreConnector extends ChangeNotifier {
 
   void _recalculateCachedChannelsUnreadTotal() {
     final allChannels = _channels.isNotEmpty ? _channels : _cachedChannels;
-    _cachedChannelsUnreadTotal = allChannels.fold(0, (total, ch) => total + ch.unreadCount);
+    _cachedChannelsUnreadTotal = allChannels.fold(
+      0,
+      (total, ch) => total + ch.unreadCount,
+    );
   }
 
   bool isChannelSmazEnabled(int channelIndex) {
@@ -484,7 +487,8 @@ class MeshCoreConnector extends ChangeNotifier {
     final previousCount = _contactUnreadCount[contactKeyHex] ?? 0;
     if (previousCount > 0) {
       _contactUnreadCount[contactKeyHex] = 0;
-      _cachedContactsUnreadTotal = (_cachedContactsUnreadTotal - previousCount).clamp(0, _cachedContactsUnreadTotal);
+      _cachedContactsUnreadTotal = (_cachedContactsUnreadTotal - previousCount)
+          .clamp(0, _cachedContactsUnreadTotal);
       _appDebugLogService?.info(
         'Contact $contactKeyHex marked as read (was $previousCount unread)',
         tag: 'Unread',
@@ -501,7 +505,8 @@ class MeshCoreConnector extends ChangeNotifier {
     if (channel != null && channel.unreadCount > 0) {
       final previousCount = channel.unreadCount;
       channel.unreadCount = 0;
-      _cachedChannelsUnreadTotal = (_cachedChannelsUnreadTotal - previousCount).clamp(0, _cachedChannelsUnreadTotal);
+      _cachedChannelsUnreadTotal = (_cachedChannelsUnreadTotal - previousCount)
+          .clamp(0, _cachedChannelsUnreadTotal);
       _appDebugLogService?.info(
         'Channel ${channel.name.isNotEmpty ? channel.name : channelIndex} marked as read (was $previousCount unread)',
         tag: 'Unread',
@@ -1524,6 +1529,9 @@ class MeshCoreConnector extends ChangeNotifier {
     unawaited(_persistContacts());
     _conversations.remove(contact.publicKeyHex);
     _loadedConversationKeys.remove(contact.publicKeyHex);
+    final removedCount = _contactUnreadCount[contact.publicKeyHex] ?? 0;
+    _cachedContactsUnreadTotal = (_cachedContactsUnreadTotal - removedCount)
+        .clamp(0, _cachedContactsUnreadTotal);
     _contactUnreadCount.remove(contact.publicKeyHex);
     _unreadStore.saveContactUnreadCount(
       Map<String, int>.from(_contactUnreadCount),
@@ -2158,6 +2166,9 @@ class MeshCoreConnector extends ChangeNotifier {
     final contact = Contact.fromFrame(frame);
     if (contact != null) {
       if (contact.type == advTypeRepeater) {
+        final removedCount = _contactUnreadCount[contact.publicKeyHex] ?? 0;
+        _cachedContactsUnreadTotal = (_cachedContactsUnreadTotal - removedCount)
+            .clamp(0, _cachedContactsUnreadTotal);
         _contactUnreadCount.remove(contact.publicKeyHex);
         _unreadStore.saveContactUnreadCount(
           Map<String, int>.from(_contactUnreadCount),
@@ -2233,6 +2244,9 @@ class MeshCoreConnector extends ChangeNotifier {
     }
 
     if (contact.type == advTypeRepeater) {
+      final removedCount = _contactUnreadCount[contact.publicKeyHex] ?? 0;
+      _cachedContactsUnreadTotal = (_cachedContactsUnreadTotal - removedCount)
+          .clamp(0, _cachedContactsUnreadTotal);
       _contactUnreadCount.remove(contact.publicKeyHex);
       _unreadStore.saveContactUnreadCount(
         Map<String, int>.from(_contactUnreadCount),
