@@ -3115,7 +3115,7 @@ class AppLocalizationsUk extends AppLocalizations {
   String get pathTrace_notAvailable => 'Трасування шляху недоступне.';
 
   @override
-  String get pathTrace_refreshTooltip => 'Оновити трасування шляху';
+  String get pathTrace_refreshTooltip => 'Оновити Path Trace';
 
   @override
   String get pathTrace_someHopsNoLocation =>
@@ -3302,10 +3302,10 @@ class AppLocalizationsUk extends AppLocalizations {
   String get contacts_contactImportFailed => 'Контакт не вдалося імпортувати';
 
   @override
-  String get contacts_zeroHopAdvert => 'Оголошення без ретрансляції';
+  String get contacts_zeroHopAdvert => 'Реклама без перехоплення';
 
   @override
-  String get contacts_floodAdvert => 'Оголошення з ретрансляцією';
+  String get contacts_floodAdvert => 'Залив реклами';
 
   @override
   String get contacts_copyAdvertToClipboard =>
@@ -3332,7 +3332,7 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get contacts_contactAdvertCopied =>
-      'Оголошення скопійовано до буфера обміну.';
+      'Рекламу скопійовано до буфера обміну.';
 
   @override
   String get contacts_contactAdvertCopyFailed =>
