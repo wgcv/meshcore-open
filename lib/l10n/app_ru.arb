@@ -1164,13 +1164,6 @@
   "contact_clearChat": "Очистить чат",
   "contact_lastSeen": "Последний раз видели",
   "contact_teleBaseSubtitle": "Разрешить обмен уровнем заряда батареи и базовой телеметрией",
-  "@settings_multiAck": {
-    "placeholders": {
-      "value": {
-        "type": "String"
-      }
-    }
-  },
   "appSettings_maxRouteWeight": "Максимальный допустимый вес маршрута",
   "appSettings_maxRouteWeightSubtitle": "Максимальный вес, который может быть перевезён по определённому маршруту при успешных доставках.",
   "appSettings_initialRouteWeightSubtitle": "Начальный вес для новых, только что открытых маршрутов",
@@ -1183,7 +1176,6 @@
   "appSettings_maxMessageRetriesSubtitle": "Количество попыток повторной отправки сообщения перед тем, как пометить его как неудачное.",
   "path_routeWeight": "{weight}/{max}",
   "settings_telemetryModeUpdated": "Режим телеметрии обновлен",
-  "settings_multiAck": "Мульти-ACK: {value}",
   "map_showOverlaps": "Перекрытия ключа повтора",
   "map_runTraceWithReturnPath": "Вернуться обратно по тому же пути",
   "@radioStats_noiseFloor": {
@@ -1316,10 +1308,10 @@
   "repeater_guest": "Информация о ретрансляторе",
   "room_guest": "Информация о сервере",
   "repeater_guestTools": "Инструменты для гостей",
-  "common_done": "Done",
-  "background_serviceTitle": "MeshCore running",
-  "background_serviceText": "Keeping BLE connected",
-  "appSettings_translationModelDeleted": "Deleted {name}",
+  "common_done": "Готово",
+  "background_serviceTitle": "MeshCore работает",
+  "background_serviceText": "Поддерживает BLE-соединение",
+  "appSettings_translationModelDeleted": "Удалено {name}",
   "@appSettings_translationModelDeleted": {
     "placeholders": {
       "name": {
@@ -1327,7 +1319,7 @@
       }
     }
   },
-  "appSettings_translationModelDeleteFailed": "Failed to delete: {error}",
+  "appSettings_translationModelDeleteFailed": "Не удалось удалить: {error}",
   "@appSettings_translationModelDeleteFailed": {
     "placeholders": {
       "error": {
@@ -1335,7 +1327,7 @@
       }
     }
   },
-  "channels_channelUpdateFailed": "Failed to update channel: {error}",
+  "channels_channelUpdateFailed": "Не удалось обновить канал: {error}",
   "@channels_channelUpdateFailed": {
     "placeholders": {
       "error": {
@@ -1343,17 +1335,18 @@
       }
     }
   },
-  "map_type": "Type",
-  "map_path": "Path",
-  "map_location": "Location",
-  "map_estLocation": "Est. Location",
-  "map_publicKey": "Public Key",
-  "map_publicKeyPrefixHint": "e.g. ab12",
-  "contact_typeChat": "Chat",
-  "contact_typeRepeater": "Repeater",
-  "contact_typeRoom": "Room",
-  "contact_typeSensor": "Sensor",
-  "contact_typeUnknown": "Unknown",
-  "channels_via": "via {path}",
-  "chat_score": "Score"
+  "map_type": "Тип",
+  "map_path": "Путь",
+  "map_location": "Местоположение",
+  "map_estLocation": "Прибл. местоположение",
+  "map_publicKey": "Публичный ключ",
+  "map_publicKeyPrefixHint": "напр. ab12",
+  "contact_typeChat": "Чат",
+  "contact_typeRepeater": "Ретранслятор",
+  "contact_typeRoom": "Комната",
+  "contact_typeSensor": "Датчик",
+  "contact_typeUnknown": "Неизвестно",
+  "channels_via": "через {path}",
+  "chat_score": "Оценка",
+  "settings_multiAck": "Несколько подтверждений"
 }

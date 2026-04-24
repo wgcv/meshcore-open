@@ -45,7 +45,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get common_close => 'Закрыть';
 
   @override
-  String get common_done => 'Done';
+  String get common_done => 'Готово';
 
   @override
   String get common_edit => 'Изменить';
@@ -439,9 +439,7 @@ class AppLocalizationsRu extends AppLocalizations {
       'Включить местоположение в объявление';
 
   @override
-  String settings_multiAck(String value) {
-    return 'Мульти-ACK: $value';
-  }
+  String get settings_multiAck => 'Несколько подтверждений';
 
   @override
   String get settings_telemetryModeUpdated => 'Режим телеметрии обновлен';
@@ -1107,7 +1105,7 @@ class AppLocalizationsRu extends AppLocalizations {
 
   @override
   String channels_via(String path) {
-    return 'via $path';
+    return 'через $path';
   }
 
   @override
@@ -1474,7 +1472,7 @@ class AppLocalizationsRu extends AppLocalizations {
   String get chat_successes => 'успешно';
 
   @override
-  String get chat_score => 'Score';
+  String get chat_score => 'Оценка';
 
   @override
   String get chat_removePath => 'Удалить маршрут';
@@ -1660,22 +1658,22 @@ class AppLocalizationsRu extends AppLocalizations {
   String get map_flags => 'Флаги';
 
   @override
-  String get map_type => 'Type';
+  String get map_type => 'Тип';
 
   @override
-  String get map_path => 'Path';
+  String get map_path => 'Путь';
 
   @override
-  String get map_location => 'Location';
+  String get map_location => 'Местоположение';
 
   @override
-  String get map_estLocation => 'Est. Location';
+  String get map_estLocation => 'Прибл. местоположение';
 
   @override
-  String get map_publicKey => 'Public Key';
+  String get map_publicKey => 'Публичный ключ';
 
   @override
-  String get map_publicKeyPrefixHint => 'e.g. ab12';
+  String get map_publicKeyPrefixHint => 'напр. ab12';
 
   @override
   String get map_shareMarkerHere => 'Поделиться меткой здесь';
@@ -3752,38 +3750,38 @@ class AppLocalizationsRu extends AppLocalizations {
   String get translation_systemLanguage => 'Язык системы';
 
   @override
-  String get background_serviceTitle => 'MeshCore running';
+  String get background_serviceTitle => 'MeshCore работает';
 
   @override
-  String get background_serviceText => 'Keeping BLE connected';
+  String get background_serviceText => 'Поддерживает BLE-соединение';
 
   @override
   String appSettings_translationModelDeleted(String name) {
-    return 'Deleted $name';
+    return 'Удалено $name';
   }
 
   @override
   String appSettings_translationModelDeleteFailed(String error) {
-    return 'Failed to delete: $error';
+    return 'Не удалось удалить: $error';
   }
 
   @override
   String channels_channelUpdateFailed(String error) {
-    return 'Failed to update channel: $error';
+    return 'Не удалось обновить канал: $error';
   }
 
   @override
-  String get contact_typeChat => 'Chat';
+  String get contact_typeChat => 'Чат';
 
   @override
-  String get contact_typeRepeater => 'Repeater';
+  String get contact_typeRepeater => 'Ретранслятор';
 
   @override
-  String get contact_typeRoom => 'Room';
+  String get contact_typeRoom => 'Комната';
 
   @override
-  String get contact_typeSensor => 'Sensor';
+  String get contact_typeSensor => 'Датчик';
 
   @override
-  String get contact_typeUnknown => 'Unknown';
+  String get contact_typeUnknown => 'Неизвестно';
 }

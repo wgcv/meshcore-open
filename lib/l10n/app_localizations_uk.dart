@@ -435,9 +435,7 @@ class AppLocalizationsUk extends AppLocalizations {
       'Включити геопозицію в оголошення';
 
   @override
-  String settings_multiAck(String value) {
-    return 'Багатократне підтвердження: $value';
-  }
+  String get settings_multiAck => 'Багато підтверджень';
 
   @override
   String get settings_telemetryModeUpdated => 'Режим телеметрії оновлено';
@@ -1952,7 +1950,7 @@ class AppLocalizationsUk extends AppLocalizations {
   String get login_routingMode => 'Режим маршрутизації';
 
   @override
-  String get login_autoUseSavedPath => 'Авто (використовувати збережений шлях)';
+  String get login_autoUseSavedPath => 'Авто (збережений шлях)';
 
   @override
   String get login_forceFloodMode => 'Примусово через всю мережу';

@@ -1924,13 +1924,6 @@
   "contact_teleBaseSubtitle": "Tillåt delning av batterinivå och grundläggande telemetri",
   "contact_teleLoc": "Telemetridata plats",
   "contact_teleLocSubtitle": "Tillåt delning av platsdata",
-  "@settings_multiAck": {
-    "placeholders": {
-      "value": {
-        "type": "String"
-      }
-    }
-  },
   "appSettings_initialRouteWeightSubtitle": "Initial vikt för nyligen upptäckta vägar",
   "appSettings_maxRouteWeight": "Maximalt tillåtet vikt för rutten",
   "appSettings_maxRouteWeightSubtitle": "Maximal vikt som en leveransväg kan ackumulera från framgångsrika leveranser.",
@@ -1943,7 +1936,6 @@
   "appSettings_maxMessageRetriesSubtitle": "Antal försök att skicka om ett meddelande innan det markeras som misslyckat.",
   "path_routeWeight": "{weight}/{max}",
   "settings_telemetryModeUpdated": "Telemetri-läge uppdaterat",
-  "settings_multiAck": "Multi-ACKs: {value}",
   "map_showOverlaps": "Repeater-nyckelöverlappningar",
   "map_runTraceWithReturnPath": "Gå tillbaka på samma väg",
   "@radioStats_noiseFloor": {
@@ -2115,5 +2107,6 @@
   "contact_typeSensor": "Sensor",
   "contact_typeUnknown": "Unknown",
   "channels_via": "via {path}",
-  "chat_score": "Score"
+  "chat_score": "Score",
+  "settings_multiAck": "Flera bekräftelser"
 }
