@@ -1406,6 +1406,9 @@ class AppLocalizationsKo extends AppLocalizations {
   String get chat_successes => '성공 사례';
 
   @override
+  String get chat_score => 'Score';
+
+  @override
   String get chat_removePath => '경로 제거';
 
   @override

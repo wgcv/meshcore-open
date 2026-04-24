@@ -1469,6 +1469,9 @@ class AppLocalizationsUk extends AppLocalizations {
   String get chat_successes => 'Успішно';
 
   @override
+  String get chat_score => 'Оцінка';
+
+  @override
   String get chat_removePath => 'Видалити шлях';
 
   @override

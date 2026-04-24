@@ -784,6 +784,7 @@
     }
   },
   "chat_successes": "successes",
+  "chat_score": "Score",
   "chat_removePath": "Remove path",
   "chat_noPathHistoryYet": "No path history yet.\nSend a message to discover paths.",
   "chat_pathActions": "Path Actions:",

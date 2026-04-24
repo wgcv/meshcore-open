@@ -4,6 +4,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 
@@ -578,7 +579,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(
-                                _formatTime(message.timestamp),
+                                _formatTime(context, message.timestamp),
                                 style: TextStyle(
                                   fontSize: 11,
                                   color: Colors.grey[600],
@@ -1227,14 +1228,16 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
     );
   }
 
-  String _formatTime(DateTime time) {
+  String _formatTime(BuildContext context, DateTime time) {
     final now = DateTime.now();
     final diff = now.difference(time);
+    final locale = Localizations.localeOf(context).toString();
+    final hm = DateFormat.Hm(locale).format(time);
 
     if (diff.inDays > 0) {
-      return '${time.day}/${time.month} ${time.hour}:${time.minute.toString().padLeft(2, '0')}';
+      return '${DateFormat.Md(locale).format(time)} $hm';
     } else {
-      return '${time.hour}:${time.minute.toString().padLeft(2, '0')}';
+      return hm;
     }
   }
 

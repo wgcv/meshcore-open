@@ -1474,6 +1474,9 @@ class AppLocalizationsBg extends AppLocalizations {
   String get chat_successes => 'Успехи';
 
   @override
+  String get chat_score => 'Score';
+
+  @override
   String get chat_removePath => 'Премахни пътя';
 
   @override

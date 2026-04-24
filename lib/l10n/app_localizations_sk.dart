@@ -1461,6 +1461,9 @@ class AppLocalizationsSk extends AppLocalizations {
   String get chat_successes => 'Úspechy';
 
   @override
+  String get chat_score => 'Score';
+
+  @override
   String get chat_removePath => 'Odstrániť cestu';
 
   @override

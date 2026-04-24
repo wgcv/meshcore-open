@@ -1446,6 +1446,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get chat_successes => 'successes';
 
   @override
+  String get chat_score => 'Score';
+
+  @override
   String get chat_removePath => 'Remove path';
 
   @override

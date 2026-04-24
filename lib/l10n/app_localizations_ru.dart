@@ -1474,6 +1474,9 @@ class AppLocalizationsRu extends AppLocalizations {
   String get chat_successes => 'успешно';
 
   @override
+  String get chat_score => 'Score';
+
+  @override
   String get chat_removePath => 'Удалить маршрут';
 
   @override

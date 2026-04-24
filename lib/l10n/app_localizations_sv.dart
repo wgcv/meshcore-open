@@ -1453,6 +1453,9 @@ class AppLocalizationsSv extends AppLocalizations {
   String get chat_successes => 'framgångar';
 
   @override
+  String get chat_score => 'Score';
+
+  @override
   String get chat_removePath => 'Ta bort sökväg';
 
   @override

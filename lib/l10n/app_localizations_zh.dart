@@ -1386,6 +1386,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get chat_successes => '成功';
 
   @override
+  String get chat_score => 'Score';
+
+  @override
   String get chat_removePath => '移除路径';
 
   @override

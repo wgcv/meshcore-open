@@ -1460,6 +1460,9 @@ class AppLocalizationsNl extends AppLocalizations {
   String get chat_successes => 'Succesvol';
 
   @override
+  String get chat_score => 'Score';
+
+  @override
   String get chat_removePath => 'Pad verwijderen';
 
   @override

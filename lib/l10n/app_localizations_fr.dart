@@ -1478,6 +1478,9 @@ class AppLocalizationsFr extends AppLocalizations {
   String get chat_successes => 'Succès';
 
   @override
+  String get chat_score => 'Score';
+
+  @override
   String get chat_removePath => 'Supprimer le chemin';
 
   @override

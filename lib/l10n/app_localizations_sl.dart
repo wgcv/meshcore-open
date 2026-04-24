@@ -1458,6 +1458,9 @@ class AppLocalizationsSl extends AppLocalizations {
   String get chat_successes => 'Uspešni';
 
   @override
+  String get chat_score => 'Score';
+
+  @override
   String get chat_removePath => 'Izbriši pot';
 
   @override

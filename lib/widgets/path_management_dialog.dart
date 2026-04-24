@@ -303,7 +303,7 @@ class _PathManagementDialogState extends State<_PathManagementDialog> {
                           ),
                           isThreeLine: true,
                           subtitle: Text(
-                            '${(path.tripTimeMs / 1000).toStringAsFixed(2)}s • ${_formatRelativeTime(context, path.timestamp)}\n${path.successCount} ${l10n.chat_successes} • Score: ${path.routeWeight.toStringAsFixed(1)}',
+                            '${(path.tripTimeMs / 1000).toStringAsFixed(2)}s • ${_formatRelativeTime(context, path.timestamp)}\n${path.successCount} ${l10n.chat_successes} • ${l10n.chat_score}: ${path.routeWeight.toStringAsFixed(1)}',
                             style: const TextStyle(fontSize: 11),
                           ),
                           trailing: Row(

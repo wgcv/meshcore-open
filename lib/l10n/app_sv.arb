@@ -2114,5 +2114,6 @@
   "contact_typeRoom": "Room",
   "contact_typeSensor": "Sensor",
   "contact_typeUnknown": "Unknown",
-  "channels_via": "via {path}"
+  "channels_via": "via {path}",
+  "chat_score": "Score"
 }

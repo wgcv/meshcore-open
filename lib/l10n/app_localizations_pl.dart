@@ -1484,6 +1484,9 @@ class AppLocalizationsPl extends AppLocalizations {
   String get chat_successes => 'Sukcesy';
 
   @override
+  String get chat_score => 'Score';
+
+  @override
   String get chat_removePath => 'Usuń ścieżkę';
 
   @override

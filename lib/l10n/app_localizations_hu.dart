@@ -1483,6 +1483,9 @@ class AppLocalizationsHu extends AppLocalizations {
   String get chat_successes => 'sikerek';
 
   @override
+  String get chat_score => 'Score';
+
+  @override
   String get chat_removePath => 'Törölje a elérési útvonalat';
 
   @override

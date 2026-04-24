@@ -1410,6 +1410,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get chat_successes => '成功事例';
 
   @override
+  String get chat_score => 'Score';
+
+  @override
   String get chat_removePath => 'パスを削除する';
 
   @override

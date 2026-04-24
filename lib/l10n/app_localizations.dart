@@ -2686,6 +2686,12 @@ abstract class AppLocalizations {
   /// **'successes'**
   String get chat_successes;
 
+  /// No description provided for @chat_score.
+  ///
+  /// In en, this message translates to:
+  /// **'Score'**
+  String get chat_score;
+
   /// No description provided for @chat_removePath.
   ///
   /// In en, this message translates to:
