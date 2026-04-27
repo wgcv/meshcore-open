@@ -543,7 +543,6 @@ class _ChatScreenState extends State<ChatScreen> {
       if (found && !m.isOutgoing && !m.isCli) count++;
     }
     connector.setContactUnreadCount(widget.contact.publicKeyHex, count);
-    Navigator.pop(context);
   }
 
   Widget _buildInputBar(MeshCoreConnector connector) {

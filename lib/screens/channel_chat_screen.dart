@@ -400,7 +400,6 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
       if (found && !m.isOutgoing) count++;
     }
     connector.setChannelUnreadCount(widget.channel.index, count);
-    Navigator.pop(context);
   }
 
   Widget _buildMessageBubble(ChannelMessage message, double textScale) {

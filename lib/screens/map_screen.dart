@@ -1463,11 +1463,16 @@ class _MapScreenState extends State<MapScreen> {
                 if (!contact.isActive) {
                   connector.importDiscoveredContact(contact);
                 }
+                final unread =
+                    connector.getUnreadCountForContactKey(contact.publicKeyHex);
                 Navigator.pop(dialogContext);
                 Navigator.push(
                   context,
                   MaterialPageRoute(
-                    builder: (context) => ChatScreen(contact: contact),
+                    builder: (context) => ChatScreen(
+                      contact: contact,
+                      initialUnreadCount: unread,
+                    ),
                   ),
                 );
               },
