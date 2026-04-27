@@ -2113,5 +2113,46 @@
   "contact_typeSensor": "Sensor",
   "contact_typeUnknown": "Unknown",
   "channels_via": "via {path}",
-  "chat_score": "Score"
+  "chat_score": "Score",
+  "map_sharedAt": "已分享",
+  "@losBlockedSpotChip": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      },
+      "distanceUnit": {
+        "type": "String"
+      },
+      "obstruction": {
+        "type": "String"
+      },
+      "heightUnit": {
+        "type": "String"
+      }
+    }
+  },
+  "@losSelectedObstructionDetails": {
+    "placeholders": {
+      "obstruction": {
+        "type": "String"
+      },
+      "heightUnit": {
+        "type": "String"
+      },
+      "distanceFromA": {
+        "type": "String"
+      },
+      "distanceUnit": {
+        "type": "String"
+      },
+      "distanceFromB": {
+        "type": "String"
+      }
+    }
+  },
+  "losBlockedSpotsTitle": "被占用区域",
+  "losBlockedSpotsHint": "点击地图上的某个被遮盖的区域，以突出显示该区域。",
+  "losSelectedObstructionTitle": "选择性阻碍",
+  "losBlockedSpotChip": "{distance} {distanceUnit} • {obstruction} {heightUnit}",
+  "losSelectedObstructionDetails": "Blocked by {obstruction} {heightUnit}, {distanceFromA} from A and {distanceFromB} from B ({distanceUnit})."
 }

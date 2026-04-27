@@ -2146,5 +2146,46 @@
   "contact_typeUnknown": "Unknown",
   "channels_via": "via {path}",
   "chat_score": "Score",
-  "settings_multiAck": "Többszörös visszaigazolások"
+  "settings_multiAck": "Többszörös visszaigazolások",
+  "map_sharedAt": "Megosztva",
+  "@losBlockedSpotChip": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      },
+      "distanceUnit": {
+        "type": "String"
+      },
+      "obstruction": {
+        "type": "String"
+      },
+      "heightUnit": {
+        "type": "String"
+      }
+    }
+  },
+  "@losSelectedObstructionDetails": {
+    "placeholders": {
+      "obstruction": {
+        "type": "String"
+      },
+      "heightUnit": {
+        "type": "String"
+      },
+      "distanceFromA": {
+        "type": "String"
+      },
+      "distanceUnit": {
+        "type": "String"
+      },
+      "distanceFromB": {
+        "type": "String"
+      }
+    }
+  },
+  "losSelectedObstructionTitle": "Kiválasztott akadály",
+  "losBlockedSpotChip": "{distance} {distanceUnit} • {obstruction} {heightUnit}",
+  "losBlockedSpotsHint": "A blokkolt területet megjelölve, hogy a térképen kiemeljük.",
+  "losBlockedSpotsTitle": "Foglalhatatlan területek",
+  "losSelectedObstructionDetails": "Elakadt a {obstruction} miatt, {heightUnit} magasságban, {distanceFromA} méterrel A-tól és {distanceFromB} méterrel B-től ({distanceUnit})."
 }

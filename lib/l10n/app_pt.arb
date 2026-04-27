@@ -2108,5 +2108,46 @@
   "contact_typeSensor": "Sensor",
   "contact_typeUnknown": "Unknown",
   "channels_via": "via {path}",
-  "chat_score": "Score"
+  "chat_score": "Score",
+  "map_sharedAt": "Compartilhado",
+  "@losBlockedSpotChip": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      },
+      "distanceUnit": {
+        "type": "String"
+      },
+      "obstruction": {
+        "type": "String"
+      },
+      "heightUnit": {
+        "type": "String"
+      }
+    }
+  },
+  "@losSelectedObstructionDetails": {
+    "placeholders": {
+      "obstruction": {
+        "type": "String"
+      },
+      "heightUnit": {
+        "type": "String"
+      },
+      "distanceFromA": {
+        "type": "String"
+      },
+      "distanceUnit": {
+        "type": "String"
+      },
+      "distanceFromB": {
+        "type": "String"
+      }
+    }
+  },
+  "losBlockedSpotsTitle": "Locais ocupados",
+  "losBlockedSpotsHint": "Toque em um ponto bloqueado para destacá-lo no mapa.",
+  "losSelectedObstructionTitle": "Obstrução selecionada",
+  "losBlockedSpotChip": "{distance} {distanceUnit} • {obstruction} {heightUnit}",
+  "losSelectedObstructionDetails": "Blocked by {obstruction} {heightUnit}, {distanceFromA} from A and {distanceFromB} from B ({distanceUnit})."
 }

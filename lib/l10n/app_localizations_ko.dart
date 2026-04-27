@@ -1502,6 +1502,12 @@ class AppLocalizationsKo extends AppLocalizations {
   }
 
   @override
+  String get chat_markAsUnread => 'Mark as Unread';
+
+  @override
+  String get chat_newMessages => 'New messages';
+
+  @override
   String get chat_openLink => '링크를 열기?';
 
   @override
@@ -1679,6 +1685,9 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get map_sharedPin => '공유 비밀번호';
+
+  @override
+  String get map_sharedAt => '공유됨';
 
   @override
   String get map_joinRoom => '방에 참여';
@@ -3125,6 +3134,36 @@ class AppLocalizationsKo extends AppLocalizations {
 
   @override
   String get losLegendTerrain => '지형';
+
+  @override
+  String get losBlockedSpotsTitle => '차단된 공간';
+
+  @override
+  String get losBlockedSpotsHint => '지도에서 특정 위치를 강조하려면 해당 위치를 클릭하세요.';
+
+  @override
+  String losBlockedSpotChip(
+    String distance,
+    String distanceUnit,
+    String obstruction,
+    String heightUnit,
+  ) {
+    return '$distance $distanceUnit • $obstruction $heightUnit';
+  }
+
+  @override
+  String get losSelectedObstructionTitle => '선택된 장애물';
+
+  @override
+  String losSelectedObstructionDetails(
+    String obstruction,
+    String heightUnit,
+    String distanceFromA,
+    String distanceUnit,
+    String distanceFromB,
+  ) {
+    return 'Blocked by $obstruction $heightUnit, $distanceFromA from A and $distanceFromB from B ($distanceUnit).';
+  }
 
   @override
   String get losFrequencyLabel => '빈도';

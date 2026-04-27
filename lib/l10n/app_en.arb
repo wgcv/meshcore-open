@@ -829,6 +829,8 @@
       }
     }
   },
+  "chat_markAsUnread": "Mark as Unread",
+  "chat_newMessages": "New messages",
   "chat_openLink": "Open Link?",
   "chat_openLinkConfirmation": "Do you want to open this link in your browser?",
   "chat_open": "Open",
@@ -914,6 +916,7 @@
   "map_guessedLocation": "Guessed location",
   "map_lastSeenTime": "Last Seen Time",
   "map_sharedPin": "Shared pin",
+  "map_sharedAt": "Shared",
   "map_joinRoom": "Join Room",
   "map_manageRepeater": "Manage Repeater",
   "map_tapToAdd": "Tap on nodes to add them to the path.",
@@ -1893,6 +1896,46 @@
   "losLegendRadioHorizon": "Radio horizon",
   "losLegendLosBeam": "LOS beam",
   "losLegendTerrain": "Terrain",
+  "losBlockedSpotsTitle": "Blocked spots",
+  "losBlockedSpotsHint": "Tap a blocked spot to highlight it on the map.",
+  "losBlockedSpotChip": "{distance} {distanceUnit} • {obstruction} {heightUnit}",
+  "@losBlockedSpotChip": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      },
+      "distanceUnit": {
+        "type": "String"
+      },
+      "obstruction": {
+        "type": "String"
+      },
+      "heightUnit": {
+        "type": "String"
+      }
+    }
+  },
+  "losSelectedObstructionTitle": "Selected obstruction",
+  "losSelectedObstructionDetails": "Blocked by {obstruction} {heightUnit}, {distanceFromA} from A and {distanceFromB} from B ({distanceUnit}).",
+  "@losSelectedObstructionDetails": {
+    "placeholders": {
+      "obstruction": {
+        "type": "String"
+      },
+      "heightUnit": {
+        "type": "String"
+      },
+      "distanceFromA": {
+        "type": "String"
+      },
+      "distanceUnit": {
+        "type": "String"
+      },
+      "distanceFromB": {
+        "type": "String"
+      }
+    }
+  },
   "losFrequencyLabel": "Frequency",
   "losFrequencyInfoTooltip": "View calculation details",
   "losFrequencyDialogTitle": "Radio horizon calculation",

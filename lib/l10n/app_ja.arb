@@ -2146,5 +2146,46 @@
   "contact_typeUnknown": "Unknown",
   "channels_via": "via {path}",
   "chat_score": "Score",
-  "settings_multiAck": "複数のACK（応答）"
+  "settings_multiAck": "複数のACK（応答）",
+  "map_sharedAt": "共有済み",
+  "@losBlockedSpotChip": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      },
+      "distanceUnit": {
+        "type": "String"
+      },
+      "obstruction": {
+        "type": "String"
+      },
+      "heightUnit": {
+        "type": "String"
+      }
+    }
+  },
+  "@losSelectedObstructionDetails": {
+    "placeholders": {
+      "obstruction": {
+        "type": "String"
+      },
+      "heightUnit": {
+        "type": "String"
+      },
+      "distanceFromA": {
+        "type": "String"
+      },
+      "distanceUnit": {
+        "type": "String"
+      },
+      "distanceFromB": {
+        "type": "String"
+      }
+    }
+  },
+  "losBlockedSpotsHint": "地図上で、特定された場所を強調するために、該当する場所をタップしてください。",
+  "losSelectedObstructionTitle": "選択された障害",
+  "losBlockedSpotsTitle": "利用できない場所",
+  "losSelectedObstructionDetails": "{obstruction} によって {heightUnit} の高さで、A地点から {distanceFromA}、B地点から {distanceFromB} ({distanceUnit}) の距離で塞がれています。",
+  "losBlockedSpotChip": "{distance} {distanceUnit} • {obstruction} {heightUnit}"
 }

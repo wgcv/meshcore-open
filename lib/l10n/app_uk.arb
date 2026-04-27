@@ -2087,5 +2087,46 @@
   "contact_typeRoom": "Кімната",
   "contact_typeSensor": "Сенсор",
   "contact_typeUnknown": "Невідомо",
-  "settings_multiAck": "Багато підтверджень"
+  "settings_multiAck": "Багато підтверджень",
+  "map_sharedAt": "Поділено",
+  "@losBlockedSpotChip": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      },
+      "distanceUnit": {
+        "type": "String"
+      },
+      "obstruction": {
+        "type": "String"
+      },
+      "heightUnit": {
+        "type": "String"
+      }
+    }
+  },
+  "@losSelectedObstructionDetails": {
+    "placeholders": {
+      "obstruction": {
+        "type": "String"
+      },
+      "heightUnit": {
+        "type": "String"
+      },
+      "distanceFromA": {
+        "type": "String"
+      },
+      "distanceUnit": {
+        "type": "String"
+      },
+      "distanceFromB": {
+        "type": "String"
+      }
+    }
+  },
+  "losBlockedSpotsHint": "Натисніть на заблоковане місце, щоб виділити його на карті.",
+  "losBlockedSpotsTitle": "Заблоковані місця",
+  "losSelectedObstructionTitle": "Вибраний об'єкт перешкоди",
+  "losBlockedSpotChip": "{distance} {distanceUnit} • {obstruction} {heightUnit}",
+  "losSelectedObstructionDetails": "Blocked by {obstruction} {heightUnit}, {distanceFromA} from A and {distanceFromB} from B ({distanceUnit})."
 }

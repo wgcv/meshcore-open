@@ -1506,6 +1506,12 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
+  String get chat_markAsUnread => 'Mark as Unread';
+
+  @override
+  String get chat_newMessages => 'New messages';
+
+  @override
   String get chat_openLink => 'リンクを開く？';
 
   @override
@@ -1683,6 +1689,9 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get map_sharedPin => '共有パスワード';
+
+  @override
+  String get map_sharedAt => '共有済み';
 
   @override
   String get map_joinRoom => '部屋に参加する';
@@ -3125,6 +3134,36 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get losLegendTerrain => '地形';
+
+  @override
+  String get losBlockedSpotsTitle => '利用できない場所';
+
+  @override
+  String get losBlockedSpotsHint => '地図上で、特定された場所を強調するために、該当する場所をタップしてください。';
+
+  @override
+  String losBlockedSpotChip(
+    String distance,
+    String distanceUnit,
+    String obstruction,
+    String heightUnit,
+  ) {
+    return '$distance $distanceUnit • $obstruction $heightUnit';
+  }
+
+  @override
+  String get losSelectedObstructionTitle => '選択された障害';
+
+  @override
+  String losSelectedObstructionDetails(
+    String obstruction,
+    String heightUnit,
+    String distanceFromA,
+    String distanceUnit,
+    String distanceFromB,
+  ) {
+    return '$obstruction によって $heightUnit の高さで、A地点から $distanceFromA、B地点から $distanceFromB ($distanceUnit) の距離で塞がれています。';
+  }
 
   @override
   String get losFrequencyLabel => '周波数';

@@ -5,7 +5,6 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
-import 'package:latlong2/latlong.dart';
 import 'package:provider/provider.dart';
 
 import '../connector/meshcore_connector.dart';
@@ -33,13 +32,19 @@ import '../widgets/message_translation_button.dart';
 import '../widgets/message_status_icon.dart';
 import '../widgets/radio_stats_entry.dart';
 import '../widgets/translated_message_content.dart';
+import '../widgets/unread_divider.dart';
 import 'channel_message_path_screen.dart';
 import 'map_screen.dart';
 
 class ChannelChatScreen extends StatefulWidget {
   final Channel channel;
+  final int initialUnreadCount;
 
-  const ChannelChatScreen({super.key, required this.channel});
+  const ChannelChatScreen({
+    super.key,
+    required this.channel,
+    this.initialUnreadCount = 0,
+  });
 
   @override
   State<ChannelChatScreen> createState() => _ChannelChatScreenState();
@@ -56,6 +61,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
   MeshCoreConnector? _connector;
   DateTime? _lastChannelSendAt;
   bool _channelSkipNextBottomSnap = false;
+  String? _unreadDividerMessageId;
 
   String? _cachedFormatLocale;
   late DateFormat _hmFormat;
@@ -66,26 +72,35 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
     super.initState();
     _textFieldFocusNode.addListener(_onTextFieldFocusChange);
     _scrollController.onScrollNearTop = _loadOlderMessages;
+    _scrollController.showJumpToBottom.addListener(_clearDividerAtBottom);
     SchedulerBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
       final connector = context.read<MeshCoreConnector>();
       final settings = context.read<AppSettingsService>().settings;
       final idx = widget.channel.index;
-      final unread = connector.getUnreadCountForChannelIndex(idx);
+      final unread = widget.initialUnreadCount;
+      final messages = connector.getChannelMessages(widget.channel);
       ChannelMessage? anchor;
-      if (settings.jumpToOldestUnread && unread > 0) {
-        anchor = _findOldestUnreadChannelAnchor(
-          connector.getChannelMessages(widget.channel),
-          unread,
-        );
+      if (unread > 0) {
+        anchor = _findOldestUnreadChannelAnchor(messages, unread);
       }
+      setState(() {
+        if (anchor != null) _unreadDividerMessageId = anchor.messageId;
+      });
       connector.setActiveChannel(idx);
       _connector = connector;
-      if (anchor != null) {
+      if (anchor != null && settings.jumpToOldestUnread) {
         _channelSkipNextBottomSnap = true;
         WidgetsBinding.instance.addPostFrameCallback((_) {
           if (!mounted) return;
-          _scrollToMessage(anchor!.messageId);
+          _scrollController.jumpToEstimatedOffset(
+            unreadCount: unread,
+            totalMessages: messages.length,
+            onJumped: () {
+              if (!mounted) return;
+              _scrollToMessage(anchor!.messageId);
+            },
+          );
         });
       }
     });
@@ -105,6 +120,13 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
       if (n >= unreadCount) break;
     }
     return oldest;
+  }
+
+  void _clearDividerAtBottom() {
+    if (!_scrollController.showJumpToBottom.value &&
+        _unreadDividerMessageId != null) {
+      setState(() => _unreadDividerMessageId = null);
+    }
   }
 
   void _onTextFieldFocusChange() {
@@ -128,6 +150,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
   @override
   void dispose() {
     _connector?.setActiveChannel(null);
+    _scrollController.showJumpToBottom.removeListener(_clearDividerAtBottom);
     _textFieldFocusNode.removeListener(_onTextFieldFocusChange);
     _textFieldFocusNode.dispose();
     _textController.dispose();
@@ -326,6 +349,9 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                             if (!_messageKeys.containsKey(message.messageId)) {
                               _messageKeys[message.messageId] = GlobalKey();
                             }
+                            final isUnreadAnchor =
+                                _unreadDividerMessageId != null &&
+                                message.messageId == _unreadDividerMessageId;
                             return Container(
                               key: _messageKeys[message.messageId]!,
                               child: Builder(
@@ -334,10 +360,17 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                                       .select<ChatTextScaleService, double>(
                                         (service) => service.scale,
                                       );
-                                  return _buildMessageBubble(
+                                  final bubble = _buildMessageBubble(
                                     message,
                                     textScale,
                                   );
+                                  if (isUnreadAnchor) {
+                                    return Column(
+                                      mainAxisSize: MainAxisSize.min,
+                                      children: [const UnreadDivider(), bubble],
+                                    );
+                                  }
+                                  return bubble;
                                 },
                               ),
                             );
@@ -357,12 +390,24 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
     );
   }
 
+  void _markAsUnread(ChannelMessage message) {
+    final connector = context.read<MeshCoreConnector>();
+    final messages = connector.getChannelMessages(widget.channel);
+    var count = 0;
+    var found = false;
+    for (final m in messages) {
+      if (m.messageId == message.messageId) found = true;
+      if (found && !m.isOutgoing) count++;
+    }
+    connector.setChannelUnreadCount(widget.channel.index, count);
+  }
+
   Widget _buildMessageBubble(ChannelMessage message, double textScale) {
     final settingsService = context.watch<AppSettingsService>();
     final enableTracing = settingsService.settings.enableMessageTracing;
     final isOutgoing = message.isOutgoing;
     final gifId = GifHelper.parseGif(message.text);
-    final poi = _parsePoiMessage(message.text);
+    final poi = parseMarkerText(message.text);
     final translatedDisplayText =
         message.translatedText != null &&
             message.translatedText!.trim().isNotEmpty
@@ -450,6 +495,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                           poi,
                           isOutgoing,
                           textScale,
+                          message.senderName,
                           trailing: (!enableTracing && isOutgoing)
                               ? Padding(
                                   padding: const EdgeInsets.only(bottom: 2),
@@ -708,7 +754,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
     final previewTextColor = colorScheme.onSurface.withValues(alpha: 0.7);
 
     final gifId = GifHelper.parseGif(replyText);
-    final poi = _parsePoiMessage(replyText);
+    final poi = parseMarkerText(replyText);
 
     Widget contentPreview;
     if (gifId != null) {
@@ -819,24 +865,12 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
     );
   }
 
-  _PoiInfo? _parsePoiMessage(String text) {
-    final trimmed = text.trim();
-    final match = RegExp(
-      r'm:([\-0-9.]+),([\-0-9.]+)\|([^|]*)\|',
-    ).firstMatch(trimmed);
-    if (match == null) return null;
-    final lat = double.tryParse(match.group(1) ?? '');
-    final lon = double.tryParse(match.group(2) ?? '');
-    if (lat == null || lon == null) return null;
-    final label = match.group(3) ?? '';
-    return _PoiInfo(lat: lat, lon: lon, label: label);
-  }
-
   Widget _buildPoiMessage(
     BuildContext context,
-    _PoiInfo poi,
+    MarkerPayload poi,
     bool isOutgoing,
-    double textScale, {
+    double textScale,
+    String senderName, {
     Widget? trailing,
   }) {
     final colorScheme = Theme.of(context).colorScheme;
@@ -856,12 +890,22 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
           padding: EdgeInsets.zero,
           constraints: const BoxConstraints(minWidth: 32, minHeight: 32),
           onPressed: () {
+            final selfName = context.read<MeshCoreConnector>().selfName ?? 'Me';
+            final fromName = isOutgoing ? selfName : senderName;
+            final key = buildSharedMarkerKey(
+              sourceId: 'channel:${widget.channel.index}',
+              label: poi.label,
+              fromName: fromName,
+              flags: poi.flags,
+              isChannel: true,
+            );
             Navigator.push(
               context,
               MaterialPageRoute(
                 builder: (context) => MapScreen(
-                  highlightPosition: LatLng(poi.lat, poi.lon),
+                  highlightPosition: poi.position,
                   highlightLabel: poi.label,
+                  highlightMarkerKey: key,
                 ),
               ),
             );
@@ -1302,6 +1346,15 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                 _copyMessageText(message.text);
               },
             ),
+            if (!message.isOutgoing)
+              ListTile(
+                leading: const Icon(Icons.mark_chat_unread_outlined),
+                title: Text(context.l10n.chat_markAsUnread),
+                onTap: () {
+                  Navigator.pop(sheetContext);
+                  _markAsUnread(message);
+                },
+              ),
             ListTile(
               leading: const Icon(Icons.delete_outline),
               title: Text(context.l10n.common_delete),
@@ -1520,12 +1573,4 @@ class _SwipeReplyBubbleState extends State<_SwipeReplyBubble> {
       ),
     );
   }
-}
-
-class _PoiInfo {
-  final double lat;
-  final double lon;
-  final String label;
-
-  const _PoiInfo({required this.lat, required this.lon, required this.label});
 }

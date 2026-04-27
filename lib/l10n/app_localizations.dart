@@ -2854,6 +2854,18 @@ abstract class AppLocalizations {
   /// **'Unread: {count}'**
   String chat_unread(int count);
 
+  /// No description provided for @chat_markAsUnread.
+  ///
+  /// In en, this message translates to:
+  /// **'Mark as Unread'**
+  String get chat_markAsUnread;
+
+  /// No description provided for @chat_newMessages.
+  ///
+  /// In en, this message translates to:
+  /// **'New messages'**
+  String get chat_newMessages;
+
   /// No description provided for @chat_openLink.
   ///
   /// In en, this message translates to:
@@ -3195,6 +3207,12 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Shared pin'**
   String get map_sharedPin;
+
+  /// No description provided for @map_sharedAt.
+  ///
+  /// In en, this message translates to:
+  /// **'Shared'**
+  String get map_sharedAt;
 
   /// No description provided for @map_joinRoom.
   ///
@@ -5705,6 +5723,47 @@ abstract class AppLocalizations {
   /// In en, this message translates to:
   /// **'Terrain'**
   String get losLegendTerrain;
+
+  /// No description provided for @losBlockedSpotsTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Blocked spots'**
+  String get losBlockedSpotsTitle;
+
+  /// No description provided for @losBlockedSpotsHint.
+  ///
+  /// In en, this message translates to:
+  /// **'Tap a blocked spot to highlight it on the map.'**
+  String get losBlockedSpotsHint;
+
+  /// No description provided for @losBlockedSpotChip.
+  ///
+  /// In en, this message translates to:
+  /// **'{distance} {distanceUnit} • {obstruction} {heightUnit}'**
+  String losBlockedSpotChip(
+    String distance,
+    String distanceUnit,
+    String obstruction,
+    String heightUnit,
+  );
+
+  /// No description provided for @losSelectedObstructionTitle.
+  ///
+  /// In en, this message translates to:
+  /// **'Selected obstruction'**
+  String get losSelectedObstructionTitle;
+
+  /// No description provided for @losSelectedObstructionDetails.
+  ///
+  /// In en, this message translates to:
+  /// **'Blocked by {obstruction} {heightUnit}, {distanceFromA} from A and {distanceFromB} from B ({distanceUnit}).'**
+  String losSelectedObstructionDetails(
+    String obstruction,
+    String heightUnit,
+    String distanceFromA,
+    String distanceUnit,
+    String distanceFromB,
+  );
 
   /// No description provided for @losFrequencyLabel.
   ///

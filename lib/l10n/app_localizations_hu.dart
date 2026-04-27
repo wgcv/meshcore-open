@@ -1584,6 +1584,12 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
+  String get chat_markAsUnread => 'Mark as Unread';
+
+  @override
+  String get chat_newMessages => 'New messages';
+
+  @override
   String get chat_openLink => 'Nyisd meg a linket?';
 
   @override
@@ -1768,6 +1774,9 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get map_sharedPin => 'Gemeinsames PIN-kód';
+
+  @override
+  String get map_sharedAt => 'Megosztva';
 
   @override
   String get map_joinRoom => 'Csatlakozás a szobához';
@@ -3284,6 +3293,37 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get losLegendTerrain => 'Terület';
+
+  @override
+  String get losBlockedSpotsTitle => 'Foglalhatatlan területek';
+
+  @override
+  String get losBlockedSpotsHint =>
+      'A blokkolt területet megjelölve, hogy a térképen kiemeljük.';
+
+  @override
+  String losBlockedSpotChip(
+    String distance,
+    String distanceUnit,
+    String obstruction,
+    String heightUnit,
+  ) {
+    return '$distance $distanceUnit • $obstruction $heightUnit';
+  }
+
+  @override
+  String get losSelectedObstructionTitle => 'Kiválasztott akadály';
+
+  @override
+  String losSelectedObstructionDetails(
+    String obstruction,
+    String heightUnit,
+    String distanceFromA,
+    String distanceUnit,
+    String distanceFromB,
+  ) {
+    return 'Elakadt a $obstruction miatt, $heightUnit magasságban, $distanceFromA méterrel A-tól és $distanceFromB méterrel B-től ($distanceUnit).';
+  }
 
   @override
   String get losFrequencyLabel => 'Hatósság';

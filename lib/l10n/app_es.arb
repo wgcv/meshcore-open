@@ -2136,5 +2136,46 @@
   "contact_typeUnknown": "Unknown",
   "channels_via": "via {path}",
   "chat_score": "Score",
-  "settings_multiAck": "Múltiples respuestas de confirmación"
+  "settings_multiAck": "Múltiples respuestas de confirmación",
+  "map_sharedAt": "Compartido",
+  "@losBlockedSpotChip": {
+    "placeholders": {
+      "distance": {
+        "type": "String"
+      },
+      "distanceUnit": {
+        "type": "String"
+      },
+      "obstruction": {
+        "type": "String"
+      },
+      "heightUnit": {
+        "type": "String"
+      }
+    }
+  },
+  "@losSelectedObstructionDetails": {
+    "placeholders": {
+      "obstruction": {
+        "type": "String"
+      },
+      "heightUnit": {
+        "type": "String"
+      },
+      "distanceFromA": {
+        "type": "String"
+      },
+      "distanceUnit": {
+        "type": "String"
+      },
+      "distanceFromB": {
+        "type": "String"
+      }
+    }
+  },
+  "losBlockedSpotsTitle": "Espacios ocupados",
+  "losBlockedSpotsHint": "Seleccione un punto bloqueado para resaltarlo en el mapa.",
+  "losSelectedObstructionTitle": "Obstrucción seleccionada",
+  "losSelectedObstructionDetails": "Bloqueado por {obstruction} a una altura de {heightUnit}, a {distanceFromA} metros de A y a {distanceFromB} metros de B ({distanceUnit}).",
+  "losBlockedSpotChip": "{distance} {distanceUnit} • {obstruction} {heightUnit}"
 }

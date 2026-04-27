@@ -1574,6 +1574,12 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
+  String get chat_markAsUnread => 'Mark as Unread';
+
+  @override
+  String get chat_newMessages => 'New messages';
+
+  @override
   String get chat_openLink => 'Link öffnen?';
 
   @override
@@ -1756,6 +1762,9 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get map_sharedPin => 'Gemeinsames Passwort';
+
+  @override
+  String get map_sharedAt => 'Geteilt';
 
   @override
   String get map_joinRoom => 'Beitreten Sie dem Raum';
@@ -3276,6 +3285,37 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String get losLegendTerrain => 'Gelände';
+
+  @override
+  String get losBlockedSpotsTitle => 'Reservierte Plätze';
+
+  @override
+  String get losBlockedSpotsHint =>
+      'Klicken Sie auf einen blockierten Bereich, um ihn auf der Karte hervorzuheben.';
+
+  @override
+  String losBlockedSpotChip(
+    String distance,
+    String distanceUnit,
+    String obstruction,
+    String heightUnit,
+  ) {
+    return '$distance • $distanceUnit • $obstruction $heightUnit';
+  }
+
+  @override
+  String get losSelectedObstructionTitle => 'Ausgewählte Behinderung';
+
+  @override
+  String losSelectedObstructionDetails(
+    String obstruction,
+    String heightUnit,
+    String distanceFromA,
+    String distanceUnit,
+    String distanceFromB,
+  ) {
+    return 'Blockiert durch $obstruction in einer Höhe von $heightUnit, $distanceFromA von A und $distanceFromB von B ($distanceUnit).';
+  }
 
   @override
   String get losFrequencyLabel => 'Frequenz';

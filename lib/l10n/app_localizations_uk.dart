@@ -1572,6 +1572,12 @@ class AppLocalizationsUk extends AppLocalizations {
   }
 
   @override
+  String get chat_markAsUnread => 'Mark as Unread';
+
+  @override
+  String get chat_newMessages => 'New messages';
+
+  @override
   String get chat_openLink => 'Відкрити посилання?';
 
   @override
@@ -1754,6 +1760,9 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get map_sharedPin => 'Спільний пін';
+
+  @override
+  String get map_sharedAt => 'Поділено';
 
   @override
   String get map_joinRoom => 'Приєднатись до кімнати';
@@ -3277,6 +3286,37 @@ class AppLocalizationsUk extends AppLocalizations {
 
   @override
   String get losLegendTerrain => 'Рельєф';
+
+  @override
+  String get losBlockedSpotsTitle => 'Заблоковані місця';
+
+  @override
+  String get losBlockedSpotsHint =>
+      'Натисніть на заблоковане місце, щоб виділити його на карті.';
+
+  @override
+  String losBlockedSpotChip(
+    String distance,
+    String distanceUnit,
+    String obstruction,
+    String heightUnit,
+  ) {
+    return '$distance $distanceUnit • $obstruction $heightUnit';
+  }
+
+  @override
+  String get losSelectedObstructionTitle => 'Вибраний об\'єкт перешкоди';
+
+  @override
+  String losSelectedObstructionDetails(
+    String obstruction,
+    String heightUnit,
+    String distanceFromA,
+    String distanceUnit,
+    String distanceFromB,
+  ) {
+    return 'Blocked by $obstruction $heightUnit, $distanceFromA from A and $distanceFromB from B ($distanceUnit).';
+  }
 
   @override
   String get losFrequencyLabel => 'Частота';
