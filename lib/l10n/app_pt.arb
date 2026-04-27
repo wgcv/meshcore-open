@@ -104,6 +104,8 @@
   "settings_privacyModeEnabled": "Modo de privacidade ativado",
   "settings_privacyModeDisabled": "Modo de privacidade desativado",
   "settings_actions": "Ações",
+  "settings_deleteAllPaths": "Delete All Paths",
+  "settings_deleteAllPathsSubtitle": "Clear all path data from contacts.",
   "settings_sendAdvertisement": "Enviar Publicidade",
   "settings_sendAdvertisementSubtitle": "Presença de transmissão agora",
   "settings_advertisementSent": "Anúncio enviado",
@@ -682,7 +684,6 @@
   "map_showSharedMarkers": "Mostrar marcadores compartilhados",
   "map_lastSeenTime": "Último Tempo de Visualização",
   "map_sharedPin": "Pin compartilhado",
-  "map_sharedAt": "Compartilhado",
   "map_joinRoom": "Junte-se à Sala",
   "map_manageRepeater": "Gerenciar Repetidor",
   "mapCache_title": "Cache de Mapa Offline",
@@ -2068,6 +2069,47 @@
   "chat_sendMessage": "Enviar mensagem",
   "repeater_guest": "Informações sobre repetidores",
   "repeater_guestTools": "Ferramentas para hóspedes",
+  "common_done": "Done",
+  "background_serviceTitle": "MeshCore running",
+  "background_serviceText": "Keeping BLE connected",
+  "appSettings_translationModelDeleted": "Deleted {name}",
+  "@appSettings_translationModelDeleted": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "appSettings_translationModelDeleteFailed": "Failed to delete: {error}",
+  "@appSettings_translationModelDeleteFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "channels_channelUpdateFailed": "Failed to update channel: {error}",
+  "@channels_channelUpdateFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "map_type": "Type",
+  "map_path": "Path",
+  "map_location": "Location",
+  "map_estLocation": "Est. Location",
+  "map_publicKey": "Public Key",
+  "map_publicKeyPrefixHint": "e.g. ab12",
+  "contact_typeChat": "Chat",
+  "contact_typeRepeater": "Repeater",
+  "contact_typeRoom": "Room",
+  "contact_typeSensor": "Sensor",
+  "contact_typeUnknown": "Unknown",
+  "channels_via": "via {path}",
+  "chat_score": "Score",
+  "map_sharedAt": "Compartilhado",
   "@losBlockedSpotChip": {
     "placeholders": {
       "distance": {

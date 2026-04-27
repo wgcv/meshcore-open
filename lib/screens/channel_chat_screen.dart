@@ -4,6 +4,7 @@ import 'dart:math' as math;
 import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
+import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
 
 import '../connector/meshcore_connector.dart';
@@ -61,6 +62,10 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
   DateTime? _lastChannelSendAt;
   bool _channelSkipNextBottomSnap = false;
   String? _unreadDividerMessageId;
+
+  String? _cachedFormatLocale;
+  late DateFormat _hmFormat;
+  late DateFormat _mdFormat;
 
   @override
   void initState() {
@@ -601,7 +606,9 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                                 ? const EdgeInsets.symmetric(horizontal: 8)
                                 : EdgeInsets.zero,
                             child: Text(
-                              'via ${_formatPathPrefixes(displayPath)}',
+                              context.l10n.channels_via(
+                                _formatPathPrefixes(displayPath),
+                              ),
                               style: TextStyle(
                                 fontSize: 11,
                                 color: Colors.grey[600],
@@ -622,7 +629,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                             mainAxisSize: MainAxisSize.min,
                             children: [
                               Text(
-                                _formatTime(message.timestamp),
+                                _formatTime(context, message.timestamp),
                                 style: TextStyle(
                                   fontSize: 11,
                                   color: Colors.grey[600],
@@ -1269,14 +1276,21 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
     );
   }
 
-  String _formatTime(DateTime time) {
+  String _formatTime(BuildContext context, DateTime time) {
     final now = DateTime.now();
     final diff = now.difference(time);
+    final locale = Localizations.localeOf(context).toString();
+    if (locale != _cachedFormatLocale) {
+      _cachedFormatLocale = locale;
+      _hmFormat = DateFormat.Hm(locale);
+      _mdFormat = DateFormat.Md(locale);
+    }
+    final hm = _hmFormat.format(time);
 
     if (diff.inDays > 0) {
-      return '${time.day}/${time.month} ${time.hour}:${time.minute.toString().padLeft(2, '0')}';
+      return '${_mdFormat.format(time)} $hm';
     } else {
-      return '${time.hour}:${time.minute.toString().padLeft(2, '0')}';
+      return hm;
     }
   }
 

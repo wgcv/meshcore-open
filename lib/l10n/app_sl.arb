@@ -104,6 +104,8 @@
   "settings_privacyModeEnabled": "Privatni način je omogočen.",
   "settings_privacyModeDisabled": "Privatni način je onemogočen.",
   "settings_actions": "Akcije",
+  "settings_deleteAllPaths": "Delete All Paths",
+  "settings_deleteAllPathsSubtitle": "Clear all path data from contacts.",
   "settings_sendAdvertisement": "Pošlji Oglas",
   "settings_sendAdvertisementSubtitle": "Trenutna prisotnost v oddajah",
   "settings_advertisementSent": "Oglas poslan",
@@ -682,7 +684,6 @@
   "map_showSharedMarkers": "Pokaži skupno označenja",
   "map_lastSeenTime": "Datum zadnjega vpogleda",
   "map_sharedPin": "Deljeno naslovno geslo",
-  "map_sharedAt": "Deljeno",
   "map_joinRoom": "Pridružiti sobo",
   "map_manageRepeater": "Upravljajte Ponovitve",
   "mapCache_title": "Omrezni predpomnilnik zemljeških zemljejevskih slik",
@@ -2067,7 +2068,48 @@
   "chat_sendMessage": "Pošlji sporočilo",
   "room_guest": "Informacije o strežniku",
   "repeater_guestTools": "Naložila za goste",
+  "common_done": "Done",
+  "background_serviceTitle": "MeshCore running",
+  "background_serviceText": "Keeping BLE connected",
+  "appSettings_translationModelDeleted": "Deleted {name}",
+  "@appSettings_translationModelDeleted": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "appSettings_translationModelDeleteFailed": "Failed to delete: {error}",
+  "@appSettings_translationModelDeleteFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "channels_channelUpdateFailed": "Failed to update channel: {error}",
+  "@channels_channelUpdateFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "map_type": "Type",
+  "map_path": "Path",
+  "map_location": "Location",
+  "map_estLocation": "Est. Location",
+  "map_publicKey": "Public Key",
+  "map_publicKeyPrefixHint": "e.g. ab12",
+  "contact_typeChat": "Chat",
+  "contact_typeRepeater": "Repeater",
+  "contact_typeRoom": "Room",
+  "contact_typeSensor": "Sensor",
+  "contact_typeUnknown": "Unknown",
+  "channels_via": "via {path}",
+  "chat_score": "Score",
   "settings_multiAck": "Več potrdil",
+  "map_sharedAt": "Deljeno",
   "@losBlockedSpotChip": {
     "placeholders": {
       "distance": {

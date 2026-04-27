@@ -1,38 +1,86 @@
 {
   "bg": [
-    "losSelectedObstructionDetails"
+    "chat_markAsUnread",
+    "chat_newMessages"
   ],
+
+  "de": [
+    "chat_markAsUnread",
+    "chat_newMessages"
+  ],
+
+  "es": [
+    "chat_markAsUnread",
+    "chat_newMessages"
+  ],
+
+  "fr": [
+    "chat_markAsUnread",
+    "chat_newMessages"
+  ],
+
+  "hu": [
+    "chat_markAsUnread",
+    "chat_newMessages"
+  ],
+
   "it": [
-    "losSelectedObstructionDetails"
+    "chat_markAsUnread",
+    "chat_newMessages"
   ],
+
+  "ja": [
+    "chat_markAsUnread",
+    "chat_newMessages"
+  ],
+
   "ko": [
-    "losSelectedObstructionDetails"
+    "chat_markAsUnread",
+    "chat_newMessages"
   ],
+
   "nl": [
-    "losSelectedObstructionDetails"
+    "chat_markAsUnread",
+    "chat_newMessages"
   ],
+
   "pl": [
-    "losSelectedObstructionDetails"
+    "chat_markAsUnread",
+    "chat_newMessages"
   ],
+
   "pt": [
-    "losSelectedObstructionDetails"
+    "chat_markAsUnread",
+    "chat_newMessages"
   ],
+
   "ru": [
-    "losSelectedObstructionDetails"
+    "chat_markAsUnread",
+    "chat_newMessages"
   ],
+
   "sk": [
-    "losSelectedObstructionDetails"
+    "chat_markAsUnread",
+    "chat_newMessages"
   ],
+
   "sl": [
-    "losSelectedObstructionDetails"
+    "chat_markAsUnread",
+    "chat_newMessages"
   ],
+
   "sv": [
-    "losSelectedObstructionDetails"
+    "chat_markAsUnread",
+    "chat_newMessages"
   ],
+
   "uk": [
-    "losSelectedObstructionDetails"
+    "chat_markAsUnread",
+    "chat_newMessages"
   ],
+
   "zh": [
-    "losSelectedObstructionDetails"
+    "chat_markAsUnread",
+    "chat_newMessages"
   ]
 }

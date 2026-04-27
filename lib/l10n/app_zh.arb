@@ -109,6 +109,8 @@
   "settings_privacyModeEnabled": "隐私模式已启用",
   "settings_privacyModeDisabled": "隐私模式已关闭",
   "settings_actions": "操作",
+  "settings_deleteAllPaths": "Delete All Paths",
+  "settings_deleteAllPathsSubtitle": "Clear all path data from contacts.",
   "settings_sendAdvertisement": "发送广播",
   "settings_sendAdvertisementSubtitle": "立即发送广播",
   "settings_advertisementSent": "已发送广播",
@@ -709,7 +711,6 @@
   "map_showSharedMarkers": "显示共享标记",
   "map_lastSeenTime": "最后在线时间",
   "map_sharedPin": "共享标记",
-  "map_sharedAt": "已分享",
   "map_joinRoom": "加入房间",
   "map_manageRepeater": "管理转发节点",
   "mapCache_title": "离线地图缓存",
@@ -2073,6 +2074,47 @@
   "repeater_guest": "重复器信息",
   "chat_sendMessage": "发送消息",
   "room_guest": "服务器信息",
+  "common_done": "Done",
+  "background_serviceTitle": "MeshCore running",
+  "background_serviceText": "Keeping BLE connected",
+  "appSettings_translationModelDeleted": "Deleted {name}",
+  "@appSettings_translationModelDeleted": {
+    "placeholders": {
+      "name": {
+        "type": "String"
+      }
+    }
+  },
+  "appSettings_translationModelDeleteFailed": "Failed to delete: {error}",
+  "@appSettings_translationModelDeleteFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "channels_channelUpdateFailed": "Failed to update channel: {error}",
+  "@channels_channelUpdateFailed": {
+    "placeholders": {
+      "error": {
+        "type": "String"
+      }
+    }
+  },
+  "map_type": "Type",
+  "map_path": "Path",
+  "map_location": "Location",
+  "map_estLocation": "Est. Location",
+  "map_publicKey": "Public Key",
+  "map_publicKeyPrefixHint": "e.g. ab12",
+  "contact_typeChat": "Chat",
+  "contact_typeRepeater": "Repeater",
+  "contact_typeRoom": "Room",
+  "contact_typeSensor": "Sensor",
+  "contact_typeUnknown": "Unknown",
+  "channels_via": "via {path}",
+  "chat_score": "Score",
+  "map_sharedAt": "已分享",
   "@losBlockedSpotChip": {
     "placeholders": {
       "distance": {

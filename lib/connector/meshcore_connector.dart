@@ -4018,7 +4018,7 @@ class MeshCoreConnector extends ChangeNotifier {
           );
         } else {
           appLogger.info(
-            "Discovered contact ${contact.name} (type ${contact.typeLabel}) not added due to auto-add settings",
+            "Discovered contact ${contact.name} (type ${contact.typeLabelRaw}) not added due to auto-add settings",
             tag: 'Connector',
           );
           return;
@@ -4040,7 +4040,7 @@ class MeshCoreConnector extends ChangeNotifier {
         if (settings.notificationsEnabled && settings.notifyOnNewAdvert) {
           _notificationService.showAdvertNotification(
             contactName: contact.name,
-            contactType: contact.typeLabel,
+            contactType: contact.typeLabelRaw,
             contactId: contact.publicKeyHex,
           );
         }
@@ -4115,7 +4115,7 @@ class MeshCoreConnector extends ChangeNotifier {
       if (settings.notificationsEnabled && settings.notifyOnNewAdvert) {
         _notificationService.showAdvertNotification(
           contactName: contact.name,
-          contactType: contact.typeLabel,
+          contactType: contact.typeLabelRaw,
           contactId: contact.publicKeyHex,
         );
       }
@@ -6046,7 +6046,7 @@ class MeshCoreConnector extends ChangeNotifier {
       if (settings.notificationsEnabled && settings.notifyOnNewAdvert) {
         _notificationService.showAdvertNotification(
           contactName: contact.name,
-          contactType: contact.typeLabel,
+          contactType: contact.typeLabelRaw,
           contactId: contact.publicKeyHex,
         );
       }

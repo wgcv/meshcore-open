@@ -1497,7 +1497,7 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                   if (!context.mounted) return;
                   showDismissibleSnackBar(
                     context,
-                    content: Text('Failed to update channel: $e'),
+                    content: Text(context.l10n.channels_channelUpdateFailed('$e')),
                   );
                 }
               },
