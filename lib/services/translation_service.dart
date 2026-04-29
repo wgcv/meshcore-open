@@ -535,7 +535,7 @@ class TranslationService extends ChangeNotifier {
     }
 
     final lower = trimmed.toLowerCase();
-    final patterns = <String, Pattern>{
+    final patterns = <String, String>{
       'uk': r'\b(привіт|дякую|будь|ласка|як|де|не|так|це|є|най|ще|може|для)\b',
       'ru': r'\b(что|это|как|не|да|нет|он|она|они|быть|есть|для|сегодня|если|уже|может)\b',
       'bg': r'\b(ще|няма|благодаря|моля|това|какво|тук|ние|вие|не|със|за)\b',
