@@ -52,8 +52,8 @@
   "connectionChoiceBluetoothLabel": "Bluetooth",
   "connectionChoiceTcpLabel": "TCP",
   "tcpScreenTitle": "Connect over TCP",
-  "tcpHostLabel": "IP Address",
-  "tcpHostHint": "192.168.40.10",
+  "tcpHostLabel": "Endpoint",
+  "tcpHostHint": "192.168.40.10 / example.com",
   "tcpPortLabel": "Port",
   "tcpPortHint": "5000",
   "tcpStatus_notConnected": "Enter endpoint and connect",
@@ -65,7 +65,7 @@
       }
     }
   },
-  "tcpErrorHostRequired": "IP address is required.",
+  "tcpErrorHostRequired": "Host is required.",
   "tcpErrorPortInvalid": "Port must be between 1 and 65535.",
   "tcpErrorUnsupported": "TCP transport is not supported on this platform.",
   "tcpErrorTimedOut": "TCP connection timed out.",

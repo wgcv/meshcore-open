@@ -361,13 +361,13 @@ abstract class AppLocalizations {
   /// No description provided for @tcpHostLabel.
   ///
   /// In en, this message translates to:
-  /// **'IP Address'**
+  /// **'Endpoint'**
   String get tcpHostLabel;
 
   /// No description provided for @tcpHostHint.
   ///
   /// In en, this message translates to:
-  /// **'192.168.40.10'**
+  /// **'192.168.40.10 / example.com'**
   String get tcpHostHint;
 
   /// No description provided for @tcpPortLabel.
@@ -397,7 +397,7 @@ abstract class AppLocalizations {
   /// No description provided for @tcpErrorHostRequired.
   ///
   /// In en, this message translates to:
-  /// **'IP address is required.'**
+  /// **'Host is required.'**
   String get tcpErrorHostRequired;
 
   /// No description provided for @tcpErrorPortInvalid.

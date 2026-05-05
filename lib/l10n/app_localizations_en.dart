@@ -127,10 +127,10 @@ class AppLocalizationsEn extends AppLocalizations {
   String get tcpScreenTitle => 'Connect over TCP';
 
   @override
-  String get tcpHostLabel => 'IP Address';
+  String get tcpHostLabel => 'Endpoint';
 
   @override
-  String get tcpHostHint => '192.168.40.10';
+  String get tcpHostHint => '192.168.40.10 / example.com';
 
   @override
   String get tcpPortLabel => 'Port';
@@ -147,7 +147,7 @@ class AppLocalizationsEn extends AppLocalizations {
   }
 
   @override
-  String get tcpErrorHostRequired => 'IP address is required.';
+  String get tcpErrorHostRequired => 'Host is required.';
 
   @override
   String get tcpErrorPortInvalid => 'Port must be between 1 and 65535.';
