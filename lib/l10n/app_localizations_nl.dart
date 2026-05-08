@@ -24,7 +24,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get common_cancel => 'Annuleren';
 
   @override
-  String get common_ok => 'Prima';
+  String get common_ok => 'OK';
 
   @override
   String get common_connect => 'Verbinden';
@@ -271,7 +271,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get scanner_stop => 'Stoppen';
 
   @override
-  String get scanner_scan => 'Scannen';
+  String get scanner_scan => 'Scan';
 
   @override
   String get scanner_bluetoothOff => 'Bluetooth is uitgeschakeld';
@@ -379,7 +379,7 @@ class AppLocalizationsNl extends AppLocalizations {
       'Instellingen voor het toevoegen van contacten';
 
   @override
-  String get settings_privacyMode => 'Privacy-modus';
+  String get settings_privacyMode => 'Privacy Mode';
 
   @override
   String get settings_privacyModeSubtitle =>
@@ -433,7 +433,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String settings_multiAck(String value) {
-    return 'Meerdere bevestigingen: $value';
+    return 'Multi-ACKs: $value';
   }
 
   @override
@@ -479,7 +479,7 @@ class AppLocalizationsNl extends AppLocalizations {
       'Ben je er zeker van dat je het apparaat opnieuw wilt opstarten? Je wordt losgekoppeld.';
 
   @override
-  String get settings_debug => 'Foutopsporing';
+  String get settings_debug => 'Debug';
 
   @override
   String get settings_bleDebugLog => 'BLE Debug Log';
@@ -489,7 +489,7 @@ class AppLocalizationsNl extends AppLocalizations {
       'BLE commando\'s, antwoorden en ruwe data';
 
   @override
-  String get settings_appDebugLog => 'Debuglog van de app';
+  String get settings_appDebugLog => 'App Debug Log';
 
   @override
   String get settings_appDebugLogSubtitle => 'Toepassingsdebugberichten';
@@ -499,7 +499,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String settings_aboutVersion(String version) {
-    return 'MeshCore Open versie $version';
+    return 'MeshCore Open v$version';
   }
 
   @override
@@ -535,7 +535,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get settings_infoChannelCount => 'Aantal Kanalen';
 
   @override
-  String get settings_presets => 'Voorgeprogrammeerde instellingen';
+  String get settings_presets => 'Presets';
 
   @override
   String get settings_frequency => 'Frequentie (MHz)';
@@ -605,43 +605,43 @@ class AppLocalizationsNl extends AppLocalizations {
   String get appSettings_languageSystem => 'Standaardinstelling';
 
   @override
-  String get appSettings_languageEn => 'Engels';
+  String get appSettings_languageEn => 'English';
 
   @override
-  String get appSettings_languageFr => 'Frans';
+  String get appSettings_languageFr => 'Français';
 
   @override
-  String get appSettings_languageEs => 'Spaans';
+  String get appSettings_languageEs => 'Español';
 
   @override
-  String get appSettings_languageDe => 'Duits';
+  String get appSettings_languageDe => 'Deutsch';
 
   @override
-  String get appSettings_languagePl => 'Pools';
+  String get appSettings_languagePl => 'Polski';
 
   @override
-  String get appSettings_languageSl => 'Sloveens';
+  String get appSettings_languageSl => 'Slovenščina';
 
   @override
-  String get appSettings_languagePt => 'Portugees';
+  String get appSettings_languagePt => 'Português';
 
   @override
-  String get appSettings_languageIt => 'Italiaans';
+  String get appSettings_languageIt => 'Italiano';
 
   @override
-  String get appSettings_languageZh => 'Chinees';
+  String get appSettings_languageZh => '中文';
 
   @override
-  String get appSettings_languageSv => 'Zweeds';
+  String get appSettings_languageSv => 'Svenska';
 
   @override
   String get appSettings_languageNl => 'Nederlands';
 
   @override
-  String get appSettings_languageSk => 'Sloveens';
+  String get appSettings_languageSk => 'Slovenčina';
 
   @override
-  String get appSettings_languageBg => 'Bulgaars';
+  String get appSettings_languageBg => 'Български';
 
   @override
   String get appSettings_languageRu => 'Russisch';
@@ -878,7 +878,7 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get appSettings_debugCard => 'Foutopsporing';
+  String get appSettings_debugCard => 'Debug';
 
   @override
   String get appSettings_appDebugLogging => 'App Debuggen Loggen';
@@ -960,7 +960,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get contacts_roomLogin => 'Ruimte Inloggen';
 
   @override
-  String get contacts_openChat => 'Open gesprek';
+  String get contacts_openChat => 'Open Chat';
 
   @override
   String get contacts_editGroup => 'Groep bewerken';
@@ -1176,7 +1176,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get channels_sortManual => 'Handmatig';
 
   @override
-  String get channels_sortAZ => 'Alfabetisch';
+  String get channels_sortAZ => 'A-Z';
 
   @override
   String get channels_sortLatestMessages => 'Recent berichten';
@@ -1322,7 +1322,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get gifPicker_noInternet => 'Geen internetverbinding';
 
   @override
-  String get debugLog_appTitle => 'Debuglog van de app';
+  String get debugLog_appTitle => 'App Debug Log';
 
   @override
   String get debugLog_bleTitle => 'BLE Debug Log';
@@ -1350,7 +1350,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get debugLog_frames => 'Ramen';
 
   @override
-  String get debugLog_rawLogRx => 'Niet-verwerkt Log-RX';
+  String get debugLog_rawLogRx => 'Raw Log-RX';
 
   @override
   String get debugLog_noBleActivity => 'Geen BLE-activiteit nog.';
@@ -1400,7 +1400,7 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get debugFrame_hexDump => 'Hex-dump:';
+  String get debugFrame_hexDump => 'Hex Dump:';
 
   @override
   String get chat_pathManagement => 'Beheer van Paden';
@@ -1532,7 +1532,7 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get chat_floodAuto => 'Overstroming (van een auto)';
+  String get chat_floodAuto => 'Flood (auto)';
 
   @override
   String get chat_direct => 'Direct';
@@ -1564,7 +1564,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get chat_invalidLink => 'Ongeldig linkformaat';
 
   @override
-  String get map_title => 'Kaart van de knopen';
+  String get map_title => 'Node Map';
 
   @override
   String get map_lineOfSight => 'Zichtlijn';
@@ -1581,7 +1581,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String map_nodesCount(int count) {
-    return 'Knooppunten: $count';
+    return 'Nodes: $count';
   }
 
   @override
@@ -1593,7 +1593,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get map_chat => 'Chat';
 
   @override
-  String get map_repeater => 'Herhaald';
+  String get map_repeater => 'Repeater';
 
   @override
   String get map_room => 'Ruimte';
@@ -1636,7 +1636,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get map_pinLabel => 'Label vastzetten';
 
   @override
-  String get map_label => 'Etiket';
+  String get map_label => 'Label';
 
   @override
   String get map_pointOfInterest => 'Interessepunt';
@@ -1663,7 +1663,7 @@ class AppLocalizationsNl extends AppLocalizations {
       'Verbind met een apparaat om markers te delen';
 
   @override
-  String get map_filterNodes => 'Filternodes';
+  String get map_filterNodes => 'Filter Nodes';
 
   @override
   String get map_nodeTypes => 'Nodetypes';
@@ -1672,7 +1672,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get map_chatNodes => 'Chatnodes';
 
   @override
-  String get map_repeaters => 'Herhaalders';
+  String get map_repeaters => 'Repeaters';
 
   @override
   String get map_otherNodes => 'Andere Nodes';
@@ -1753,7 +1753,7 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get mapCache_downloadAction => 'Downloaden';
+  String get mapCache_downloadAction => 'Download';
 
   @override
   String mapCache_cachedTiles(int count) {
@@ -1901,7 +1901,7 @@ class AppLocalizationsNl extends AppLocalizations {
       'Voer het wachtwoord van de kamer in om toegang te krijgen tot instellingen en status.';
 
   @override
-  String get login_routing => 'Routeplanning';
+  String get login_routing => 'Routing';
 
   @override
   String get login_routingMode => 'Routeerwijze';
@@ -2023,7 +2023,7 @@ class AppLocalizationsNl extends AppLocalizations {
       'Status, statistieken en buren bekijken';
 
   @override
-  String get repeater_telemetry => 'Telemetrie';
+  String get repeater_telemetry => 'Telemetry';
 
   @override
   String get repeater_telemetrySubtitle =>
@@ -2152,7 +2152,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String repeater_duplicatesFloodDirect(String flood, String direct) {
-    return 'Overstroming: $flood, Direct: $direct';
+    return 'Flood: $flood, Direct: $direct';
   }
 
   @override
@@ -2327,164 +2327,6 @@ class AppLocalizationsNl extends AppLocalizations {
   String get repeater_settingsSaved => 'Instellingen succesvol opgeslagen';
 
   @override
-  String get repeater_rxGain => 'Verhoogde RX-uitgang';
-
-  @override
-  String get repeater_rxGainHelper =>
-      'Hogere gevoeligheid, grotere stroomverbruik (alleen voor SX1262/SX1268)';
-
-  @override
-  String get repeater_refreshRxGain =>
-      'Versterk de reeds bestaande RX-verbetering.';
-
-  @override
-  String get repeater_multiAcks => 'Meerdere bevestigingen';
-
-  @override
-  String get repeater_multiAcksSubtitle =>
-      'Bevestig berichten via verschillende routes voor een betere levering.';
-
-  @override
-  String get repeater_refreshMultiAcks => 'Herhaal meerdere bevestigingen';
-
-  @override
-  String get repeater_networkHealth => 'Netwerkgezondheid';
-
-  @override
-  String get repeater_loopDetect => 'Detectie van beweging';
-
-  @override
-  String get repeater_loopDetectHelper =>
-      'Verzend pakketten die eruitzien als routing-lusjes';
-
-  @override
-  String get repeater_loopDetectOff => 'Af';
-
-  @override
-  String get repeater_loopDetectMinimal => 'Minimaal';
-
-  @override
-  String get repeater_loopDetectModerate => 'Matig';
-
-  @override
-  String get repeater_loopDetectStrict => 'Strikte';
-
-  @override
-  String get repeater_dutyCycle => 'Werkcyclus';
-
-  @override
-  String get repeater_dutyCycleHelper =>
-      'Maximale percentage van de beschikbare uitzendtijd';
-
-  @override
-  String repeater_dutyCyclePercent(int percent) {
-    return '$percent%';
-  }
-
-  @override
-  String get repeater_ownerInfo => 'Informatie over de operator';
-
-  @override
-  String get repeater_ownerInfoHelper => 'Openbare metadata voor deze repeater';
-
-  @override
-  String get repeater_refreshOwnerInfo => 'Herstel informatie over de operator';
-
-  @override
-  String get repeater_floodMax => 'Maximale hoeveelheid hop';
-
-  @override
-  String get repeater_floodMaxHelper =>
-      'Maximale hoeveelheid hop die een pakket kan bevatten (0-64)';
-
-  @override
-  String get repeater_advancedSettings => 'Geavanceerd';
-
-  @override
-  String get repeater_advancedSettingsSubtitle =>
-      'Regelhendels voor ervaren gebruikers';
-
-  @override
-  String get repeater_pathHashMode => 'Hash-modus voor paden';
-
-  @override
-  String get repeater_pathHashModeHelper =>
-      'Bytes die gebruikt worden om de ID van deze repeater te coderen in flood-pad/lusdetectietags. 0=1 byte (256 ID\'s, tot 64 hops), 1=2 bytes (65.000 ID\'s, tot 32 hops), 2=3 bytes (16 miljoen ID\'s, tot 21 hops). Versies 1.13 en ouder gebruiken multi-byte paden – alleen na het activeren van het netwerk.';
-
-  @override
-  String get repeater_txDelay => 'Vertraging bij Flood TX';
-
-  @override
-  String get repeater_txDelayHelper =>
-      'Herzendinterval voor verkeer tijdens overstromingen, als een veelvoud van de tijd die het pakket nodig heeft (0-2, standaard 0.5). Een hoger getal betekent minder botsingen, maar ook een langere leveringstijd.';
-
-  @override
-  String get repeater_directTxDelay => 'Directe vertraging';
-
-  @override
-  String get repeater_directTxDelayHelper =>
-      'De overzending van tijdslots voor directe (niet-massaal) verkeer, als een vermenigvuldigingsfactor van de tijd die een pakket nodig heeft (0-2, standaard 0,3).';
-
-  @override
-  String get repeater_intThresh => 'Grenswaarde voor interferentie';
-
-  @override
-  String get repeater_intThreshHelper =>
-      'De drempelwaarde is ingesteld zodat de radio storingen boven deze waarde kan detecteren en blokkeren. 0 staat voor \"uitgezet\" – alleen verhoog deze waarde als u fouten in een storingrijke band ziet.';
-
-  @override
-  String get repeater_agcResetInterval =>
-      'Interval voor het opnieuw instellen van AGC';
-
-  @override
-  String get repeater_agcResetIntervalHelper =>
-      'Hoe vaak moet u de automatische gainregeling van de radio opnieuw instellen om terug te keren van een situatie waarin de gain vastzit? Elke seconde, of elke 4e seconde. Het uitschakelen van de periodieke reset (0) zorgt ervoor dat de gain niet automatisch wordt aangepast.';
-
-  @override
-  String get repeater_actionsTitle => 'Acties';
-
-  @override
-  String get repeater_sendAdvert => 'Verzend advertentie over overstromingen';
-
-  @override
-  String get repeater_sendAdvertSubtitle =>
-      'Zend een advertentie over overstromingen uit via het netwerk.';
-
-  @override
-  String get repeater_sendAdvertZeroHop =>
-      'Verzend een advertentie zonder tussenliggende stap';
-
-  @override
-  String get repeater_sendAdvertZeroHopSubtitle =>
-      'Zend een advertentie met één enkele verbinding (zonder tussenliggende zenders).';
-
-  @override
-  String get repeater_clockSync => 'Synchroniseer klok nu';
-
-  @override
-  String get repeater_clockSyncSubtitle =>
-      'Stel de tijd van je telefoon in op de repeater.';
-
-  @override
-  String repeater_actionSucceeded(String action) {
-    return '$action is gelukt';
-  }
-
-  @override
-  String repeater_actionFailed(String action, String error) {
-    return '$action failed: $error';
-  }
-
-  @override
-  String get repeater_settingsSavedRebootNeeded =>
-      'Instellingen opgeslagen – start de zender opnieuw om de wijzigingen toe te passen.';
-
-  @override
-  String repeater_settingsPartialFailure(String failures) {
-    return 'Sommige instellingen zijn niet correct uitgevoerd: $failures';
-  }
-
-  @override
   String repeater_errorSavingSettings(String error) {
     return 'Fout bij het opslaan van de instellingen: $error';
   }
@@ -2500,6 +2342,10 @@ class AppLocalizationsNl extends AppLocalizations {
   String get repeater_refreshTxPower => 'Nieuw laden TX-vermogen';
 
   @override
+  String get repeater_refreshLocationSettings =>
+      'Instellingen Locatie Vernieuwen';
+
+  @override
   String get repeater_refreshPacketForwarding =>
       'Vernieuwen Pakket Doorversturing';
 
@@ -2508,6 +2354,10 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get repeater_refreshPrivacyMode => 'Privacymode vernieuwen';
+
+  @override
+  String get repeater_refreshAdvertisementSettings =>
+      'Instellingen Advertentie Bijwerken';
 
   @override
   String repeater_refreshed(String label) {
@@ -2520,7 +2370,7 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get repeater_cliTitle => 'CLI-interface voor de repeater';
+  String get repeater_cliTitle => 'Repeater CLI';
 
   @override
   String get repeater_debugNextCommand => 'Debug Volgende Commando';
@@ -2812,7 +2662,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get repeater_bridge => 'Bruggen';
 
   @override
-  String get repeater_logging => 'Loggen';
+  String get repeater_logging => 'Logging';
 
   @override
   String get repeater_neighborsRepeaterOnly => 'Buren (Alleen repeaters)';
@@ -2831,283 +2681,6 @@ class AppLocalizationsNl extends AppLocalizations {
   @override
   String get repeater_gpsNote =>
       'De GPS-commando is geïntroduceerd om locatiegerelateerde onderwerpen te beheren.';
-
-  @override
-  String get repeater_getCategory => 'Waarden verkrijgen';
-
-  @override
-  String get repeater_powerMgmt => 'Energiebeheer';
-
-  @override
-  String get repeater_sensors => 'Sensoren';
-
-  @override
-  String get repeater_cliHelpPowerOff =>
-      'Zorgt ervoor dat het apparaat wordt uitgeschakeld. (geen reactie verwacht)';
-
-  @override
-  String get repeater_cliHelpClkReboot =>
-      'Stelt de klok terug naar een bekende tijd en start het apparaat opnieuw op.';
-
-  @override
-  String get repeater_cliHelpAdvertZeroHop =>
-      'Verstuurt een advertentie die alleen naar directe buren wordt gericht (geen tussenliggende stops).';
-
-  @override
-  String get repeater_cliHelpStartOta =>
-      'Start een firmware-update via de lucht op ondersteunde boards.';
-
-  @override
-  String get repeater_cliHelpTime =>
-      'Stelt de klok van het apparaat in op de gegeven Unix-tijd (aantal seconden vanaf de Unix-epoch). De klok kan niet teruggedraaid worden.';
-
-  @override
-  String get repeater_cliHelpBoard =>
-      'Geeft de fabrikant van het bord en/of de hardware-identificatie weer.';
-
-  @override
-  String get repeater_cliHelpDiscoverNeighbors =>
-      'Stuurt een verzoek om buren in de buurt te ontdekken. (Alleen van toepassing op een repeater)';
-
-  @override
-  String get repeater_cliHelpPowersaving =>
-      'Geeft aan of de energiebesparingsmodus is ingeschakeld of uitgeschakeld.';
-
-  @override
-  String get repeater_cliHelpPowersavingOnOff =>
-      'Activeert of deactiveert de energiebesparingsmodus (indien ondersteund).';
-
-  @override
-  String get repeater_cliHelpErase =>
-      '(Alleen voor seriële verbindingen) Formateert het bestandssysteem van het apparaat. Verwijdert alle instellingen en contacten.';
-
-  @override
-  String get repeater_cliHelpSetDutyCycle =>
-      'Stelt het maximale toegestane transmissiepercentage in (in procenten, 1-100). Past intern de tijdsschaal aan.';
-
-  @override
-  String get repeater_cliHelpSetPrvKey =>
-      '(Alleen voor seriële toepassingen) Vervangt de private sleutel van het apparaat. Een herstart is vereist om deze wijziging toe te passen. Genereert een nieuwe publieke sleutel.';
-
-  @override
-  String get repeater_cliHelpSetRadioRxGain =>
-      '(Alleen voor SX126x-chips) Schakelt de versterkte RX-gain in om de gevoeligheid te verbeteren bij een hoger stroomverbruik.';
-
-  @override
-  String get repeater_cliHelpSetOwnerInfo =>
-      'Definieert de string met contactgegevens van de eigenaar, die in de advertenties wordt opgenomen. Gebruik \'|\' voor nieuwe regels.';
-
-  @override
-  String get repeater_cliHelpSetPathHashMode =>
-      'Stelt de modus voor het berekenen van de hash van de route in. 0 = voorheen, 1 = standaard, 2 = strikt. Beïnvloedt hoe de routes worden gematched.';
-
-  @override
-  String get repeater_cliHelpSetLoopDetect =>
-      'Stelt de gevoeligheid voor het detecteren van een lus in de routing in: uit, minimaal, matig of strikt.';
-
-  @override
-  String get repeater_cliHelpSetFreq =>
-      '(Alleen voor seriële communicatie) Stelt snel alleen de frequentie in. Herstart is vereist. Het is aan te raden om \"radio instellingen\" te gebruiken voor alle radioparameters.';
-
-  @override
-  String get repeater_cliHelpSetBridgeChannel =>
-      '(Alleen voor ESPNow-brug) Stelt het WiFi-kanaal (1-14) in dat door de brug wordt gebruikt.';
-
-  @override
-  String get repeater_cliHelpGetName =>
-      'Toont de naam van de geconfigureerde knoop.';
-
-  @override
-  String get repeater_cliHelpGetRole =>
-      'Geeft de rol van de firmware aan (herhaald, server voor een kamer, enz.).';
-
-  @override
-  String get repeater_cliHelpGetPublicKey =>
-      'Toont het openbare sleutel van het apparaat.';
-
-  @override
-  String get repeater_cliHelpGetPrvKey =>
-      '(Alleen voor seriële communicatie) Toont de private sleutel van het apparaat. Behandel dit als een geheim.';
-
-  @override
-  String get repeater_cliHelpGetRepeat =>
-      'Geeft aan of het doorsturen van pakketten (als repeater) is ingeschakeld of uitgeschakeld.';
-
-  @override
-  String get repeater_cliHelpGetTx => 'Toont de huidige zendvermogen in dBm.';
-
-  @override
-  String get repeater_cliHelpGetFreq =>
-      'Toont de geconfigureerde frequentie in MHz.';
-
-  @override
-  String get repeater_cliHelpGetRadio =>
-      'Geeft alle radioparameters weer: frequentie, bandbreedte, spreidfactor, codegraad.';
-
-  @override
-  String get repeater_cliHelpGetRadioRxGain =>
-      '(Alleen voor SX126x-chips) Toont de status van de versterking van de RX-ontvangst.';
-
-  @override
-  String get repeater_cliHelpGetAf => 'Geeft de huidige tijdsfactor weer.';
-
-  @override
-  String get repeater_cliHelpGetDutyCycle =>
-      'Toont de huidige toegestane duty cycle als een percentage.';
-
-  @override
-  String get repeater_cliHelpGetIntThresh =>
-      'Toont het drempelwaarde voor signaalinterferentie in dB.';
-
-  @override
-  String get repeater_cliHelpGetAgcResetInterval =>
-      'Geeft het interval in seconden aan voor het resetten van de AGC (Automatic Gain Control).';
-
-  @override
-  String get repeater_cliHelpGetMultiAcks =>
-      'Geeft aan of de modus \"dubbele bevestiging\" is ingeschakeld (1) of uitgeschakeld (0).';
-
-  @override
-  String get repeater_cliHelpGetAllowReadOnly =>
-      'Geeft aan of er toegang is voor gastgebruikers zonder rechten.';
-
-  @override
-  String get repeater_cliHelpGetAdvertInterval =>
-      'Geeft de duur van de lokale reclame in minuten aan.';
-
-  @override
-  String get repeater_cliHelpGetFloodAdvertInterval =>
-      'Geeft de duur van de reclame-interval in uren aan.';
-
-  @override
-  String get repeater_cliHelpGetGuestPassword =>
-      'Toont het ingestelde gastwachtwoord.';
-
-  @override
-  String get repeater_cliHelpGetLat => 'Toont de ingestelde breedtegraad.';
-
-  @override
-  String get repeater_cliHelpGetLon => 'Toont de ingestelde lengtegraad.';
-
-  @override
-  String get repeater_cliHelpGetRxDelay =>
-      'Toont de basiswaarde van de rx-vertraging.';
-
-  @override
-  String get repeater_cliHelpGetTxDelay =>
-      'Geeft de factor weer die de vertraging in de flood-modus bepaalt.';
-
-  @override
-  String get repeater_cliHelpGetDirectTxDelay =>
-      'Geeft de factor voor de vertraging in de directe modus weer.';
-
-  @override
-  String get repeater_cliHelpGetFloodMax =>
-      'Toont het maximale aantal keer dat een overstroming heeft plaatsgevonden.';
-
-  @override
-  String get repeater_cliHelpGetOwnerInfo =>
-      'Toont de string met contactgegevens van de eigenaar.';
-
-  @override
-  String get repeater_cliHelpGetPathHashMode =>
-      'Toont de modus voor het berekenen van de hash (0/1/2).';
-
-  @override
-  String get repeater_cliHelpGetLoopDetect =>
-      'Geeft de gevoeligheid voor het detecteren van lusvorming weer.';
-
-  @override
-  String get repeater_cliHelpGetAcl =>
-      '(Alleen voor seriële communicatie) Geeft de toegangscontroles weer op een repeater.';
-
-  @override
-  String get repeater_cliHelpGetBridgeEnabled =>
-      'Geeft aan of de brug is ingeschakeld.';
-
-  @override
-  String get repeater_cliHelpGetBridgeDelay =>
-      'Geeft de vertraging van de brug in milliseconden weer.';
-
-  @override
-  String get repeater_cliHelpGetBridgeSource =>
-      'Geeft aan of de brug RX- of TX-pakketten verwerkt.';
-
-  @override
-  String get repeater_cliHelpGetBridgeBaud =>
-      '(Alleen RS232-brug) Toont de baud-snelheid van de brug.';
-
-  @override
-  String get repeater_cliHelpGetBridgeChannel =>
-      '(Alleen voor ESPNow-brug) Toont het WiFi-kanaal van de brug.';
-
-  @override
-  String get repeater_cliHelpGetBridgeSecret =>
-      '(Alleen voor ESPNow-brug) Toont het gedeelde geheime sleutel.';
-
-  @override
-  String get repeater_cliHelpGetBootloaderVer =>
-      '(Alleen voor NRF52) Toont de versie van de bootloader.';
-
-  @override
-  String get repeater_cliHelpGetAdcMultiplier =>
-      'Toont de ADC-vermenigvuldiging (schalen van de batterijspanning).';
-
-  @override
-  String get repeater_cliHelpGetPwrMgtSupport =>
-      'Geeft aan of het bestuur ondersteuning heeft voor het beheer van energieverbruik.';
-
-  @override
-  String get repeater_cliHelpGetPwrMgtSource =>
-      'Geeft de huidige stroombron aan: extern of batterij.';
-
-  @override
-  String get repeater_cliHelpGetPwrMgtBootReason =>
-      'Geeft de meest recente redenen voor het opnieuw opstarten en afsluiten weer.';
-
-  @override
-  String get repeater_cliHelpGetPwrMgtBootMv =>
-      'Geeft de batterijspanning in mV weer, direct na het opstarten.';
-
-  @override
-  String get repeater_cliHelpSensorGet =>
-      'Leest een aangepaste sensorgegevens op basis van een sleutel.';
-
-  @override
-  String get repeater_cliHelpSensorSet =>
-      'Maakt een aangepaste instelling voor een sensor.';
-
-  @override
-  String get repeater_cliHelpSensorList =>
-      'Toont alle aangepaste instellingen voor sensoren, gegroepeerd op basis van een optionele startindex.';
-
-  @override
-  String get repeater_cliHelpRegionDefault =>
-      'Toont het huidige standaard regio-bereik.';
-
-  @override
-  String get repeater_cliHelpRegionDefaultSet =>
-      'Stelt de standaard regio-omvang in. Gebruik \"<null>\" om deze te resetten.';
-
-  @override
-  String get repeater_cliHelpRegionListAllowed =>
-      'Lijst van gebieden waar doorstromen tijdens overstromingen is toegestaan.';
-
-  @override
-  String get repeater_cliHelpRegionListDenied =>
-      'Geeft een lijst van regio\'s die het verkeer tijdens overstromingen verbieden.';
-
-  @override
-  String get repeater_cliHelpStatsPackets =>
-      '(Alleen voor seriële verbindingen) Toont statistieken op pakketniveau.';
-
-  @override
-  String get repeater_cliHelpStatsRadio =>
-      '(Alleen voor serienummers) Toont radio-statistieken.';
-
-  @override
-  String get repeater_cliHelpStatsCore =>
-      '(Alleen voor seriële communicatie) Toont de belangrijkste firmware-statistieken.';
 
   @override
   String get telemetry_receivedData => 'Ontvangen Telemetriedata';
@@ -3201,7 +2774,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get channelPath_otherObservedPaths => 'Overige Waargenomen Paden';
 
   @override
-  String get channelPath_repeaterHops => 'Herhaalde sprongen';
+  String get channelPath_repeaterHops => 'Repeater Hops';
 
   @override
   String get channelPath_noHopDetails =>
@@ -3217,7 +2790,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get channelPath_timeLabel => 'Tijd';
 
   @override
-  String get channelPath_repeatsLabel => 'Herhaalt';
+  String get channelPath_repeatsLabel => 'Repeats';
 
   @override
   String channelPath_pathLabel(int index) {
@@ -3249,7 +2822,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get channelPath_unknownPath => 'Onbekend';
 
   @override
-  String get channelPath_floodPath => 'Overstroming';
+  String get channelPath_floodPath => 'Flood';
 
   @override
   String get channelPath_directPath => 'Direct';
@@ -3478,7 +3051,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get listFilter_heardRecently => 'Recent gezien';
 
   @override
-  String get listFilter_az => 'Alfabetisch';
+  String get listFilter_az => 'A-Z';
 
   @override
   String get listFilter_filters => 'Filters';
@@ -3499,7 +3072,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get listFilter_users => 'Gebruikers';
 
   @override
-  String get listFilter_repeaters => 'Herhalers';
+  String get listFilter_repeaters => 'Repeaters';
 
   @override
   String get listFilter_roomServers => 'Roomservers';
@@ -3678,7 +3251,7 @@ class AppLocalizationsNl extends AppLocalizations {
   String get contacts_repeaterPathTrace => 'Pad traceren naar repeater';
 
   @override
-  String get contacts_repeaterPing => 'Ping-repeater';
+  String get contacts_repeaterPing => 'Ping repeater';
 
   @override
   String get contacts_roomPathTrace => 'Padtrace naar room server';
@@ -3691,7 +3264,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String contacts_pathTraceTo(String name) {
-    return 'Volg de route naar $name';
+    return 'Trace route to $name';
   }
 
   @override

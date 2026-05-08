@@ -165,8 +165,6 @@ class MeshCoreConnector extends ChangeNotifier {
   Timer? _selfInfoRetryTimer;
   Timer? _reconnectTimer;
   Timer? _batteryPollTimer;
-  Timer? _gpsLocationPollTimer;
-  static const _gpsLocationPollInterval = Duration(minutes: 1);
   Timer? _radioStatsPollTimer;
   int _radioStatsPollRefCount = 0;
   final ValueNotifier<CompanionRadioStats?> radioStatsNotifier =
@@ -253,11 +251,6 @@ class MeshCoreConnector extends ChangeNotifier {
   // interleaved async calls from leaving in-memory state inconsistent with device.
   Future<void> _pathOpLock = Future.value();
   Map<String, String>? _currentCustomVars;
-
-  /// Maps repeater pubkey-prefix hex (12 hex chars = first 6 bytes) → the
-  /// repeater's RTC clock at the moment of the most recent successful login.
-  /// Reported by firmware in the login-success push frame at byte offset 8.
-  final Map<String, DateTime> _repeaterLoginClocks = {};
 
   // Channel syncing state (sequential pattern)
   bool _isSyncingChannels = false;
@@ -406,16 +399,6 @@ class MeshCoreConnector extends ChangeNotifier {
   int get advertLocationPolicy => _advertLocPolicy;
   int get multiAcks => _multiAcks;
   bool? get clientRepeat => _clientRepeat;
-
-  /// Returns the repeater's RTC clock at the time of the most recent
-  /// successful login, looked up by the contact's full public key.
-  /// Returns null if no login response has been observed for this repeater
-  /// since connection.
-  DateTime? repeaterClockAtLogin(Uint8List publicKey) {
-    if (publicKey.length < 6) return null;
-    final prefix = pubKeyToHex(publicKey.sublist(0, 6));
-    return _repeaterLoginClocks[prefix];
-  }
   void rememberNonRepeatRadioState(MeshCoreRadioStateSnapshot snapshot) {
     _rememberedNonRepeatRadioState = snapshot;
   }
@@ -2416,25 +2399,6 @@ class MeshCoreConnector extends ChangeNotifier {
     _batteryPollTimer = null;
   }
 
-  /// Start polling the radio's GPS-backed self-info every minute.
-  /// No-op if already running. Triggered when the radio reports `gps=1`.
-  void _startGpsLocationPolling() {
-    if (_gpsLocationPollTimer != null) return;
-    _gpsLocationPollTimer = Timer.periodic(_gpsLocationPollInterval, (timer) {
-      if (!isConnected) {
-        timer.cancel();
-        _gpsLocationPollTimer = null;
-        return;
-      }
-      unawaited(sendFrame(buildAppStartFrame()));
-    });
-  }
-
-  void _stopGpsLocationPolling() {
-    _gpsLocationPollTimer?.cancel();
-    _gpsLocationPollTimer = null;
-  }
-
   void setPollingInterval(int i) {
     _pollingInterval = i.clamp(1, 60);
     if (isConnected) {
@@ -3278,11 +3242,6 @@ class MeshCoreConnector extends ChangeNotifier {
   Future<void> setCustomVar(String value) async {
     if (!isConnected) return;
     await sendFrame(buildSetCustomVarFrame(value));
-    if (value == 'gps:1') {
-      _startGpsLocationPolling();
-    } else if (value == 'gps:0') {
-      _stopGpsLocationPolling();
-    }
   }
 
   Future<void> sendSelfAdvert({bool flood = true}) async {
@@ -3590,8 +3549,6 @@ class MeshCoreConnector extends ChangeNotifier {
         _handlePathUpdated(frame);
         break;
       case pushCodeLoginSuccess:
-        _handleLoginSuccess(frame);
-        break;
       case pushCodeLoginFail:
       case pushCodeStatusResponse:
         break;
@@ -5539,7 +5496,6 @@ class MeshCoreConnector extends ChangeNotifier {
 
   void _handleDisconnection() {
     _stopBatteryPolling();
-    _stopGpsLocationPolling();
     _stopRadioStatsPolling();
     _latestRadioStats = null;
     radioStatsNotifier.value = null;
@@ -5625,34 +5581,10 @@ class MeshCoreConnector extends ChangeNotifier {
     return result;
   }
 
-  /// Parse PUSH_CODE_LOGIN_SUCCESS (0x85) frame and stash the repeater's
-  /// reported clock. Frame layout (firmware companion_radio/MyMesh.cpp:678+):
-  ///   [0]=0x85, [1]=permissions, [2..7]=pubkey prefix (6 bytes),
-  ///   [8..11]=repeater RTC unix seconds (LE), [12]=ACL perms, [13]=fw level
-  /// The timestamp is only present in the v7+ "new login response" — older
-  /// firmware emits a shorter frame that we silently skip.
-  void _handleLoginSuccess(Uint8List frame) {
-    if (frame.length < 12) return;
-    final prefix = pubKeyToHex(frame.sublist(2, 8));
-    final ts =
-        ByteData.sublistView(frame, 8, 12).getUint32(0, Endian.little);
-    if (ts == 0) return;
-    _repeaterLoginClocks[prefix] =
-        DateTime.fromMillisecondsSinceEpoch(ts * 1000, isUtc: true);
-    notifyListeners();
-  }
-
   void _handleCustomVars(Uint8List frame) {
     final buf = BufferReader(frame.sublist(1));
     try {
       _currentCustomVars = _parseKeyValueString(buf.readCString());
-      // Reflect current GPS state in the polling timer (handles initial
-      // device state on connect as well as external CLI/USB toggles).
-      if (_currentCustomVars?['gps'] == '1') {
-        _startGpsLocationPolling();
-      } else {
-        _stopGpsLocationPolling();
-      }
     } catch (e) {
       appLogger.warn('Malformed custom vars frame: $e', tag: 'Connector');
     }
@@ -5708,7 +5640,6 @@ class MeshCoreConnector extends ChangeNotifier {
     _notifyListenersTimer?.cancel();
     _reconnectTimer?.cancel();
     _batteryPollTimer?.cancel();
-    _gpsLocationPollTimer?.cancel();
     _radioStatsPollTimer?.cancel();
     radioStatsNotifier.dispose();
     _receivedFramesController.close();

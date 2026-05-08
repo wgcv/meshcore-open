@@ -24,7 +24,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get common_cancel => 'Abbrechen';
 
   @override
-  String get common_ok => 'Alles klar';
+  String get common_ok => 'OK';
 
   @override
   String get common_connect => 'Verbinden';
@@ -109,7 +109,7 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String get scanner_title => 'MeshCore – Open-Version';
+  String get scanner_title => 'MeshCore Open';
 
   @override
   String get connectionChoiceUsbLabel => 'USB';
@@ -130,7 +130,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get tcpHostHint => '192.168.40.10';
 
   @override
-  String get tcpPortLabel => 'Hafen';
+  String get tcpPortLabel => 'Port';
 
   @override
   String get tcpPortHint => '5000';
@@ -502,7 +502,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String settings_aboutVersion(String version) {
-    return 'MeshCore Open, Version $version';
+    return 'MeshCore Open v$version';
   }
 
   @override
@@ -562,7 +562,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get settings_txPower => 'TX-Leistung (dBm)';
 
   @override
-  String get settings_txPowerHelper => '0 – 22';
+  String get settings_txPowerHelper => '0 - 22';
 
   @override
   String get settings_txPowerInvalid => 'Ungültige TX-Leistung (0-22 dBm)';
@@ -590,7 +590,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get appSettings_appearance => 'Aussehen';
 
   @override
-  String get appSettings_theme => 'Thema';
+  String get appSettings_theme => 'Theme';
 
   @override
   String get appSettings_themeSystem => 'Systemstandard';
@@ -608,43 +608,43 @@ class AppLocalizationsDe extends AppLocalizations {
   String get appSettings_languageSystem => 'Systemstandard';
 
   @override
-  String get appSettings_languageEn => 'Englisch';
+  String get appSettings_languageEn => 'English';
 
   @override
-  String get appSettings_languageFr => 'Französisch';
+  String get appSettings_languageFr => 'Français';
 
   @override
-  String get appSettings_languageEs => 'Spanisch';
+  String get appSettings_languageEs => 'Español';
 
   @override
   String get appSettings_languageDe => 'Deutsch';
 
   @override
-  String get appSettings_languagePl => 'Polnisch';
+  String get appSettings_languagePl => 'Polski';
 
   @override
-  String get appSettings_languageSl => 'Slowenisch';
+  String get appSettings_languageSl => 'Slovenščina';
 
   @override
-  String get appSettings_languagePt => 'Portugiesisch';
+  String get appSettings_languagePt => 'Português';
 
   @override
-  String get appSettings_languageIt => 'Italienisch';
+  String get appSettings_languageIt => 'Italiano';
 
   @override
-  String get appSettings_languageZh => 'Chinesisch';
+  String get appSettings_languageZh => '中文';
 
   @override
-  String get appSettings_languageSv => 'Schwedisch';
+  String get appSettings_languageSv => 'Svenska';
 
   @override
-  String get appSettings_languageNl => 'Niederländisch';
+  String get appSettings_languageNl => 'Nederlands';
 
   @override
-  String get appSettings_languageSk => 'Slowenisch';
+  String get appSettings_languageSk => 'Slovenčina';
 
   @override
-  String get appSettings_languageBg => 'Bulgarisch';
+  String get appSettings_languageBg => 'Български';
 
   @override
   String get appSettings_languageRu => 'Russisch';
@@ -1144,7 +1144,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get channels_standardPublicPsk => 'Öffentliche Standard PSK';
 
   @override
-  String get channels_pskHex => 'PSK (Hexadezimal)';
+  String get channels_pskHex => 'PSK (Hex)';
 
   @override
   String get channels_generateRandomPsk => 'Zufällige PSK generieren';
@@ -1391,7 +1391,7 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String debugFrame_flags(String value) {
-    return '- Flaggen: 0x$value';
+    return '- Flags: 0x$value';
   }
 
   @override
@@ -1400,7 +1400,7 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String get debugFrame_textTypeCli => 'Befehlszeilen-Schnittstelle';
+  String get debugFrame_textTypeCli => 'CLI';
 
   @override
   String get debugFrame_textTypePlain => 'Einfach';
@@ -1598,14 +1598,14 @@ class AppLocalizationsDe extends AppLocalizations {
 
   @override
   String map_pinsCount(int count) {
-    return 'Nadeln: $count';
+    return 'Pins: $count';
   }
 
   @override
   String get map_chat => 'Benutzer';
 
   @override
-  String get map_repeater => 'Wiederholungseinheit';
+  String get map_repeater => 'Repeater';
 
   @override
   String get map_room => 'Raum';
@@ -1620,7 +1620,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get map_pinPrivate => 'Pin (Channel)';
 
   @override
-  String get map_pinPublic => 'Kennzeichnung (Öffentlich)';
+  String get map_pinPublic => 'Pin (Public)';
 
   @override
   String get map_lastSeen => 'Letzte Sichtung';
@@ -1636,7 +1636,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get map_source => 'Quelle';
 
   @override
-  String get map_flags => 'Flaggen';
+  String get map_flags => 'Flags';
 
   @override
   String get map_shareMarkerHere => 'Teilen Sie den Marker hier.';
@@ -1648,7 +1648,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get map_pinLabel => 'Pin Name';
 
   @override
-  String get map_label => 'Etikett';
+  String get map_label => 'Label';
 
   @override
   String get map_pointOfInterest => 'Punkt von Interesse';
@@ -2044,7 +2044,7 @@ class AppLocalizationsDe extends AppLocalizations {
       'Sensordaten und Systemwerte anzeigen';
 
   @override
-  String get repeater_cli => 'Befehlszeilen-Schnittstelle';
+  String get repeater_cli => 'CLI';
 
   @override
   String get repeater_cliSubtitle => 'Sende Befehle an den Repeater';
@@ -2182,7 +2182,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get repeater_basicSettings => 'Grundlegende Einstellungen';
 
   @override
-  String get repeater_repeaterName => 'Name des Repeater';
+  String get repeater_repeaterName => 'Repeater Name';
 
   @override
   String get repeater_repeaterNameHelper => 'Anzeigename für diesen Repeater';
@@ -2207,7 +2207,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get repeater_frequencyMhz => 'Frequenz (MHz)';
 
   @override
-  String get repeater_frequencyHelper => '300–2500 MHz';
+  String get repeater_frequencyHelper => '300-2500 MHz';
 
   @override
   String get repeater_txPower => 'TX Power';
@@ -2345,166 +2345,6 @@ class AppLocalizationsDe extends AppLocalizations {
   String get repeater_settingsSaved => 'Einstellungen erfolgreich gespeichert';
 
   @override
-  String get repeater_rxGain => 'Erhöhter RX-Gewinn';
-
-  @override
-  String get repeater_rxGainHelper =>
-      'Höhere Empfindlichkeit, höherer Stromverbrauch (nur für SX1262/SX1268)';
-
-  @override
-  String get repeater_refreshRxGain => 'Erneuerung des verstärkten RX-Effekts';
-
-  @override
-  String get repeater_multiAcks => 'Mehrere Bestätigungen';
-
-  @override
-  String get repeater_multiAcksSubtitle =>
-      'Nachrichten über verschiedene Pfade senden, um die Zustellbarkeit zu verbessern.';
-
-  @override
-  String get repeater_refreshMultiAcks =>
-      'Mehrere Bestätigungen neu senden/aktualisieren';
-
-  @override
-  String get repeater_networkHealth => 'Netzwerkgesundheit';
-
-  @override
-  String get repeater_loopDetect => 'Erkennung von Schleifen';
-
-  @override
-  String get repeater_loopDetectHelper =>
-      'Erstellen Sie \"Flood\"-Pakete, die so aussehen, als ob sie Schleifen erzeugen.';
-
-  @override
-  String get repeater_loopDetectOff => 'Aus';
-
-  @override
-  String get repeater_loopDetectMinimal => 'Minimal';
-
-  @override
-  String get repeater_loopDetectModerate => 'mäßig';
-
-  @override
-  String get repeater_loopDetectStrict => 'streng';
-
-  @override
-  String get repeater_dutyCycle => 'Betriebsdauer';
-
-  @override
-  String get repeater_dutyCycleHelper =>
-      'Höchster zulässiger Prozentsatz der Sendefläche';
-
-  @override
-  String repeater_dutyCyclePercent(int percent) {
-    return '$percent%';
-  }
-
-  @override
-  String get repeater_ownerInfo => 'Information zum Betreiber';
-
-  @override
-  String get repeater_ownerInfoHelper =>
-      'Öffentliche Metadaten für dieses Gerät';
-
-  @override
-  String get repeater_refreshOwnerInfo =>
-      'Aktualisieren Sie die Informationen zum Betreiber';
-
-  @override
-  String get repeater_floodMax => 'Max-Hops-Flut';
-
-  @override
-  String get repeater_floodMaxHelper =>
-      'Maximale Anzahl an Hop-Paketen, die ein einzelnes Paket durchlaufen kann (0-64)';
-
-  @override
-  String get repeater_advancedSettings => 'Fortgeschritten';
-
-  @override
-  String get repeater_advancedSettingsSubtitle =>
-      'Regler für erfahrene Bediener';
-
-  @override
-  String get repeater_pathHashMode => 'Hash-Modus für Pfade';
-
-  @override
-  String get repeater_pathHashModeHelper =>
-      'Bytes, die zur Kodierung der ID dieses Repeaters in Flood-Pfad-/Schleifen-Erkennung-Tags verwendet werden. 0 = 1 Byte (256 IDs, bis zu 64 Hops), 1 = 2 Bytes (65.000 IDs, bis zu 32 Hops), 2 = 3 Bytes (16 Millionen IDs, bis zu 21 Hops). Firmware-Versionen 1.13 und älter verwenden mehrstellige Pfade – ab Version 1.14+ wird nur ein Pfad erstellt, sobald das Netzwerk aktiv ist.';
-
-  @override
-  String get repeater_txDelay => 'Verzögerung bei Flood TX';
-
-  @override
-  String get repeater_txDelayHelper =>
-      'Wiederholung des Abstands für Hochwasser-Verkehr, als Multiplikator der Übertragungszeit des Pakets (0-2, Standardwert 0,5). Höherer Wert = weniger Kollisionen, aber langsamere Übertragung.';
-
-  @override
-  String get repeater_directTxDelay => 'Direkter TX-Verzögerung';
-
-  @override
-  String get repeater_directTxDelayHelper =>
-      'Die Übertragungsrate für direkten (nicht-fluten) Datenverkehr wird als Vielfaches der Übertragungszeit des Pakets festgelegt (0-2, Standardwert 0,3).';
-
-  @override
-  String get repeater_intThresh => 'Grenzwert für Störungen';
-
-  @override
-  String get repeater_intThreshHelper =>
-      'Der Schwellenwert wird an die Rauschpegel-Kalibrierung des Radios angepasst, sodass Störungen über diesem Wert abgefangen werden. 0 deaktiviert – erhöhen Sie diesen Wert nur, wenn Sie in einem verrauschten Frequenzbereich RX-Fehler feststellen.';
-
-  @override
-  String get repeater_agcResetInterval =>
-      'Intervall für die Rücksetzung von AGC';
-
-  @override
-  String get repeater_agcResetIntervalHelper =>
-      'Wie oft sollte die automatische Verstärkungskontrolle des Radios zurückgesetzt werden, um von einem Zustand mit zu hoher Verstärkung wieder in einen normalen Zustand zu gelangen? Die Einstellung „Sekunden“ ermöglicht eine Rücksetzung alle 4 Sekunden. Die Einstellung „0“ deaktiviert die periodische Rücksetzung.';
-
-  @override
-  String get repeater_actionsTitle => 'Aktionen';
-
-  @override
-  String get repeater_sendAdvert => 'Flood-Werbung versenden';
-
-  @override
-  String get repeater_sendAdvertSubtitle =>
-      'Eine Werbekampagne für Überschwemmungen über das Netzwerk verbreiten.';
-
-  @override
-  String get repeater_sendAdvertZeroHop =>
-      'Versenden Sie eine Anzeige ohne Zwischenvermittler.';
-
-  @override
-  String get repeater_sendAdvertZeroHopSubtitle =>
-      'Eine Werbekampagne mit einem einzigen Sender (ohne Weiterleitung) senden.';
-
-  @override
-  String get repeater_clockSync => 'Uhr jetzt synchronisieren';
-
-  @override
-  String get repeater_clockSyncSubtitle =>
-      'Übertragen Sie die Uhrzeit Ihres Telefons an den Repeater.';
-
-  @override
-  String repeater_actionSucceeded(String action) {
-    return '$action war erfolgreich';
-  }
-
-  @override
-  String repeater_actionFailed(String action, String error) {
-    return '$action fehlgeschlagen: $error';
-  }
-
-  @override
-  String get repeater_settingsSavedRebootNeeded =>
-      'Einstellungen gespeichert – Repeater neu starten, um die Änderungen anzuwenden.';
-
-  @override
-  String repeater_settingsPartialFailure(String failures) {
-    return 'Einige Einstellungen sind fehlgeschlagen: $failures';
-  }
-
-  @override
   String repeater_errorSavingSettings(String error) {
     return 'Fehler beim Speichern der Einstellungen: $error';
   }
@@ -2521,6 +2361,10 @@ class AppLocalizationsDe extends AppLocalizations {
   String get repeater_refreshTxPower => 'Sendeleistung aktualisieren';
 
   @override
+  String get repeater_refreshLocationSettings =>
+      'Aktualisieren Sie die Standort Einstellungen';
+
+  @override
   String get repeater_refreshPacketForwarding =>
       'Aktualisieren Paketweiterleitung';
 
@@ -2530,6 +2374,10 @@ class AppLocalizationsDe extends AppLocalizations {
   @override
   String get repeater_refreshPrivacyMode =>
       'Wiederherstellen des Datenschutzzustands';
+
+  @override
+  String get repeater_refreshAdvertisementSettings =>
+      'Aktualisieren Sie die Ankündigungseinstellungen';
 
   @override
   String repeater_refreshed(String label) {
@@ -2542,8 +2390,7 @@ class AppLocalizationsDe extends AppLocalizations {
   }
 
   @override
-  String get repeater_cliTitle =>
-      'Befehlszeilen-Schnittstelle (CLI) für Repeater';
+  String get repeater_cliTitle => 'Repeater CLI';
 
   @override
   String get repeater_debugNextCommand => 'Fehlersuche des nächsten Befehls';
@@ -2856,284 +2703,6 @@ class AppLocalizationsDe extends AppLocalizations {
       'Der GPS-Befehl wurde eingeführt, um Standortbezogene Themen zu verwalten.';
 
   @override
-  String get repeater_getCategory => 'Werte erhalten';
-
-  @override
-  String get repeater_powerMgmt => 'Energieverwaltung';
-
-  @override
-  String get repeater_sensors => 'Sensoren';
-
-  @override
-  String get repeater_cliHelpPowerOff =>
-      'Schaltet das Gerät aus. (keine Antwort erwartet)';
-
-  @override
-  String get repeater_cliHelpClkReboot =>
-      'Setzt die Uhr auf einen bekannten Zeitpunkt zurück und startet das Gerät neu.';
-
-  @override
-  String get repeater_cliHelpAdvertZeroHop =>
-      'Sendet eine Werbeanzeige, die nur an unmittelbare Nachbarn gesendet wird (ohne Zwischenstation).';
-
-  @override
-  String get repeater_cliHelpStartOta =>
-      'Startet ein Firmware-Update über Funk, das auf unterstützten Boards durchgeführt wird.';
-
-  @override
-  String get repeater_cliHelpTime =>
-      'Stellt die Gerätuhr auf die angegebene Unix-Epoche in Sekunden ein. Die Uhr kann nicht rückwärts laufen.';
-
-  @override
-  String get repeater_cliHelpBoard =>
-      'Zeigt den Hersteller/die Hardware-Kennung an.';
-
-  @override
-  String get repeater_cliHelpDiscoverNeighbors =>
-      'Sendet eine Anfrage zur Entdeckung von Nachbarn in der Nähe. (Nur bei Repeatern)';
-
-  @override
-  String get repeater_cliHelpPowersaving =>
-      'Zeigt an, ob der Energiesparmodus aktiviert oder deaktiviert ist.';
-
-  @override
-  String get repeater_cliHelpPowersavingOnOff =>
-      'Aktiviert oder deaktiviert den Energiesparmodus (falls unterstützt).';
-
-  @override
-  String get repeater_cliHelpErase =>
-      '(Nur für serielle Schnittstellen) Formatiert das Dateisystem des Geräts. Löscht alle Einstellungen und Kontakte.';
-
-  @override
-  String get repeater_cliHelpSetDutyCycle =>
-      'Legt den maximal zulässigen Übertragungszyklus als Prozentsatz fest (1-100). Passt den Zeitfaktor intern an.';
-
-  @override
-  String get repeater_cliHelpSetPrvKey =>
-      '(Nur für serielle Anwendungen) Ersetzt den privaten Schlüssel zur Geräteidentifizierung. Nach der Anwendung ist ein Neustart erforderlich. Generiert einen neuen öffentlichen Schlüssel.';
-
-  @override
-  String get repeater_cliHelpSetRadioRxGain =>
-      '(Nur für SX126x) Schaltet die verstärkte RX-Verstärkung ein, um die Empfindlichkeit bei höherem Stromverbrauch zu verbessern.';
-
-  @override
-  String get repeater_cliHelpSetOwnerInfo =>
-      'Definiert den String mit den Kontaktinformationen des Eigentümers, der in den Anzeigen enthalten ist. Verwenden Sie \'|\' für Zeilenumbrüche.';
-
-  @override
-  String get repeater_cliHelpSetPathHashMode =>
-      'Legt den Modus für die Pfad-Hashes fest. 0 = ältere Version, 1 = Standard, 2 = streng. Beeinflusst, wie Routing-Pfade abgeglichen werden.';
-
-  @override
-  String get repeater_cliHelpSetLoopDetect =>
-      'Legt die Empfindlichkeit der Schleifenerkennung fest: aus, minimal, moderat oder streng.';
-
-  @override
-  String get repeater_cliHelpSetFreq =>
-      '(Nur für die serielle Schnittstelle) Ermöglicht die schnelle Einstellung der Frequenz. Nach der Einstellung ist ein Neustart erforderlich. Für die vollständige Einstellung aller Radio-Parameter wird die Option \"Radio einstellen\" empfohlen.';
-
-  @override
-  String get repeater_cliHelpSetBridgeChannel =>
-      '(Nur für ESPNow-Brücke) Legt den verwendeten WLAN-Kanal (1-14) für die Brücke fest.';
-
-  @override
-  String get repeater_cliHelpGetName =>
-      'Zeigt den konfigurierten Knotenamen an.';
-
-  @override
-  String get repeater_cliHelpGetRole =>
-      'Zeigt die Funktion der Firmware an (Repeater, Raumserver usw.).';
-
-  @override
-  String get repeater_cliHelpGetPublicKey =>
-      'Zeigt den öffentlichen Schlüssel des Geräts an.';
-
-  @override
-  String get repeater_cliHelpGetPrvKey =>
-      '(Nur für serielle Kommunikation) Zeigt den privaten Schlüssel des Geräts an. Behandeln Sie diesen als ein Geheimnis.';
-
-  @override
-  String get repeater_cliHelpGetRepeat =>
-      'Zeigt an, ob die Weiterleitung von Paketen (als Repeater) aktiviert oder deaktiviert ist.';
-
-  @override
-  String get repeater_cliHelpGetTx =>
-      'Zeigt die aktuelle Sendeleistung in dBm an.';
-
-  @override
-  String get repeater_cliHelpGetFreq =>
-      'Zeigt die konfigurierte Funkfrequenz in MHz an.';
-
-  @override
-  String get repeater_cliHelpGetRadio =>
-      'Zeigt alle Funkparameter an: Frequenz, Bandbreite, Spreading-Faktor, Codierungsrate.';
-
-  @override
-  String get repeater_cliHelpGetRadioRxGain =>
-      '(Nur für SX126x) Zeigt den Zustand des verstärkten Empfangs (RX).';
-
-  @override
-  String get repeater_cliHelpGetAf => 'Zeigt den aktuellen Zeitfaktor an.';
-
-  @override
-  String get repeater_cliHelpGetDutyCycle =>
-      'Zeigt den aktuellen zulässigen Schaltzyklus als Prozentsatz an.';
-
-  @override
-  String get repeater_cliHelpGetIntThresh =>
-      'Zeigt den Grenzwert für Kanalüberlagerung in dB an.';
-
-  @override
-  String get repeater_cliHelpGetAgcResetInterval =>
-      'Zeigt das Intervall für die Rücksetzung des AGC in Sekunden an.';
-
-  @override
-  String get repeater_cliHelpGetMultiAcks =>
-      'Zeigt an, ob der Modus \"doppelte ACK\"-Funktion aktiviert (1) oder deaktiviert (0) ist.';
-
-  @override
-  String get repeater_cliHelpGetAllowReadOnly =>
-      'Zeigt an, ob der Zugriff für Gäste nur in Lesemodus erlaubt ist.';
-
-  @override
-  String get repeater_cliHelpGetAdvertInterval =>
-      'Zeigt die Dauer des lokalen Werbeintervalls in Minuten an.';
-
-  @override
-  String get repeater_cliHelpGetFloodAdvertInterval =>
-      'Zeigt die Dauer der Werbeunterbrechung in Stunden an.';
-
-  @override
-  String get repeater_cliHelpGetGuestPassword =>
-      'Zeigt das konfigurierte Gast-Passwort an.';
-
-  @override
-  String get repeater_cliHelpGetLat => 'Zeigt die konfigurierte Breitengrade.';
-
-  @override
-  String get repeater_cliHelpGetLon => 'Zeigt die konfigurierte Länge an.';
-
-  @override
-  String get repeater_cliHelpGetRxDelay =>
-      'Zeigt den Basiswert für die Verzögerungszeit an.';
-
-  @override
-  String get repeater_cliHelpGetTxDelay =>
-      'Zeigt den Faktor für die Übertragungsverzögerung im Notfallmodus an.';
-
-  @override
-  String get repeater_cliHelpGetDirectTxDelay =>
-      'Zeigt den Faktor für die Verzögerung im Direktmodus an.';
-
-  @override
-  String get repeater_cliHelpGetFloodMax =>
-      'Zeigt die maximale Anzahl von Überschwemmungsphasen an.';
-
-  @override
-  String get repeater_cliHelpGetOwnerInfo =>
-      'Zeigt die Zeichenkette mit den Kontaktinformationen des Eigentümers an.';
-
-  @override
-  String get repeater_cliHelpGetPathHashMode =>
-      'Zeigt den Pfad-Hash-Modus (0/1/2) an.';
-
-  @override
-  String get repeater_cliHelpGetLoopDetect =>
-      'Zeigt die Empfindlichkeit der Schleifenerkennung an.';
-
-  @override
-  String get repeater_cliHelpGetAcl =>
-      '(Nur für serielle Kommunikation) Zeigt die Zugriffskontrolleinträge auf einem Repeater an.';
-
-  @override
-  String get repeater_cliHelpGetBridgeEnabled =>
-      'Zeigt an, ob die Brücke aktiviert ist.';
-
-  @override
-  String get repeater_cliHelpGetBridgeDelay =>
-      'Zeigt die Verzögerung der Brücke in Millisekunden an.';
-
-  @override
-  String get repeater_cliHelpGetBridgeSource =>
-      'Zeigt, ob die Brücke RX- oder TX-Pakete empfängt oder sendet.';
-
-  @override
-  String get repeater_cliHelpGetBridgeBaud =>
-      '(Nur für RS232-Verbindungen) Zeigt die Baudrate der Verbindung an.';
-
-  @override
-  String get repeater_cliHelpGetBridgeChannel =>
-      '(Nur für ESPNow-Brücke) Zeigt den WLAN-Kanal der Brücke an.';
-
-  @override
-  String get repeater_cliHelpGetBridgeSecret =>
-      '(Nur für ESPNow-Brücke) Zeigt das gemeinsam genutzte Geheimnis der Brücke.';
-
-  @override
-  String get repeater_cliHelpGetBootloaderVer =>
-      '(Nur für NRF52) Zeigt die Version des Bootloaders an.';
-
-  @override
-  String get repeater_cliHelpGetAdcMultiplier =>
-      'Zeigt den ADC-Verstärker (Spannungs-Skalierung) an.';
-
-  @override
-  String get repeater_cliHelpGetPwrMgtSupport =>
-      'Gibt an, ob der Verwaltungsrat die Funktion zur Energieverwaltung unterstützt.';
-
-  @override
-  String get repeater_cliHelpGetPwrMgtSource =>
-      'Zeigt die aktuelle Stromquelle an: extern oder Batterie.';
-
-  @override
-  String get repeater_cliHelpGetPwrMgtBootReason =>
-      'Zeigt die aktuellsten Gründe für einen Neustart und Herunterfahren an.';
-
-  @override
-  String get repeater_cliHelpGetPwrMgtBootMv =>
-      'Zeigt die Batteriespannung beim Start in Millivolt (mV) an.';
-
-  @override
-  String get repeater_cliHelpSensorGet =>
-      'Liest eine benutzerdefinierte Sensoreinstellung über eine Taste.';
-
-  @override
-  String get repeater_cliHelpSensorSet =>
-      'Erstellt eine benutzerdefinierte Sensoreinstellung.';
-
-  @override
-  String get repeater_cliHelpSensorList =>
-      'Zeigt alle benutzerdefinierten Sensoreinstellungen an, wobei die Seitennummerierung optional von einem Startindex abhängt.';
-
-  @override
-  String get repeater_cliHelpRegionDefault =>
-      'Zeigt den aktuellen Standard-Region-Bereich an.';
-
-  @override
-  String get repeater_cliHelpRegionDefaultSet =>
-      'Definiert den Standard-Regionenbereich. Verwenden Sie \"<null>\", um diesen zu löschen.';
-
-  @override
-  String get repeater_cliHelpRegionListAllowed =>
-      'Nennt die Regionen, die Überschwemmungsverkehr zulassen.';
-
-  @override
-  String get repeater_cliHelpRegionListDenied =>
-      'Auflistung von Regionen, die den Verkehr aufgrund von Überschwemmungen verbieten.';
-
-  @override
-  String get repeater_cliHelpStatsPackets =>
-      '(Nur für serielle Verbindungen) Zeigt Statistiken auf Paketebene.';
-
-  @override
-  String get repeater_cliHelpStatsRadio =>
-      '(Nur für Serien) Zeigt Radiostatistiken an.';
-
-  @override
-  String get repeater_cliHelpStatsCore =>
-      '(Nur für serielle Schnittstellen) Zeigt grundlegende Firmware-Statistiken.';
-
-  @override
   String get telemetry_receivedData => 'Empfangene Telemetriedaten';
 
   @override
@@ -3320,7 +2889,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get channelPath_unknownRepeater => 'Unbekannter Repeater';
 
   @override
-  String get community_title => 'Gemeinschaft';
+  String get community_title => 'Community';
 
   @override
   String get community_create => 'Erstelle Community';
@@ -3354,10 +2923,10 @@ class AppLocalizationsDe extends AppLocalizations {
   String get community_publicChannel => 'Community Öffentlich';
 
   @override
-  String get community_hashtagChannel => 'Gemeinschaftlicher Hashtag';
+  String get community_hashtagChannel => 'Community Hashtag';
 
   @override
-  String get community_name => 'Name der Gemeinde';
+  String get community_name => 'Community Name';
 
   @override
   String get community_enterName => 'Bitte Community-Name eingeben';
@@ -3479,7 +3048,7 @@ class AppLocalizationsDe extends AppLocalizations {
       'Öffentlicher Hashtag (jeder kann teilnehmen)';
 
   @override
-  String get community_communityHashtag => 'Gemeinschaftlicher Hashtag';
+  String get community_communityHashtag => 'Community Hashtag';
 
   @override
   String get community_communityHashtagDesc =>
@@ -3503,7 +3072,7 @@ class AppLocalizationsDe extends AppLocalizations {
   String get listFilter_heardRecently => 'Kürzlich gehört';
 
   @override
-  String get listFilter_az => 'Von A bis Z';
+  String get listFilter_az => 'A-Z';
 
   @override
   String get listFilter_filters => 'Filtere';
