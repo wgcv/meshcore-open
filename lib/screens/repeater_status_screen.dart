@@ -38,7 +38,6 @@ class _RepeaterStatusScreenState extends State<RepeaterStatusScreen> {
   StreamSubscription<Uint8List>? _frameSubscription;
   RepeaterCommandService? _commandService;
   Timer? _statusTimeout;
-  DateTime? _statusRequestedAt;
   int? _batteryMv;
   int? _uptimeSecs;
   int? _queueLen;
@@ -64,7 +63,11 @@ class _RepeaterStatusScreenState extends State<RepeaterStatusScreen> {
     final connector = Provider.of<MeshCoreConnector>(context, listen: false);
     _commandService = RepeaterCommandService(connector);
     _setupMessageListener();
-    _loadStatus();
+    // Defer until after the first frame so any notifyListeners() triggered
+    // during preparePathForContactSend doesn't fire mid-build.
+    WidgetsBinding.instance.addPostFrameCallback((_) {
+      if (mounted) _loadStatus();
+    });
   }
 
   @override
@@ -264,7 +267,6 @@ class _RepeaterStatusScreenState extends State<RepeaterStatusScreen> {
 
     setState(() {
       _isLoading = true;
-      _statusRequestedAt = DateTime.now();
       _pendingStatusSelection = null;
       _batteryMv = null;
       _uptimeSecs = null;
@@ -639,11 +641,13 @@ class _RepeaterStatusScreenState extends State<RepeaterStatusScreen> {
   }
 
   String _clockText() {
-    if (_statusRequestedAt == null) return '—';
-    final dt = _statusRequestedAt!;
-    final date = '${dt.day}/${dt.month}/${dt.year}';
+    final connector = Provider.of<MeshCoreConnector>(context, listen: false);
+    final dt = connector.repeaterClockAtLogin(widget.repeater.publicKey);
+    if (dt == null) return '—';
+    final local = dt.toLocal();
+    final date = '${local.day}/${local.month}/${local.year}';
     final time =
-        '${dt.hour.toString().padLeft(2, '0')}:${dt.minute.toString().padLeft(2, '0')}';
+        '${local.hour.toString().padLeft(2, '0')}:${local.minute.toString().padLeft(2, '0')}';
     return '$date $time';
   }
 
