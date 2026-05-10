@@ -454,7 +454,7 @@ class TranslationService extends ChangeNotifier {
     final targetLabel = _languageLabel(targetLanguageCode);
     final instruction = targetLanguageCode == 'zh'
         ? '将以下文本翻译为中文，注意只需要输出翻译后的结果，不要额外解释：\n\n$text'
-        : 'Translate the following segment into $targetLabel, without additional explanation.\n\n$text';
+        : 'Translate the following segment into $targetLabel, without additional explanation. If it is already in $targetLabel, then return the exact same String.\n\n$text';
     try {
       return await _runExclusive(() async {
         final engine = await _ensureContext(model.localPath);

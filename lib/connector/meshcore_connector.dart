@@ -4408,22 +4408,38 @@ class MeshCoreConnector extends ChangeNotifier {
           _appSettingsService != null) {
         final settings = _appSettingsService!.settings;
         if (settings.notificationsEnabled && settings.notifyOnNewMessage) {
+          // Capture non-null local for async closure type promotion
+          final msg = message;
           if (contact?.type == advTypeChat) {
-            _notificationService.showMessageNotification(
-              contactName: contact?.name ?? 'Unknown',
-              message: message.text,
-              contactId: message.senderKeyHex,
-              badgeCount: getTotalUnreadCount(),
-            );
+            unawaited(() async {
+              final resolvedText = await _maybeTranslateForNotification(
+                msg.text,
+                isCli: msg.isCli,
+              );
+              await _notificationService.showMessageNotification(
+                contactName: contact?.name ?? 'Unknown',
+                message: resolvedText,
+                contactId: msg.senderKeyHex,
+                badgeCount: getTotalUnreadCount(),
+              );
+            }());
           } else if (contact?.type == advTypeRoom) {
-            _notificationService.showMessageNotification(
-              contactName: contact?.name ?? 'Unknown Room',
-              message: message.text.length > 4
-                  ? message.text.substring(4)
-                  : message.text,
-              contactId: message.senderKeyHex,
-              badgeCount: getTotalUnreadCount(),
-            );
+            // Room server messages include a 4-char prefix; strip it for notifications
+            final bodyText = msg.text.length > 4
+                ? msg.text.substring(4)
+                : msg.text;
+            unawaited(() async {
+              final resolvedText = await _maybeTranslateForNotification(
+                bodyText,
+                isCli: msg.isCli,
+              );
+              await _notificationService.showMessageNotification(
+                contactName: contact?.name ?? 'Unknown Room',
+                message: resolvedText,
+                contactId: msg.senderKeyHex,
+                badgeCount: getTotalUnreadCount(),
+              );
+            }());
           }
         }
       }
@@ -4705,13 +4721,54 @@ class MeshCoreConnector extends ChangeNotifier {
     final label = channelName ?? _channelDisplayName(channelIndex);
     if (_appSettingsService!.isChannelMuted(label)) return;
 
-    _notificationService.showChannelMessageNotification(
-      channelName: label,
-      senderName: message.senderName,
-      message: message.text,
-      channelIndex: channelIndex,
-      badgeCount: getTotalUnreadCount(),
-    );
+    // Translate channel notification text if enabled
+    unawaited(() async {
+      final resolvedText = await _maybeTranslateForNotification(
+        message.text,
+        isCli: false,
+      );
+      await _notificationService.showChannelMessageNotification(
+        channelName: label,
+        senderName: message.senderName,
+        message: resolvedText,
+        channelIndex: message.channelIndex,
+        badgeCount: getTotalUnreadCount(),
+      );
+    }());
+  }
+
+  Future<String> _maybeTranslateForNotification(
+    String text, {
+    required bool isCli,
+  }) async {
+    final service = _translationService;
+    if (service == null) return text;
+    try {
+      if (!service.shouldTranslateIncoming(
+        text: text,
+        isCli: isCli,
+        isOutgoing: false,
+      )) {
+        return text;
+      }
+      final targetLanguageCode = service.resolvedIncomingLanguageCode(
+        _appSettingsService?.settings.languageOverride,
+      );
+      if (targetLanguageCode == null || targetLanguageCode.isEmpty) {
+        return text;
+      }
+      final result = await service.translateIncomingText(
+        text: text,
+        targetLanguageCode: targetLanguageCode,
+      );
+      final translated = result?.translatedText.trim();
+      if (translated != null && translated.isNotEmpty) {
+        return translated;
+      }
+    } catch (_) {
+      // Fallback to original text on any error
+    }
+    return text;
   }
 
   void _handleIncomingChannelMessage(Uint8List frame) {
