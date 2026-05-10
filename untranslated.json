@@ -90,8 +90,6 @@
   "ru": [
     "settings_companionDebugLog",
     "settings_companionDebugLogSubtitle",
-    "chat_markAsUnread",
-    "chat_newMessages",
     "repeater_chanUtil"
   ],
 
