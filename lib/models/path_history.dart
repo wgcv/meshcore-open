@@ -50,6 +50,7 @@ class PathRecord {
       successCount: json['success_count'] as int? ?? 0,
       failureCount: json['failure_count'] as int? ?? 0,
       routeWeight: (json['route_weight'] as num?)?.toDouble() ?? 1.0,
+      byteCount: json['byte_count'] as int? ?? 0,
     );
   }
 }
