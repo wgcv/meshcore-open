@@ -2350,8 +2350,8 @@
   "settings_companionDebugLog": "Párhuzamos hibakeresési napló",
   "settings_companionDebugLogSubtitle": "BLE/TCP/USB parancsok, válaszok és alapvető adatok",
   "repeater_chanUtil": "Csatorna-használat",
-  "dialog_connectCompanion": "Csatlakozzon egy kísérőhöz a ismétlő és szobaszerver funkciók eléréséhez.",
-  "dialog_disconnectedTitle": "Lejárat",
-  "dialog_disconnectedMessage": "Lehentetőtől megszakadtál.",
-  "contact_connectCompanion": "Csatlakozzon egy társhoz az ismpa- és szobaszerver funkciók eléréséhez."
+  "dialog_connectCompanion": "Csatlakozz egy kísérőhöz az ismétlő- és szobaszerver-funkciók eléréséhez.",
+  "dialog_disconnectedTitle": "Kapcsolat megszakadt",
+  "dialog_disconnectedMessage": "A kapcsolat megszakadt a kísérővel.",
+  "contact_connectCompanion": "Csatlakozz egy kísérőhöz az ismétlő- és szobaszerver-funkciók eléréséhez."
 }
