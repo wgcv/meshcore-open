@@ -4423,9 +4423,13 @@ class MeshCoreConnector extends ChangeNotifier {
           final msg = message;
           if (contact?.type == advTypeChat) {
             unawaited(() async {
-              final resolvedText = translationResult != null
+              final resolvedText =
+                  (translationResult != null &&
+                      translationResult.status ==
+                          MessageTranslationStatus.completed &&
+                      translationResult.translatedText.trim().isNotEmpty)
                   ? translationResult.translatedText.trim()
-                  : msg.text;
+                  : msg.text.trim();
               await _notificationService.showMessageNotification(
                 contactName: contact?.name ?? 'Unknown',
                 message: resolvedText,
@@ -4439,9 +4443,13 @@ class MeshCoreConnector extends ChangeNotifier {
                 ? msg.text.substring(4)
                 : msg.text;
             unawaited(() async {
-              final resolvedText = translationResult != null
+              final resolvedText =
+                  (translationResult != null &&
+                      translationResult.status ==
+                          MessageTranslationStatus.completed &&
+                      translationResult.translatedText.trim().isNotEmpty)
                   ? translationResult.translatedText.trim()
-                  : bodyText;
+                  : bodyText.trim();
               await _notificationService.showMessageNotification(
                 contactName: contact?.name ?? 'Unknown Room',
                 message: resolvedText,
@@ -4731,10 +4739,13 @@ class MeshCoreConnector extends ChangeNotifier {
     final label = channelName ?? _channelDisplayName(channelIndex);
     if (_appSettingsService!.isChannelMuted(label)) return;
 
-    // Reuse translation result from earlier translation, or use original text
-    final resolvedText = translationResult != null
+    // Reuse translation result only if completed and non-empty; else use original text
+    final resolvedText =
+        (translationResult != null &&
+            translationResult.status == MessageTranslationStatus.completed &&
+            translationResult.translatedText.trim().isNotEmpty)
         ? translationResult.translatedText.trim()
-        : message.text;
+        : message.text.trim();
     unawaited(() async {
       await _notificationService.showChannelMessageNotification(
         channelName: label,
