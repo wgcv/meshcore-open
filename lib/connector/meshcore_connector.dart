@@ -5152,7 +5152,7 @@ class MeshCoreConnector extends ChangeNotifier {
 
         // Only add non-empty channels
         if (!channel.isEmpty &&
-            _channels.any((c) => c.pskHex != channel.pskHex)) {
+            !_channels.any((c) => c.pskHex == channel.pskHex)) {
           _channels.add(channel);
         }
 
