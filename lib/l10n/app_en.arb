@@ -47,6 +47,8 @@
       }
     }
   },
+  "common_autoRefresh": "Autorefresh",
+  "common_interval": "Interval",
   "scanner_title": "MeshCore Open",
   "connectionChoiceUsbLabel": "USB",
   "connectionChoiceBluetoothLabel": "Bluetooth",
@@ -1661,6 +1663,8 @@
       }
     }
   },
+  "telemetry_autoFetchQuantity": "Requests quantity",
+  "telemetry_error": "Unable to retrieve data",
   "neighbors_receivedData": "Received Neighbors Data",
   "neighbors_requestTimedOut": "Neighbors request timed out.",
   "neighbors_errorLoading": "Error loading neighbors: {error}",
