@@ -4525,6 +4525,9 @@ class MeshCoreConnector extends ChangeNotifier {
           }());
         }
       }
+      _handleQueuedMessageReceived();
+    } else if (_isSyncingQueuedMessages) {
+      _handleQueuedMessageReceived();
     }
   }
 
@@ -4861,6 +4864,9 @@ class MeshCoreConnector extends ChangeNotifier {
           _maybeNotifyChannelMessage(msg, translationResult: translationResult);
         }());
       }
+      _handleQueuedMessageReceived();
+    } else if (_isSyncingQueuedMessages) {
+      _handleQueuedMessageReceived();
     }
   }
 
