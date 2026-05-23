@@ -23,6 +23,7 @@ import '../widgets/list_filter_widget.dart';
 import '../widgets/empty_state.dart';
 import '../widgets/qr_code_display.dart';
 import '../widgets/quick_switch_bar.dart';
+import '../widgets/sync_progress_overlay.dart';
 import '../widgets/unread_badge.dart';
 import '../helpers/snack_bar_builder.dart';
 import 'channel_chat_screen.dart';
@@ -103,6 +104,7 @@ class _ChannelsScreenState extends State<ChannelsScreen>
           title: AppBarTitle(context.l10n.channels_title),
           centerTitle: true,
           automaticallyImplyLeading: false,
+          bottom: const SyncProgressAppBarBottom(),
           actions: [
             PopupMenuButton(
               itemBuilder: (context) => [
@@ -152,11 +154,15 @@ class _ChannelsScreenState extends State<ChannelsScreen>
             await context.read<MeshCoreConnector>().getChannels(force: true);
           },
           child: () {
-            if (connector.isLoadingChannels) {
+            final channels = connector.channels;
+            final waitingForInitialChannels =
+                !connector.hasLoadedChannels && !connector.isLoadingChannels;
+            final waitingForFirstChannel =
+                connector.isLoadingChannels && channels.isEmpty;
+
+            if (waitingForInitialChannels || waitingForFirstChannel) {
               return const Center(child: CircularProgressIndicator());
             }
-
-            final channels = connector.channels;
 
             if (channels.isEmpty) {
               return ListView(
