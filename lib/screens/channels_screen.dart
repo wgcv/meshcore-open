@@ -155,12 +155,13 @@ class _ChannelsScreenState extends State<ChannelsScreen>
           },
           child: () {
             final channels = connector.channels;
-            final waitingForInitialChannels =
-                !connector.hasLoadedChannels && !connector.isLoadingChannels;
             final waitingForFirstChannel =
                 connector.isLoadingChannels && channels.isEmpty;
 
-            if (waitingForInitialChannels || waitingForFirstChannel) {
+            // Only block the list while the first channel is actively loading.
+            // If the initial sync aborts, show cached/partial channels instead
+            // of trapping the user behind an idle spinner.
+            if (waitingForFirstChannel) {
               return const Center(child: CircularProgressIndicator());
             }
 
