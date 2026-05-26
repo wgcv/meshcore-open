@@ -4316,6 +4316,17 @@ class AppLocalizationsDe extends AppLocalizations {
       'Steuert den Standardzustand des Icons für die Übersetzung des Komponisten.';
 
   @override
+  String get translation_autoIncomingTitle =>
+      'Nachrichten automatisch übersetzen';
+
+  @override
+  String get translation_autoIncomingSubtitle =>
+      'Übersetzt Nachrichten für Benachrichtigungen sowie für Chats oder Kanäle automatisch.';
+
+  @override
+  String get translation_translateMessage => 'Nachricht übersetzen';
+
+  @override
   String get translation_targetLanguage => 'Zielsprache';
 
   @override

@@ -1,3 +1,4 @@
+import 'dart:async';
 import 'dart:convert';
 import 'dart:math' as math;
 
@@ -34,6 +35,7 @@ import '../widgets/gif_picker.dart';
 import '../widgets/message_translation_button.dart';
 import '../widgets/message_status_icon.dart';
 import '../widgets/radio_stats_entry.dart';
+import '../widgets/sync_progress_overlay.dart';
 import '../widgets/translated_message_content.dart';
 import '../widgets/unread_divider.dart';
 import 'channel_message_path_screen.dart';
@@ -302,6 +304,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
           ],
         ),
         centerTitle: false,
+        bottom: const SyncProgressAppBarBottom(),
         actions: [
           const RadioStatsIconButton(),
           PopupMenuButton<String>(
@@ -1386,6 +1389,15 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
   }
 
   void _showMessageActions(ChannelMessage message) {
+    final translationService = context.read<TranslationService>();
+    final canTranslateMessage =
+        translationService.canTranslateIncoming(
+          text: message.text,
+          isCli: false,
+          isOutgoing: message.isOutgoing,
+        ) &&
+        (message.translatedText?.trim().isEmpty ?? true);
+
     showModalBottomSheet(
       context: context,
       builder: (sheetContext) => SafeArea(
@@ -1427,6 +1439,21 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                 _copyMessageText(message.text);
               },
             ),
+            if (canTranslateMessage)
+              ListTile(
+                leading: const Icon(Icons.translate),
+                title: Text(context.l10n.translation_translateMessage),
+                onTap: () {
+                  Navigator.pop(sheetContext);
+                  unawaited(
+                    context.read<MeshCoreConnector>().translateChannelMessage(
+                      widget.channel.index,
+                      message,
+                      manualTranslation: true,
+                    ),
+                  );
+                },
+              ),
             if (!message.isOutgoing)
               ListTile(
                 leading: const Icon(Icons.mark_chat_unread_outlined),

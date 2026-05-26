@@ -11,6 +11,7 @@ import '../services/app_settings_service.dart';
 import '../services/notification_service.dart';
 import '../services/translation_service.dart';
 import '../widgets/adaptive_app_bar_title.dart';
+import '../widgets/sync_progress_overlay.dart';
 import '../helpers/snack_bar_builder.dart';
 import 'map_cache_screen.dart';
 
@@ -23,6 +24,7 @@ class AppSettingsScreen extends StatelessWidget {
       appBar: AppBar(
         title: AdaptiveAppBarTitle(context.l10n.appSettings_title),
         centerTitle: true,
+        bottom: const SyncProgressAppBarBottom(),
       ),
       body: SafeArea(
         top: false,
@@ -559,6 +561,7 @@ class AppSettingsScreen extends StatelessWidget {
     TranslationService translationService,
   ) {
     final settings = settingsService.settings;
+    final translationEnabled = settings.translationEnabled;
     return Card(
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.start,
@@ -579,11 +582,41 @@ class AppSettingsScreen extends StatelessWidget {
           ),
           const Divider(height: 1),
           SwitchListTile(
-            secondary: const Icon(Icons.outgoing_mail),
-            title: Text(context.l10n.translation_composerTitle),
-            subtitle: Text(context.l10n.translation_composerSubtitle),
+            secondary: Icon(
+              Icons.auto_awesome_outlined,
+              color: translationEnabled ? null : Colors.grey,
+            ),
+            title: Text(
+              context.l10n.translation_autoIncomingTitle,
+              style: TextStyle(color: translationEnabled ? null : Colors.grey),
+            ),
+            subtitle: Text(
+              context.l10n.translation_autoIncomingSubtitle,
+              style: TextStyle(color: translationEnabled ? null : Colors.grey),
+            ),
+            value: settings.autoTranslateIncomingMessages,
+            onChanged: translationEnabled
+                ? settingsService.setAutoTranslateIncomingMessages
+                : null,
+          ),
+          const Divider(height: 1),
+          SwitchListTile(
+            secondary: Icon(
+              Icons.outgoing_mail,
+              color: translationEnabled ? null : Colors.grey,
+            ),
+            title: Text(
+              context.l10n.translation_composerTitle,
+              style: TextStyle(color: translationEnabled ? null : Colors.grey),
+            ),
+            subtitle: Text(
+              context.l10n.translation_composerSubtitle,
+              style: TextStyle(color: translationEnabled ? null : Colors.grey),
+            ),
             value: settings.composerTranslationEnabled,
-            onChanged: settingsService.setComposerTranslationEnabled,
+            onChanged: translationEnabled
+                ? settingsService.setComposerTranslationEnabled
+                : null,
           ),
           const Divider(height: 1),
           ListTile(

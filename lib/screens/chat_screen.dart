@@ -41,6 +41,7 @@ import '../widgets/gif_picker.dart';
 import '../widgets/message_translation_button.dart';
 import '../widgets/path_selection_dialog.dart';
 import '../widgets/radio_stats_entry.dart';
+import '../widgets/sync_progress_overlay.dart';
 import '../widgets/translated_message_content.dart';
 import '../utils/app_logger.dart';
 import '../l10n/l10n.dart';
@@ -216,6 +217,7 @@ class _ChatScreenState extends State<ChatScreen> {
           },
         ),
         centerTitle: false,
+        bottom: const SyncProgressAppBarBottom(),
         actions: [
           Consumer<MeshCoreConnector>(
             builder: (context, connector, _) {
@@ -1578,6 +1580,15 @@ class _ChatScreenState extends State<ChatScreen> {
   }
 
   void _showMessageActions(Message message, Contact contact) {
+    final translationService = context.read<TranslationService>();
+    final canTranslateMessage =
+        translationService.canTranslateIncoming(
+          text: message.text,
+          isCli: message.isCli,
+          isOutgoing: message.isOutgoing,
+        ) &&
+        (message.translatedText?.trim().isEmpty ?? true);
+
     showModalBottomSheet(
       context: context,
       builder: (sheetContext) => SafeArea(
@@ -1611,6 +1622,21 @@ class _ChatScreenState extends State<ChatScreen> {
                 _copyMessageText(message.text);
               },
             ),
+            if (canTranslateMessage)
+              ListTile(
+                leading: const Icon(Icons.translate),
+                title: Text(context.l10n.translation_translateMessage),
+                onTap: () {
+                  Navigator.pop(sheetContext);
+                  unawaited(
+                    context.read<MeshCoreConnector>().translateContactMessage(
+                      widget.contact.publicKeyHex,
+                      message,
+                      manualTranslation: true,
+                    ),
+                  );
+                },
+              ),
             if (!message.isOutgoing)
               ListTile(
                 leading: const Icon(Icons.mark_chat_unread_outlined),

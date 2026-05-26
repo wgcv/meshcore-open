@@ -9,7 +9,7 @@ import '../services/app_settings_service.dart';
 import '../utils/platform_info.dart';
 import '../widgets/adaptive_app_bar_title.dart';
 import '../helpers/snack_bar_builder.dart';
-import 'contacts_screen.dart';
+import 'channels_screen.dart';
 import 'usb_screen.dart';
 
 class TcpScreen extends StatefulWidget {
@@ -24,7 +24,7 @@ class _TcpScreenState extends State<TcpScreen> {
   late final TextEditingController _portController;
   late final MeshCoreConnector _connector;
   late final VoidCallback _connectionListener;
-  bool _navigatedToContacts = false;
+  bool _navigatedToChannels = false;
 
   @override
   void initState() {
@@ -42,20 +42,20 @@ class _TcpScreenState extends State<TcpScreen> {
     _connectionListener = () {
       if (!mounted) return;
       if (_connector.state == MeshCoreConnectionState.disconnected) {
-        _navigatedToContacts = false;
+        _navigatedToChannels = false;
       }
       if (_connector.state == MeshCoreConnectionState.connected &&
           _connector.isTcpTransportConnected &&
-          !_navigatedToContacts) {
+          !_navigatedToChannels) {
         context.read<AppSettingsService>().setTcpServerAddress(
           _hostController.text,
         );
         context.read<AppSettingsService>().setTcpServerPort(
           int.tryParse(_portController.text) ?? 0,
         );
-        _navigatedToContacts = true;
+        _navigatedToChannels = true;
         Navigator.of(context).pushReplacement(
-          MaterialPageRoute(builder: (_) => const ContactsScreen()),
+          MaterialPageRoute(builder: (_) => const ChannelsScreen()),
         );
       }
     };
@@ -67,7 +67,7 @@ class _TcpScreenState extends State<TcpScreen> {
     _hostController.dispose();
     _portController.dispose();
     _connector.removeListener(_connectionListener);
-    if (!_navigatedToContacts &&
+    if (!_navigatedToChannels &&
         _connector.activeTransport == MeshCoreTransportType.tcp &&
         _connector.state != MeshCoreConnectionState.disconnected) {
       WidgetsBinding.instance.addPostFrameCallback((_) {
