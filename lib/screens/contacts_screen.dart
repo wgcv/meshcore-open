@@ -324,12 +324,12 @@ class _ContactsScreenState extends State<ContactsScreen> {
                         Text(context.l10n.contacts_zeroHopAdvert),
                       ],
                     ),
-                    onTap: () => {
-                      connector.sendSelfAdvert(flood: false),
+                    onTap: () async {
+                      await connector.sendSelfAdvert(flood: false);
                       showDismissibleSnackBar(
                         context,
                         content: Text(context.l10n.settings_advertisementSent),
-                      ),
+                      );
                     },
                   ),
                   PopupMenuItem(
@@ -340,12 +340,12 @@ class _ContactsScreenState extends State<ContactsScreen> {
                         Text(context.l10n.contacts_floodAdvert),
                       ],
                     ),
-                    onTap: () => {
-                      connector.sendSelfAdvert(flood: true),
+                    onTap: () async {
+                      await connector.sendSelfAdvert(flood: true);
                       showDismissibleSnackBar(
                         context,
                         content: Text(context.l10n.settings_advertisementSent),
-                      ),
+                      );
                     },
                   ),
                   PopupMenuItem(

@@ -1968,7 +1968,7 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get dialog_disconnectedMessage =>
-      'Je bent verbonden met je companion.';
+      'Je bent losgekoppeld van je companion.';
 
   @override
   String get dialog_connectCompanion =>

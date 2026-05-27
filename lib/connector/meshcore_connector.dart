@@ -973,12 +973,18 @@ class MeshCoreConnector extends ChangeNotifier {
     final lastCompanionPublicKeyHex = prefs.getString(
       _lastCompanionPublicKeyPref,
     );
-    if (lastCompanionPublicKeyHex == null ||
-        lastCompanionPublicKeyHex.trim().isEmpty) {
-      return;
+    try {
+      if (lastCompanionPublicKeyHex == null ||
+          lastCompanionPublicKeyHex.trim().isEmpty) {
+        return;
+      }
+      _selfPublicKey = hexToPubKey(lastCompanionPublicKeyHex);
+      _setScopedStorePublicKey(lastCompanionPublicKeyHex);
+    } catch (e) {
+      _appDebugLogService?.error(
+        'Failed to restore last companion scope with public key hex: $lastCompanionPublicKeyHex, error: $e',
+      );
     }
-    _selfPublicKey = hexToPubKey(lastCompanionPublicKeyHex);
-    _setScopedStorePublicKey(lastCompanionPublicKeyHex);
   }
 
   Future<void> loadDiscoveredContactCache() => _loadDiscoveredContactCache();
