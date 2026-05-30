@@ -8,7 +8,6 @@ import 'package:flutter/services.dart';
 import 'package:intl/intl.dart';
 import 'package:meshcore_open/screens/region_management_screen.dart';
 import 'package:meshcore_open/storage/region_store.dart';
-import 'package:meshcore_open/widgets/adaptive_app_bar_title.dart';
 import 'package:provider/provider.dart';
 
 import '../connector/meshcore_connector.dart';
@@ -29,6 +28,7 @@ import '../services/app_settings_service.dart';
 import '../services/chat_text_scale_service.dart';
 import '../services/translation_service.dart';
 import '../utils/emoji_utils.dart';
+import '../widgets/adaptive_app_bar_title.dart';
 import '../widgets/byte_count_input.dart';
 import '../widgets/chat_zoom_wrapper.dart';
 import '../widgets/emoji_picker.dart';
@@ -88,7 +88,6 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
     region = context.read<MeshCoreConnector>().getChannelRegion(
       widget.channel.index,
     );
-
     SchedulerBinding.instance.addPostFrameCallback((_) {
       if (!mounted) return;
       final connector = context.read<MeshCoreConnector>();
@@ -274,59 +273,26 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
 
   @override
   Widget build(BuildContext context) {
-    final connector = context.watch<MeshCoreConnector>();
-
-    // Determine icon and colors based on channel type
-    IconData icon = Icons.lock;
-    Color iconColor = Colors.blue;
-    Color bgColor = Colors.blue.withValues(alpha: 0.2);
-
-    // TODO(clauwn): add community handling
-    final isCommunityChannel = false;
-    final isCommunityPublic = false;
-
-    if (isCommunityChannel) {
-      iconColor = Colors.purple;
-      bgColor = Colors.purple.withValues(alpha: 0.2);
-      icon = isCommunityPublic ? Icons.groups : Icons.tag;
-    } else if (widget.channel.isPublicChannel) {
-      icon = Icons.public;
-      iconColor = Colors.green;
-      bgColor = Colors.green.withValues(alpha: 0.2);
-    } else if (widget.channel.isHashtagChannel) {
-      icon = Icons.tag;
-    }
-
-    final regionHeader = region != ''
-        ? context.l10n.channels_regionSetTo(region)
-        : context.l10n.channels_regionNotSet;
-
     return Scaffold(
       appBar: AppBar(
         title: GestureDetector(
+          behavior: HitTestBehavior.opaque,
           onTap: () => openRegionSelectDialog(widget.channel),
           child: Row(
             children: [
-              CircleAvatar(
-                backgroundColor: bgColor,
-                child: Icon(icon, color: iconColor),
-              ),
+              _channelIcon(widget.channel),
               const SizedBox(width: 8),
               Expanded(
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    Consumer<MeshCoreConnector>(
-                      builder: (context, connector, _) {
-                        return Text(
-                          widget.channel.name.isEmpty
-                              ? context.l10n.channels_channelIndex(
-                                  widget.channel.index,
-                                )
-                              : widget.channel.name,
-                          style: const TextStyle(fontSize: 16),
-                        );
-                      },
+                    Text(
+                      widget.channel.name.isEmpty
+                          ? context.l10n.channels_channelIndex(
+                              widget.channel.index,
+                            )
+                          : widget.channel.name,
+                      style: const TextStyle(fontSize: 16),
                     ),
                     Consumer<MeshCoreConnector>(
                       builder: (context, connector, _) {
@@ -334,6 +300,9 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                             .getUnreadCountForChannelIndex(
                               widget.channel.index,
                             );
+                        final regionHeader = region.isNotEmpty
+                            ? context.l10n.channels_regionSetTo(region)
+                            : context.l10n.channels_regionNotSet;
                         return Text(
                           '$regionHeader • ${context.l10n.chat_unread(unreadCount)}',
                           overflow: TextOverflow.ellipsis,
@@ -349,7 +318,6 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
         ),
         centerTitle: false,
         bottom: const SyncProgressAppBarBottom(),
-        titleSpacing: 0,
         actions: [
           const RadioStatsIconButton(),
           PopupMenuButton<String>(
@@ -1576,17 +1544,17 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
         .join(',');
   }
 
-  void openRegionSelectDialog(Channel channel) async {
+  Future<void> openRegionSelectDialog(Channel channel) async {
     await showDialog(
       context: context,
       builder: (BuildContext context) => _RegionSelectDialog(channel: channel),
     );
-    if (context.mounted) {
-      await _connector?.loadChannelSettings();
-      setState(() {
-        region = _connector?.getChannelRegion(channel.index) ?? '';
-      });
-    }
+    if (!mounted) return;
+    await _connector?.loadChannelSettings();
+    if (!mounted) return;
+    setState(() {
+      region = _connector?.getChannelRegion(channel.index) ?? '';
+    });
   }
 }
 
@@ -1596,14 +1564,14 @@ class _RegionSelectDialog extends StatefulWidget {
   const _RegionSelectDialog({required this.channel});
 
   @override
-  _RegionSelectDialogState createState() => _RegionSelectDialogState();
+  State<_RegionSelectDialog> createState() => _RegionSelectDialogState();
 }
 
 class _RegionSelectDialogState extends State<_RegionSelectDialog> {
   final RegionStore regionStore = RegionStore();
 
   List<Region> regions = [];
-  int selectedIndex = 0;
+  int selectedIndex = -1;
 
   @override
   void initState() {
@@ -1614,7 +1582,7 @@ class _RegionSelectDialogState extends State<_RegionSelectDialog> {
   void loadRegions() {
     setState(() {
       regions = regionStore.loadRegions();
-      Region channelRegion = context.read<MeshCoreConnector>().getChannelRegion(
+      final channelRegion = context.read<MeshCoreConnector>().getChannelRegion(
         widget.channel.index,
       );
       selectedIndex = regions.indexOf(channelRegion);
@@ -1625,7 +1593,7 @@ class _RegionSelectDialogState extends State<_RegionSelectDialog> {
   Widget build(BuildContext context) {
     return Dialog(
       child: Padding(
-        padding: EdgeInsets.all(8.0),
+        padding: const EdgeInsets.all(8.0),
         child: Column(
           mainAxisSize: MainAxisSize.min,
           mainAxisAlignment: MainAxisAlignment.center,
@@ -1645,9 +1613,7 @@ class _RegionSelectDialogState extends State<_RegionSelectDialog> {
                       widget.channel.index,
                       '',
                     );
-                    if (context.mounted) {
-                      Navigator.pop(context);
-                    }
+                    Navigator.pop(context);
                   },
                 ),
                 IconButton(
@@ -1655,12 +1621,13 @@ class _RegionSelectDialogState extends State<_RegionSelectDialog> {
                   icon: const Icon(Icons.settings),
                   onPressed: () async {
                     await pushRegionManagementScreen(context);
+                    if (!mounted) return;
                     loadRegions();
                   },
                 ),
               ],
             ),
-            SizedBox(height: 15),
+            const SizedBox(height: 15),
             Expanded(
               child: ListView.builder(
                 itemCount: regions.length,
@@ -1674,9 +1641,7 @@ class _RegionSelectDialogState extends State<_RegionSelectDialog> {
                       widget.channel.index,
                       regions[index],
                     );
-                    if (context.mounted) {
-                      Navigator.pop(context);
-                    }
+                    Navigator.pop(context);
                   },
                 ),
               ),
