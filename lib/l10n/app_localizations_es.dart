@@ -112,6 +112,12 @@ class AppLocalizationsEs extends AppLocalizations {
   }
 
   @override
+  String get common_autoRefresh => 'Actualización automática';
+
+  @override
+  String get common_interval => 'Intervalo';
+
+  @override
   String get scanner_title => 'MeshCore: Versión abierta';
 
   @override
@@ -3322,6 +3328,139 @@ class AppLocalizationsEs extends AppLocalizations {
   String telemetry_temperatureValue(String celsius, String fahrenheit) {
     return '$celsius°C / $fahrenheit°F';
   }
+
+  @override
+  String get telemetry_digitalInputLabel => 'Entrada digital';
+
+  @override
+  String get telemetry_digitalOutputLabel => 'Salida digital';
+
+  @override
+  String get telemetry_analogInputLabel => 'Entrada analógica';
+
+  @override
+  String get telemetry_analogOutputLabel => 'Salida analógica';
+
+  @override
+  String get telemetry_genericLabel => 'Sensor genérico';
+
+  @override
+  String get telemetry_luminosityLabel => 'Luminosidad';
+
+  @override
+  String get telemetry_presenceLabel => 'Presencia';
+
+  @override
+  String get telemetry_humidityLabel => 'Humedad';
+
+  @override
+  String get telemetry_accelerometerLabel => 'Acelerómetro';
+
+  @override
+  String get telemetry_pressureLabel => 'Presión';
+
+  @override
+  String get telemetry_altitudeLabel => 'Altitud';
+
+  @override
+  String get telemetry_frequencyLabel => 'Frecuencia';
+
+  @override
+  String get telemetry_percentageLabel => 'Porcentaje';
+
+  @override
+  String get telemetry_concentrationLabel => 'Concentración';
+
+  @override
+  String get telemetry_powerLabel => 'Potencia';
+
+  @override
+  String get telemetry_distanceLabel => 'Distancia';
+
+  @override
+  String get telemetry_energyLabel => 'Energía';
+
+  @override
+  String get telemetry_directionLabel => 'Dirección';
+
+  @override
+  String get telemetry_timeLabel => 'Hora';
+
+  @override
+  String get telemetry_gyrometerLabel => 'Girómetro';
+
+  @override
+  String get telemetry_colourLabel => 'Color';
+
+  @override
+  String get telemetry_gpsLabel => 'GPS';
+
+  @override
+  String get telemetry_switchLabel => 'Interruptor';
+
+  @override
+  String get telemetry_polylineLabel => 'Polilínea';
+
+  @override
+  String telemetry_altitudeValue(String meters) {
+    return '$meters m';
+  }
+
+  @override
+  String telemetry_frequencyValue(String hertz) {
+    return '$hertz Hz';
+  }
+
+  @override
+  String telemetry_pressureValue(String hpa) {
+    return '$hpa hPa';
+  }
+
+  @override
+  String telemetry_luminosityValue(String lux) {
+    return '$lux lx';
+  }
+
+  @override
+  String telemetry_powerValue(String watts) {
+    return '$watts W';
+  }
+
+  @override
+  String telemetry_distanceValue(String meters) {
+    return '$meters m';
+  }
+
+  @override
+  String telemetry_energyValue(String kilowattHours) {
+    return '$kilowattHours kWh';
+  }
+
+  @override
+  String telemetry_directionValue(String degrees) {
+    return '$degrees°';
+  }
+
+  @override
+  String telemetry_concentrationValue(String ppm) {
+    return '$ppm ppm';
+  }
+
+  @override
+  String telemetry_percentageValue(String percent) {
+    return '$percent%';
+  }
+
+  @override
+  String telemetry_analogValue(String value) {
+    return '$value';
+  }
+
+  @override
+  String get telemetry_autoFetchQuantity => 'Número de solicitudes';
+
+  @override
+  String get telemetry_error => 'No se pudieron obtener los datos';
 
   @override
   String get neighbors_receivedData => 'Recibidas Datos de Vecinos';

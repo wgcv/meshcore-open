@@ -112,6 +112,12 @@ class AppLocalizationsSl extends AppLocalizations {
   }
 
   @override
+  String get common_autoRefresh => 'Samodejno osveževanje';
+
+  @override
+  String get common_interval => 'Časovni interval';
+
+  @override
   String get scanner_title => 'MeshCore – Odprto';
 
   @override
@@ -3302,6 +3308,139 @@ class AppLocalizationsSl extends AppLocalizations {
   String telemetry_temperatureValue(String celsius, String fahrenheit) {
     return '$celsius°C / $fahrenheit°F';
   }
+
+  @override
+  String get telemetry_digitalInputLabel => 'Digitalni vhod';
+
+  @override
+  String get telemetry_digitalOutputLabel => 'Digitalni izhod';
+
+  @override
+  String get telemetry_analogInputLabel => 'Analogni vhod';
+
+  @override
+  String get telemetry_analogOutputLabel => 'Analogni izhod';
+
+  @override
+  String get telemetry_genericLabel => 'Splošni senzor';
+
+  @override
+  String get telemetry_luminosityLabel => 'Osvetljenost';
+
+  @override
+  String get telemetry_presenceLabel => 'Prisotnost';
+
+  @override
+  String get telemetry_humidityLabel => 'Vlažnost';
+
+  @override
+  String get telemetry_accelerometerLabel => 'Merilnik pospeška';
+
+  @override
+  String get telemetry_pressureLabel => 'Tlak';
+
+  @override
+  String get telemetry_altitudeLabel => 'Nadmorska višina';
+
+  @override
+  String get telemetry_frequencyLabel => 'Frekvenca';
+
+  @override
+  String get telemetry_percentageLabel => 'Odstotek';
+
+  @override
+  String get telemetry_concentrationLabel => 'Koncentracija';
+
+  @override
+  String get telemetry_powerLabel => 'Moč';
+
+  @override
+  String get telemetry_distanceLabel => 'Razdalja';
+
+  @override
+  String get telemetry_energyLabel => 'Energija';
+
+  @override
+  String get telemetry_directionLabel => 'Smer';
+
+  @override
+  String get telemetry_timeLabel => 'Čas';
+
+  @override
+  String get telemetry_gyrometerLabel => 'Žiroskop';
+
+  @override
+  String get telemetry_colourLabel => 'Barva';
+
+  @override
+  String get telemetry_gpsLabel => 'GPS';
+
+  @override
+  String get telemetry_switchLabel => 'Stikalo';
+
+  @override
+  String get telemetry_polylineLabel => 'Polilinija';
+
+  @override
+  String telemetry_altitudeValue(String meters) {
+    return '$meters m';
+  }
+
+  @override
+  String telemetry_frequencyValue(String hertz) {
+    return '$hertz Hz';
+  }
+
+  @override
+  String telemetry_pressureValue(String hpa) {
+    return '$hpa hPa';
+  }
+
+  @override
+  String telemetry_luminosityValue(String lux) {
+    return '$lux lx';
+  }
+
+  @override
+  String telemetry_powerValue(String watts) {
+    return '$watts W';
+  }
+
+  @override
+  String telemetry_distanceValue(String meters) {
+    return '$meters m';
+  }
+
+  @override
+  String telemetry_energyValue(String kilowattHours) {
+    return '$kilowattHours kWh';
+  }
+
+  @override
+  String telemetry_directionValue(String degrees) {
+    return '$degrees°';
+  }
+
+  @override
+  String telemetry_concentrationValue(String ppm) {
+    return '$ppm ppm';
+  }
+
+  @override
+  String telemetry_percentageValue(String percent) {
+    return '$percent%';
+  }
+
+  @override
+  String telemetry_analogValue(String value) {
+    return '$value';
+  }
+
+  @override
+  String get telemetry_autoFetchQuantity => 'Število zahtev';
+
+  @override
+  String get telemetry_error => 'Podatkov ni bilo mogoče pridobiti';
 
   @override
   String get neighbors_receivedData => 'Prejeto podatke o sosedih';
