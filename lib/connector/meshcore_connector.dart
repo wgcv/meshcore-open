@@ -264,6 +264,10 @@ class MeshCoreConnector extends ChangeNotifier {
   // Serializes path operations (setContactPath/clearContactPath) to prevent
   // interleaved async calls from leaving in-memory state inconsistent with device.
   Future<void> _pathOpLock = Future.value();
+  // Flood scope is a global firmware setting, so scoped channel sends must not
+  // overlap or a message may inherit another channel's region.
+  Future<void> _channelScopedSendLock = Future.value();
+  static const Duration _commandAckTimeout = Duration(seconds: 5);
   Map<String, String>? _currentCustomVars;
 
   /// Maps repeater pubkey-prefix hex (12 hex chars = first 6 bytes) → the
@@ -679,7 +683,7 @@ class MeshCoreConnector extends ChangeNotifier {
   }
 
   bool hasChannelRegion(int channelIndex) {
-    return _channelRegions[channelIndex] != '';
+    return (_channelRegions[channelIndex] ?? '').isNotEmpty;
   }
 
   Region getChannelRegion(int channelIndex) {
@@ -3217,19 +3221,14 @@ class MeshCoreConnector extends ChangeNotifier {
       // Send the reaction to the device (don't add as a visible message)
       final reactionQueueId = _nextReactionSendQueueId();
       _pendingChannelSentQueue.add(reactionQueueId);
-      try {
-        await sendFrame(
-          buildSetFloodScopeFrame(getChannelRegion(channel.index)),
-        );
+      await _runScopedChannelSend(() async {
         await _waitForRadioQuiet(lastInboundRxTime: _lastChannelMsgRxTime);
-        await sendFrame(
+        await _sendFrameAndWaitForCommandAck(
           buildSendChannelTextMsgFrame(channel.index, text),
           channelSendQueueId: reactionQueueId,
           expectsGenericAck: true,
         );
-      } finally {
-        await sendFrame(buildSetFloodScopeFrame(''));
-      }
+      }, region: getChannelRegion(channel.index));
       return;
     }
 
@@ -3246,16 +3245,80 @@ class MeshCoreConnector extends ChangeNotifier {
     notifyListeners();
 
     final outboundText = prepareChannelOutboundText(channel.index, text);
-    try {
-      await sendFrame(buildSetFloodScopeFrame(getChannelRegion(channel.index)));
+    await _runScopedChannelSend(() async {
       await _waitForRadioQuiet(lastInboundRxTime: _lastChannelMsgRxTime);
-      await sendFrame(
+      await _sendFrameAndWaitForCommandAck(
         buildSendChannelTextMsgFrame(channel.index, outboundText),
         channelSendQueueId: message.messageId,
         expectsGenericAck: true,
       );
+    }, region: getChannelRegion(channel.index));
+  }
+
+  Future<void> _runScopedChannelSend(
+    Future<void> Function() action, {
+    required String region,
+  }) async {
+    final prev = _channelScopedSendLock;
+    final completer = Completer<void>();
+    _channelScopedSendLock = completer.future;
+    await prev;
+
+    try {
+      await _sendFrameAndWaitForCommandAck(buildSetFloodScopeFrame(region));
+      try {
+        await action();
+      } finally {
+        if (isConnected) {
+          await _sendFrameAndWaitForCommandAck(buildSetFloodScopeFrame(''));
+        }
+      }
     } finally {
-      await sendFrame(buildSetFloodScopeFrame(''));
+      completer.complete();
+    }
+  }
+
+  Future<void> _sendFrameAndWaitForCommandAck(
+    Uint8List data, {
+    String? channelSendQueueId,
+    bool expectsGenericAck = false,
+  }) async {
+    final completer = Completer<void>();
+    late final StreamSubscription<Uint8List> subscription;
+    late final Timer timeout;
+
+    void complete() {
+      if (!completer.isCompleted) completer.complete();
+    }
+
+    void completeError(Object error) {
+      if (!completer.isCompleted) completer.completeError(error);
+    }
+
+    subscription = receivedFrames.listen((frame) {
+      if (frame.isEmpty) return;
+      if (frame[0] == respCodeOk) {
+        complete();
+      } else if (frame[0] == respCodeErr) {
+        final errCode = frame.length > 1 ? frame[1] : -1;
+        completeError(Exception('Command failed with error code $errCode'));
+      }
+    });
+
+    timeout = Timer(_commandAckTimeout, () {
+      completeError(TimeoutException('Command ACK timed out'));
+    });
+
+    try {
+      await sendFrame(
+        data,
+        channelSendQueueId: channelSendQueueId,
+        expectsGenericAck: expectsGenericAck,
+      );
+      await completer.future;
+    } finally {
+      timeout.cancel();
+      await subscription.cancel();
     }
   }
 
@@ -3857,6 +3920,9 @@ class MeshCoreConnector extends ChangeNotifier {
         break;
       case pushCodePathUpdated:
         _handlePathUpdated(frame);
+        break;
+      case pushCodeControlData:
+        // Optional feature-specific services listen to receivedFrames directly.
         break;
       case pushCodeLoginSuccess:
         _handleLoginSuccess(frame);
