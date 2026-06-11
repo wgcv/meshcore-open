@@ -449,6 +449,11 @@ class MessageRetryService extends ChangeNotifier {
     });
   }
 
+  void untrack(String messageId) {
+    _timeoutTimers[messageId]?.cancel();
+    _cleanupMessage(messageId);
+  }
+
   void _cleanupMessage(String messageId) {
     _moveAckHashesToHistory(messageId);
     _ackHashToMessageId.removeWhere(

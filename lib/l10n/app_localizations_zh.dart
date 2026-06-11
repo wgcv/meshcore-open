@@ -93,6 +93,24 @@ class AppLocalizationsZh extends AppLocalizations {
   String get common_disable => '禁用';
 
   @override
+  String get common_undo => 'Undo';
+
+  @override
+  String get messageStatus_sent => 'Sent';
+
+  @override
+  String get messageStatus_delivered => 'Delivered';
+
+  @override
+  String get messageStatus_pending => 'Sending';
+
+  @override
+  String get messageStatus_failed => 'Failed to send';
+
+  @override
+  String get messageStatus_repeated => 'Heard repeated';
+
+  @override
   String get common_reboot => '重启';
 
   @override
@@ -736,11 +754,6 @@ class AppLocalizationsZh extends AppLocalizations {
   String get appSettings_maxMessageRetriesSubtitle => '在将消息标记为失败之前，允许尝试的次数';
 
   @override
-  String path_routeWeight(String weight, String max) {
-    return '$weight/$max';
-  }
-
-  @override
   String get appSettings_battery => '电池';
 
   @override
@@ -930,6 +943,15 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get contacts_newGroup => '新建群聊';
+
+  @override
+  String get contacts_moreOptions => 'More options';
+
+  @override
+  String get contacts_searchOpen => 'Search contacts';
+
+  @override
+  String get contacts_searchClose => 'Close search';
 
   @override
   String get contacts_groupName => '群聊名称';
@@ -1398,42 +1420,9 @@ class AppLocalizationsZh extends AppLocalizations {
   String get debugFrame_hexDump => '十六进制数据：';
 
   @override
-  String get chat_pathManagement => '路径管理';
-
-  @override
-  String get chat_ShowAllPaths => '显示所有路径';
-
-  @override
-  String get chat_routingMode => '路由模式';
-
-  @override
-  String get chat_autoUseSavedPath => '自动（使用保存的路径）';
-
-  @override
-  String get chat_forceFloodMode => '强制泛洪模式';
-
-  @override
-  String get chat_recentAckPaths => '最近使用的 ACK 路径（点击使用）：';
-
-  @override
-  String get chat_pathHistoryFull => '路径历史已满，请删除后再添加。';
-
-  @override
-  String get chat_hopSingular => '跳';
-
-  @override
-  String get chat_hopPlural => '跳';
-
-  @override
   String chat_hopsCount(int count) {
     return '$count 跳';
   }
-
-  @override
-  String get chat_successes => '成功';
-
-  @override
-  String get chat_score => 'Score';
 
   @override
   String get chat_removePath => '移除路径';
@@ -1442,39 +1431,141 @@ class AppLocalizationsZh extends AppLocalizations {
   String get chat_noPathHistoryYet => '暂无路径历史。\n发送消息以探索路径。';
 
   @override
-  String get chat_pathActions => '路径操作：';
-
-  @override
-  String get chat_setCustomPath => '设置自定义路径';
-
-  @override
-  String get chat_setCustomPathSubtitle => '手动指定路由路径';
-
-  @override
-  String get chat_clearPath => '清除路径';
-
-  @override
-  String get chat_clearPathSubtitle => '清除当前路径，下次发送将重新尝试。';
-
-  @override
   String get chat_pathCleared => '路径已清除。下一条消息将重新路由。';
-
-  @override
-  String get chat_floodModeSubtitle => '在应用栏中切换路由模式。';
-
-  @override
-  String get chat_floodModeEnabled => '泛洪模式已启用。可通过应用栏的路由图标切换。';
 
   @override
   String get chat_fullPath => '完整路径';
 
   @override
-  String get chat_pathDetailsNotAvailable => '路径信息暂不可用，请尝试发送消息刷新。';
+  String get routing_title => 'Routing';
 
   @override
-  String chat_pathSetHops(int hopCount, String status) {
-    return '路径设置：$hopCount 跳 - $status';
+  String get routing_modeAuto => 'Auto';
+
+  @override
+  String get routing_modeFlood => 'Flood';
+
+  @override
+  String get routing_modeManual => 'Manual';
+
+  @override
+  String get routing_modeAutoHint =>
+      'Picks the best known path automatically, flooding when none is known.';
+
+  @override
+  String get routing_modeFloodHint =>
+      'Broadcasts through every repeater. Most reliable, but uses more airtime.';
+
+  @override
+  String get routing_modeManualHint =>
+      'Always sends along the exact path you set.';
+
+  @override
+  String get routing_currentRoute => 'Current route';
+
+  @override
+  String get routing_directNoHops => 'Direct — no repeater hops';
+
+  @override
+  String get routing_noPathYet =>
+      'No path yet. The next message floods until a route is discovered.';
+
+  @override
+  String get routing_floodBroadcast => 'Broadcast through every repeater';
+
+  @override
+  String get routing_editPath => 'Edit path';
+
+  @override
+  String get routing_forgetPath => 'Forget path';
+
+  @override
+  String get routing_knownPaths => 'Known paths';
+
+  @override
+  String get routing_knownPathsHint => 'Tap a path to switch to it.';
+
+  @override
+  String get routing_inUse => 'In use';
+
+  @override
+  String get routing_qualityStrong => 'Strong first hop';
+
+  @override
+  String get routing_qualityGood => 'Good first hop';
+
+  @override
+  String get routing_qualityFair => 'Fair first hop';
+
+  @override
+  String get routing_qualityWorked => 'Has delivered';
+
+  @override
+  String get routing_qualityFlood => 'Heard via flood';
+
+  @override
+  String get routing_qualityUntested => 'Untested';
+
+  @override
+  String routing_lastWorked(String when) {
+    return 'worked $when';
   }
+
+  @override
+  String get routing_neverWorked => 'never confirmed';
+
+  @override
+  String routing_deliveryCounts(int successes, int failures) {
+    return '$successes delivered, $failures failed';
+  }
+
+  @override
+  String get routing_floodDelivery => 'Flood delivery';
+
+  @override
+  String get pathEditor_title => 'Build Path';
+
+  @override
+  String pathEditor_hopCounter(int count) {
+    return '$count of 64 hops';
+  }
+
+  @override
+  String get pathEditor_noHops =>
+      'No hops yet. Tap repeaters below to add them in order, or save with no hops to send direct.';
+
+  @override
+  String get pathEditor_addHops => 'Add hops in order';
+
+  @override
+  String get pathEditor_searchRepeaters => 'Search repeaters';
+
+  @override
+  String get pathEditor_advancedHex => 'Advanced: raw hex path';
+
+  @override
+  String get pathEditor_hexLabel => 'Hex prefixes';
+
+  @override
+  String get pathEditor_hexHelper =>
+      'Two hex characters per hop, separated by commas';
+
+  @override
+  String pathEditor_invalidTokens(String tokens) {
+    return 'Invalid: $tokens';
+  }
+
+  @override
+  String get pathEditor_tooManyHops => 'Maximum 64 hops';
+
+  @override
+  String get pathEditor_usePath => 'Use this path';
+
+  @override
+  String get pathEditor_removeHop => 'Remove hop';
+
+  @override
+  String get pathEditor_unknownHop => 'Unknown repeater';
 
   @override
   String get chat_pathSavedLocally => '已本地保存，连接设备后可同步。';
@@ -1929,52 +2020,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get common_clear => '清除';
 
   @override
-  String path_currentPath(String path) {
-    return '当前路径：$path';
-  }
-
-  @override
-  String path_usingHopsPath(int count) {
-    return '使用 $count 跳路径';
-  }
-
-  @override
-  String get path_enterCustomPath => '输入自定义路径';
-
-  @override
   String get path_currentPathLabel => '当前路径';
 
   @override
-  String get path_hexPrefixInstructions => '请输入每个中继节点的2字符十六进制前缀，用逗号分隔。';
-
-  @override
-  String get path_hexPrefixExample => '例如：A1, F2, 3C（每个节点使用其公钥的第一字节）';
-
-  @override
-  String get path_labelHexPrefixes => '路径（十六进制前缀）';
-
-  @override
-  String get path_helperMaxHops => '最多 64 跳。每个前缀由 2 个十六进制字符（1 字节）组成。';
-
-  @override
-  String get path_selectFromContacts => '或从联系人列表中选择：';
-
-  @override
   String get path_noRepeatersFound => '未找到任何转发节点或房间服务器。';
-
-  @override
-  String get path_customPathsRequire => '自定义路径需要中间节点转发消息。';
-
-  @override
-  String path_invalidHexPrefixes(String prefixes) {
-    return '无效的十六进制前缀：$prefixes';
-  }
-
-  @override
-  String get path_tooLong => '路径过长，最多允许 64 跳。';
-
-  @override
-  String get path_setPath => '设置路径';
 
   @override
   String get repeater_management => '转发节点管理';
@@ -2035,15 +2084,6 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get repeater_routingMode => '路由模式';
-
-  @override
-  String get repeater_autoUseSavedPath => '自动（使用保存的路径）';
-
-  @override
-  String get repeater_forceFloodMode => '强制泛洪模式';
-
-  @override
-  String get repeater_pathManagement => '路径管理';
 
   @override
   String get repeater_refresh => '刷新';
@@ -4086,4 +4126,28 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get contact_typeUnknown => 'Unknown';
+
+  @override
+  String get map_zoomIn => 'Zoom in';
+
+  @override
+  String get map_zoomOut => 'Zoom out';
+
+  @override
+  String get map_centerMap => 'Center map';
+
+  @override
+  String get chrome_bluetoothRequiresChromium =>
+      'Web Bluetooth requires a Chromium browser';
+
+  @override
+  String channels_communityShortId(String id) {
+    return 'ID: $id...';
+  }
+
+  @override
+  String get pathTrace_legendGpsConfirmed => 'GPS confirmed';
+
+  @override
+  String get pathTrace_legendInferred => 'Inferred position';
 }

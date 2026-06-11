@@ -92,11 +92,29 @@ class AppSettingsScreen extends StatelessWidget {
           ListTile(
             leading: const Icon(Icons.brightness_6_outlined),
             title: Text(context.l10n.appSettings_theme),
-            subtitle: Text(
-              _themeModeLabel(context, settingsService.settings.themeMode),
+            subtitle: Padding(
+              padding: const EdgeInsets.only(top: 8),
+              child: SegmentedButton<String>(
+                segments: [
+                  ButtonSegment(
+                    value: 'system',
+                    label: Text(context.l10n.appSettings_themeSystem),
+                  ),
+                  ButtonSegment(
+                    value: 'light',
+                    label: Text(context.l10n.appSettings_themeLight),
+                  ),
+                  ButtonSegment(
+                    value: 'dark',
+                    label: Text(context.l10n.appSettings_themeDark),
+                  ),
+                ],
+                selected: {settingsService.settings.themeMode},
+                onSelectionChanged: (selection) {
+                  settingsService.setThemeMode(selection.first);
+                },
+              ),
             ),
-            trailing: const Icon(Icons.chevron_right),
-            onTap: () => _showThemeModeDialog(context, settingsService),
           ),
           const Divider(height: 1),
           ListTile(
@@ -110,18 +128,6 @@ class AppSettingsScreen extends StatelessWidget {
             ),
             trailing: const Icon(Icons.chevron_right),
             onTap: () => _showLanguageDialog(context, settingsService),
-          ),
-          const Divider(height: 1),
-          SwitchListTile(
-            secondary: const Icon(Icons.location_searching),
-            title: Text(context.l10n.appSettings_enableMessageTracing),
-            subtitle: Text(
-              context.l10n.appSettings_enableMessageTracingSubtitle,
-            ),
-            value: settingsService.settings.enableMessageTracing,
-            onChanged: (value) {
-              settingsService.setEnableMessageTracing(value);
-            },
           ),
         ],
       ),
@@ -189,14 +195,14 @@ class AppSettingsScreen extends StatelessWidget {
               Icons.message_outlined,
               color: settingsService.settings.notificationsEnabled
                   ? null
-                  : Colors.grey,
+                  : Theme.of(context).disabledColor,
             ),
             title: Text(
               context.l10n.appSettings_messageNotifications,
               style: TextStyle(
                 color: settingsService.settings.notificationsEnabled
                     ? null
-                    : Colors.grey,
+                    : Theme.of(context).disabledColor,
               ),
             ),
             subtitle: Text(
@@ -204,7 +210,7 @@ class AppSettingsScreen extends StatelessWidget {
               style: TextStyle(
                 color: settingsService.settings.notificationsEnabled
                     ? null
-                    : Colors.grey,
+                    : Theme.of(context).disabledColor,
               ),
             ),
             value: settingsService.settings.notifyOnNewMessage,
@@ -220,14 +226,14 @@ class AppSettingsScreen extends StatelessWidget {
               Icons.forum_outlined,
               color: settingsService.settings.notificationsEnabled
                   ? null
-                  : Colors.grey,
+                  : Theme.of(context).disabledColor,
             ),
             title: Text(
               context.l10n.appSettings_channelMessageNotifications,
               style: TextStyle(
                 color: settingsService.settings.notificationsEnabled
                     ? null
-                    : Colors.grey,
+                    : Theme.of(context).disabledColor,
               ),
             ),
             subtitle: Text(
@@ -235,7 +241,7 @@ class AppSettingsScreen extends StatelessWidget {
               style: TextStyle(
                 color: settingsService.settings.notificationsEnabled
                     ? null
-                    : Colors.grey,
+                    : Theme.of(context).disabledColor,
               ),
             ),
             value: settingsService.settings.notifyOnNewChannelMessage,
@@ -251,14 +257,14 @@ class AppSettingsScreen extends StatelessWidget {
               Icons.cell_tower,
               color: settingsService.settings.notificationsEnabled
                   ? null
-                  : Colors.grey,
+                  : Theme.of(context).disabledColor,
             ),
             title: Text(
               context.l10n.appSettings_advertisementNotifications,
               style: TextStyle(
                 color: settingsService.settings.notificationsEnabled
                     ? null
-                    : Colors.grey,
+                    : Theme.of(context).disabledColor,
               ),
             ),
             subtitle: Text(
@@ -266,7 +272,7 @@ class AppSettingsScreen extends StatelessWidget {
               style: TextStyle(
                 color: settingsService.settings.notificationsEnabled
                     ? null
-                    : Colors.grey,
+                    : Theme.of(context).disabledColor,
               ),
             ),
             value: settingsService.settings.notifyOnNewAdvert,
@@ -343,10 +349,16 @@ class AppSettingsScreen extends StatelessWidget {
               );
             },
           ),
-          if (settingsService.settings.autoRouteRotationEnabled) ...[
-            const Divider(height: 1),
-            ListTile(
-              title: Text(context.l10n.appSettings_maxRouteWeight),
+          if (settingsService.settings.autoRouteRotationEnabled)
+            Container(
+              color: Theme.of(context).colorScheme.surfaceContainerHighest,
+              padding: const EdgeInsets.only(left: 16),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  const Divider(height: 1),
+                  ListTile(
+                    title: Text(context.l10n.appSettings_maxRouteWeight),
               subtitle: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
@@ -454,7 +466,21 @@ class AppSettingsScreen extends StatelessWidget {
                 ],
               ),
             ),
-          ],
+                ],
+              ),
+            ),
+          const Divider(height: 1),
+          SwitchListTile(
+            secondary: const Icon(Icons.location_searching),
+            title: Text(context.l10n.appSettings_enableMessageTracing),
+            subtitle: Text(
+              context.l10n.appSettings_enableMessageTracingSubtitle,
+            ),
+            value: settingsService.settings.enableMessageTracing,
+            onChanged: (value) {
+              settingsService.setEnableMessageTracing(value);
+            },
+          ),
         ],
       ),
     );
@@ -584,15 +610,15 @@ class AppSettingsScreen extends StatelessWidget {
           SwitchListTile(
             secondary: Icon(
               Icons.auto_awesome_outlined,
-              color: translationEnabled ? null : Colors.grey,
+              color: translationEnabled ? null : Theme.of(context).disabledColor,
             ),
             title: Text(
               context.l10n.translation_autoIncomingTitle,
-              style: TextStyle(color: translationEnabled ? null : Colors.grey),
+              style: TextStyle(color: translationEnabled ? null : Theme.of(context).disabledColor),
             ),
             subtitle: Text(
               context.l10n.translation_autoIncomingSubtitle,
-              style: TextStyle(color: translationEnabled ? null : Colors.grey),
+              style: TextStyle(color: translationEnabled ? null : Theme.of(context).disabledColor),
             ),
             value: settings.autoTranslateIncomingMessages,
             onChanged: translationEnabled
@@ -603,15 +629,15 @@ class AppSettingsScreen extends StatelessWidget {
           SwitchListTile(
             secondary: Icon(
               Icons.outgoing_mail,
-              color: translationEnabled ? null : Colors.grey,
+              color: translationEnabled ? null : Theme.of(context).disabledColor,
             ),
             title: Text(
               context.l10n.translation_composerTitle,
-              style: TextStyle(color: translationEnabled ? null : Colors.grey),
+              style: TextStyle(color: translationEnabled ? null : Theme.of(context).disabledColor),
             ),
             subtitle: Text(
               context.l10n.translation_composerSubtitle,
-              style: TextStyle(color: translationEnabled ? null : Colors.grey),
+              style: TextStyle(color: translationEnabled ? null : Theme.of(context).disabledColor),
             ),
             value: settings.composerTranslationEnabled,
             onChanged: translationEnabled
@@ -869,61 +895,6 @@ class AppSettingsScreen extends StatelessWidget {
         ],
       ),
     );
-  }
-
-  void _showThemeModeDialog(
-    BuildContext context,
-    AppSettingsService settingsService,
-  ) {
-    showDialog(
-      context: context,
-      builder: (context) => AlertDialog(
-        title: Text(context.l10n.appSettings_theme),
-        content: RadioGroup<String>(
-          groupValue: settingsService.settings.themeMode,
-          onChanged: (value) {
-            if (value != null) {
-              settingsService.setThemeMode(value);
-              Navigator.pop(context);
-            }
-          },
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              RadioListTile<String>(
-                title: Text(context.l10n.appSettings_themeSystem),
-                value: 'system',
-              ),
-              RadioListTile<String>(
-                title: Text(context.l10n.appSettings_themeLight),
-                value: 'light',
-              ),
-              RadioListTile<String>(
-                title: Text(context.l10n.appSettings_themeDark),
-                value: 'dark',
-              ),
-            ],
-          ),
-        ),
-        actions: [
-          TextButton(
-            onPressed: () => Navigator.pop(context),
-            child: Text(context.l10n.common_close),
-          ),
-        ],
-      ),
-    );
-  }
-
-  String _themeModeLabel(BuildContext context, String value) {
-    switch (value) {
-      case 'light':
-        return context.l10n.appSettings_themeLight;
-      case 'dark':
-        return context.l10n.appSettings_themeDark;
-      default:
-        return context.l10n.appSettings_themeSystem;
-    }
   }
 
   String _languageLabel(BuildContext context, String? languageCode) {

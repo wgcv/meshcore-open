@@ -248,7 +248,7 @@ class NotificationService {
       await _notifications.show(
         id: contactId != null
             ? 'advert:$contactId'.hashCode
-            : DateTime.now().millisecondsSinceEpoch,
+            : DateTime.now().millisecondsSinceEpoch & 0x7FFFFFFF,
         title: _l10n.notification_newTypeDiscovered(contactType),
         body: contactName,
         notificationDetails: notificationDetails,
@@ -304,7 +304,8 @@ class NotificationService {
 
     try {
       await _notifications.show(
-        id: channelIndex?.hashCode ?? DateTime.now().millisecondsSinceEpoch,
+        id: channelIndex?.hashCode ??
+            DateTime.now().millisecondsSinceEpoch & 0x7FFFFFFF,
         title: channelName,
         body: body,
         notificationDetails: notificationDetails,

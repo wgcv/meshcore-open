@@ -93,6 +93,24 @@ class AppLocalizationsSv extends AppLocalizations {
   String get common_disable => 'Inaktivera';
 
   @override
+  String get common_undo => 'Undo';
+
+  @override
+  String get messageStatus_sent => 'Sent';
+
+  @override
+  String get messageStatus_delivered => 'Delivered';
+
+  @override
+  String get messageStatus_pending => 'Sending';
+
+  @override
+  String get messageStatus_failed => 'Failed to send';
+
+  @override
+  String get messageStatus_repeated => 'Heard repeated';
+
+  @override
   String get common_reboot => 'Start om';
 
   @override
@@ -778,11 +796,6 @@ class AppLocalizationsSv extends AppLocalizations {
       'Antal försök att skicka om ett meddelande innan det markeras som misslyckat.';
 
   @override
-  String path_routeWeight(String weight, String max) {
-    return '$weight/$max';
-  }
-
-  @override
   String get appSettings_battery => 'Batteri';
 
   @override
@@ -981,6 +994,15 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get contacts_newGroup => 'Ny grupp';
+
+  @override
+  String get contacts_moreOptions => 'More options';
+
+  @override
+  String get contacts_searchOpen => 'Search contacts';
+
+  @override
+  String get contacts_searchClose => 'Close search';
 
   @override
   String get contacts_groupName => 'Gruppnamn';
@@ -1461,35 +1483,6 @@ class AppLocalizationsSv extends AppLocalizations {
   String get debugFrame_hexDump => 'Hexdump:';
 
   @override
-  String get chat_pathManagement => 'Stigarhantering';
-
-  @override
-  String get chat_ShowAllPaths => 'Visa alla vägar';
-
-  @override
-  String get chat_routingMode => 'Ruttläge';
-
-  @override
-  String get chat_autoUseSavedPath => 'Automatisk (använd sparad sökväg)';
-
-  @override
-  String get chat_forceFloodMode => 'Tvinga Översvämningsläge';
-
-  @override
-  String get chat_recentAckPaths =>
-      'Nyligen Ack-vägar (tryck för att använda):';
-
-  @override
-  String get chat_pathHistoryFull =>
-      'Historisk sökväg är full. Ta bort poster för att lägga till nya.';
-
-  @override
-  String get chat_hopSingular => 'hoppa';
-
-  @override
-  String get chat_hopPlural => 'hoppar';
-
-  @override
   String chat_hopsCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
@@ -1501,12 +1494,6 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
-  String get chat_successes => 'framgångar';
-
-  @override
-  String get chat_score => 'Score';
-
-  @override
   String get chat_removePath => 'Ta bort sökväg';
 
   @override
@@ -1514,48 +1501,142 @@ class AppLocalizationsSv extends AppLocalizations {
       'Ingen historik ännu.\nSkicka ett meddelande för att upptäcka spår.';
 
   @override
-  String get chat_pathActions => 'Stigar:';
-
-  @override
-  String get chat_setCustomPath => 'Ange anpassad sökväg';
-
-  @override
-  String get chat_setCustomPathSubtitle => 'Ange ruttväg manuellt';
-
-  @override
-  String get chat_clearPath => 'Rensa Vägen';
-
-  @override
-  String get chat_clearPathSubtitle => 'Tvinga fram omstart vid nästa sändning';
-
-  @override
   String get chat_pathCleared =>
       'Routen är nu fri. Nästa meddelande kommer att upptäcka rutten igen.';
-
-  @override
-  String get chat_floodModeSubtitle => 'Använd routningsomkopplaren i appraden';
-
-  @override
-  String get chat_floodModeEnabled =>
-      'Översvämningsläge aktiverat. Stäng av via ruttikonen i appraden.';
 
   @override
   String get chat_fullPath => 'Fullständig sökväg';
 
   @override
-  String get chat_pathDetailsNotAvailable =>
-      'Stigaruppgifterna är ännu inte tillgängliga. Försök att skicka ett meddelande för att uppdatera.';
+  String get routing_title => 'Routing';
 
   @override
-  String chat_pathSetHops(int hopCount, String status) {
-    String _temp0 = intl.Intl.pluralLogic(
-      hopCount,
-      locale: localeName,
-      other: 'hoppar',
-      one: 'hopp',
-    );
-    return 'Sökväg inställd: $hopCount $_temp0 - $status';
+  String get routing_modeAuto => 'Auto';
+
+  @override
+  String get routing_modeFlood => 'Flood';
+
+  @override
+  String get routing_modeManual => 'Manual';
+
+  @override
+  String get routing_modeAutoHint =>
+      'Picks the best known path automatically, flooding when none is known.';
+
+  @override
+  String get routing_modeFloodHint =>
+      'Broadcasts through every repeater. Most reliable, but uses more airtime.';
+
+  @override
+  String get routing_modeManualHint =>
+      'Always sends along the exact path you set.';
+
+  @override
+  String get routing_currentRoute => 'Current route';
+
+  @override
+  String get routing_directNoHops => 'Direct — no repeater hops';
+
+  @override
+  String get routing_noPathYet =>
+      'No path yet. The next message floods until a route is discovered.';
+
+  @override
+  String get routing_floodBroadcast => 'Broadcast through every repeater';
+
+  @override
+  String get routing_editPath => 'Edit path';
+
+  @override
+  String get routing_forgetPath => 'Forget path';
+
+  @override
+  String get routing_knownPaths => 'Known paths';
+
+  @override
+  String get routing_knownPathsHint => 'Tap a path to switch to it.';
+
+  @override
+  String get routing_inUse => 'In use';
+
+  @override
+  String get routing_qualityStrong => 'Strong first hop';
+
+  @override
+  String get routing_qualityGood => 'Good first hop';
+
+  @override
+  String get routing_qualityFair => 'Fair first hop';
+
+  @override
+  String get routing_qualityWorked => 'Has delivered';
+
+  @override
+  String get routing_qualityFlood => 'Heard via flood';
+
+  @override
+  String get routing_qualityUntested => 'Untested';
+
+  @override
+  String routing_lastWorked(String when) {
+    return 'worked $when';
   }
+
+  @override
+  String get routing_neverWorked => 'never confirmed';
+
+  @override
+  String routing_deliveryCounts(int successes, int failures) {
+    return '$successes delivered, $failures failed';
+  }
+
+  @override
+  String get routing_floodDelivery => 'Flood delivery';
+
+  @override
+  String get pathEditor_title => 'Build Path';
+
+  @override
+  String pathEditor_hopCounter(int count) {
+    return '$count of 64 hops';
+  }
+
+  @override
+  String get pathEditor_noHops =>
+      'No hops yet. Tap repeaters below to add them in order, or save with no hops to send direct.';
+
+  @override
+  String get pathEditor_addHops => 'Add hops in order';
+
+  @override
+  String get pathEditor_searchRepeaters => 'Search repeaters';
+
+  @override
+  String get pathEditor_advancedHex => 'Advanced: raw hex path';
+
+  @override
+  String get pathEditor_hexLabel => 'Hex prefixes';
+
+  @override
+  String get pathEditor_hexHelper =>
+      'Two hex characters per hop, separated by commas';
+
+  @override
+  String pathEditor_invalidTokens(String tokens) {
+    return 'Invalid: $tokens';
+  }
+
+  @override
+  String get pathEditor_tooManyHops => 'Maximum 64 hops';
+
+  @override
+  String get pathEditor_usePath => 'Use this path';
+
+  @override
+  String get pathEditor_removeHop => 'Remove hop';
+
+  @override
+  String get pathEditor_unknownHop => 'Unknown repeater';
 
   @override
   String get chat_pathSavedLocally =>
@@ -2022,63 +2103,11 @@ class AppLocalizationsSv extends AppLocalizations {
   String get common_clear => 'Rensa';
 
   @override
-  String path_currentPath(String path) {
-    return 'Nuvarande sökväg: $path';
-  }
-
-  @override
-  String path_usingHopsPath(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: 'hops',
-      one: 'hop',
-    );
-    return 'Använda $count $_temp0 sökväg';
-  }
-
-  @override
-  String get path_enterCustomPath => 'Ange anpassad sökväg';
-
-  @override
   String get path_currentPathLabel => 'Nuvarande sökväg';
-
-  @override
-  String get path_hexPrefixInstructions =>
-      'Ange 2-tecknets hex-prefett för varje hopp, åtskilda med komma.';
-
-  @override
-  String get path_hexPrefixExample =>
-      'Exempel: A1,F2,3C (varje nod använder det första bytet av sitt publika nyckel)';
-
-  @override
-  String get path_labelHexPrefixes => 'Hexprefixer';
-
-  @override
-  String get path_helperMaxHops =>
-      'Max 64 hopp. Varje prefix är 2 hex-tecken (1 byte)';
-
-  @override
-  String get path_selectFromContacts => 'Välj istället från kontakter:';
 
   @override
   String get path_noRepeatersFound =>
       'Inga återuppspelare eller rumsservrar hittades.';
-
-  @override
-  String get path_customPathsRequire =>
-      'Anpassade sökvägar kräver mellansteg som kan vidarebefordra meddelanden.';
-
-  @override
-  String path_invalidHexPrefixes(String prefixes) {
-    return 'Ogiltiga hex-prefikser: $prefixes';
-  }
-
-  @override
-  String get path_tooLong => 'Sökvägen är för lång. Max 64 hopp tillåtna.';
-
-  @override
-  String get path_setPath => 'Ange Sökväg';
 
   @override
   String get repeater_management => 'Återuppspelarens Hantering';
@@ -2143,15 +2172,6 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get repeater_routingMode => 'Ruttläge';
-
-  @override
-  String get repeater_autoUseSavedPath => 'Automatisk (använd sparad sökväg)';
-
-  @override
-  String get repeater_forceFloodMode => 'Tvinga Översvämningsläge';
-
-  @override
-  String get repeater_pathManagement => 'Stigarhantering';
 
   @override
   String get repeater_refresh => 'Uppdatera';
@@ -4391,4 +4411,28 @@ class AppLocalizationsSv extends AppLocalizations {
 
   @override
   String get contact_typeUnknown => 'Unknown';
+
+  @override
+  String get map_zoomIn => 'Zoom in';
+
+  @override
+  String get map_zoomOut => 'Zoom out';
+
+  @override
+  String get map_centerMap => 'Center map';
+
+  @override
+  String get chrome_bluetoothRequiresChromium =>
+      'Web Bluetooth requires a Chromium browser';
+
+  @override
+  String channels_communityShortId(String id) {
+    return 'ID: $id...';
+  }
+
+  @override
+  String get pathTrace_legendGpsConfirmed => 'GPS confirmed';
+
+  @override
+  String get pathTrace_legendInferred => 'Inferred position';
 }

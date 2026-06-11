@@ -93,6 +93,24 @@ class AppLocalizationsNl extends AppLocalizations {
   String get common_disable => 'Uitschakelen';
 
   @override
+  String get common_undo => 'Undo';
+
+  @override
+  String get messageStatus_sent => 'Sent';
+
+  @override
+  String get messageStatus_delivered => 'Delivered';
+
+  @override
+  String get messageStatus_pending => 'Sending';
+
+  @override
+  String get messageStatus_failed => 'Failed to send';
+
+  @override
+  String get messageStatus_repeated => 'Heard repeated';
+
+  @override
   String get common_reboot => 'Herstarten';
 
   @override
@@ -787,11 +805,6 @@ class AppLocalizationsNl extends AppLocalizations {
       'Aantal pogingen om een bericht opnieuw te versturen voordat het als mislukt wordt gemarkeerd';
 
   @override
-  String path_routeWeight(String weight, String max) {
-    return '$weight/$max';
-  }
-
-  @override
   String get appSettings_battery => 'Batterij';
 
   @override
@@ -990,6 +1003,15 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get contacts_newGroup => 'Nieuwe Groep';
+
+  @override
+  String get contacts_moreOptions => 'More options';
+
+  @override
+  String get contacts_searchOpen => 'Search contacts';
+
+  @override
+  String get contacts_searchClose => 'Close search';
 
   @override
   String get contacts_groupName => 'Groepnaam';
@@ -1469,34 +1491,6 @@ class AppLocalizationsNl extends AppLocalizations {
   String get debugFrame_hexDump => 'Hex-dump:';
 
   @override
-  String get chat_pathManagement => 'Beheer van Paden';
-
-  @override
-  String get chat_ShowAllPaths => 'Toon alle paden';
-
-  @override
-  String get chat_routingMode => 'Routeerwijze';
-
-  @override
-  String get chat_autoUseSavedPath => 'Automatisch (gebruik opgeslagen pad)';
-
-  @override
-  String get chat_forceFloodMode => 'Dwing Floodsmodus';
-
-  @override
-  String get chat_recentAckPaths => 'Recente ACK Paden (tik om te gebruiken):';
-
-  @override
-  String get chat_pathHistoryFull =>
-      'De voorgeschiedenis is vol. Verwijder vermeldingen om er nieuwe aan toe te voegen.';
-
-  @override
-  String get chat_hopSingular => 'Hop';
-
-  @override
-  String get chat_hopPlural => 'hoppen';
-
-  @override
   String chat_hopsCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
@@ -1508,12 +1502,6 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get chat_successes => 'Succesvol';
-
-  @override
-  String get chat_score => 'Score';
-
-  @override
   String get chat_removePath => 'Pad verwijderen';
 
   @override
@@ -1521,50 +1509,142 @@ class AppLocalizationsNl extends AppLocalizations {
       'Geen geschiedenis van paden nog beschikbaar.\nVerzend een bericht om paden te ontdekken.';
 
   @override
-  String get chat_pathActions => 'Padacties:';
-
-  @override
-  String get chat_setCustomPath => 'Stel aangepaste pad in';
-
-  @override
-  String get chat_setCustomPathSubtitle => 'Handmatig routepad specificeren';
-
-  @override
-  String get chat_clearPath => 'Duidelijke Pad';
-
-  @override
-  String get chat_clearPathSubtitle =>
-      'Dwing herontdekking bij volgende verzending';
-
-  @override
   String get chat_pathCleared =>
       'Pad is vrijgegeven. Volgende bericht herontdekt route.';
-
-  @override
-  String get chat_floodModeSubtitle =>
-      'Gebruik de route-schakelaar in de app-balk';
-
-  @override
-  String get chat_floodModeEnabled =>
-      'Floodmodus is ingeschakeld. Schakel dit uit via het route-icoon in de app-balk.';
 
   @override
   String get chat_fullPath => 'Volledige Pad';
 
   @override
-  String get chat_pathDetailsNotAvailable =>
-      'De paddetails zijn nog niet beschikbaar. Probeer een bericht te sturen om te vernieuwen.';
+  String get routing_title => 'Routing';
 
   @override
-  String chat_pathSetHops(int hopCount, String status) {
-    String _temp0 = intl.Intl.pluralLogic(
-      hopCount,
-      locale: localeName,
-      other: 'hops',
-      one: 'hop',
-    );
-    return 'Pad ingesteld: $hopCount $_temp0 - $status';
+  String get routing_modeAuto => 'Auto';
+
+  @override
+  String get routing_modeFlood => 'Flood';
+
+  @override
+  String get routing_modeManual => 'Manual';
+
+  @override
+  String get routing_modeAutoHint =>
+      'Picks the best known path automatically, flooding when none is known.';
+
+  @override
+  String get routing_modeFloodHint =>
+      'Broadcasts through every repeater. Most reliable, but uses more airtime.';
+
+  @override
+  String get routing_modeManualHint =>
+      'Always sends along the exact path you set.';
+
+  @override
+  String get routing_currentRoute => 'Current route';
+
+  @override
+  String get routing_directNoHops => 'Direct — no repeater hops';
+
+  @override
+  String get routing_noPathYet =>
+      'No path yet. The next message floods until a route is discovered.';
+
+  @override
+  String get routing_floodBroadcast => 'Broadcast through every repeater';
+
+  @override
+  String get routing_editPath => 'Edit path';
+
+  @override
+  String get routing_forgetPath => 'Forget path';
+
+  @override
+  String get routing_knownPaths => 'Known paths';
+
+  @override
+  String get routing_knownPathsHint => 'Tap a path to switch to it.';
+
+  @override
+  String get routing_inUse => 'In use';
+
+  @override
+  String get routing_qualityStrong => 'Strong first hop';
+
+  @override
+  String get routing_qualityGood => 'Good first hop';
+
+  @override
+  String get routing_qualityFair => 'Fair first hop';
+
+  @override
+  String get routing_qualityWorked => 'Has delivered';
+
+  @override
+  String get routing_qualityFlood => 'Heard via flood';
+
+  @override
+  String get routing_qualityUntested => 'Untested';
+
+  @override
+  String routing_lastWorked(String when) {
+    return 'worked $when';
   }
+
+  @override
+  String get routing_neverWorked => 'never confirmed';
+
+  @override
+  String routing_deliveryCounts(int successes, int failures) {
+    return '$successes delivered, $failures failed';
+  }
+
+  @override
+  String get routing_floodDelivery => 'Flood delivery';
+
+  @override
+  String get pathEditor_title => 'Build Path';
+
+  @override
+  String pathEditor_hopCounter(int count) {
+    return '$count of 64 hops';
+  }
+
+  @override
+  String get pathEditor_noHops =>
+      'No hops yet. Tap repeaters below to add them in order, or save with no hops to send direct.';
+
+  @override
+  String get pathEditor_addHops => 'Add hops in order';
+
+  @override
+  String get pathEditor_searchRepeaters => 'Search repeaters';
+
+  @override
+  String get pathEditor_advancedHex => 'Advanced: raw hex path';
+
+  @override
+  String get pathEditor_hexLabel => 'Hex prefixes';
+
+  @override
+  String get pathEditor_hexHelper =>
+      'Two hex characters per hop, separated by commas';
+
+  @override
+  String pathEditor_invalidTokens(String tokens) {
+    return 'Invalid: $tokens';
+  }
+
+  @override
+  String get pathEditor_tooManyHops => 'Maximum 64 hops';
+
+  @override
+  String get pathEditor_usePath => 'Use this path';
+
+  @override
+  String get pathEditor_removeHop => 'Remove hop';
+
+  @override
+  String get pathEditor_unknownHop => 'Unknown repeater';
 
   @override
   String get chat_pathSavedLocally =>
@@ -2035,63 +2115,10 @@ class AppLocalizationsNl extends AppLocalizations {
   String get common_clear => 'Schoonmaken';
 
   @override
-  String path_currentPath(String path) {
-    return 'Huidige pad: $path';
-  }
-
-  @override
-  String path_usingHopsPath(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: 'hops',
-      one: 'hop',
-    );
-    return 'Gebruik $count $_temp0 pad';
-  }
-
-  @override
-  String get path_enterCustomPath => 'Voer aangepaste pad in';
-
-  @override
   String get path_currentPathLabel => 'Huidige pad';
 
   @override
-  String get path_hexPrefixInstructions =>
-      'Voer 2-letter hex-voorgiffen voor elke hop in, gescheiden door komma\'s.';
-
-  @override
-  String get path_hexPrefixExample =>
-      'Voorbeeld: A1,F2,3C (elke node gebruikt het eerste byte van zijn openbare sleutel)';
-
-  @override
-  String get path_labelHexPrefixes => 'Pad (hex-voorkeursletters)';
-
-  @override
-  String get path_helperMaxHops =>
-      'Maximaal 64 sprongen. Elke prefix is 2 hexadecimale tekens (1 byte)';
-
-  @override
-  String get path_selectFromContacts => 'Of select contacten:';
-
-  @override
   String get path_noRepeatersFound => 'Geen repeaters of roomservers gevonden.';
-
-  @override
-  String get path_customPathsRequire =>
-      'Aangepaste paden vereisen tussentse overstappen die berichten kunnen doorgeven.';
-
-  @override
-  String path_invalidHexPrefixes(String prefixes) {
-    return 'Ongeldige hex-voorkeursletters: $prefixes';
-  }
-
-  @override
-  String get path_tooLong =>
-      'Pad is te lang. Maximaal 64 sprongen zijn toegestaan.';
-
-  @override
-  String get path_setPath => 'Stel Pad in';
 
   @override
   String get repeater_management => 'Beheer Repeaters';
@@ -2156,16 +2183,6 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get repeater_routingMode => 'Routeerwijze';
-
-  @override
-  String get repeater_autoUseSavedPath =>
-      'Automatisch (gebruik opgeslagen pad)';
-
-  @override
-  String get repeater_forceFloodMode => 'Dwing Floodmodus Af';
-
-  @override
-  String get repeater_pathManagement => 'Beheer van paden';
 
   @override
   String get repeater_refresh => 'Vernieuwen';
@@ -4422,4 +4439,28 @@ class AppLocalizationsNl extends AppLocalizations {
 
   @override
   String get contact_typeUnknown => 'Unknown';
+
+  @override
+  String get map_zoomIn => 'Zoom in';
+
+  @override
+  String get map_zoomOut => 'Zoom out';
+
+  @override
+  String get map_centerMap => 'Center map';
+
+  @override
+  String get chrome_bluetoothRequiresChromium =>
+      'Web Bluetooth requires a Chromium browser';
+
+  @override
+  String channels_communityShortId(String id) {
+    return 'ID: $id...';
+  }
+
+  @override
+  String get pathTrace_legendGpsConfirmed => 'GPS confirmed';
+
+  @override
+  String get pathTrace_legendInferred => 'Inferred position';
 }

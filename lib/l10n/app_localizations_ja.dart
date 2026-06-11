@@ -93,6 +93,24 @@ class AppLocalizationsJa extends AppLocalizations {
   String get common_disable => '無効化する';
 
   @override
+  String get common_undo => 'Undo';
+
+  @override
+  String get messageStatus_sent => 'Sent';
+
+  @override
+  String get messageStatus_delivered => 'Delivered';
+
+  @override
+  String get messageStatus_pending => 'Sending';
+
+  @override
+  String get messageStatus_failed => 'Failed to send';
+
+  @override
+  String get messageStatus_repeated => 'Heard repeated';
+
+  @override
   String get common_reboot => '再起動';
 
   @override
@@ -559,7 +577,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get settings_txPowerInvalid => '無効な送信電力 (0-22 dBm)';
 
   @override
-  String get settings_clientRepeat => 'オフグリッド（電力網から孤立した状態）の繰り返し';
+  String get settings_clientRepeat => 'オフグリッドリピータ';
 
   @override
   String get settings_clientRepeatSubtitle =>
@@ -709,7 +727,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get appSettings_autoRouteRotation => '自動ルートの切り替え';
 
   @override
-  String get appSettings_autoRouteRotationSubtitle => '最適なルートと、洪水モードを切り替える';
+  String get appSettings_autoRouteRotationSubtitle => '最適なルートと、フラッドモードを切り替える';
 
   @override
   String get appSettings_autoRouteRotationEnabled => '自動ルートの切り替え機能が有効になっています';
@@ -752,11 +770,6 @@ class AppLocalizationsJa extends AppLocalizations {
       'メッセージを「失敗」とマークするまでの、再試行回数';
 
   @override
-  String path_routeWeight(String weight, String max) {
-    return '$weight/$max';
-  }
-
-  @override
   String get appSettings_battery => 'バッテリー';
 
   @override
@@ -786,7 +799,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get appSettings_showRepeaters => '繰り返し再生機能';
 
   @override
-  String get appSettings_showRepeatersSubtitle => '地図上にリピーターノードを表示する';
+  String get appSettings_showRepeatersSubtitle => '地図上にリピータノードを表示する';
 
   @override
   String get appSettings_showChatNodes => 'チャットノードの表示';
@@ -925,7 +938,7 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
-  String get contacts_manageRepeater => 'リピーターの管理';
+  String get contacts_manageRepeater => 'リピータの管理';
 
   @override
   String get contacts_manageRoom => 'ルームサーバーの管理';
@@ -949,6 +962,15 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get contacts_newGroup => '新しいグループ';
+
+  @override
+  String get contacts_moreOptions => 'More options';
+
+  @override
+  String get contacts_searchOpen => 'Search contacts';
+
+  @override
+  String get contacts_searchClose => 'Close search';
 
   @override
   String get contacts_groupName => 'グループ名';
@@ -1417,33 +1439,6 @@ class AppLocalizationsJa extends AppLocalizations {
   String get debugFrame_hexDump => 'ヘックスダンプ：';
 
   @override
-  String get chat_pathManagement => '経路管理';
-
-  @override
-  String get chat_ShowAllPaths => 'すべての経路を表示';
-
-  @override
-  String get chat_routingMode => 'ルーティングモード';
-
-  @override
-  String get chat_autoUseSavedPath => '自動 (保存されたパスを使用)';
-
-  @override
-  String get chat_forceFloodMode => '強制的に洪水モードを起動';
-
-  @override
-  String get chat_recentAckPaths => '最近使用したACKパス（タップして使用）：';
-
-  @override
-  String get chat_pathHistoryFull => 'パスの履歴は完全です。エントリを削除して、新しいものを追加できます。';
-
-  @override
-  String get chat_hopSingular => 'ジャンプ';
-
-  @override
-  String get chat_hopPlural => 'ホップ';
-
-  @override
   String chat_hopsCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
@@ -1455,59 +1450,147 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
-  String get chat_successes => '成功事例';
-
-  @override
-  String get chat_score => 'Score';
-
-  @override
   String get chat_removePath => 'パスを削除する';
 
   @override
   String get chat_noPathHistoryYet => 'まだ履歴はありません。\nパスを特定するためにメッセージを送信してください。';
 
   @override
-  String get chat_pathActions => 'パスの操作：';
-
-  @override
-  String get chat_setCustomPath => 'カスタムパスを設定';
-
-  @override
-  String get chat_setCustomPathSubtitle => '手動で経路を指定する';
-
-  @override
-  String get chat_clearPath => '明確な道';
-
-  @override
-  String get chat_clearPathSubtitle => '次回送信時に、以前の情報を再取得する';
-
-  @override
   String get chat_pathCleared => '経路が確保されました。次のメッセージでルートを再確認します。';
-
-  @override
-  String get chat_floodModeSubtitle => 'アプリのバーにあるルーティング切り替え機能を使用する';
-
-  @override
-  String get chat_floodModeEnabled =>
-      '洪水モードが有効になっています。アプリのメニューバーにあるルートアイコンを使用して、モードを切り替えることができます。';
 
   @override
   String get chat_fullPath => 'フルパス';
 
   @override
-  String get chat_pathDetailsNotAvailable =>
-      '経路の詳細については、まだ情報がありません。「リフレッシュ」ボタンを押して、再度お試しください。';
+  String get routing_title => 'Routing';
 
   @override
-  String chat_pathSetHops(int hopCount, String status) {
-    String _temp0 = intl.Intl.pluralLogic(
-      hopCount,
-      locale: localeName,
-      other: 'hops',
-      one: 'hop',
-    );
-    return 'Path set: $hopCount $_temp0 - $status';
+  String get routing_modeAuto => 'Auto';
+
+  @override
+  String get routing_modeFlood => 'Flood';
+
+  @override
+  String get routing_modeManual => 'Manual';
+
+  @override
+  String get routing_modeAutoHint =>
+      'Picks the best known path automatically, flooding when none is known.';
+
+  @override
+  String get routing_modeFloodHint =>
+      'Broadcasts through every repeater. Most reliable, but uses more airtime.';
+
+  @override
+  String get routing_modeManualHint =>
+      'Always sends along the exact path you set.';
+
+  @override
+  String get routing_currentRoute => 'Current route';
+
+  @override
+  String get routing_directNoHops => 'Direct — no repeater hops';
+
+  @override
+  String get routing_noPathYet =>
+      'No path yet. The next message floods until a route is discovered.';
+
+  @override
+  String get routing_floodBroadcast => 'Broadcast through every repeater';
+
+  @override
+  String get routing_editPath => 'Edit path';
+
+  @override
+  String get routing_forgetPath => 'Forget path';
+
+  @override
+  String get routing_knownPaths => 'Known paths';
+
+  @override
+  String get routing_knownPathsHint => 'Tap a path to switch to it.';
+
+  @override
+  String get routing_inUse => 'In use';
+
+  @override
+  String get routing_qualityStrong => 'Strong first hop';
+
+  @override
+  String get routing_qualityGood => 'Good first hop';
+
+  @override
+  String get routing_qualityFair => 'Fair first hop';
+
+  @override
+  String get routing_qualityWorked => 'Has delivered';
+
+  @override
+  String get routing_qualityFlood => 'Heard via flood';
+
+  @override
+  String get routing_qualityUntested => 'Untested';
+
+  @override
+  String routing_lastWorked(String when) {
+    return 'worked $when';
   }
+
+  @override
+  String get routing_neverWorked => 'never confirmed';
+
+  @override
+  String routing_deliveryCounts(int successes, int failures) {
+    return '$successes delivered, $failures failed';
+  }
+
+  @override
+  String get routing_floodDelivery => 'Flood delivery';
+
+  @override
+  String get pathEditor_title => 'Build Path';
+
+  @override
+  String pathEditor_hopCounter(int count) {
+    return '$count of 64 hops';
+  }
+
+  @override
+  String get pathEditor_noHops =>
+      'No hops yet. Tap repeaters below to add them in order, or save with no hops to send direct.';
+
+  @override
+  String get pathEditor_addHops => 'Add hops in order';
+
+  @override
+  String get pathEditor_searchRepeaters => 'Search repeaters';
+
+  @override
+  String get pathEditor_advancedHex => 'Advanced: raw hex path';
+
+  @override
+  String get pathEditor_hexLabel => 'Hex prefixes';
+
+  @override
+  String get pathEditor_hexHelper =>
+      'Two hex characters per hop, separated by commas';
+
+  @override
+  String pathEditor_invalidTokens(String tokens) {
+    return 'Invalid: $tokens';
+  }
+
+  @override
+  String get pathEditor_tooManyHops => 'Maximum 64 hops';
+
+  @override
+  String get pathEditor_usePath => 'Use this path';
+
+  @override
+  String get pathEditor_removeHop => 'Remove hop';
+
+  @override
+  String get pathEditor_unknownHop => 'Unknown repeater';
 
   @override
   String get chat_pathSavedLocally => 'ローカルで保存。同期のために接続する。';
@@ -1531,7 +1614,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get chat_compressOutgoingMessages => '送信されるメッセージを圧縮する';
 
   @override
-  String get chat_floodForced => '洪水（強制的な）';
+  String get chat_floodForced => 'フラッド（強制的な）';
 
   @override
   String get chat_directForced => '直接的な（強制的な）';
@@ -1542,7 +1625,7 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
-  String get chat_floodAuto => '洪水 (自動)';
+  String get chat_floodAuto => 'フラッド (自動)';
 
   @override
   String get chat_direct => '直接';
@@ -1607,7 +1690,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get map_chat => 'チャット';
 
   @override
-  String get map_repeater => '繰り返し送信装置';
+  String get map_repeater => 'リピータ';
 
   @override
   String get map_room => '部屋';
@@ -1702,13 +1785,13 @@ class AppLocalizationsJa extends AppLocalizations {
   String get map_chatNodes => 'チャットノード';
 
   @override
-  String get map_repeaters => '繰り返し送信装置';
+  String get map_repeaters => 'リピータ';
 
   @override
   String get map_otherNodes => 'その他のノード';
 
   @override
-  String get map_showOverlaps => 'リピーターキーの重複';
+  String get map_showOverlaps => 'リピータキーの重複';
 
   @override
   String get map_keyPrefix => '主要なプレフィックス';
@@ -1747,7 +1830,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get map_joinRoom => '部屋に参加する';
 
   @override
-  String get map_manageRepeater => 'リピーターの管理';
+  String get map_manageRepeater => 'リピータの管理';
 
   @override
   String get map_tapToAdd => 'ノードをクリックして、パスに追加します。';
@@ -1920,7 +2003,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get login_repeaterDescription =>
-      '設定やステータスにアクセスするために、リピーターのパスワードを入力してください。';
+      '設定やステータスにアクセスするために、リピータのパスワードを入力してください。';
 
   @override
   String get login_roomDescription => '設定やステータスへのアクセスには、部屋のパスワードを入力してください。';
@@ -1935,7 +2018,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get login_autoUseSavedPath => '自動 (保存されたパスを使用)';
 
   @override
-  String get login_forceFloodMode => '強制的に洪水モードを起動';
+  String get login_forceFloodMode => '強制的にフラッドモードを起動';
 
   @override
   String get login_managePaths => 'パスの管理';
@@ -1964,69 +2047,19 @@ class AppLocalizationsJa extends AppLocalizations {
   String get common_clear => '明確';
 
   @override
-  String path_currentPath(String path) {
-    return '現在のパス: $path';
-  }
-
-  @override
-  String path_usingHopsPath(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: 'ホップ',
-      one: 'ホップ',
-    );
-    return '$count $_temp0のパスを使用';
-  }
-
-  @override
-  String get path_enterCustomPath => 'カスタムパスを入力';
-
-  @override
   String get path_currentPathLabel => '現在の経路';
-
-  @override
-  String get path_hexPrefixInstructions =>
-      '各ホップに対して、2文字の16進数プレフィックスをカンマで区切って入力してください。';
-
-  @override
-  String get path_hexPrefixExample => '例：A1, F2, 3C (各ノードは、自身の公開鍵の最初のバイトを使用)';
-
-  @override
-  String get path_labelHexPrefixes => 'パス (ヘックスプレフィックス)';
-
-  @override
-  String get path_helperMaxHops =>
-      '最大64個のホップ。各プレフィックスは2つの16進数文字（1バイト）で構成されています。';
-
-  @override
-  String get path_selectFromContacts => 'または、連絡先リストから選択してください：';
 
   @override
   String get path_noRepeatersFound => '繰り返し機能やルームサーバーは見つかりませんでした。';
 
   @override
-  String get path_customPathsRequire => 'カスタムパスには、メッセージを中継できる中間地点が必要です。';
-
-  @override
-  String path_invalidHexPrefixes(String prefixes) {
-    return '無効な16進数プレフィックス: $prefixes';
-  }
-
-  @override
-  String get path_tooLong => '経路が長すぎる。最大64回のジャンプのみ許可。';
-
-  @override
-  String get path_setPath => 'パスを設定';
-
-  @override
-  String get repeater_management => 'リピーター管理';
+  String get repeater_management => 'リピータ管理';
 
   @override
   String get room_management => 'ルームサーバーの管理';
 
   @override
-  String get repeater_guest => '繰り返し送信に関する情報';
+  String get repeater_guest => 'リピータに関する情報';
 
   @override
   String get room_guest => 'ルームサーバーに関する情報';
@@ -2041,7 +2074,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get repeater_status => 'ステータス';
 
   @override
-  String get repeater_statusSubtitle => 'リピーターの状態、統計情報、および隣接するネットワークの情報を表示する';
+  String get repeater_statusSubtitle => 'リピータの状態、統計情報、および隣接するネットワークの情報を表示する';
 
   @override
   String get repeater_telemetry => 'テレメトリー';
@@ -2053,7 +2086,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get repeater_cli => 'CLI（コマンドラインインターフェース）';
 
   @override
-  String get repeater_cliSubtitle => 'リピーターへのコマンドを送信する';
+  String get repeater_cliSubtitle => 'リピータへのコマンドを送信する';
 
   @override
   String get repeater_neighbors => '近隣住民';
@@ -2065,7 +2098,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get repeater_settings => '設定';
 
   @override
-  String get repeater_settingsSubtitle => 'リピーターのパラメータを設定する';
+  String get repeater_settingsSubtitle => 'リピータのパラメータを設定する';
 
   @override
   String get repeater_clockSyncAfterLogin => 'ログイン後、時計の時刻を同期する';
@@ -2079,15 +2112,6 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get repeater_routingMode => 'ルーティングモード';
-
-  @override
-  String get repeater_autoUseSavedPath => '自動 (保存されたパスを使用)';
-
-  @override
-  String get repeater_forceFloodMode => '強制的に洪水モードを起動';
-
-  @override
-  String get repeater_pathManagement => '経路管理';
 
   @override
   String get repeater_refresh => 'リフレッシュ';
@@ -2163,12 +2187,12 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String repeater_packetTxTotal(int total, String flood, String direct) {
-    return '合計: $total, 洪水: $flood, 直接: $direct';
+    return '合計: $total, フラッド: $flood, 直接: $direct';
   }
 
   @override
   String repeater_packetRxTotal(int total, String flood, String direct) {
-    return '合計: $total, 洪水: $flood, 直接: $direct';
+    return '合計: $total, フラッド: $flood, 直接: $direct';
   }
 
   @override
@@ -2182,16 +2206,16 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
-  String get repeater_settingsTitle => 'リピーター設定';
+  String get repeater_settingsTitle => 'リピータ設定';
 
   @override
   String get repeater_basicSettings => '基本設定';
 
   @override
-  String get repeater_repeaterName => '送信装置名';
+  String get repeater_repeaterName => 'リピータ名';
 
   @override
-  String get repeater_repeaterNameHelper => 'このリピーターの名前';
+  String get repeater_repeaterNameHelper => 'このリピータの名前';
 
   @override
   String get repeater_adminPassword => '管理者パスワード';
@@ -2251,7 +2275,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get repeater_packetForwarding => 'パケット転送';
 
   @override
-  String get repeater_packetForwardingSubtitle => 'リピーターがパケットを転送できるように設定する';
+  String get repeater_packetForwardingSubtitle => 'リピータがパケットを転送できるように設定する';
 
   @override
   String get repeater_guestAccess => 'ゲストへのアクセス';
@@ -2277,7 +2301,7 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
-  String get repeater_floodAdvertInterval => '洪水に関する広告の表示間隔';
+  String get repeater_floodAdvertInterval => 'フラッドに関する広告の表示間隔';
 
   @override
   String repeater_floodAdvertIntervalHours(int hours) {
@@ -2291,13 +2315,13 @@ class AppLocalizationsJa extends AppLocalizations {
   String get repeater_dangerZone => '危険区域';
 
   @override
-  String get repeater_rebootRepeater => 'リピーターを再起動する';
+  String get repeater_rebootRepeater => 'リピータを再起動する';
 
   @override
-  String get repeater_rebootRepeaterSubtitle => 'リピーターデバイスを再起動する';
+  String get repeater_rebootRepeaterSubtitle => 'リピータデバイスを再起動する';
 
   @override
-  String get repeater_rebootRepeaterConfirm => '本当にこのリピーターを再起動したいですか？';
+  String get repeater_rebootRepeaterConfirm => '本当にこのリピータを再起動したいですか？';
 
   @override
   String get repeater_regenerateIdentityKey => 'IDキーの再生成';
@@ -2307,17 +2331,17 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get repeater_regenerateIdentityKeyConfirm =>
-      'これにより、リピーターには新しい識別情報が割り当てられます。続行しますか？';
+      'これにより、リピータには新しい識別情報が割り当てられます。続行しますか？';
 
   @override
   String get repeater_eraseFileSystem => 'ファイルシステムを削除する';
 
   @override
-  String get repeater_eraseFileSystemSubtitle => 'リピーターファイルシステムをフォーマットする';
+  String get repeater_eraseFileSystemSubtitle => 'リピータファイルシステムをフォーマットする';
 
   @override
   String get repeater_eraseFileSystemConfirm =>
-      '警告：この操作により、リピーター内のすべてのデータが消去されます。この操作は元に戻すことができません！';
+      '警告：この操作により、リピータ内のすべてのデータが消去されます。この操作は元に戻すことができません！';
 
   @override
   String get repeater_eraseSerialOnly => 'Erase機能は、シリアルコンソール経由でのみ利用可能です。';
@@ -2363,7 +2387,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get repeater_loopDetect => 'ループ検出';
 
   @override
-  String get repeater_loopDetectHelper => 'ルーティングループに見えるような、洪水パケットを送信する';
+  String get repeater_loopDetectHelper => 'ルーティングループを検知する';
 
   @override
   String get repeater_loopDetectOff => 'オフ';
@@ -2392,7 +2416,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get repeater_ownerInfo => '事業者の情報';
 
   @override
-  String get repeater_ownerInfoHelper => 'このリピーターに関する公開メタデータ';
+  String get repeater_ownerInfoHelper => 'このリピータに関する公開メタデータ';
 
   @override
   String get repeater_refreshOwnerInfo => 'オペレーター情報の更新';
@@ -2401,7 +2425,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get repeater_floodMax => '最大ホップ数';
 
   @override
-  String get repeater_floodMaxHelper => '洪水パケットが移動できる最大ホップ数 (0-64)';
+  String get repeater_floodMaxHelper => 'フラッドパケットが移動できる最大ホップ数 (0-64)';
 
   @override
   String get repeater_advancedSettings => '高度な';
@@ -2414,14 +2438,14 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get repeater_pathHashModeHelper =>
-      'このリピーターのIDをフローパス/ループ検出タグにエンコードするために使用されるバイト数。 0=1バイト (256個のID、最大64ホップ)、1=2バイト (65,000個のID、最大32ホップ)、2=3バイト (160万個のID、最大21ホップ)。 v1.13およびそれ以前のファームウェアでは、マルチバイトパスがサポートされていません。 v1.14以降のバージョンでは、一度ネットワークが起動されると、パスが一度だけ検出されます。';
+      'このリピータのIDをフローパス/ループ検出タグにエンコードするために使用されるバイト数。 0=1バイト (256個のID、最大64ホップ)、1=2バイト (65,000個のID、最大32ホップ)、2=3バイト (160万個のID、最大21ホップ)。 v1.13およびそれ以前のファームウェアでは、マルチバイトパスがサポートされていません。 v1.14以降のバージョンでは、一度ネットワークが起動されると、パスが一度だけ検出されます。';
 
   @override
   String get repeater_txDelay => 'フロイド・TXでの遅延';
 
   @override
   String get repeater_txDelayHelper =>
-      '洪水時の交通量に対応するための再送信間隔を、パケットの通信時間を掛けた値（0～2、デフォルト0.5）で設定します。値を大きくすると衝突が減りますが、通信速度が遅くなります。';
+      'フラッド時の交通量に対応するための再送信間隔を、パケットの通信時間を掛けた値（0～2、デフォルト0.5）で設定します。値を大きくすると衝突が減りますが、通信速度が遅くなります。';
 
   @override
   String get repeater_directTxDelay => '直接的なTX遅延';
@@ -2448,16 +2472,16 @@ class AppLocalizationsJa extends AppLocalizations {
   String get repeater_actionsTitle => '行動';
 
   @override
-  String get repeater_sendAdvert => '洪水に関する広告を送信';
+  String get repeater_sendAdvert => 'フラッドに関する広告を送信';
 
   @override
-  String get repeater_sendAdvertSubtitle => 'ネットワークを通じて、洪水に関する広告を放送する';
+  String get repeater_sendAdvertSubtitle => 'ネットワークを通じて、フラッドに関する広告を放送する';
 
   @override
   String get repeater_sendAdvertZeroHop => 'ゼロホップ形式の広告を送信する';
 
   @override
-  String get repeater_sendAdvertZeroHopSubtitle => 'ワンホップでの広告放送（中継なし）';
+  String get repeater_sendAdvertZeroHopSubtitle => 'ワンホップでの広告放送（リピータなし）';
 
   @override
   String get repeater_clockSync => '現在、時刻を同期する';
@@ -2477,7 +2501,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get repeater_settingsSavedRebootNeeded =>
-      '設定を保存しました — リピーターを再起動して適用してください';
+      '設定を保存しました — リピータを再起動して適用してください';
 
   @override
   String repeater_settingsPartialFailure(String failures) {
@@ -2518,7 +2542,7 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
-  String get repeater_cliTitle => 'リピーターのコマンドラインインターフェース';
+  String get repeater_cliTitle => 'リピータのコマンドラインインターフェース';
 
   @override
   String get repeater_debugNextCommand => '次のコマンドのデバッグ';
@@ -2609,7 +2633,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get repeater_cliHelpSetTx => 'LoRaの送信電力をdBmで設定します。（設定変更後、再起動が必要です）';
 
   @override
-  String get repeater_cliHelpSetRepeat => 'このノードに対するリピーターの役割を有効化または無効化します。';
+  String get repeater_cliHelpSetRepeat => 'このノードに対するリピータの役割を有効化または無効化します。';
 
   @override
   String get repeater_cliHelpSetAllowReadOnly =>
@@ -2617,7 +2641,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get repeater_cliHelpSetFloodMax =>
-      'インバウンドフラッパケットの最大ホップ数を設定します（最大値を超えた場合、パケットは転送されません）。';
+      'インバウンドフラッドパケットの最大ホップ数を設定します（最大値を超えた場合、パケットは転送されません）。';
 
   @override
   String get repeater_cliHelpSetIntThresh =>
@@ -2636,7 +2660,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get repeater_cliHelpSetFloodAdvertInterval =>
-      '洪水広告の送信間隔を時間単位で設定します。0に設定すると、送信を停止します。';
+      'フラッド広告の送信間隔を時間単位で設定します。0に設定すると、送信を停止します。';
 
   @override
   String get repeater_cliHelpSetGuestPassword =>
@@ -2710,7 +2734,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get repeater_cliHelpNeighbors =>
-      'ゼロホップ広告を通じて受信した他のリピーターノードの一覧を表示します。各行は、IDプレフィックス（16進数）、タイムスタンプ、SNR（シグナル強度）の情報を4つ含みます。';
+      'ゼロホップ広告を通じて受信した他のリピータノードの一覧を表示します。各行は、IDプレフィックス（16進数）、タイムスタンプ、SNR（シグナル強度）の情報を4つ含みます。';
 
   @override
   String get repeater_cliHelpNeighborRemove =>
@@ -2718,7 +2742,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get repeater_cliHelpRegion =>
-      '（特定のシリーズのみ）定義されたすべての地域と、現在の洪水許可状況を一覧表示します。';
+      '（特定のシリーズのみ）定義されたすべての地域と、現在のフラッド許可状況を一覧表示します。';
 
   @override
   String get repeater_cliHelpRegionLoad =>
@@ -2737,7 +2761,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get repeater_cliHelpRegionAllowf =>
-      '指定された領域に対して、「洪水」アクセス許可を設定します。 (グローバル/従来のスコープには「*」を使用)';
+      '指定された領域に対して、「フラッド」アクセス許可を設定します。 (グローバル/従来のスコープには「*」を使用)';
 
   @override
   String get repeater_cliHelpRegionDenyf =>
@@ -2793,7 +2817,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get repeater_logging => 'ログ記録';
 
   @override
-  String get repeater_neighborsRepeaterOnly => '近隣住民（リピーターのみ）';
+  String get repeater_neighborsRepeaterOnly => '近隣住民（リピータのみ）';
 
   @override
   String get repeater_regionManagementRepeaterOnly => '地域管理（ブロードキャスト用のみ）';
@@ -2838,7 +2862,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get repeater_cliHelpDiscoverNeighbors =>
-      '近隣のノードに対して、ノードの探索リクエストを送信します。（中継機能のみ）';
+      '近隣のノードに対して、ノードの探索リクエストを送信します。（リピータ機能のみ）';
 
   @override
   String get repeater_cliHelpPowersaving => '省電力モードがオンになっているかどうかを表示します。';
@@ -2887,7 +2911,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get repeater_cliHelpGetName => '設定されたノードの名前を表示します。';
 
   @override
-  String get repeater_cliHelpGetRole => 'ファームウェアの役割（リピーター、ルームサーバーなど）を表示します。';
+  String get repeater_cliHelpGetRole => 'ファームウェアの役割（リピータ、ルームサーバーなど）を表示します。';
 
   @override
   String get repeater_cliHelpGetPublicKey => 'デバイスの公開鍵を表示します。';
@@ -2897,7 +2921,7 @@ class AppLocalizationsJa extends AppLocalizations {
       '（シリアル番号のみ）デバイスのプライベートキーを表示します。機密情報として扱ってください。';
 
   @override
-  String get repeater_cliHelpGetRepeat => 'パケット転送（リピーター機能）が有効になっているかどうかを表示します。';
+  String get repeater_cliHelpGetRepeat => 'パケット転送（リピータ機能）が有効になっているかどうかを表示します。';
 
   @override
   String get repeater_cliHelpGetTx => '現在のTX（送信）電力のdBm値を表示します。';
@@ -2936,7 +2960,7 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get repeater_cliHelpGetFloodAdvertInterval =>
-      '洪水に関する広告の放送時間を時間単位で表示します。';
+      'フラッドに関する広告の放送時間を時間単位で表示します。';
 
   @override
   String get repeater_cliHelpGetGuestPassword => '設定されたゲストパスワードを表示します。';
@@ -2951,13 +2975,13 @@ class AppLocalizationsJa extends AppLocalizations {
   String get repeater_cliHelpGetRxDelay => 'rxdelay の基本値を表示します。';
 
   @override
-  String get repeater_cliHelpGetTxDelay => '洪水モードにおける送信遅延の要因を示します。';
+  String get repeater_cliHelpGetTxDelay => 'フラッドモードにおける送信遅延の要因を示します。';
 
   @override
   String get repeater_cliHelpGetDirectTxDelay => 'ダイレクトモードの遅延要素を示します。';
 
   @override
-  String get repeater_cliHelpGetFloodMax => '最大浸水範囲の回数を表示します。';
+  String get repeater_cliHelpGetFloodMax => 'フラッドパケットの最大ホップ数を表示します。';
 
   @override
   String get repeater_cliHelpGetOwnerInfo => '所有者の連絡先情報を表示します。';
@@ -2969,7 +2993,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get repeater_cliHelpGetLoopDetect => 'ループ検出の感度を示す。';
 
   @override
-  String get repeater_cliHelpGetAcl => '（シリアルのみ）リピーター上のアクセス制御設定を一覧表示します。';
+  String get repeater_cliHelpGetAcl => '（シリアルのみ）リピータ上のアクセス制御設定を一覧表示します。';
 
   @override
   String get repeater_cliHelpGetBridgeEnabled => '橋が有効になっているかどうかを表示します。';
@@ -3032,10 +3056,10 @@ class AppLocalizationsJa extends AppLocalizations {
       'デフォルトの地域範囲を設定します。「<null>」を使用すると、設定をリセットできます。';
 
   @override
-  String get repeater_cliHelpRegionListAllowed => '洪水時の通行が許可されている地域の一覧';
+  String get repeater_cliHelpRegionListAllowed => 'フラッド時の通行が許可されている地域の一覧';
 
   @override
-  String get repeater_cliHelpRegionListDenied => '洪水による交通を遮断している地域の一覧';
+  String get repeater_cliHelpRegionListDenied => 'フラッドによる交通を遮断している地域の一覧';
 
   @override
   String get repeater_cliHelpStatsPackets => '（シリアルのみ）パケットレベルの統計情報を表示します。';
@@ -3245,7 +3269,7 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
-  String get neighbors_repeatersNeighbors => '繰り返し送信する、近隣';
+  String get neighbors_repeatersNeighbors => '近隣のリピータ';
 
   @override
   String get neighbors_noData => '近隣のデータは利用できません。';
@@ -3270,7 +3294,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get channelPath_otherObservedPaths => '観察されたその他の経路';
 
   @override
-  String get channelPath_repeaterHops => 'ホップの繰り返し';
+  String get channelPath_repeaterHops => 'リピータホップ';
 
   @override
   String get channelPath_noHopDetails => 'このパッケージに関する詳細な情報は提供されていません。';
@@ -3285,7 +3309,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get channelPath_timeLabel => '時間';
 
   @override
-  String get channelPath_repeatsLabel => '繰り返し';
+  String get channelPath_repeatsLabel => 'リピータ';
 
   @override
   String channelPath_pathLabel(int index) {
@@ -3317,7 +3341,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get channelPath_unknownPath => '不明';
 
   @override
-  String get channelPath_floodPath => '洪水';
+  String get channelPath_floodPath => 'フラッド';
 
   @override
   String get channelPath_directPath => '直接';
@@ -3336,7 +3360,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get channelPath_mapTitle => '経路図';
 
   @override
-  String get channelPath_noRepeaterLocations => 'この経路には、中継装置の設置場所がありません。';
+  String get channelPath_noRepeaterLocations => 'この経路にリピータの位置情報はありません。';
 
   @override
   String channelPath_primaryPath(int index) {
@@ -3556,7 +3580,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get listFilter_users => '利用者';
 
   @override
-  String get listFilter_repeaters => '繰り返し送信装置';
+  String get listFilter_repeaters => 'リピータ';
 
   @override
   String get listFilter_roomServers => 'ルーム用サーバー';
@@ -3756,10 +3780,10 @@ class AppLocalizationsJa extends AppLocalizations {
   String get contacts_ping => 'パング';
 
   @override
-  String get contacts_repeaterPathTrace => 'リピーターまでの経路を追跡する';
+  String get contacts_repeaterPathTrace => 'リピータまでの経路を追跡する';
 
   @override
-  String get contacts_repeaterPing => 'PING 繰り返し';
+  String get contacts_repeaterPing => 'リピータにPING';
 
   @override
   String get contacts_roomPathTrace => '部屋のサーバーへの経路を追跡する';
@@ -3791,7 +3815,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get contacts_zeroHopAdvert => 'ゼロホップ広告';
 
   @override
-  String get contacts_floodAdvert => '洪水に関する広告';
+  String get contacts_floodAdvert => 'フラッドに関する広告';
 
   @override
   String get contacts_copyAdvertToClipboard => '広告をクリップボードにコピー';
@@ -3862,7 +3886,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get notification_receivedNewMessage => '新しいメッセージを受信';
 
   @override
-  String get settings_gpxExportRepeaters => 'GPX へのエクスポート用リピーター/ルームサーバー';
+  String get settings_gpxExportRepeaters => 'GPX へのエクスポート用リピータ/ルームサーバー';
 
   @override
   String get settings_gpxExportRepeatersSubtitle =>
@@ -3895,7 +3919,7 @@ class AppLocalizationsJa extends AppLocalizations {
   String get settings_gpxExportError => 'エクスポート時にエラーが発生しました。';
 
   @override
-  String get settings_gpxExportRepeatersRoom => '中継装置およびルームサーバーの設置場所';
+  String get settings_gpxExportRepeatersRoom => 'リピータ/ルームサーバーの位置情報';
 
   @override
   String get settings_gpxExportChat => '関連施設';
@@ -3911,7 +3935,7 @@ class AppLocalizationsJa extends AppLocalizations {
       'meshcore-open GPX形式の地図データのエクスポート';
 
   @override
-  String get snrIndicator_nearByRepeaters => '近くの電波中継局';
+  String get snrIndicator_nearByRepeaters => '近くのリピータ';
 
   @override
   String get snrIndicator_lastSeen => '最後に確認された場所';
@@ -3933,11 +3957,11 @@ class AppLocalizationsJa extends AppLocalizations {
       '利用者が自動的に発見したユーザーを追加できるようにする。';
 
   @override
-  String get contactsSettings_autoAddRepeatersTitle => '自動で繰り返し設定';
+  String get contactsSettings_autoAddRepeatersTitle => 'リピータを自動追加';
 
   @override
   String get contactsSettings_autoAddRepeatersSubtitle =>
-      '発見した中継局を、自動的に追加できるようにする。';
+      '発見したリピータを、自動的に追加できるようにする。';
 
   @override
   String get contactsSettings_autoAddRoomServersTitle => '自動でルームサーバーを追加';
@@ -4212,4 +4236,28 @@ class AppLocalizationsJa extends AppLocalizations {
 
   @override
   String get contact_typeUnknown => 'Unknown';
+
+  @override
+  String get map_zoomIn => 'Zoom in';
+
+  @override
+  String get map_zoomOut => 'Zoom out';
+
+  @override
+  String get map_centerMap => 'Center map';
+
+  @override
+  String get chrome_bluetoothRequiresChromium =>
+      'Web Bluetooth requires a Chromium browser';
+
+  @override
+  String channels_communityShortId(String id) {
+    return 'ID: $id...';
+  }
+
+  @override
+  String get pathTrace_legendGpsConfirmed => 'GPS confirmed';
+
+  @override
+  String get pathTrace_legendInferred => 'Inferred position';
 }
