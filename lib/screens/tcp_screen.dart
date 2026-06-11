@@ -224,10 +224,7 @@ class _TcpScreenState extends State<TcpScreen> {
               statusText,
               maxLines: 1,
               overflow: TextOverflow.ellipsis,
-              style: TextStyle(
-                color: statusColor,
-                fontWeight: FontWeight.w500,
-              ),
+              style: TextStyle(color: statusColor, fontWeight: FontWeight.w500),
             ),
           ),
         ],

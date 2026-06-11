@@ -2391,5 +2391,98 @@
   "settings_companionDebugLog": "同伴デバッグログ",
   "chat_newMessages": "新しいメッセージ",
   "chat_markAsUnread": "未読としてマークする",
-  "repeater_chanUtil": "チャンネルの利用状況"
+  "repeater_chanUtil": "チャンネルの利用状況",
+  "@routing_lastWorked": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "@routing_deliveryCounts": {
+    "placeholders": {
+      "successes": {
+        "type": "int"
+      },
+      "failures": {
+        "type": "int"
+      }
+    }
+  },
+  "@pathEditor_hopCounter": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@pathEditor_invalidTokens": {
+    "placeholders": {
+      "tokens": {
+        "type": "String"
+      }
+    }
+  },
+  "@channels_communityShortId": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "messageStatus_delivered": "配達",
+  "common_undo": "元に戻す",
+  "messageStatus_pending": "送信",
+  "messageStatus_sent": "送信",
+  "messageStatus_failed": "送信できませんでした",
+  "contacts_moreOptions": "さらに多くの選択肢",
+  "messageStatus_repeated": "何度も聞いた",
+  "contacts_searchOpen": "連絡先を検索する",
+  "contacts_searchClose": "検索を終了",
+  "routing_modeFlood": "洪水",
+  "routing_title": "経路設定",
+  "routing_modeAuto": "自動車",
+  "routing_modeManual": "マニュアル",
+  "routing_modeAutoHint": "最も一般的な経路を自動的に選択し、経路が不明な場合は、水没状態にします。",
+  "routing_modeFloodHint": "すべてのリピーターを通じて放送。最も信頼性が高いですが、より多くの時間を使用します。",
+  "routing_modeManualHint": "常に、あなたが設定した正確な経路を辿って移動します。",
+  "routing_currentRoute": "現在までのルート",
+  "routing_directNoHops": "直接接続—中継装置を経由しない",
+  "routing_noPathYet": "まだ経路は確立されていません。「次のメッセージを送信し、経路が特定されるまで待ちます」。",
+  "routing_floodBroadcast": "すべてのリピーターを通じて放送",
+  "routing_editPath": "パスの編集",
+  "routing_forgetPath": "道にこだわらない",
+  "routing_knownPaths": "既知の経路",
+  "routing_knownPathsHint": "そのアプリケーションに切り替えるためのショートカットを作成します。",
+  "routing_inUse": "使用中",
+  "routing_qualityStrong": "最初の段階で大きな成果を上げる",
+  "routing_qualityGood": "最初の成功",
+  "routing_qualityFair": "最初の試みは成功を収めた",
+  "routing_qualityWorked": "完了しました",
+  "routing_qualityFlood": "氾濫によって伝聞",
+  "routing_qualityUntested": "未検証",
+  "routing_lastWorked": "{when}に勤務",
+  "routing_neverWorked": "確認されていない",
+  "routing_floodDelivery": "洪水による配送",
+  "pathEditor_title": "経路の作成",
+  "pathEditor_hopCounter": "64個のホップのうち、{count}個",
+  "pathEditor_noHops": "まだホップは追加されていません。ホップを順番に追加するには、以下の「タップ」ボタンをクリックしてください。または、ホップを一切追加せずに直接送信するには、「保存」ボタンをクリックしてください。",
+  "pathEditor_addHops": "ホップを、指定された順番に加える",
+  "pathEditor_searchRepeaters": "繰り返し検索",
+  "pathEditor_advancedHex": "高度なレベル：生のヘックスパス",
+  "pathEditor_hexLabel": "ヘックスプレフィックス",
+  "pathEditor_hexHelper": "各ホップごとに2つのハッシュ文字を、カンマで区切って記述",
+  "pathEditor_invalidTokens": "無効: {tokens}",
+  "pathEditor_tooManyHops": "最大64段階",
+  "pathEditor_usePath": "この経路を使用してください",
+  "pathEditor_removeHop": "ホップを取り除く",
+  "pathEditor_unknownHop": "不明な増幅器",
+  "map_zoomIn": "ズームイン",
+  "map_zoomOut": "ズームアウト",
+  "routing_deliveryCounts": "{successes} delivered, {failures} failed",
+  "map_centerMap": "中心地図",
+  "chrome_bluetoothRequiresChromium": "Web Bluetooth は、Chromium ブラウザが必要です。",
+  "channels_communityShortId": "ID: {id}…",
+  "pathTrace_legendGpsConfirmed": "GPSによる確認",
+  "pathTrace_legendInferred": "推測される位置"
 }

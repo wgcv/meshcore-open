@@ -93,22 +93,22 @@ class AppLocalizationsJa extends AppLocalizations {
   String get common_disable => '無効化する';
 
   @override
-  String get common_undo => 'Undo';
+  String get common_undo => '元に戻す';
 
   @override
-  String get messageStatus_sent => 'Sent';
+  String get messageStatus_sent => '送信';
 
   @override
-  String get messageStatus_delivered => 'Delivered';
+  String get messageStatus_delivered => '配達';
 
   @override
-  String get messageStatus_pending => 'Sending';
+  String get messageStatus_pending => '送信';
 
   @override
-  String get messageStatus_failed => 'Failed to send';
+  String get messageStatus_failed => '送信できませんでした';
 
   @override
-  String get messageStatus_repeated => 'Heard repeated';
+  String get messageStatus_repeated => '何度も聞いた';
 
   @override
   String get common_reboot => '再起動';
@@ -964,13 +964,13 @@ class AppLocalizationsJa extends AppLocalizations {
   String get contacts_newGroup => '新しいグループ';
 
   @override
-  String get contacts_moreOptions => 'More options';
+  String get contacts_moreOptions => 'さらに多くの選択肢';
 
   @override
-  String get contacts_searchOpen => 'Search contacts';
+  String get contacts_searchOpen => '連絡先を検索する';
 
   @override
-  String get contacts_searchClose => 'Close search';
+  String get contacts_searchClose => '検索を終了';
 
   @override
   String get contacts_groupName => 'グループ名';
@@ -1462,82 +1462,80 @@ class AppLocalizationsJa extends AppLocalizations {
   String get chat_fullPath => 'フルパス';
 
   @override
-  String get routing_title => 'Routing';
+  String get routing_title => '経路設定';
 
   @override
-  String get routing_modeAuto => 'Auto';
+  String get routing_modeAuto => '自動車';
 
   @override
-  String get routing_modeFlood => 'Flood';
+  String get routing_modeFlood => '洪水';
 
   @override
-  String get routing_modeManual => 'Manual';
+  String get routing_modeManual => 'マニュアル';
 
   @override
-  String get routing_modeAutoHint =>
-      'Picks the best known path automatically, flooding when none is known.';
+  String get routing_modeAutoHint => '最も一般的な経路を自動的に選択し、経路が不明な場合は、水没状態にします。';
 
   @override
   String get routing_modeFloodHint =>
-      'Broadcasts through every repeater. Most reliable, but uses more airtime.';
+      'すべてのリピーターを通じて放送。最も信頼性が高いですが、より多くの時間を使用します。';
 
   @override
-  String get routing_modeManualHint =>
-      'Always sends along the exact path you set.';
+  String get routing_modeManualHint => '常に、あなたが設定した正確な経路を辿って移動します。';
 
   @override
-  String get routing_currentRoute => 'Current route';
+  String get routing_currentRoute => '現在までのルート';
 
   @override
-  String get routing_directNoHops => 'Direct — no repeater hops';
+  String get routing_directNoHops => '直接接続—中継装置を経由しない';
 
   @override
   String get routing_noPathYet =>
-      'No path yet. The next message floods until a route is discovered.';
+      'まだ経路は確立されていません。「次のメッセージを送信し、経路が特定されるまで待ちます」。';
 
   @override
-  String get routing_floodBroadcast => 'Broadcast through every repeater';
+  String get routing_floodBroadcast => 'すべてのリピーターを通じて放送';
 
   @override
-  String get routing_editPath => 'Edit path';
+  String get routing_editPath => 'パスの編集';
 
   @override
-  String get routing_forgetPath => 'Forget path';
+  String get routing_forgetPath => '道にこだわらない';
 
   @override
-  String get routing_knownPaths => 'Known paths';
+  String get routing_knownPaths => '既知の経路';
 
   @override
-  String get routing_knownPathsHint => 'Tap a path to switch to it.';
+  String get routing_knownPathsHint => 'そのアプリケーションに切り替えるためのショートカットを作成します。';
 
   @override
-  String get routing_inUse => 'In use';
+  String get routing_inUse => '使用中';
 
   @override
-  String get routing_qualityStrong => 'Strong first hop';
+  String get routing_qualityStrong => '最初の段階で大きな成果を上げる';
 
   @override
-  String get routing_qualityGood => 'Good first hop';
+  String get routing_qualityGood => '最初の成功';
 
   @override
-  String get routing_qualityFair => 'Fair first hop';
+  String get routing_qualityFair => '最初の試みは成功を収めた';
 
   @override
-  String get routing_qualityWorked => 'Has delivered';
+  String get routing_qualityWorked => '完了しました';
 
   @override
-  String get routing_qualityFlood => 'Heard via flood';
+  String get routing_qualityFlood => '氾濫によって伝聞';
 
   @override
-  String get routing_qualityUntested => 'Untested';
+  String get routing_qualityUntested => '未検証';
 
   @override
   String routing_lastWorked(String when) {
-    return 'worked $when';
+    return '$whenに勤務';
   }
 
   @override
-  String get routing_neverWorked => 'never confirmed';
+  String get routing_neverWorked => '確認されていない';
 
   @override
   String routing_deliveryCounts(int successes, int failures) {
@@ -1545,52 +1543,51 @@ class AppLocalizationsJa extends AppLocalizations {
   }
 
   @override
-  String get routing_floodDelivery => 'Flood delivery';
+  String get routing_floodDelivery => '洪水による配送';
 
   @override
-  String get pathEditor_title => 'Build Path';
+  String get pathEditor_title => '経路の作成';
 
   @override
   String pathEditor_hopCounter(int count) {
-    return '$count of 64 hops';
+    return '64個のホップのうち、$count個';
   }
 
   @override
   String get pathEditor_noHops =>
-      'No hops yet. Tap repeaters below to add them in order, or save with no hops to send direct.';
+      'まだホップは追加されていません。ホップを順番に追加するには、以下の「タップ」ボタンをクリックしてください。または、ホップを一切追加せずに直接送信するには、「保存」ボタンをクリックしてください。';
 
   @override
-  String get pathEditor_addHops => 'Add hops in order';
+  String get pathEditor_addHops => 'ホップを、指定された順番に加える';
 
   @override
-  String get pathEditor_searchRepeaters => 'Search repeaters';
+  String get pathEditor_searchRepeaters => '繰り返し検索';
 
   @override
-  String get pathEditor_advancedHex => 'Advanced: raw hex path';
+  String get pathEditor_advancedHex => '高度なレベル：生のヘックスパス';
 
   @override
-  String get pathEditor_hexLabel => 'Hex prefixes';
+  String get pathEditor_hexLabel => 'ヘックスプレフィックス';
 
   @override
-  String get pathEditor_hexHelper =>
-      'Two hex characters per hop, separated by commas';
+  String get pathEditor_hexHelper => '各ホップごとに2つのハッシュ文字を、カンマで区切って記述';
 
   @override
   String pathEditor_invalidTokens(String tokens) {
-    return 'Invalid: $tokens';
+    return '無効: $tokens';
   }
 
   @override
-  String get pathEditor_tooManyHops => 'Maximum 64 hops';
+  String get pathEditor_tooManyHops => '最大64段階';
 
   @override
-  String get pathEditor_usePath => 'Use this path';
+  String get pathEditor_usePath => 'この経路を使用してください';
 
   @override
-  String get pathEditor_removeHop => 'Remove hop';
+  String get pathEditor_removeHop => 'ホップを取り除く';
 
   @override
-  String get pathEditor_unknownHop => 'Unknown repeater';
+  String get pathEditor_unknownHop => '不明な増幅器';
 
   @override
   String get chat_pathSavedLocally => 'ローカルで保存。同期のために接続する。';
@@ -4238,26 +4235,26 @@ class AppLocalizationsJa extends AppLocalizations {
   String get contact_typeUnknown => 'Unknown';
 
   @override
-  String get map_zoomIn => 'Zoom in';
+  String get map_zoomIn => 'ズームイン';
 
   @override
-  String get map_zoomOut => 'Zoom out';
+  String get map_zoomOut => 'ズームアウト';
 
   @override
-  String get map_centerMap => 'Center map';
+  String get map_centerMap => '中心地図';
 
   @override
   String get chrome_bluetoothRequiresChromium =>
-      'Web Bluetooth requires a Chromium browser';
+      'Web Bluetooth は、Chromium ブラウザが必要です。';
 
   @override
   String channels_communityShortId(String id) {
-    return 'ID: $id...';
+    return 'ID: $id…';
   }
 
   @override
-  String get pathTrace_legendGpsConfirmed => 'GPS confirmed';
+  String get pathTrace_legendGpsConfirmed => 'GPSによる確認';
 
   @override
-  String get pathTrace_legendInferred => 'Inferred position';
+  String get pathTrace_legendInferred => '推測される位置';
 }

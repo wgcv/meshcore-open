@@ -458,7 +458,9 @@ class _MapCacheScreenState extends State<MapCacheScreen> {
                       padding: const EdgeInsets.only(top: 8),
                       child: Text(
                         l10n.mapCache_failedDownloads(_failedTiles),
-                        style: TextStyle(color: Theme.of(context).colorScheme.error),
+                        style: TextStyle(
+                          color: Theme.of(context).colorScheme.error,
+                        ),
                       ),
                     ),
                 ],

@@ -106,7 +106,9 @@ class ChannelMessagePathScreen extends StatelessWidget {
                 if (!hasHopDetails)
                   Text(
                     l10n.channelPath_noHopDetails,
-                    style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant),
+                    style: TextStyle(
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    ),
                   )
                 else
                   ..._buildHopTiles(context, hops),
@@ -131,7 +133,11 @@ class ChannelMessagePathScreen extends StatelessWidget {
               style: Theme.of(context).textTheme.titleSmall,
             ),
             const SizedBox(height: 8),
-            _buildDetailRow(context, l10n.channelPath_senderLabel, message.senderName),
+            _buildDetailRow(
+              context,
+              l10n.channelPath_senderLabel,
+              message.senderName,
+            ),
             _buildDetailRow(
               context,
               l10n.channelPath_timeLabel,
@@ -149,7 +155,11 @@ class ChannelMessagePathScreen extends StatelessWidget {
               _formatPathLabel(message.pathLength, l10n),
             ),
             if (observedLabel != null)
-              _buildDetailRow(context, l10n.channelPath_observedLabel, observedLabel),
+              _buildDetailRow(
+                context,
+                l10n.channelPath_observedLabel,
+                observedLabel,
+              ),
           ],
         ),
       ),
@@ -261,7 +271,12 @@ class ChannelMessagePathScreen extends StatelessWidget {
         children: [
           SizedBox(
             width: 70,
-            child: Text(label, style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant)),
+            child: Text(
+              label,
+              style: TextStyle(
+                color: Theme.of(context).colorScheme.onSurfaceVariant,
+              ),
+            ),
           ),
           Expanded(child: Text(value)),
         ],
@@ -596,7 +611,9 @@ class _ChannelMessagePathMapScreenState
                 if (points.isEmpty)
                   Center(
                     child: Card(
-                      color: Theme.of(context).colorScheme.surface.withValues(alpha: 0.9),
+                      color: Theme.of(
+                        context,
+                      ).colorScheme.surface.withValues(alpha: 0.9),
                       child: Padding(
                         padding: EdgeInsets.all(12),
                         child: Text(
@@ -667,7 +684,10 @@ class _ChannelMessagePathMapScreenState
                     label,
                     _formatPathPrefixes(selectedPath.pathBytes),
                   ),
-                  style: TextStyle(color: Theme.of(context).colorScheme.onSurfaceVariant, fontSize: 12),
+                  style: TextStyle(
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    fontSize: 12,
+                  ),
                 ),
               ],
             ),
@@ -816,10 +836,10 @@ class _ChannelMessagePathMapScreenState
   }
 
   Widget _colorDot(Color color) => Container(
-        width: 10,
-        height: 10,
-        decoration: BoxDecoration(color: color, shape: BoxShape.circle),
-      );
+    width: 10,
+    height: 10,
+    decoration: BoxDecoration(color: color, shape: BoxShape.circle),
+  );
 
   Widget _buildLegendCard(
     BuildContext context,
@@ -855,7 +875,10 @@ class _ChannelMessagePathMapScreenState
                       children: [
                         _colorDot(Colors.green),
                         const SizedBox(width: 4),
-                        Text(l10n.pathTrace_legendGpsConfirmed, style: const TextStyle(fontSize: 11)),
+                        Text(
+                          l10n.pathTrace_legendGpsConfirmed,
+                          style: const TextStyle(fontSize: 11),
+                        ),
                       ],
                     ),
                   ],

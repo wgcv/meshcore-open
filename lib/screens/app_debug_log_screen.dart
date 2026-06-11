@@ -75,7 +75,9 @@ class AppDebugLogScreen extends StatelessWidget {
                           entry.formattedTime,
                           style: TextStyle(
                             fontSize: 10,
-                            color: Theme.of(context).colorScheme.onSurfaceVariant,
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.onSurfaceVariant,
                           ),
                         ),
                       );
@@ -95,7 +97,9 @@ class AppDebugLogScreen extends StatelessWidget {
                           context.l10n.debugLog_noEntries,
                           style: TextStyle(
                             fontSize: 16,
-                            color: Theme.of(context).colorScheme.onSurfaceVariant,
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.onSurfaceVariant,
                           ),
                         ),
                         const SizedBox(height: 8),
@@ -103,7 +107,9 @@ class AppDebugLogScreen extends StatelessWidget {
                           context.l10n.debugLog_enableInSettings,
                           style: TextStyle(
                             fontSize: 12,
-                            color: Theme.of(context).colorScheme.onSurfaceVariant,
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.onSurfaceVariant,
                           ),
                         ),
                       ],

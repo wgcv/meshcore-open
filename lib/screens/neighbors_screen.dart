@@ -326,10 +326,7 @@ class _NeighborsScreenState extends State<NeighborsScreen> {
               if (!_isLoaded &&
                   !_hasData &&
                   (_parsedNeighbors == null || _parsedNeighbors!.isEmpty))
-                EmptyState(
-                  icon: Icons.wifi_find,
-                  title: l10n.neighbors_noData,
-                ),
+                EmptyState(icon: Icons.wifi_find, title: l10n.neighbors_noData),
               if (_isLoaded ||
                   _hasData &&
                       !(_parsedNeighbors == null || _parsedNeighbors!.isEmpty))

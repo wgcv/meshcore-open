@@ -486,7 +486,10 @@ class _MapScreenState extends State<MapScreen> {
                     PopupMenuItem(
                       child: Row(
                         children: [
-                          Icon(Icons.logout, color: Theme.of(context).colorScheme.error),
+                          Icon(
+                            Icons.logout,
+                            color: Theme.of(context).colorScheme.error,
+                          ),
                           const SizedBox(width: 8),
                           Text(context.l10n.common_disconnect),
                         ],
@@ -1223,7 +1226,9 @@ class _MapScreenState extends State<MapScreen> {
                             Icon(
                               Icons.location_on,
                               size: 16,
-                              color: Theme.of(context).colorScheme.onSurfaceVariant,
+                              color: Theme.of(
+                                context,
+                              ).colorScheme.onSurfaceVariant,
                             ),
                             Text(
                               ": $nodeCount",
@@ -1239,7 +1244,9 @@ class _MapScreenState extends State<MapScreen> {
                             Icon(
                               Icons.wrong_location,
                               size: 16,
-                              color: Theme.of(context).colorScheme.onSurfaceVariant,
+                              color: Theme.of(
+                                context,
+                              ).colorScheme.onSurfaceVariant,
                             ),
                             Text(
                               ": ${nodeCountAll - nodeCount}",
@@ -1255,7 +1262,9 @@ class _MapScreenState extends State<MapScreen> {
                             Icon(
                               Icons.add_outlined,
                               size: 16,
-                              color: Theme.of(context).colorScheme.onSurfaceVariant,
+                              color: Theme.of(
+                                context,
+                              ).colorScheme.onSurfaceVariant,
                             ),
                             Text(
                               ": $nodeCountAll",
@@ -1612,51 +1621,56 @@ class _MapScreenState extends State<MapScreen> {
         return SafeArea(
           child: Padding(
             padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Row(
-                  children: [
-                    Icon(
-                      _getNodeIcon(contact.type),
-                      color: _getNodeColor(contact.type),
-                    ),
-                    const SizedBox(width: 8),
-                    Expanded(child: SelectableText(contact.name)),
-                  ],
-                ),
-                const SizedBox(height: 8),
-                _buildInfoRow(
-                  context.l10n.map_type,
-                  contact.typeLabel(context.l10n),
-                ),
-                _buildInfoRow(
-                  context.l10n.map_path,
-                  contact.pathLabel(context.l10n),
-                ),
-                if (contact.hasLocation)
-                  _buildInfoRow(
-                    context.l10n.map_location,
-                    '${contact.latitude!.toStringAsFixed(6)}, ${contact.longitude!.toStringAsFixed(6)}',
-                  )
-                else if (guessedPosition != null)
-                  _buildInfoRow(
-                    context.l10n.map_estLocation,
-                    '~${guessedPosition.latitude.toStringAsFixed(6)}, ${guessedPosition.longitude.toStringAsFixed(6)}',
+            child: SingleChildScrollView(
+              child: Column(
+                mainAxisSize: MainAxisSize.min,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Row(
+                    children: [
+                      Icon(
+                        _getNodeIcon(contact.type),
+                        color: _getNodeColor(contact.type),
+                      ),
+                      const SizedBox(width: 8),
+                      Expanded(child: SelectableText(contact.name)),
+                    ],
                   ),
-                _buildInfoRow(
-                  context.l10n.map_lastSeen,
-                  _formatLastSeen(contact.lastSeen),
-                ),
-                _buildInfoRow(context.l10n.map_publicKey, contact.publicKeyHex),
-                const SizedBox(height: 16),
-                ...actions,
-                TextButton(
-                  onPressed: () => Navigator.pop(sheetContext),
-                  child: Text(context.l10n.common_close),
-                ),
-              ],
+                  const SizedBox(height: 8),
+                  _buildInfoRow(
+                    context.l10n.map_type,
+                    contact.typeLabel(context.l10n),
+                  ),
+                  _buildInfoRow(
+                    context.l10n.map_path,
+                    contact.pathLabel(context.l10n),
+                  ),
+                  if (contact.hasLocation)
+                    _buildInfoRow(
+                      context.l10n.map_location,
+                      '${contact.latitude!.toStringAsFixed(6)}, ${contact.longitude!.toStringAsFixed(6)}',
+                    )
+                  else if (guessedPosition != null)
+                    _buildInfoRow(
+                      context.l10n.map_estLocation,
+                      '~${guessedPosition.latitude.toStringAsFixed(6)}, ${guessedPosition.longitude.toStringAsFixed(6)}',
+                    ),
+                  _buildInfoRow(
+                    context.l10n.map_lastSeen,
+                    _formatLastSeen(contact.lastSeen),
+                  ),
+                  _buildInfoRow(
+                    context.l10n.map_publicKey,
+                    contact.publicKeyHex,
+                  ),
+                  const SizedBox(height: 16),
+                  ...actions,
+                  TextButton(
+                    onPressed: () => Navigator.pop(sheetContext),
+                    child: Text(context.l10n.common_close),
+                  ),
+                ],
+              ),
             ),
           ),
         );
@@ -1844,9 +1858,7 @@ class _MapScreenState extends State<MapScreen> {
                 );
                 await connector.refreshDeviceInfo();
                 if (!mounted) return;
-                messenger.showSnackBar(
-                  SnackBar(content: Text(successMsg)),
-                );
+                messenger.showSnackBar(SnackBar(content: Text(successMsg)));
               },
             ),
             ListTile(
@@ -2235,7 +2247,10 @@ class _MapScreenState extends State<MapScreen> {
                   const SizedBox(height: 8),
                   Text(
                     _getTimeFilterLabel(settings.mapTimeFilterHours),
-                    style: TextStyle(fontSize: 14, color: Theme.of(context).colorScheme.onSurfaceVariant),
+                    style: TextStyle(
+                      fontSize: 14,
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    ),
                   ),
                   Slider(
                     value: _hoursToSliderValue(settings.mapTimeFilterHours),
@@ -2387,7 +2402,10 @@ class _MapScreenState extends State<MapScreen> {
               if (_pathTrace.isNotEmpty)
                 Text(
                   "${l10n.path_currentPathLabel} ${formatDistance(getPathDistanceMeters(_points), isImperial: isImperial)}",
-                  style: TextStyle(fontSize: 12, color: Theme.of(context).colorScheme.onSurfaceVariant),
+                  style: TextStyle(
+                    fontSize: 12,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  ),
                 ),
               SelectableText(
                 _pathTrace

@@ -93,22 +93,22 @@ class AppLocalizationsSk extends AppLocalizations {
   String get common_disable => 'Zakázať';
 
   @override
-  String get common_undo => 'Undo';
+  String get common_undo => 'Zrušiť';
 
   @override
-  String get messageStatus_sent => 'Sent';
+  String get messageStatus_sent => 'Odoslané';
 
   @override
-  String get messageStatus_delivered => 'Delivered';
+  String get messageStatus_delivered => 'Doručené';
 
   @override
-  String get messageStatus_pending => 'Sending';
+  String get messageStatus_pending => 'Odoslanie';
 
   @override
-  String get messageStatus_failed => 'Failed to send';
+  String get messageStatus_failed => 'Neúspešné odeslanie';
 
   @override
-  String get messageStatus_repeated => 'Heard repeated';
+  String get messageStatus_repeated => 'Slyšal som to opakovane';
 
   @override
   String get common_reboot => 'Restartovať';
@@ -1002,13 +1002,13 @@ class AppLocalizationsSk extends AppLocalizations {
   String get contacts_newGroup => 'Nová skupina';
 
   @override
-  String get contacts_moreOptions => 'More options';
+  String get contacts_moreOptions => 'Ďalšie možnosti';
 
   @override
-  String get contacts_searchOpen => 'Search contacts';
+  String get contacts_searchOpen => 'Vyhľadajte kontakty';
 
   @override
-  String get contacts_searchClose => 'Close search';
+  String get contacts_searchClose => 'Zavrieť vyhľadávanie';
 
   @override
   String get contacts_groupName => 'Názov skupiny';
@@ -1517,74 +1517,77 @@ class AppLocalizationsSk extends AppLocalizations {
   String get chat_fullPath => 'Celá cesta';
 
   @override
-  String get routing_title => 'Routing';
+  String get routing_title => 'Navigácia';
 
   @override
   String get routing_modeAuto => 'Auto';
 
   @override
-  String get routing_modeFlood => 'Flood';
+  String get routing_modeFlood => 'Povodňová vlna';
 
   @override
-  String get routing_modeManual => 'Manual';
+  String get routing_modeManual => 'Ručná príručka';
 
   @override
   String get routing_modeAutoHint =>
-      'Picks the best known path automatically, flooding when none is known.';
+      'Automaticky vyberá najznámejší trasa, a ak žiadna nie je známa, použije náhodnú trasu.';
 
   @override
   String get routing_modeFloodHint =>
-      'Broadcasts through every repeater. Most reliable, but uses more airtime.';
+      'Prenos prostredníctvom všetkých opakovačov. Najspoľahlivejší spôsob, ale vyžaduje viac času vysielania.';
 
   @override
   String get routing_modeManualHint =>
-      'Always sends along the exact path you set.';
+      'Vždy dodáva presne podľa zadaného trasy.';
 
   @override
-  String get routing_currentRoute => 'Current route';
+  String get routing_currentRoute => 'Aktuálna trasa';
 
   @override
-  String get routing_directNoHops => 'Direct — no repeater hops';
+  String get routing_directNoHops => 'Priamo – bez prechodných trás';
 
   @override
   String get routing_noPathYet =>
-      'No path yet. The next message floods until a route is discovered.';
+      'Zatiaľ neexistuje žiadna cesta. Nasledujúce správy budú pokračovať, kým sa nenájde trasa.';
 
   @override
-  String get routing_floodBroadcast => 'Broadcast through every repeater';
+  String get routing_floodBroadcast =>
+      'Prenos prostredníctvom každého opakovača';
 
   @override
-  String get routing_editPath => 'Edit path';
+  String get routing_editPath => 'Upraviť trasu';
 
   @override
-  String get routing_forgetPath => 'Forget path';
+  String get routing_forgetPath => 'Zabudnite na trasu';
 
   @override
-  String get routing_knownPaths => 'Known paths';
+  String get routing_knownPaths => 'Známe cesty';
 
   @override
-  String get routing_knownPathsHint => 'Tap a path to switch to it.';
+  String get routing_knownPathsHint =>
+      'Kliknite na cestu, aby ste sa k nej presunuli.';
 
   @override
-  String get routing_inUse => 'In use';
+  String get routing_inUse => 'V prevádzke';
 
   @override
-  String get routing_qualityStrong => 'Strong first hop';
+  String get routing_qualityStrong => 'Silný prvý krok';
 
   @override
-  String get routing_qualityGood => 'Good first hop';
+  String get routing_qualityGood => 'Úspešný prvý krok';
 
   @override
-  String get routing_qualityFair => 'Fair first hop';
+  String get routing_qualityFair => 'Prvá, spravodlivá fáza';
 
   @override
-  String get routing_qualityWorked => 'Has delivered';
+  String get routing_qualityWorked => 'Dosiahnutý úspech';
 
   @override
-  String get routing_qualityFlood => 'Heard via flood';
+  String get routing_qualityFlood =>
+      'Zistil som to z informácií, ktoré som získal v dôsledku povodňovej situácie.';
 
   @override
-  String get routing_qualityUntested => 'Untested';
+  String get routing_qualityUntested => 'Neotestované';
 
   @override
   String routing_lastWorked(String when) {
@@ -1592,7 +1595,7 @@ class AppLocalizationsSk extends AppLocalizations {
   }
 
   @override
-  String get routing_neverWorked => 'never confirmed';
+  String get routing_neverWorked => 'nikedy nebolo potvrdené';
 
   @override
   String routing_deliveryCounts(int successes, int failures) {
@@ -1600,52 +1603,53 @@ class AppLocalizationsSk extends AppLocalizations {
   }
 
   @override
-  String get routing_floodDelivery => 'Flood delivery';
+  String get routing_floodDelivery => 'Doručenie v prípade povodní';
 
   @override
-  String get pathEditor_title => 'Build Path';
+  String get pathEditor_title => 'Vytvorenie cesty';
 
   @override
   String pathEditor_hopCounter(int count) {
-    return '$count of 64 hops';
+    return '$count z 64 chmelových zŕš';
   }
 
   @override
   String get pathEditor_noHops =>
-      'No hops yet. Tap repeaters below to add them in order, or save with no hops to send direct.';
+      'Zatiaľ žiadne chmel. Kliknite na opakované, aby ste ich pridali postupne, alebo uložte bez chmelu, aby ste ho mohli poslať priamo.';
 
   @override
-  String get pathEditor_addHops => 'Add hops in order';
+  String get pathEditor_addHops => 'Pridávajte chmel podľa zadaného poriadku.';
 
   @override
-  String get pathEditor_searchRepeaters => 'Search repeaters';
+  String get pathEditor_searchRepeaters => 'Hľadať opakované';
 
   @override
-  String get pathEditor_advancedHex => 'Advanced: raw hex path';
+  String get pathEditor_advancedHex => 'Pokročilé: pôvodná hexová cesta';
 
   @override
-  String get pathEditor_hexLabel => 'Hex prefixes';
+  String get pathEditor_hexLabel => 'Prefiksy pre hexadecimálne čísla';
 
   @override
   String get pathEditor_hexHelper =>
-      'Two hex characters per hop, separated by commas';
+      'Dve hexové čísla na každý krok, oddelené čiarkami';
 
   @override
   String pathEditor_invalidTokens(String tokens) {
-    return 'Invalid: $tokens';
+    return 'Neplatné: $tokens';
   }
 
   @override
-  String get pathEditor_tooManyHops => 'Maximum 64 hops';
+  String get pathEditor_tooManyHops => 'Maximálne 64 krokov';
 
   @override
-  String get pathEditor_usePath => 'Use this path';
+  String get pathEditor_usePath => 'Použite túto cestu';
 
   @override
-  String get pathEditor_removeHop => 'Remove hop';
+  String get pathEditor_removeHop => 'Odstráňte chmel';
 
   @override
-  String get pathEditor_unknownHop => 'Unknown repeater';
+  String get pathEditor_unknownHop =>
+      'Neznáme zariadenie na opakované vysielanie';
 
   @override
   String get chat_pathSavedLocally =>
@@ -4436,17 +4440,17 @@ class AppLocalizationsSk extends AppLocalizations {
   String get contact_typeUnknown => 'Unknown';
 
   @override
-  String get map_zoomIn => 'Zoom in';
+  String get map_zoomIn => 'Zväčšiť';
 
   @override
-  String get map_zoomOut => 'Zoom out';
+  String get map_zoomOut => 'Zmenť zamer zblízka';
 
   @override
-  String get map_centerMap => 'Center map';
+  String get map_centerMap => 'Mapa centra';
 
   @override
   String get chrome_bluetoothRequiresChromium =>
-      'Web Bluetooth requires a Chromium browser';
+      'Web Bluetooth vyžaduje prehliadač Chromium.';
 
   @override
   String channels_communityShortId(String id) {
@@ -4454,8 +4458,8 @@ class AppLocalizationsSk extends AppLocalizations {
   }
 
   @override
-  String get pathTrace_legendGpsConfirmed => 'GPS confirmed';
+  String get pathTrace_legendGpsConfirmed => 'GPS potvrdilo';
 
   @override
-  String get pathTrace_legendInferred => 'Inferred position';
+  String get pathTrace_legendInferred => 'Odvodená poloha';
 }

@@ -93,22 +93,22 @@ class AppLocalizationsZh extends AppLocalizations {
   String get common_disable => '禁用';
 
   @override
-  String get common_undo => 'Undo';
+  String get common_undo => '撤销';
 
   @override
-  String get messageStatus_sent => 'Sent';
+  String get messageStatus_sent => '发送';
 
   @override
-  String get messageStatus_delivered => 'Delivered';
+  String get messageStatus_delivered => '已送达';
 
   @override
-  String get messageStatus_pending => 'Sending';
+  String get messageStatus_pending => '发送';
 
   @override
-  String get messageStatus_failed => 'Failed to send';
+  String get messageStatus_failed => '发送失败';
 
   @override
-  String get messageStatus_repeated => 'Heard repeated';
+  String get messageStatus_repeated => '多次听到';
 
   @override
   String get common_reboot => '重启';
@@ -945,13 +945,13 @@ class AppLocalizationsZh extends AppLocalizations {
   String get contacts_newGroup => '新建群聊';
 
   @override
-  String get contacts_moreOptions => 'More options';
+  String get contacts_moreOptions => '更多选择';
 
   @override
-  String get contacts_searchOpen => 'Search contacts';
+  String get contacts_searchOpen => '搜索联系人';
 
   @override
-  String get contacts_searchClose => 'Close search';
+  String get contacts_searchClose => '高级搜索';
 
   @override
   String get contacts_groupName => '群聊名称';
@@ -1437,82 +1437,78 @@ class AppLocalizationsZh extends AppLocalizations {
   String get chat_fullPath => '完整路径';
 
   @override
-  String get routing_title => 'Routing';
+  String get routing_title => '路由';
 
   @override
-  String get routing_modeAuto => 'Auto';
+  String get routing_modeAuto => '汽车';
 
   @override
-  String get routing_modeFlood => 'Flood';
+  String get routing_modeFlood => '洪水';
 
   @override
-  String get routing_modeManual => 'Manual';
+  String get routing_modeManual => '手册';
 
   @override
-  String get routing_modeAutoHint =>
-      'Picks the best known path automatically, flooding when none is known.';
+  String get routing_modeAutoHint => '自动选择已知最佳路径，当没有已知路径时，则进行“洪水”搜索。';
 
   @override
-  String get routing_modeFloodHint =>
-      'Broadcasts through every repeater. Most reliable, but uses more airtime.';
+  String get routing_modeFloodHint => '通过所有中继站进行广播。 这种方式最可靠，但占用更多的时间。';
 
   @override
-  String get routing_modeManualHint =>
-      'Always sends along the exact path you set.';
+  String get routing_modeManualHint => '总是按照您设置的路径进行导航。';
 
   @override
-  String get routing_currentRoute => 'Current route';
+  String get routing_currentRoute => '当前路线';
 
   @override
-  String get routing_directNoHops => 'Direct — no repeater hops';
+  String get routing_directNoHops => '直接连接— 无中继跳';
 
   @override
-  String get routing_noPathYet =>
-      'No path yet. The next message floods until a route is discovered.';
+  String get routing_noPathYet => '目前还没有找到路径。直到找到路径，才会收到后续消息。';
 
   @override
-  String get routing_floodBroadcast => 'Broadcast through every repeater';
+  String get routing_floodBroadcast => '通过所有中继器进行广播';
 
   @override
-  String get routing_editPath => 'Edit path';
+  String get routing_editPath => '编辑路径';
 
   @override
-  String get routing_forgetPath => 'Forget path';
+  String get routing_forgetPath => '忘记原路';
 
   @override
-  String get routing_knownPaths => 'Known paths';
+  String get routing_knownPaths => '已知的路径';
 
   @override
-  String get routing_knownPathsHint => 'Tap a path to switch to it.';
+  String get routing_knownPathsHint => '点击该路径以切换到它。';
 
   @override
-  String get routing_inUse => 'In use';
+  String get routing_inUse => '使用中';
 
   @override
-  String get routing_qualityStrong => 'Strong first hop';
+  String get routing_qualityStrong => '强劲的初始阶段';
 
   @override
-  String get routing_qualityGood => 'Good first hop';
+  String get routing_qualityGood => '不错的开端';
 
   @override
-  String get routing_qualityFair => 'Fair first hop';
+  String get routing_qualityFair => '第一次尝试，结果良好';
 
   @override
-  String get routing_qualityWorked => 'Has delivered';
+  String get routing_qualityWorked => '已完成';
 
   @override
-  String get routing_qualityFlood => 'Heard via flood';
+  String get routing_qualityFlood => '通过新闻报道';
 
   @override
-  String get routing_qualityUntested => 'Untested';
+  String get routing_qualityUntested => '未经测试';
 
   @override
   String routing_lastWorked(String when) {
-    return 'worked $when';
+    return '工作于 $when';
   }
 
   @override
-  String get routing_neverWorked => 'never confirmed';
+  String get routing_neverWorked => '从未得到证实';
 
   @override
   String routing_deliveryCounts(int successes, int failures) {
@@ -1520,10 +1516,10 @@ class AppLocalizationsZh extends AppLocalizations {
   }
 
   @override
-  String get routing_floodDelivery => 'Flood delivery';
+  String get routing_floodDelivery => '洪水配送';
 
   @override
-  String get pathEditor_title => 'Build Path';
+  String get pathEditor_title => '构建路径';
 
   @override
   String pathEditor_hopCounter(int count) {
@@ -1532,40 +1528,39 @@ class AppLocalizationsZh extends AppLocalizations {
 
   @override
   String get pathEditor_noHops =>
-      'No hops yet. Tap repeaters below to add them in order, or save with no hops to send direct.';
+      '目前还没有添加任何啤酒花。点击下面的“添加”按钮，按顺序添加，或者直接保存，不添加任何啤酒花。';
 
   @override
-  String get pathEditor_addHops => 'Add hops in order';
+  String get pathEditor_addHops => '按照顺序添加啤酒花';
 
   @override
-  String get pathEditor_searchRepeaters => 'Search repeaters';
+  String get pathEditor_searchRepeaters => '重复搜索';
 
   @override
-  String get pathEditor_advancedHex => 'Advanced: raw hex path';
+  String get pathEditor_advancedHex => '高级：原始十六进制路径';
 
   @override
-  String get pathEditor_hexLabel => 'Hex prefixes';
+  String get pathEditor_hexLabel => '十六进制前缀';
 
   @override
-  String get pathEditor_hexHelper =>
-      'Two hex characters per hop, separated by commas';
+  String get pathEditor_hexHelper => '每次跳跃，使用两个十六进制字符，用逗号分隔。';
 
   @override
   String pathEditor_invalidTokens(String tokens) {
-    return 'Invalid: $tokens';
+    return '无效：$tokens';
   }
 
   @override
-  String get pathEditor_tooManyHops => 'Maximum 64 hops';
+  String get pathEditor_tooManyHops => '最多 64 个跳跃';
 
   @override
-  String get pathEditor_usePath => 'Use this path';
+  String get pathEditor_usePath => '请使用此路径';
 
   @override
-  String get pathEditor_removeHop => 'Remove hop';
+  String get pathEditor_removeHop => '去除啤酒花';
 
   @override
-  String get pathEditor_unknownHop => 'Unknown repeater';
+  String get pathEditor_unknownHop => '未知的重复器';
 
   @override
   String get chat_pathSavedLocally => '已本地保存，连接设备后可同步。';
@@ -4128,26 +4123,26 @@ class AppLocalizationsZh extends AppLocalizations {
   String get contact_typeUnknown => 'Unknown';
 
   @override
-  String get map_zoomIn => 'Zoom in';
+  String get map_zoomIn => '放大';
 
   @override
-  String get map_zoomOut => 'Zoom out';
+  String get map_zoomOut => '放大';
 
   @override
-  String get map_centerMap => 'Center map';
+  String get map_centerMap => '中心地图';
 
   @override
   String get chrome_bluetoothRequiresChromium =>
-      'Web Bluetooth requires a Chromium browser';
+      'Web Bluetooth 需要 Chromium 浏览器';
 
   @override
   String channels_communityShortId(String id) {
-    return 'ID: $id...';
+    return 'ID：$id...';
   }
 
   @override
-  String get pathTrace_legendGpsConfirmed => 'GPS confirmed';
+  String get pathTrace_legendGpsConfirmed => '通过GPS确认';
 
   @override
-  String get pathTrace_legendInferred => 'Inferred position';
+  String get pathTrace_legendInferred => '推测的位置';
 }

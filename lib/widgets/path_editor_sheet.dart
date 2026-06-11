@@ -119,7 +119,9 @@ class _PathEditorSheetState extends State<PathEditorSheet> {
       _hexError = null;
       _hops
         ..clear()
-        ..addAll(tokens.map((t) => _Hop(_nextHopId++, int.parse(t, radix: 16))));
+        ..addAll(
+          tokens.map((t) => _Hop(_nextHopId++, int.parse(t, radix: 16))),
+        );
     });
   }
 
@@ -287,10 +289,7 @@ class _PathEditorSheetState extends State<PathEditorSheet> {
                 ),
               const Divider(),
               const SizedBox(height: 8),
-              Text(
-                l10n.pathEditor_addHops,
-                style: theme.textTheme.titleSmall,
-              ),
+              Text(l10n.pathEditor_addHops, style: theme.textTheme.titleSmall),
               const SizedBox(height: 8),
               TextField(
                 onChanged: (value) => setState(() => _search = value),

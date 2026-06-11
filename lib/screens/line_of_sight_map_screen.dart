@@ -507,7 +507,9 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
               bottom: 12,
               child: DecoratedBox(
                 decoration: BoxDecoration(
-                  color: Theme.of(context).colorScheme.surfaceContainerHighest.withValues(alpha: 0.85),
+                  color: Theme.of(
+                    context,
+                  ).colorScheme.surfaceContainerHighest.withValues(alpha: 0.85),
                   borderRadius: BorderRadius.circular(8),
                 ),
                 child: Padding(
@@ -517,7 +519,10 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
                   ),
                   child: Text(
                     context.l10n.losElevationAttribution,
-                    style: TextStyle(fontSize: 10, color: Theme.of(context).colorScheme.onSurface),
+                    style: TextStyle(
+                      fontSize: 10,
+                      color: Theme.of(context).colorScheme.onSurface,
+                    ),
                   ),
                 ),
               ),
@@ -631,7 +636,10 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
                 const SizedBox(height: 4),
                 Text(
                   context.l10n.losBlockedSpotsHint,
-                  style: TextStyle(fontSize: 11, color: Theme.of(context).colorScheme.onSurfaceVariant),
+                  style: TextStyle(
+                    fontSize: 11,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
+                  ),
                 ),
                 const SizedBox(height: 6),
                 Wrap(
@@ -700,7 +708,9 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
                             '${_selectedObstruction!.point.longitude.toStringAsFixed(5)}',
                             style: TextStyle(
                               fontSize: 11,
-                              color: Theme.of(context).colorScheme.onSurfaceVariant,
+                              color: Theme.of(
+                                context,
+                              ).colorScheme.onSurfaceVariant,
                             ),
                           ),
                         ],
@@ -726,7 +736,10 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
                       const SizedBox(width: 8),
                       Text(
                         '${displayFrequencyMHz.toStringAsFixed(3)} MHz',
-                        style: TextStyle(fontSize: 11, color: Theme.of(context).colorScheme.onSurfaceVariant),
+                        style: TextStyle(
+                          fontSize: 11,
+                          color: Theme.of(context).colorScheme.onSurfaceVariant,
+                        ),
                       ),
                       if (kFactorUsed != null) ...[
                         const SizedBox(width: 8),
@@ -734,7 +747,9 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
                           'k=${kFactorUsed.toStringAsFixed(3)}',
                           style: TextStyle(
                             fontSize: 11,
-                            color: Theme.of(context).colorScheme.onSurfaceVariant,
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.onSurfaceVariant,
                           ),
                         ),
                         const SizedBox(width: 4),
@@ -758,7 +773,10 @@ class _LineOfSightMapScreenState extends State<LineOfSightMapScreen> {
                 ),
               Text(
                 context.l10n.losElevationAttribution,
-                style: TextStyle(fontSize: 10, color: Theme.of(context).colorScheme.onSurfaceVariant),
+                style: TextStyle(
+                  fontSize: 10,
+                  color: Theme.of(context).colorScheme.onSurfaceVariant,
+                ),
               ),
               const SizedBox(height: 6),
               ExpansionTile(

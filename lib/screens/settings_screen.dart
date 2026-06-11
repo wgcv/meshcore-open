@@ -343,7 +343,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
             ),
           ),
           ListTile(
-            leading: Icon(Icons.delete_outline, color: Theme.of(context).colorScheme.error),
+            leading: Icon(
+              Icons.delete_outline,
+              color: Theme.of(context).colorScheme.error,
+            ),
             title: Text(l10n.settings_deleteAllPaths),
             subtitle: Text(
               l10n.settings_deleteAllPathsSubtitle,
@@ -367,7 +370,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
           const Divider(height: 1),
           ListTile(
-            leading: Icon(Icons.restart_alt, color: Theme.of(context).colorScheme.tertiary),
+            leading: Icon(
+              Icons.restart_alt,
+              color: Theme.of(context).colorScheme.tertiary,
+            ),
             title: Text(l10n.settings_rebootDevice),
             subtitle: Text(l10n.settings_rebootDeviceSubtitle),
             onTap: () => _confirmReboot(context, connector),

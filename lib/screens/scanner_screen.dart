@@ -113,9 +113,9 @@ class _ScannerScreenState extends State<ScannerScreen> {
                   'USB selected, opening UsbScreen',
                   tag: 'ScannerScreen',
                 );
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (_) => const UsbScreen()),
-                );
+                Navigator.of(
+                  context,
+                ).push(MaterialPageRoute(builder: (_) => const UsbScreen()));
               },
             ),
           if (!PlatformInfo.isWeb)
@@ -123,9 +123,9 @@ class _ScannerScreenState extends State<ScannerScreen> {
               icon: const Icon(Icons.lan),
               tooltip: context.l10n.connectionChoiceTcpLabel,
               onPressed: () {
-                Navigator.of(context).push(
-                  MaterialPageRoute(builder: (_) => const TcpScreen()),
-                );
+                Navigator.of(
+                  context,
+                ).push(MaterialPageRoute(builder: (_) => const TcpScreen()));
               },
             ),
         ],
@@ -167,7 +167,9 @@ class _ScannerScreenState extends State<ScannerScreen> {
                   )
                 : const Icon(Icons.bluetooth_searching),
             label: Text(
-              isScanning ? context.l10n.scanner_stop : context.l10n.scanner_scan,
+              isScanning
+                  ? context.l10n.scanner_stop
+                  : context.l10n.scanner_scan,
             ),
           );
         },
@@ -256,8 +258,7 @@ class _ScannerScreenState extends State<ScannerScreen> {
       );
     }
 
-    final isConnecting =
-        connector.state == MeshCoreConnectionState.connecting;
+    final isConnecting = connector.state == MeshCoreConnectionState.connecting;
     return ListView.separated(
       padding: const EdgeInsets.all(8),
       itemCount: connector.scanResults.length,

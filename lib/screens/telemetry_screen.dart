@@ -385,7 +385,10 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
                 Center(
                   child: Text(
                     l10n.telemetry_noData,
-                    style: TextStyle(fontSize: 16, color: Theme.of(context).colorScheme.onSurfaceVariant),
+                    style: TextStyle(
+                      fontSize: 16,
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    ),
                   ),
                 ),
               if ((_isLoaded || _hasData) &&

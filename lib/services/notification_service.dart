@@ -304,7 +304,8 @@ class NotificationService {
 
     try {
       await _notifications.show(
-        id: channelIndex?.hashCode ??
+        id:
+            channelIndex?.hashCode ??
             DateTime.now().millisecondsSinceEpoch & 0x7FFFFFFF,
         title: channelName,
         body: body,

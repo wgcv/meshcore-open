@@ -93,22 +93,22 @@ class AppLocalizationsNl extends AppLocalizations {
   String get common_disable => 'Uitschakelen';
 
   @override
-  String get common_undo => 'Undo';
+  String get common_undo => 'Achterhalen/Annuleren';
 
   @override
-  String get messageStatus_sent => 'Sent';
+  String get messageStatus_sent => 'Verzonden';
 
   @override
-  String get messageStatus_delivered => 'Delivered';
+  String get messageStatus_delivered => 'Leverd';
 
   @override
-  String get messageStatus_pending => 'Sending';
+  String get messageStatus_pending => 'Verzenden';
 
   @override
-  String get messageStatus_failed => 'Failed to send';
+  String get messageStatus_failed => 'Niet verzonden';
 
   @override
-  String get messageStatus_repeated => 'Heard repeated';
+  String get messageStatus_repeated => 'Hearsay, herhaald';
 
   @override
   String get common_reboot => 'Herstarten';
@@ -1005,13 +1005,13 @@ class AppLocalizationsNl extends AppLocalizations {
   String get contacts_newGroup => 'Nieuwe Groep';
 
   @override
-  String get contacts_moreOptions => 'More options';
+  String get contacts_moreOptions => 'Meer opties';
 
   @override
-  String get contacts_searchOpen => 'Search contacts';
+  String get contacts_searchOpen => 'Zoek contactpersonen';
 
   @override
-  String get contacts_searchClose => 'Close search';
+  String get contacts_searchClose => 'Zoeken';
 
   @override
   String get contacts_groupName => 'Groepnaam';
@@ -1516,74 +1516,74 @@ class AppLocalizationsNl extends AppLocalizations {
   String get chat_fullPath => 'Volledige Pad';
 
   @override
-  String get routing_title => 'Routing';
+  String get routing_title => 'Routeplanning';
 
   @override
   String get routing_modeAuto => 'Auto';
 
   @override
-  String get routing_modeFlood => 'Flood';
+  String get routing_modeFlood => 'Overstroming';
 
   @override
-  String get routing_modeManual => 'Manual';
+  String get routing_modeManual => 'Handleiding';
 
   @override
   String get routing_modeAutoHint =>
-      'Picks the best known path automatically, flooding when none is known.';
+      'Selecteert automatisch het bekendste pad, en gebruikt een flood-algoritme als er geen bekend pad is.';
 
   @override
   String get routing_modeFloodHint =>
-      'Broadcasts through every repeater. Most reliable, but uses more airtime.';
+      'Uitzendingen via elke zender. De meest betrouwbare methode, maar vereist meer uitzendtijd.';
 
   @override
   String get routing_modeManualHint =>
-      'Always sends along the exact path you set.';
+      'Stuurt altijd de exacte route die u heeft aangegeven.';
 
   @override
-  String get routing_currentRoute => 'Current route';
+  String get routing_currentRoute => 'Huidige route';
 
   @override
-  String get routing_directNoHops => 'Direct — no repeater hops';
+  String get routing_directNoHops => 'Direct – zonder tussenliggende schakels';
 
   @override
   String get routing_noPathYet =>
-      'No path yet. The next message floods until a route is discovered.';
+      'Er is nog geen route gevonden. De berichten blijven binnenkomen totdat een route is ontdekt.';
 
   @override
-  String get routing_floodBroadcast => 'Broadcast through every repeater';
+  String get routing_floodBroadcast => 'Uitgestoten via elke zender.';
 
   @override
-  String get routing_editPath => 'Edit path';
+  String get routing_editPath => 'Pad bewerken';
 
   @override
-  String get routing_forgetPath => 'Forget path';
+  String get routing_forgetPath => 'Vergeet het pad';
 
   @override
-  String get routing_knownPaths => 'Known paths';
+  String get routing_knownPaths => 'Bekende routes';
 
   @override
-  String get routing_knownPathsHint => 'Tap a path to switch to it.';
+  String get routing_knownPathsHint => 'Maak een route om er naartoe te gaan.';
 
   @override
-  String get routing_inUse => 'In use';
+  String get routing_inUse => 'In gebruik';
 
   @override
-  String get routing_qualityStrong => 'Strong first hop';
+  String get routing_qualityStrong => 'Sterke eerste sprong';
 
   @override
-  String get routing_qualityGood => 'Good first hop';
+  String get routing_qualityGood => 'Een goede eerste stap';
 
   @override
-  String get routing_qualityFair => 'Fair first hop';
+  String get routing_qualityFair => 'Een goede eerste hop';
 
   @override
-  String get routing_qualityWorked => 'Has delivered';
+  String get routing_qualityWorked => 'Is geleverd';
 
   @override
-  String get routing_qualityFlood => 'Heard via flood';
+  String get routing_qualityFlood => 'Hears via een overstroming';
 
   @override
-  String get routing_qualityUntested => 'Untested';
+  String get routing_qualityUntested => 'Niet getest';
 
   @override
   String routing_lastWorked(String when) {
@@ -1591,60 +1591,60 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get routing_neverWorked => 'never confirmed';
+  String get routing_neverWorked => 'nooit bevestigd';
 
   @override
   String routing_deliveryCounts(int successes, int failures) {
-    return '$successes delivered, $failures failed';
+    return '$successes zijn behaald, $failures zijn mislukt';
   }
 
   @override
-  String get routing_floodDelivery => 'Flood delivery';
+  String get routing_floodDelivery => 'Levering bij overstroming';
 
   @override
-  String get pathEditor_title => 'Build Path';
+  String get pathEditor_title => 'Pad creëren';
 
   @override
   String pathEditor_hopCounter(int count) {
-    return '$count of 64 hops';
+    return '$count van 64 hopgranen';
   }
 
   @override
   String get pathEditor_noHops =>
-      'No hops yet. Tap repeaters below to add them in order, or save with no hops to send direct.';
+      'Er zijn nog geen hop toegevoegd. Klik op de onderstaande knoppen om ze in de juiste volgorde toe te voegen, of sla de bestelling op zonder hop om deze direct te versturen.';
 
   @override
-  String get pathEditor_addHops => 'Add hops in order';
+  String get pathEditor_addHops => 'Voeg hop toe in de juiste volgorde.';
 
   @override
-  String get pathEditor_searchRepeaters => 'Search repeaters';
+  String get pathEditor_searchRepeaters => 'Zoek naar herhaaldelijke zenders';
 
   @override
-  String get pathEditor_advancedHex => 'Advanced: raw hex path';
+  String get pathEditor_advancedHex => 'Geavanceerd: ruwe hex-pad';
 
   @override
-  String get pathEditor_hexLabel => 'Hex prefixes';
+  String get pathEditor_hexLabel => 'Hex-voorkanten';
 
   @override
   String get pathEditor_hexHelper =>
-      'Two hex characters per hop, separated by commas';
+      'Twee hex-tekens per stap, gescheiden door komma\'s';
 
   @override
   String pathEditor_invalidTokens(String tokens) {
-    return 'Invalid: $tokens';
+    return 'Ongeldig: $tokens';
   }
 
   @override
-  String get pathEditor_tooManyHops => 'Maximum 64 hops';
+  String get pathEditor_tooManyHops => 'Maximaal 64 hopken';
 
   @override
-  String get pathEditor_usePath => 'Use this path';
+  String get pathEditor_usePath => 'Gebruik deze route.';
 
   @override
-  String get pathEditor_removeHop => 'Remove hop';
+  String get pathEditor_removeHop => 'Verwijder de hop';
 
   @override
-  String get pathEditor_unknownHop => 'Unknown repeater';
+  String get pathEditor_unknownHop => 'Onbekend type zender';
 
   @override
   String get chat_pathSavedLocally =>
@@ -4441,17 +4441,17 @@ class AppLocalizationsNl extends AppLocalizations {
   String get contact_typeUnknown => 'Unknown';
 
   @override
-  String get map_zoomIn => 'Zoom in';
+  String get map_zoomIn => 'Inzoomen';
 
   @override
-  String get map_zoomOut => 'Zoom out';
+  String get map_zoomOut => 'Inzoomen';
 
   @override
-  String get map_centerMap => 'Center map';
+  String get map_centerMap => 'Centraal overzicht';
 
   @override
   String get chrome_bluetoothRequiresChromium =>
-      'Web Bluetooth requires a Chromium browser';
+      'Web Bluetooth vereist een Chromium-browser.';
 
   @override
   String channels_communityShortId(String id) {
@@ -4459,8 +4459,8 @@ class AppLocalizationsNl extends AppLocalizations {
   }
 
   @override
-  String get pathTrace_legendGpsConfirmed => 'GPS confirmed';
+  String get pathTrace_legendGpsConfirmed => 'GPS-locatie bevestigd';
 
   @override
-  String get pathTrace_legendInferred => 'Inferred position';
+  String get pathTrace_legendInferred => 'Afgeleide positie';
 }

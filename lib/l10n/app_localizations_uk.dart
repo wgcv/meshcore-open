@@ -93,22 +93,22 @@ class AppLocalizationsUk extends AppLocalizations {
   String get common_disable => 'Вимкнути';
 
   @override
-  String get common_undo => 'Undo';
+  String get common_undo => 'Скасувати';
 
   @override
-  String get messageStatus_sent => 'Sent';
+  String get messageStatus_sent => 'Надіслано';
 
   @override
-  String get messageStatus_delivered => 'Delivered';
+  String get messageStatus_delivered => 'Доставлено';
 
   @override
-  String get messageStatus_pending => 'Sending';
+  String get messageStatus_pending => 'Надсилання';
 
   @override
-  String get messageStatus_failed => 'Failed to send';
+  String get messageStatus_failed => 'Не вдалося надіслати';
 
   @override
-  String get messageStatus_repeated => 'Heard repeated';
+  String get messageStatus_repeated => 'Почув неодноразово';
 
   @override
   String get common_reboot => 'Перезавантажити';
@@ -1009,13 +1009,13 @@ class AppLocalizationsUk extends AppLocalizations {
   String get contacts_newGroup => 'Нова група';
 
   @override
-  String get contacts_moreOptions => 'More options';
+  String get contacts_moreOptions => 'Більше можливостей';
 
   @override
-  String get contacts_searchOpen => 'Search contacts';
+  String get contacts_searchOpen => 'Пошук контактів';
 
   @override
-  String get contacts_searchClose => 'Close search';
+  String get contacts_searchClose => 'Закрити пошук';
 
   @override
   String get contacts_groupName => 'Назва групи';
@@ -1524,74 +1524,76 @@ class AppLocalizationsUk extends AppLocalizations {
   String get chat_fullPath => 'Повний шлях';
 
   @override
-  String get routing_title => 'Routing';
+  String get routing_title => 'Маршрутизація';
 
   @override
-  String get routing_modeAuto => 'Auto';
+  String get routing_modeAuto => 'Автомобіль';
 
   @override
-  String get routing_modeFlood => 'Flood';
+  String get routing_modeFlood => 'Повені';
 
   @override
-  String get routing_modeManual => 'Manual';
+  String get routing_modeManual => 'Інструкція';
 
   @override
   String get routing_modeAutoHint =>
-      'Picks the best known path automatically, flooding when none is known.';
+      'Автоматично обирає найкращий відомий шлях, та у разі відсутності відомого шляху, використовує алгоритм \"занурення\".';
 
   @override
   String get routing_modeFloodHint =>
-      'Broadcasts through every repeater. Most reliable, but uses more airtime.';
+      'Передавання через усі ретранслятори. Найбільш надійний спосіб, але потребує більше часу.';
 
   @override
   String get routing_modeManualHint =>
-      'Always sends along the exact path you set.';
+      'Завжди доставляє точно за вказаним вами маршрутом.';
 
   @override
-  String get routing_currentRoute => 'Current route';
+  String get routing_currentRoute => 'Поточний маршрут';
 
   @override
-  String get routing_directNoHops => 'Direct — no repeater hops';
+  String get routing_directNoHops =>
+      'Пряме з\'єднання – без проміжних ретрансляторів';
 
   @override
   String get routing_noPathYet =>
-      'No path yet. The next message floods until a route is discovered.';
+      'Поки що немає жодного шляху. Повідомлення продовжуються надходити, поки не буде знайдено маршрут.';
 
   @override
-  String get routing_floodBroadcast => 'Broadcast through every repeater';
+  String get routing_floodBroadcast => 'Поширення через усі ретранслятори';
 
   @override
-  String get routing_editPath => 'Edit path';
+  String get routing_editPath => 'Редагувати шлях';
 
   @override
-  String get routing_forgetPath => 'Forget path';
+  String get routing_forgetPath => 'Забудь про шлях';
 
   @override
-  String get routing_knownPaths => 'Known paths';
+  String get routing_knownPaths => 'Відомі маршрути';
 
   @override
-  String get routing_knownPathsHint => 'Tap a path to switch to it.';
+  String get routing_knownPathsHint =>
+      'Виберіть опцію, щоб переключитися на неї.';
 
   @override
-  String get routing_inUse => 'In use';
+  String get routing_inUse => 'У робочому стані';
 
   @override
-  String get routing_qualityStrong => 'Strong first hop';
+  String get routing_qualityStrong => 'Сильний перший стрибок';
 
   @override
-  String get routing_qualityGood => 'Good first hop';
+  String get routing_qualityGood => 'Чудова перша спроба';
 
   @override
-  String get routing_qualityFair => 'Fair first hop';
+  String get routing_qualityFair => 'Перший, але вдалий, крок';
 
   @override
-  String get routing_qualityWorked => 'Has delivered';
+  String get routing_qualityWorked => 'Доставлено';
 
   @override
-  String get routing_qualityFlood => 'Heard via flood';
+  String get routing_qualityFlood => 'Дізнався через новини';
 
   @override
-  String get routing_qualityUntested => 'Untested';
+  String get routing_qualityUntested => 'Не протестовано';
 
   @override
   String routing_lastWorked(String when) {
@@ -1599,7 +1601,7 @@ class AppLocalizationsUk extends AppLocalizations {
   }
 
   @override
-  String get routing_neverWorked => 'never confirmed';
+  String get routing_neverWorked => 'ніколи не підтверджено';
 
   @override
   String routing_deliveryCounts(int successes, int failures) {
@@ -1607,52 +1609,54 @@ class AppLocalizationsUk extends AppLocalizations {
   }
 
   @override
-  String get routing_floodDelivery => 'Flood delivery';
+  String get routing_floodDelivery => 'Доставка під час повені';
 
   @override
-  String get pathEditor_title => 'Build Path';
+  String get pathEditor_title => 'Створити маршрут';
 
   @override
   String pathEditor_hopCounter(int count) {
-    return '$count of 64 hops';
+    return '$count з 64 штук хмелю';
   }
 
   @override
   String get pathEditor_noHops =>
-      'No hops yet. Tap repeaters below to add them in order, or save with no hops to send direct.';
+      'Ще не додано хміль. Натисніть на відповідні кнопки, щоб додати його в потрібному порядку, або збережіть рецепт без хмілю, щоб відправити його безпосередньо.';
 
   @override
-  String get pathEditor_addHops => 'Add hops in order';
+  String get pathEditor_addHops => 'Додавайте хміль у наступній послідовності.';
 
   @override
-  String get pathEditor_searchRepeaters => 'Search repeaters';
+  String get pathEditor_searchRepeaters => 'Пошук повторювачів';
 
   @override
-  String get pathEditor_advancedHex => 'Advanced: raw hex path';
+  String get pathEditor_advancedHex =>
+      'Просунутий рівень: пряма шлях у форматі шестнадцяткової системи.';
 
   @override
-  String get pathEditor_hexLabel => 'Hex prefixes';
+  String get pathEditor_hexLabel =>
+      'Префікси для шестнадцяткової системи числення';
 
   @override
   String get pathEditor_hexHelper =>
-      'Two hex characters per hop, separated by commas';
+      'Два шестизначні символи на кожний крок, розділені комами';
 
   @override
   String pathEditor_invalidTokens(String tokens) {
-    return 'Invalid: $tokens';
+    return 'Неправильно: $tokens';
   }
 
   @override
-  String get pathEditor_tooManyHops => 'Maximum 64 hops';
+  String get pathEditor_tooManyHops => 'Максимум 64 хмелеві колоди';
 
   @override
-  String get pathEditor_usePath => 'Use this path';
+  String get pathEditor_usePath => 'Використовуйте цей шлях';
 
   @override
-  String get pathEditor_removeHop => 'Remove hop';
+  String get pathEditor_removeHop => 'Видалити хміль';
 
   @override
-  String get pathEditor_unknownHop => 'Unknown repeater';
+  String get pathEditor_unknownHop => 'Невідомий ретранслятор';
 
   @override
   String get chat_pathSavedLocally =>
@@ -4469,17 +4473,17 @@ class AppLocalizationsUk extends AppLocalizations {
   String get contact_typeUnknown => 'Невідомо';
 
   @override
-  String get map_zoomIn => 'Zoom in';
+  String get map_zoomIn => 'Увійти в режим збільшення';
 
   @override
-  String get map_zoomOut => 'Zoom out';
+  String get map_zoomOut => 'Видалити зум';
 
   @override
-  String get map_centerMap => 'Center map';
+  String get map_centerMap => 'Карта центру';
 
   @override
   String get chrome_bluetoothRequiresChromium =>
-      'Web Bluetooth requires a Chromium browser';
+      'Web Bluetooth вимагає браузера на основі Chromium';
 
   @override
   String channels_communityShortId(String id) {
@@ -4487,8 +4491,8 @@ class AppLocalizationsUk extends AppLocalizations {
   }
 
   @override
-  String get pathTrace_legendGpsConfirmed => 'GPS confirmed';
+  String get pathTrace_legendGpsConfirmed => 'GPS підтверджено';
 
   @override
-  String get pathTrace_legendInferred => 'Inferred position';
+  String get pathTrace_legendInferred => 'Висновок щодо положення';
 }

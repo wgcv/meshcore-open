@@ -274,8 +274,8 @@ class _PathTraceMapScreenState extends State<PathTraceMapScreen> {
 
     final frame = buildTraceReq(
       DateTime.now().millisecondsSinceEpoch ~/ 1000,
-      0, //flags
       0, //auth
+      0, //flag
       payload: path,
     );
     connector.sendFrame(frame);
@@ -350,11 +350,16 @@ class _PathTraceMapScreenState extends State<PathTraceMapScreen> {
     try {
       buffer.skipBytes(2); // Skip push code and reserved byte
       int pathLength = buffer.readUInt8();
-      buffer.skipBytes(5); // Skip Flag byte and tag data
+      final int flags = buffer
+          .readUInt8(); // path_sz = flags & 0x03 (path-hash mode, fw v1.11+)
+      buffer.skipBytes(4); // Skip tag data
       buffer.skipBytes(4); // Skip auth code
+      final int pathSz = flags & 0x03;
       Uint8List pathData = buffer.readBytes(pathLength);
+      // Firmware emits (path_len >> path_sz) hop SNRs plus 1 final SNR (to this node).
+      final int snrCount = (pathLength >> pathSz) + 1;
       List<double> snrData = buffer
-          .readRemainingBytes()
+          .readBytes(snrCount)
           .map((snr) => snr.toSigned(8).toDouble() / 4)
           .toList();
 
@@ -616,7 +621,9 @@ class _PathTraceMapScreenState extends State<PathTraceMapScreen> {
                     !_failed2Loaded)
                   Center(
                     child: Card(
-                      color: Theme.of(context).colorScheme.surface.withValues(alpha: 0.9),
+                      color: Theme.of(
+                        context,
+                      ).colorScheme.surface.withValues(alpha: 0.9),
                       child: Padding(
                         padding: EdgeInsets.all(12),
                         child: Text(
@@ -963,10 +970,10 @@ class _PathTraceMapScreenState extends State<PathTraceMapScreen> {
   }
 
   Widget _colorDot(Color color) => Container(
-        width: 10,
-        height: 10,
-        decoration: BoxDecoration(color: color, shape: BoxShape.circle),
-      );
+    width: 10,
+    height: 10,
+    decoration: BoxDecoration(color: color, shape: BoxShape.circle),
+  );
 
   Widget _buildLegendCard(
     BuildContext context,
@@ -1002,11 +1009,17 @@ class _PathTraceMapScreenState extends State<PathTraceMapScreen> {
                       children: [
                         _colorDot(Colors.green),
                         const SizedBox(width: 4),
-                        Text(l10n.pathTrace_legendGpsConfirmed, style: const TextStyle(fontSize: 11)),
+                        Text(
+                          l10n.pathTrace_legendGpsConfirmed,
+                          style: const TextStyle(fontSize: 11),
+                        ),
                         const SizedBox(width: 12),
                         _colorDot(Colors.orange),
                         const SizedBox(width: 4),
-                        Text(l10n.pathTrace_legendInferred, style: const TextStyle(fontSize: 11)),
+                        Text(
+                          l10n.pathTrace_legendInferred,
+                          style: const TextStyle(fontSize: 11),
+                        ),
                       ],
                     ),
                   ],

@@ -160,15 +160,9 @@ void main() {
     final context = tester.element(find.byType(ScannerScreen));
     final l10n = AppLocalizations.of(context);
     if (PlatformInfo.supportsUsbSerial) {
-      expect(
-        find.byTooltip(l10n.connectionChoiceUsbLabel),
-        findsOneWidget,
-      );
+      expect(find.byTooltip(l10n.connectionChoiceUsbLabel), findsOneWidget);
     } else {
-      expect(
-        find.byTooltip(l10n.connectionChoiceUsbLabel),
-        findsNothing,
-      );
+      expect(find.byTooltip(l10n.connectionChoiceUsbLabel), findsNothing);
     }
 
     // ScannerScreen.dispose() schedules disconnect work that debounces notify.

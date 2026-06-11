@@ -93,22 +93,22 @@ class AppLocalizationsSv extends AppLocalizations {
   String get common_disable => 'Inaktivera';
 
   @override
-  String get common_undo => 'Undo';
+  String get common_undo => 'Ångra';
 
   @override
-  String get messageStatus_sent => 'Sent';
+  String get messageStatus_sent => 'Sen';
 
   @override
-  String get messageStatus_delivered => 'Delivered';
+  String get messageStatus_delivered => 'Levererad';
 
   @override
-  String get messageStatus_pending => 'Sending';
+  String get messageStatus_pending => 'Skicka';
 
   @override
-  String get messageStatus_failed => 'Failed to send';
+  String get messageStatus_failed => 'Misslyckades med att skicka';
 
   @override
-  String get messageStatus_repeated => 'Heard repeated';
+  String get messageStatus_repeated => 'Hördes upprepade gånger';
 
   @override
   String get common_reboot => 'Start om';
@@ -996,13 +996,13 @@ class AppLocalizationsSv extends AppLocalizations {
   String get contacts_newGroup => 'Ny grupp';
 
   @override
-  String get contacts_moreOptions => 'More options';
+  String get contacts_moreOptions => 'Fler alternativ';
 
   @override
-  String get contacts_searchOpen => 'Search contacts';
+  String get contacts_searchOpen => 'Sök efter kontakter';
 
   @override
-  String get contacts_searchClose => 'Close search';
+  String get contacts_searchClose => 'Avancerad sökning';
 
   @override
   String get contacts_groupName => 'Gruppnamn';
@@ -1508,82 +1508,82 @@ class AppLocalizationsSv extends AppLocalizations {
   String get chat_fullPath => 'Fullständig sökväg';
 
   @override
-  String get routing_title => 'Routing';
+  String get routing_title => 'Ruttplanering';
 
   @override
-  String get routing_modeAuto => 'Auto';
+  String get routing_modeAuto => 'Bil';
 
   @override
-  String get routing_modeFlood => 'Flood';
+  String get routing_modeFlood => 'Översvämning';
 
   @override
-  String get routing_modeManual => 'Manual';
+  String get routing_modeManual => 'Instruktioner';
 
   @override
   String get routing_modeAutoHint =>
-      'Picks the best known path automatically, flooding when none is known.';
+      'Väljer automatiskt den bästa kända vägen, och använder en \"flooding\"-strategi om ingen väg är känd.';
 
   @override
   String get routing_modeFloodHint =>
-      'Broadcasts through every repeater. Most reliable, but uses more airtime.';
+      'Sändningar via alla repetrar. Det mest pålitliga alternativet, men kräver mer sändtid.';
 
   @override
   String get routing_modeManualHint =>
-      'Always sends along the exact path you set.';
+      'Skickar alltid den exakta väg du har angivit.';
 
   @override
-  String get routing_currentRoute => 'Current route';
+  String get routing_currentRoute => 'Nuvarande rutt';
 
   @override
-  String get routing_directNoHops => 'Direct — no repeater hops';
+  String get routing_directNoHops => 'Direkt – utan mellanliggande routrar';
 
   @override
   String get routing_noPathYet =>
-      'No path yet. The next message floods until a route is discovered.';
+      'Ingen väg hittad ännu. Nästa meddelande skickas tills en rutt har upptäckts.';
 
   @override
-  String get routing_floodBroadcast => 'Broadcast through every repeater';
+  String get routing_floodBroadcast => 'Sändas via alla repetrar';
 
   @override
-  String get routing_editPath => 'Edit path';
+  String get routing_editPath => 'Redigera sökväg';
 
   @override
-  String get routing_forgetPath => 'Forget path';
+  String get routing_forgetPath => 'Glöm vägen';
 
   @override
-  String get routing_knownPaths => 'Known paths';
+  String get routing_knownPaths => 'Kända vägar';
 
   @override
-  String get routing_knownPathsHint => 'Tap a path to switch to it.';
+  String get routing_knownPathsHint => 'Välj en väg för att byta till den.';
 
   @override
-  String get routing_inUse => 'In use';
+  String get routing_inUse => 'I användning';
 
   @override
-  String get routing_qualityStrong => 'Strong first hop';
+  String get routing_qualityStrong => 'En stark start';
 
   @override
-  String get routing_qualityGood => 'Good first hop';
+  String get routing_qualityGood => 'Bra första steg';
 
   @override
-  String get routing_qualityFair => 'Fair first hop';
+  String get routing_qualityFair => 'Bra första hopp';
 
   @override
-  String get routing_qualityWorked => 'Has delivered';
+  String get routing_qualityWorked => 'Har levererat';
 
   @override
-  String get routing_qualityFlood => 'Heard via flood';
+  String get routing_qualityFlood => 'Fått information via nyhetsflöde';
 
   @override
-  String get routing_qualityUntested => 'Untested';
+  String get routing_qualityUntested => 'Ej testat';
 
   @override
   String routing_lastWorked(String when) {
-    return 'worked $when';
+    return 'arbetade $when';
   }
 
   @override
-  String get routing_neverWorked => 'never confirmed';
+  String get routing_neverWorked => 'aldrig bekräftat';
 
   @override
   String routing_deliveryCounts(int successes, int failures) {
@@ -1591,52 +1591,52 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
-  String get routing_floodDelivery => 'Flood delivery';
+  String get routing_floodDelivery => 'Leverans vid översvämningsområde';
 
   @override
-  String get pathEditor_title => 'Build Path';
+  String get pathEditor_title => 'Skapa väg';
 
   @override
   String pathEditor_hopCounter(int count) {
-    return '$count of 64 hops';
+    return '$count av 64 humlor';
   }
 
   @override
   String get pathEditor_noHops =>
-      'No hops yet. Tap repeaters below to add them in order, or save with no hops to send direct.';
+      'Inga humle än. Använd knapparna nedan för att lägga till dem i rätt ordning, eller spara utan humle för att skicka direkt.';
 
   @override
-  String get pathEditor_addHops => 'Add hops in order';
+  String get pathEditor_addHops => 'Tillsätt humlen i rätt ordning.';
 
   @override
-  String get pathEditor_searchRepeaters => 'Search repeaters';
+  String get pathEditor_searchRepeaters => 'Sök efter återupptagna samtal';
 
   @override
-  String get pathEditor_advancedHex => 'Advanced: raw hex path';
+  String get pathEditor_advancedHex => 'Avancerat: rå hex-sökväg';
 
   @override
-  String get pathEditor_hexLabel => 'Hex prefixes';
+  String get pathEditor_hexLabel => 'Hex-prefikser';
 
   @override
   String get pathEditor_hexHelper =>
-      'Two hex characters per hop, separated by commas';
+      'Två hex-tecken per steg, separerade med kommatecken.';
 
   @override
   String pathEditor_invalidTokens(String tokens) {
-    return 'Invalid: $tokens';
+    return 'Ogiltigt: $tokens';
   }
 
   @override
-  String get pathEditor_tooManyHops => 'Maximum 64 hops';
+  String get pathEditor_tooManyHops => 'Maximalt 64 humlörter';
 
   @override
-  String get pathEditor_usePath => 'Use this path';
+  String get pathEditor_usePath => 'Använd denna väg';
 
   @override
-  String get pathEditor_removeHop => 'Remove hop';
+  String get pathEditor_removeHop => 'Ta bort humlen';
 
   @override
-  String get pathEditor_unknownHop => 'Unknown repeater';
+  String get pathEditor_unknownHop => 'Okänd förstärkare';
 
   @override
   String get chat_pathSavedLocally =>
@@ -4413,17 +4413,17 @@ class AppLocalizationsSv extends AppLocalizations {
   String get contact_typeUnknown => 'Unknown';
 
   @override
-  String get map_zoomIn => 'Zoom in';
+  String get map_zoomIn => 'Zooma in';
 
   @override
-  String get map_zoomOut => 'Zoom out';
+  String get map_zoomOut => 'Zooma ut';
 
   @override
-  String get map_centerMap => 'Center map';
+  String get map_centerMap => 'Kartöversikt';
 
   @override
   String get chrome_bluetoothRequiresChromium =>
-      'Web Bluetooth requires a Chromium browser';
+      'Web Bluetooth kräver en Chromium-baserad webbläsare.';
 
   @override
   String channels_communityShortId(String id) {
@@ -4431,8 +4431,8 @@ class AppLocalizationsSv extends AppLocalizations {
   }
 
   @override
-  String get pathTrace_legendGpsConfirmed => 'GPS confirmed';
+  String get pathTrace_legendGpsConfirmed => 'GPS-verifierat';
 
   @override
-  String get pathTrace_legendInferred => 'Inferred position';
+  String get pathTrace_legendInferred => 'Antagen position';
 }

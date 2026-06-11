@@ -93,22 +93,22 @@ class AppLocalizationsHu extends AppLocalizations {
   String get common_disable => 'Leteteszt';
 
   @override
-  String get common_undo => 'Undo';
+  String get common_undo => 'Még egyszer';
 
   @override
-  String get messageStatus_sent => 'Sent';
+  String get messageStatus_sent => 'Elküldve';
 
   @override
-  String get messageStatus_delivered => 'Delivered';
+  String get messageStatus_delivered => 'Szállítva';
 
   @override
-  String get messageStatus_pending => 'Sending';
+  String get messageStatus_pending => 'Elküldés';
 
   @override
-  String get messageStatus_failed => 'Failed to send';
+  String get messageStatus_failed => 'Nem sikerült elküldeni';
 
   @override
-  String get messageStatus_repeated => 'Heard repeated';
+  String get messageStatus_repeated => 'Ismételtem';
 
   @override
   String get common_reboot => 'Újraindítás';
@@ -1017,13 +1017,13 @@ class AppLocalizationsHu extends AppLocalizations {
   String get contacts_newGroup => 'Új csoport';
 
   @override
-  String get contacts_moreOptions => 'More options';
+  String get contacts_moreOptions => 'További lehetőségek';
 
   @override
-  String get contacts_searchOpen => 'Search contacts';
+  String get contacts_searchOpen => 'Keresssz kapcsolatokat';
 
   @override
-  String get contacts_searchClose => 'Close search';
+  String get contacts_searchClose => 'Teljesítse a keresést';
 
   @override
   String get contacts_groupName => 'Csoport neve';
@@ -1536,74 +1536,77 @@ class AppLocalizationsHu extends AppLocalizations {
   String get chat_fullPath => 'Teljes elérési út';
 
   @override
-  String get routing_title => 'Routing';
+  String get routing_title => 'Útvonal meghatározás';
 
   @override
-  String get routing_modeAuto => 'Auto';
+  String get routing_modeAuto => 'Autó';
 
   @override
-  String get routing_modeFlood => 'Flood';
+  String get routing_modeFlood => 'Áradás';
 
   @override
-  String get routing_modeManual => 'Manual';
+  String get routing_modeManual => 'Használati útmutató';
 
   @override
   String get routing_modeAutoHint =>
-      'Picks the best known path automatically, flooding when none is known.';
+      'Automatikusan kiválasztja a legismertebb útvonalat, és ha egyik sem ismert, akkor \"vízzel\" tölti ki.';
 
   @override
   String get routing_modeFloodHint =>
-      'Broadcasts through every repeater. Most reliable, but uses more airtime.';
+      'Átvisszaadások minden erősítőn keresztül. A legmegbízhatóbb megoldás, de több időt igényel.';
 
   @override
   String get routing_modeManualHint =>
-      'Always sends along the exact path you set.';
+      'Mindig pontosan az útvonalat követi, amelyet megad.';
 
   @override
-  String get routing_currentRoute => 'Current route';
+  String get routing_currentRoute => 'Jelenlegi útvonal';
 
   @override
-  String get routing_directNoHops => 'Direct — no repeater hops';
+  String get routing_directNoHops => 'Közvetlen – nincs átjáró állomás';
 
   @override
   String get routing_noPathYet =>
-      'No path yet. The next message floods until a route is discovered.';
+      'Még nincs útvonal. A következő üzenet a keresésig vár.';
 
   @override
-  String get routing_floodBroadcast => 'Broadcast through every repeater';
+  String get routing_floodBroadcast =>
+      'Azonnali továbbítás minden erősítőn keresztül.';
 
   @override
-  String get routing_editPath => 'Edit path';
+  String get routing_editPath => 'Útvonal szerkesztése';
 
   @override
-  String get routing_forgetPath => 'Forget path';
+  String get routing_forgetPath => 'Felejtsd el a útvonalat';
 
   @override
-  String get routing_knownPaths => 'Known paths';
+  String get routing_knownPaths => 'Jellegzetes útvonalak';
 
   @override
-  String get routing_knownPathsHint => 'Tap a path to switch to it.';
+  String get routing_knownPathsHint =>
+      'Készíts egy útvonalat, hogy átválhass rá.';
 
   @override
-  String get routing_inUse => 'In use';
+  String get routing_inUse => 'Használatban';
 
   @override
-  String get routing_qualityStrong => 'Strong first hop';
+  String get routing_qualityStrong => 'Erős első lépés';
 
   @override
-  String get routing_qualityGood => 'Good first hop';
+  String get routing_qualityGood => 'Jó első lépés';
 
   @override
-  String get routing_qualityFair => 'Fair first hop';
+  String get routing_qualityFair => 'Jó első lépés';
 
   @override
-  String get routing_qualityWorked => 'Has delivered';
+  String get routing_qualityWorked => 'Előállított';
 
   @override
-  String get routing_qualityFlood => 'Heard via flood';
+  String get routing_qualityFlood =>
+      'Információt hallottam a katasztrófa miatt.';
 
   @override
-  String get routing_qualityUntested => 'Untested';
+  String get routing_qualityUntested => 'Vizsgálatnak nem подвержен';
 
   @override
   String routing_lastWorked(String when) {
@@ -1611,7 +1614,7 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
-  String get routing_neverWorked => 'never confirmed';
+  String get routing_neverWorked => 'sosem megerősítve';
 
   @override
   String routing_deliveryCounts(int successes, int failures) {
@@ -1619,52 +1622,53 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
-  String get routing_floodDelivery => 'Flood delivery';
+  String get routing_floodDelivery => 'Vízparti szállítás';
 
   @override
-  String get pathEditor_title => 'Build Path';
+  String get pathEditor_title => 'Út megépítése';
 
   @override
   String pathEditor_hopCounter(int count) {
-    return '$count of 64 hops';
+    return '$count db 64-ből';
   }
 
   @override
   String get pathEditor_noHops =>
-      'No hops yet. Tap repeaters below to add them in order, or save with no hops to send direct.';
+      'Még nem adtam hozzá a bazsalikomot. A lent található gombokat használhatod, hogy sorrendben adjd hozzá, vagy mentheted anélkül, hogy bazsalikomot adnál hozzá, hogy közvetlenül elküldd.';
 
   @override
-  String get pathEditor_addHops => 'Add hops in order';
+  String get pathEditor_addHops =>
+      'Adja hozzá a bazsaidat a megfelelő sorrendben.';
 
   @override
-  String get pathEditor_searchRepeaters => 'Search repeaters';
+  String get pathEditor_searchRepeaters => 'Ismétlő eszközök keresése';
 
   @override
-  String get pathEditor_advancedHex => 'Advanced: raw hex path';
+  String get pathEditor_advancedHex => 'Haladó szint: alapvető hex-út';
 
   @override
-  String get pathEditor_hexLabel => 'Hex prefixes';
+  String get pathEditor_hexLabel => 'Hex előtagok';
 
   @override
   String get pathEditor_hexHelper =>
-      'Two hex characters per hop, separated by commas';
+      'Két hatjegyű szám minden lépésen, amelyek egymástól elválasztják a kommák.';
 
   @override
   String pathEditor_invalidTokens(String tokens) {
-    return 'Invalid: $tokens';
+    return 'Érvénytelen: $tokens';
   }
 
   @override
-  String get pathEditor_tooManyHops => 'Maximum 64 hops';
+  String get pathEditor_tooManyHops => 'A maximális szám 64.';
 
   @override
-  String get pathEditor_usePath => 'Use this path';
+  String get pathEditor_usePath => 'Használja ezt az útvonalat.';
 
   @override
-  String get pathEditor_removeHop => 'Remove hop';
+  String get pathEditor_removeHop => 'Távolítsa el a bazsalikomot';
 
   @override
-  String get pathEditor_unknownHop => 'Unknown repeater';
+  String get pathEditor_unknownHop => 'Tudatlan erősítő';
 
   @override
   String get chat_pathSavedLocally =>
@@ -4474,26 +4478,26 @@ class AppLocalizationsHu extends AppLocalizations {
   String get contact_typeUnknown => 'Unknown';
 
   @override
-  String get map_zoomIn => 'Zoom in';
+  String get map_zoomIn => 'Nagyítva';
 
   @override
-  String get map_zoomOut => 'Zoom out';
+  String get map_zoomOut => 'Kicsökkentett nézet';
 
   @override
-  String get map_centerMap => 'Center map';
+  String get map_centerMap => 'Központi tér térkép';
 
   @override
   String get chrome_bluetoothRequiresChromium =>
-      'Web Bluetooth requires a Chromium browser';
+      'A Web Bluetooth-hoz egy Chromium-alapú böngésző szükséges.';
 
   @override
   String channels_communityShortId(String id) {
-    return 'ID: $id...';
+    return 'Az azonosító: $id...';
   }
 
   @override
-  String get pathTrace_legendGpsConfirmed => 'GPS confirmed';
+  String get pathTrace_legendGpsConfirmed => 'GPS-en megerősítve';
 
   @override
-  String get pathTrace_legendInferred => 'Inferred position';
+  String get pathTrace_legendInferred => 'Feltehető helyzet';
 }

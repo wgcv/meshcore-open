@@ -187,7 +187,11 @@ class _ChatScreenState extends State<ChatScreen> {
               crossAxisAlignment: CrossAxisAlignment.start,
               mainAxisSize: MainAxisSize.min,
               children: [
-                Text(contact.name, maxLines: 1, overflow: TextOverflow.ellipsis),
+                Text(
+                  contact.name,
+                  maxLines: 1,
+                  overflow: TextOverflow.ellipsis,
+                ),
                 GestureDetector(
                   behavior: HitTestBehavior.opaque,
                   onTap: () =>
@@ -1251,201 +1255,201 @@ class _MessageBubble extends StatelessWidget {
         children: [
           LayoutBuilder(
             builder: (context, constraints) => GestureDetector(
-            onLongPress: onLongPress,
-            onSecondaryTapUp: PlatformInfo.isDesktop
-                ? (_) => onLongPress?.call()
-                : null,
-            child: Row(
-              mainAxisAlignment: isOutgoing
-                  ? MainAxisAlignment.end
-                  : MainAxisAlignment.start,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                if (!isOutgoing) ...[
-                  _buildAvatar(senderName, colorScheme),
-                  const SizedBox(width: 8),
-                ],
-                Flexible(
-                  child: Container(
-                    padding: gifId != null
-                        ? const EdgeInsets.all(4)
-                        : const EdgeInsets.symmetric(
-                            horizontal: 12,
-                            vertical: 8,
-                          ),
-                    constraints: BoxConstraints(
-                      maxWidth: constraints.maxWidth * 0.65,
-                    ),
-                    decoration: BoxDecoration(
-                      color: bubbleColor,
-                      borderRadius: BorderRadius.circular(16),
-                      border: isFailed
-                          ? Border.all(color: colorScheme.error)
-                          : null,
-                    ),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        if (!isOutgoing) ...[
+              onLongPress: onLongPress,
+              onSecondaryTapUp: PlatformInfo.isDesktop
+                  ? (_) => onLongPress?.call()
+                  : null,
+              child: Row(
+                mainAxisAlignment: isOutgoing
+                    ? MainAxisAlignment.end
+                    : MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  if (!isOutgoing) ...[
+                    _buildAvatar(senderName, colorScheme),
+                    const SizedBox(width: 8),
+                  ],
+                  Flexible(
+                    child: Container(
+                      padding: gifId != null
+                          ? const EdgeInsets.all(4)
+                          : const EdgeInsets.symmetric(
+                              horizontal: 12,
+                              vertical: 8,
+                            ),
+                      constraints: BoxConstraints(
+                        maxWidth: constraints.maxWidth * 0.65,
+                      ),
+                      decoration: BoxDecoration(
+                        color: bubbleColor,
+                        borderRadius: BorderRadius.circular(16),
+                        border: isFailed
+                            ? Border.all(color: colorScheme.error)
+                            : null,
+                      ),
+                      child: Column(
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          if (!isOutgoing) ...[
+                            Padding(
+                              padding: gifId != null
+                                  ? const EdgeInsets.only(
+                                      left: 8,
+                                      top: 4,
+                                      bottom: 4,
+                                    )
+                                  : EdgeInsets.zero,
+                              child: Text(
+                                senderName,
+                                style: TextStyle(
+                                  fontSize: 12,
+                                  fontWeight: FontWeight.bold,
+                                  color: colorScheme.primary,
+                                ),
+                              ),
+                            ),
+                            if (gifId == null) const SizedBox(height: 4),
+                          ],
+                          if (poi != null)
+                            _buildPoiMessage(
+                              context,
+                              poi,
+                              textColor,
+                              metaColor,
+                              textScale,
+                              senderName,
+                            )
+                          else if (gifId != null)
+                            Stack(
+                              children: [
+                                ClipRRect(
+                                  borderRadius: BorderRadius.circular(12),
+                                  child: GifMessage(
+                                    url:
+                                        'https://media.giphy.com/media/$gifId/giphy.gif',
+                                    backgroundColor: Colors.transparent,
+                                    fallbackTextColor: textColor.withValues(
+                                      alpha: 0.7,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            )
+                          else
+                            Row(
+                              mainAxisSize: MainAxisSize.min,
+                              crossAxisAlignment: CrossAxisAlignment.end,
+                              children: [
+                                Flexible(
+                                  child: TranslatedMessageContent(
+                                    displayText: translatedDisplayText,
+                                    originalText: originalDisplayText,
+                                    style: TextStyle(
+                                      color: textColor,
+                                      fontSize: bodyFontSize * textScale,
+                                    ),
+                                    originalStyle: TextStyle(
+                                      color: textColor.withValues(alpha: 0.78),
+                                      fontSize: bodyFontSize * textScale,
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
+                          if (enableTracing &&
+                              isOutgoing &&
+                              message.retryCount > 0) ...[
+                            const SizedBox(height: 4),
+                            Padding(
+                              padding: gifId != null
+                                  ? const EdgeInsets.symmetric(horizontal: 8)
+                                  : EdgeInsets.zero,
+                              child: Text(
+                                context.l10n.chat_retryCount(
+                                  message.retryCount,
+                                  context
+                                      .read<AppSettingsService>()
+                                      .settings
+                                      .maxMessageRetries,
+                                ),
+                                style: TextStyle(
+                                  fontSize: 10 * textScale,
+                                  color: metaColor,
+                                  fontWeight: FontWeight.w500,
+                                ),
+                              ),
+                            ),
+                          ],
+                          const SizedBox(height: 4),
                           Padding(
                             padding: gifId != null
                                 ? const EdgeInsets.only(
                                     left: 8,
-                                    top: 4,
+                                    right: 8,
                                     bottom: 4,
                                   )
                                 : EdgeInsets.zero,
-                            child: Text(
-                              senderName,
-                              style: TextStyle(
-                                fontSize: 12,
-                                fontWeight: FontWeight.bold,
-                                color: colorScheme.primary,
-                              ),
-                            ),
-                          ),
-                          if (gifId == null) const SizedBox(height: 4),
-                        ],
-                        if (poi != null)
-                          _buildPoiMessage(
-                            context,
-                            poi,
-                            textColor,
-                            metaColor,
-                            textScale,
-                            senderName,
-                          )
-                        else if (gifId != null)
-                          Stack(
-                            children: [
-                              ClipRRect(
-                                borderRadius: BorderRadius.circular(12),
-                                child: GifMessage(
-                                  url:
-                                      'https://media.giphy.com/media/$gifId/giphy.gif',
-                                  backgroundColor: Colors.transparent,
-                                  fallbackTextColor: textColor.withValues(
-                                    alpha: 0.7,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          )
-                        else
-                          Row(
-                            mainAxisSize: MainAxisSize.min,
-                            crossAxisAlignment: CrossAxisAlignment.end,
-                            children: [
-                              Flexible(
-                                child: TranslatedMessageContent(
-                                  displayText: translatedDisplayText,
-                                  originalText: originalDisplayText,
-                                  style: TextStyle(
-                                    color: textColor,
-                                    fontSize: bodyFontSize * textScale,
-                                  ),
-                                  originalStyle: TextStyle(
-                                    color: textColor.withValues(alpha: 0.78),
-                                    fontSize: bodyFontSize * textScale,
-                                  ),
-                                ),
-                              ),
-                            ],
-                          ),
-                        if (enableTracing &&
-                            isOutgoing &&
-                            message.retryCount > 0) ...[
-                          const SizedBox(height: 4),
-                          Padding(
-                            padding: gifId != null
-                                ? const EdgeInsets.symmetric(horizontal: 8)
-                                : EdgeInsets.zero,
-                            child: Text(
-                              context.l10n.chat_retryCount(
-                                message.retryCount,
-                                context
-                                    .read<AppSettingsService>()
-                                    .settings
-                                    .maxMessageRetries,
-                              ),
-                              style: TextStyle(
-                                fontSize: 10 * textScale,
-                                color: metaColor,
-                                fontWeight: FontWeight.w500,
-                              ),
-                            ),
-                          ),
-                        ],
-                        const SizedBox(height: 4),
-                        Padding(
-                          padding: gifId != null
-                              ? const EdgeInsets.only(
-                                  left: 8,
-                                  right: 8,
-                                  bottom: 4,
-                                )
-                              : EdgeInsets.zero,
-                          child: Wrap(
-                            spacing: 4,
-                            crossAxisAlignment: WrapCrossAlignment.center,
-                            children: [
-                              Text(
-                                _formatTime(message.timestamp),
-                                style: TextStyle(
-                                  fontSize: 10 * textScale,
-                                  color: metaColor,
-                                ),
-                              ),
-                              if (isOutgoing) ...[
-                                const SizedBox(width: 4),
-                                MessageStatusIcon(
-                                  size: 12 * textScale,
-                                  onColor: metaColor,
-                                  isAcked:
-                                      message.status ==
-                                      MessageStatus.delivered,
-                                  isPending:
-                                      message.status == MessageStatus.pending,
-                                  isFailed:
-                                      message.status == MessageStatus.failed,
-                                ),
-                              ],
-                              if (enableTracing &&
-                                  message.tripTimeMs != null &&
-                                  message.status ==
-                                      MessageStatus.delivered) ...[
-                                const SizedBox(width: 4),
-                                Icon(
-                                  Icons.speed,
-                                  size: 10 * textScale,
-                                  color: isOutgoing
-                                      ? metaColor
-                                      : Theme.of(
-                                          context,
-                                        ).colorScheme.tertiary,
-                                ),
+                            child: Wrap(
+                              spacing: 4,
+                              crossAxisAlignment: WrapCrossAlignment.center,
+                              children: [
                                 Text(
-                                  '${(message.tripTimeMs! / 1000).toStringAsFixed(1)}s',
+                                  _formatTime(message.timestamp),
                                   style: TextStyle(
-                                    fontSize: 9 * textScale,
+                                    fontSize: 10 * textScale,
+                                    color: metaColor,
+                                  ),
+                                ),
+                                if (isOutgoing) ...[
+                                  const SizedBox(width: 4),
+                                  MessageStatusIcon(
+                                    size: 12 * textScale,
+                                    onColor: metaColor,
+                                    isAcked:
+                                        message.status ==
+                                        MessageStatus.delivered,
+                                    isPending:
+                                        message.status == MessageStatus.pending,
+                                    isFailed:
+                                        message.status == MessageStatus.failed,
+                                  ),
+                                ],
+                                if (enableTracing &&
+                                    message.tripTimeMs != null &&
+                                    message.status ==
+                                        MessageStatus.delivered) ...[
+                                  const SizedBox(width: 4),
+                                  Icon(
+                                    Icons.speed,
+                                    size: 10 * textScale,
                                     color: isOutgoing
                                         ? metaColor
                                         : Theme.of(
                                             context,
                                           ).colorScheme.tertiary,
                                   ),
-                                ),
+                                  Text(
+                                    '${(message.tripTimeMs! / 1000).toStringAsFixed(1)}s',
+                                    style: TextStyle(
+                                      fontSize: 9 * textScale,
+                                      color: isOutgoing
+                                          ? metaColor
+                                          : Theme.of(
+                                              context,
+                                            ).colorScheme.tertiary,
+                                    ),
+                                  ),
+                                ],
                               ],
-                            ],
+                            ),
                           ),
-                        ),
-                      ],
+                        ],
+                      ),
                     ),
                   ),
-                ),
-              ],
+                ],
+              ),
             ),
-          ),
           ),
           if (message.reactions.isNotEmpty) ...[
             const SizedBox(height: 4),
@@ -1476,7 +1480,9 @@ class _MessageBubble extends StatelessWidget {
           padding: EdgeInsets.zero,
           constraints: const BoxConstraints(minWidth: 40, minHeight: 40),
           onPressed: () async {
-            final selfName = context.read<MeshCoreConnector>().selfName ?? context.l10n.chat_me;
+            final selfName =
+                context.read<MeshCoreConnector>().selfName ??
+                context.l10n.chat_me;
             final fromName = message.isOutgoing ? selfName : senderName;
             final key = buildSharedMarkerKey(
               sourceId: sourceId,

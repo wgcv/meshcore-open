@@ -150,10 +150,7 @@ class _RoutingSheetBodyState extends State<_RoutingSheetBody> {
     );
   }
 
-  Future<void> _forgetPath(
-    MeshCoreConnector connector,
-    Contact contact,
-  ) async {
+  Future<void> _forgetPath(MeshCoreConnector connector, Contact contact) async {
     await connector.clearContactPath(contact);
     if (!mounted) return;
     setState(() => _syncStatus = context.l10n.chat_pathCleared);
@@ -235,7 +232,8 @@ class _RoutingSheetBodyState extends State<_RoutingSheetBody> {
       case _RoutingMode.auto:
         if (contact.pathLength < 0) return l10n.routing_noPathYet;
         if (contact.pathLength == 0) return l10n.routing_directNoHops;
-        if (contact.path.isEmpty) return l10n.chat_hopsCount(contact.pathLength);
+        if (contact.path.isEmpty)
+          return l10n.chat_hopsCount(contact.pathLength);
         return PathHelper.resolvePathNames(contact.path, connector.allContacts);
     }
   }
@@ -325,7 +323,8 @@ class _RoutingSheetBodyState extends State<_RoutingSheetBody> {
       int failureCount,
       int lastTripTimeMs,
       DateTime? lastUsed,
-    })? floodStats,
+    })?
+    floodStats,
   ) {
     final l10n = context.l10n;
     final theme = Theme.of(context);
@@ -347,7 +346,10 @@ class _RoutingSheetBodyState extends State<_RoutingSheetBody> {
                   color: scheme.primary,
                 ),
                 const SizedBox(width: 8),
-                Text(l10n.routing_currentRoute, style: theme.textTheme.titleSmall),
+                Text(
+                  l10n.routing_currentRoute,
+                  style: theme.textTheme.titleSmall,
+                ),
               ],
             ),
             const SizedBox(height: 8),
@@ -418,7 +420,8 @@ class _RoutingSheetBodyState extends State<_RoutingSheetBody> {
       int failureCount,
       int lastTripTimeMs,
       DateTime? lastUsed,
-    }) stats,
+    })
+    stats,
   ) {
     final l10n = context.l10n;
     final parts = <String>[
@@ -441,7 +444,8 @@ class _RoutingSheetBodyState extends State<_RoutingSheetBody> {
       int failureCount,
       int lastTripTimeMs,
       DateTime? lastUsed,
-    }) stats,
+    })
+    stats,
   ) {
     final l10n = context.l10n;
     final scheme = Theme.of(context).colorScheme;
@@ -487,7 +491,10 @@ class _RoutingSheetBodyState extends State<_RoutingSheetBody> {
     final scheme = theme.colorScheme;
 
     final (Color bg, Color fg) = switch (quality) {
-      _PathQuality.strong => (scheme.primaryContainer, scheme.onPrimaryContainer),
+      _PathQuality.strong => (
+        scheme.primaryContainer,
+        scheme.onPrimaryContainer,
+      ),
       _PathQuality.good => (
         scheme.secondaryContainer,
         scheme.onSecondaryContainer,
@@ -504,7 +511,8 @@ class _RoutingSheetBodyState extends State<_RoutingSheetBody> {
     };
 
     final hasBytes = record.pathBytes.isNotEmpty;
-    final inUse = hasBytes &&
+    final inUse =
+        hasBytes &&
         ((mode == _RoutingMode.manual &&
                 listEquals(record.pathBytes, contact.pathOverrideBytes)) ||
             (mode == _RoutingMode.auto &&
@@ -596,19 +604,24 @@ class _RoutingSheetBodyState extends State<_RoutingSheetBody> {
 
         final rankedRepeaters = List.of(connector.directRepeaters)
           ..sort((a, b) => b.ranking.compareTo(a.ranking));
-        final entries = pathService
-            .getRecentPaths(contact.publicKeyHex)
-            .map((r) => (quality: _qualityOf(r, rankedRepeaters), record: r))
-            .toList()
-          ..sort((a, b) {
-            final byQuality = a.quality.index.compareTo(b.quality.index);
-            if (byQuality != 0) return byQuality;
-            final aTime =
-                a.record.timestamp ?? DateTime.fromMillisecondsSinceEpoch(0);
-            final bTime =
-                b.record.timestamp ?? DateTime.fromMillisecondsSinceEpoch(0);
-            return bTime.compareTo(aTime);
-          });
+        final entries =
+            pathService
+                .getRecentPaths(contact.publicKeyHex)
+                .map(
+                  (r) => (quality: _qualityOf(r, rankedRepeaters), record: r),
+                )
+                .toList()
+              ..sort((a, b) {
+                final byQuality = a.quality.index.compareTo(b.quality.index);
+                if (byQuality != 0) return byQuality;
+                final aTime =
+                    a.record.timestamp ??
+                    DateTime.fromMillisecondsSinceEpoch(0);
+                final bTime =
+                    b.record.timestamp ??
+                    DateTime.fromMillisecondsSinceEpoch(0);
+                return bTime.compareTo(aTime);
+              });
 
         return ListView(
           controller: widget.scrollController,

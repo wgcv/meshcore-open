@@ -459,7 +459,9 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
               ? l10n.repeater_refreshed(label)
               : l10n.repeater_errorRefreshing(label),
         ),
-        backgroundColor: successCount > 0 ? null : Theme.of(context).colorScheme.error,
+        backgroundColor: successCount > 0
+            ? null
+            : Theme.of(context).colorScheme.error,
       );
       setState(() => setRefreshing(false));
     }
@@ -2229,7 +2231,9 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
               onConfirm();
             },
             style: isDestructive
-                ? FilledButton.styleFrom(backgroundColor: Theme.of(context).colorScheme.error)
+                ? FilledButton.styleFrom(
+                    backgroundColor: Theme.of(context).colorScheme.error,
+                  )
                 : null,
             child: Text(l10n.repeater_confirm),
           ),

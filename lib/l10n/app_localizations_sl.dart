@@ -93,22 +93,23 @@ class AppLocalizationsSl extends AppLocalizations {
   String get common_disable => 'Izklopiti';
 
   @override
-  String get common_undo => 'Undo';
+  String get common_undo => 'Preobrn';
 
   @override
-  String get messageStatus_sent => 'Sent';
+  String get messageStatus_sent => 'Pošljeno';
 
   @override
-  String get messageStatus_delivered => 'Delivered';
+  String get messageStatus_delivered => 'Dostavljeno';
 
   @override
-  String get messageStatus_pending => 'Sending';
+  String get messageStatus_pending => 'Pošiljanje';
 
   @override
-  String get messageStatus_failed => 'Failed to send';
+  String get messageStatus_failed =>
+      'Uspešno ni bilo mogo, da se sporočilo pošlje';
 
   @override
-  String get messageStatus_repeated => 'Heard repeated';
+  String get messageStatus_repeated => 'Slišal sem večkrat';
 
   @override
   String get common_reboot => 'Ponoviti';
@@ -1001,13 +1002,13 @@ class AppLocalizationsSl extends AppLocalizations {
   String get contacts_newGroup => 'Nova skupina';
 
   @override
-  String get contacts_moreOptions => 'More options';
+  String get contacts_moreOptions => 'Več možnosti';
 
   @override
-  String get contacts_searchOpen => 'Search contacts';
+  String get contacts_searchOpen => 'Iskanje kontaktov';
 
   @override
-  String get contacts_searchClose => 'Close search';
+  String get contacts_searchClose => 'Izklopi iskanje';
 
   @override
   String get contacts_groupName => 'Ime skupine';
@@ -1514,82 +1515,82 @@ class AppLocalizationsSl extends AppLocalizations {
   String get chat_fullPath => 'Polna pot';
 
   @override
-  String get routing_title => 'Routing';
+  String get routing_title => 'Navigacija';
 
   @override
-  String get routing_modeAuto => 'Auto';
+  String get routing_modeAuto => 'Avto';
 
   @override
-  String get routing_modeFlood => 'Flood';
+  String get routing_modeFlood => 'Poplavo';
 
   @override
-  String get routing_modeManual => 'Manual';
+  String get routing_modeManual => 'Navodilo';
 
   @override
   String get routing_modeAutoHint =>
-      'Picks the best known path automatically, flooding when none is known.';
+      'Samodejno izbere najbolj poznano pot, in sicer, ko ni na voljo nobena.';
 
   @override
   String get routing_modeFloodHint =>
-      'Broadcasts through every repeater. Most reliable, but uses more airtime.';
+      'Prenosi preko vseh repetitorjev. Najzanesljivejši način, vendar zahteva več časa.';
 
   @override
   String get routing_modeManualHint =>
-      'Always sends along the exact path you set.';
+      'Vedno sledi natančni poti, ki jo ste določili.';
 
   @override
-  String get routing_currentRoute => 'Current route';
+  String get routing_currentRoute => 'Trenutna pot';
 
   @override
-  String get routing_directNoHops => 'Direct — no repeater hops';
+  String get routing_directNoHops => 'Neposredno – brez prehodov';
 
   @override
   String get routing_noPathYet =>
-      'No path yet. The next message floods until a route is discovered.';
+      'Žep trenutno ni mogoče najti. Naslednje sporočilo bo posredovano, dokler ne bo ugotovljeno, kje je pot.';
 
   @override
-  String get routing_floodBroadcast => 'Broadcast through every repeater';
+  String get routing_floodBroadcast => 'Prenos preko vseh repetitiv';
 
   @override
-  String get routing_editPath => 'Edit path';
+  String get routing_editPath => 'Uredi pot';
 
   @override
-  String get routing_forgetPath => 'Forget path';
+  String get routing_forgetPath => 'Pozabi na pot';
 
   @override
-  String get routing_knownPaths => 'Known paths';
+  String get routing_knownPaths => 'Poznati poti';
 
   @override
-  String get routing_knownPathsHint => 'Tap a path to switch to it.';
+  String get routing_knownPathsHint => 'Kliknite na pot, da jo izberete.';
 
   @override
-  String get routing_inUse => 'In use';
+  String get routing_inUse => 'V uporabi';
 
   @override
-  String get routing_qualityStrong => 'Strong first hop';
+  String get routing_qualityStrong => 'Močan prvi korak';
 
   @override
-  String get routing_qualityGood => 'Good first hop';
+  String get routing_qualityGood => 'Prva uspešna faza';
 
   @override
-  String get routing_qualityFair => 'Fair first hop';
+  String get routing_qualityFair => 'Prva, uspešna faza';
 
   @override
-  String get routing_qualityWorked => 'Has delivered';
+  String get routing_qualityWorked => 'Izpolnil';
 
   @override
-  String get routing_qualityFlood => 'Heard via flood';
+  String get routing_qualityFlood => 'Slišano preko poplave';
 
   @override
-  String get routing_qualityUntested => 'Untested';
+  String get routing_qualityUntested => 'Ne preizkušen';
 
   @override
   String routing_lastWorked(String when) {
-    return 'worked $when';
+    return 'delal/a $when';
   }
 
   @override
-  String get routing_neverWorked => 'never confirmed';
+  String get routing_neverWorked => 'nikoli ni bilo potrjeno';
 
   @override
   String routing_deliveryCounts(int successes, int failures) {
@@ -1597,52 +1598,52 @@ class AppLocalizationsSl extends AppLocalizations {
   }
 
   @override
-  String get routing_floodDelivery => 'Flood delivery';
+  String get routing_floodDelivery => 'Dostava zaradi poplave';
 
   @override
-  String get pathEditor_title => 'Build Path';
+  String get pathEditor_title => 'Izgradnja poti';
 
   @override
   String pathEditor_hopCounter(int count) {
-    return '$count of 64 hops';
+    return '$count od 64 različnih sort hropa';
   }
 
   @override
   String get pathEditor_noHops =>
-      'No hops yet. Tap repeaters below to add them in order, or save with no hops to send direct.';
+      'Še niso dodani hmelji. Za dodajanje hmelja v vrstnem redu kliknite na povezavo spodaj, ali pa shranite brez dodanega hmelja, da ga lahko posredujete neposredno.';
 
   @override
-  String get pathEditor_addHops => 'Add hops in order';
+  String get pathEditor_addHops => 'Dodajte suho travo v skladu s postopkom.';
 
   @override
-  String get pathEditor_searchRepeaters => 'Search repeaters';
+  String get pathEditor_searchRepeaters => 'Iskanje ponovitev';
 
   @override
-  String get pathEditor_advancedHex => 'Advanced: raw hex path';
+  String get pathEditor_advancedHex => 'Napredno: surovi šestnajstni pot';
 
   @override
-  String get pathEditor_hexLabel => 'Hex prefixes';
+  String get pathEditor_hexLabel => 'Predfiks za heksadecimalno šifro';
 
   @override
   String get pathEditor_hexHelper =>
-      'Two hex characters per hop, separated by commas';
+      'Dva šestbitna znaka na vsak skok, ločena z vejico';
 
   @override
   String pathEditor_invalidTokens(String tokens) {
-    return 'Invalid: $tokens';
+    return 'Neveljaven: $tokens';
   }
 
   @override
-  String get pathEditor_tooManyHops => 'Maximum 64 hops';
+  String get pathEditor_tooManyHops => 'Največ 64 hopov';
 
   @override
-  String get pathEditor_usePath => 'Use this path';
+  String get pathEditor_usePath => 'Uporabite to poto';
 
   @override
-  String get pathEditor_removeHop => 'Remove hop';
+  String get pathEditor_removeHop => 'Odstranite hmelj';
 
   @override
-  String get pathEditor_unknownHop => 'Unknown repeater';
+  String get pathEditor_unknownHop => 'Neznani ponovitelj';
 
   @override
   String get chat_pathSavedLocally =>
@@ -4438,17 +4439,17 @@ class AppLocalizationsSl extends AppLocalizations {
   String get contact_typeUnknown => 'Unknown';
 
   @override
-  String get map_zoomIn => 'Zoom in';
+  String get map_zoomIn => 'Povečaj';
 
   @override
-  String get map_zoomOut => 'Zoom out';
+  String get map_zoomOut => 'Povečajte pogled';
 
   @override
-  String get map_centerMap => 'Center map';
+  String get map_centerMap => 'Krajšarska karta';
 
   @override
   String get chrome_bluetoothRequiresChromium =>
-      'Web Bluetooth requires a Chromium browser';
+      'Web Bluetooth zahteva brskalnik Chromium.';
 
   @override
   String channels_communityShortId(String id) {
@@ -4456,8 +4457,8 @@ class AppLocalizationsSl extends AppLocalizations {
   }
 
   @override
-  String get pathTrace_legendGpsConfirmed => 'GPS confirmed';
+  String get pathTrace_legendGpsConfirmed => 'GPS potrdilo';
 
   @override
-  String get pathTrace_legendInferred => 'Inferred position';
+  String get pathTrace_legendInferred => 'Izpeljana lokacija';
 }

@@ -395,7 +395,10 @@ class _RoomLoginDialogState extends State<RoomLoginDialog> {
                   const SizedBox(height: 4),
                   Text(
                     repeater.pathLabel(context.l10n),
-                    style: TextStyle(fontSize: 11, color: Theme.of(context).colorScheme.onSurfaceVariant),
+                    style: TextStyle(
+                      fontSize: 11,
+                      color: Theme.of(context).colorScheme.onSurfaceVariant,
+                    ),
                   ),
                   const SizedBox(height: 8),
                   Align(

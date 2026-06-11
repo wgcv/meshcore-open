@@ -55,12 +55,18 @@ class ChromeRequiredScreen extends StatelessWidget {
               decoration: BoxDecoration(
                 color: colorScheme.secondaryContainer.withValues(alpha: 0.4),
                 borderRadius: BorderRadius.circular(30),
-                border: Border.all(color: colorScheme.outline.withValues(alpha: 0.4)),
+                border: Border.all(
+                  color: colorScheme.outline.withValues(alpha: 0.4),
+                ),
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Icon(Icons.info_outline, size: 20, color: colorScheme.secondary),
+                  Icon(
+                    Icons.info_outline,
+                    size: 20,
+                    color: colorScheme.secondary,
+                  ),
                   const SizedBox(width: 12),
                   Text(
                     l10n.chrome_bluetoothRequiresChromium,

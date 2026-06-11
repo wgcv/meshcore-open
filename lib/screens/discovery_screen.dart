@@ -189,8 +189,7 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
                             ),
                             action: SnackBarAction(
                               label: context.l10n.common_undo,
-                              onPressed: () =>
-                                  connector.removeContact(contact),
+                              onPressed: () => connector.removeContact(contact),
                             ),
                           );
                         },
@@ -443,7 +442,6 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
         return false;
     }
   }
-
 
   String _formatLastSeen(BuildContext context, DateTime lastSeen) {
     final now = DateTime.now();

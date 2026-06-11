@@ -705,9 +705,7 @@ class _ContactsScreenState extends State<ContactsScreen>
         action: FilledButton.icon(
           onPressed: () => Navigator.push(
             context,
-            MaterialPageRoute(
-              builder: (context) => const DiscoveryScreen(),
-            ),
+            MaterialPageRoute(builder: (context) => const DiscoveryScreen()),
           ),
           icon: const Icon(Icons.person_add_rounded),
           label: Text(context.l10n.discoveredContacts_Title),
@@ -1496,9 +1494,7 @@ class _ContactsScreenState extends State<ContactsScreen>
               ),
               title: Text(
                 context.l10n.contacts_deleteContact,
-                style: TextStyle(
-                  color: Theme.of(context).colorScheme.error,
-                ),
+                style: TextStyle(color: Theme.of(context).colorScheme.error),
               ),
               onTap: () {
                 Navigator.pop(sheetContext);

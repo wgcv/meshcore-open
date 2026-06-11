@@ -253,8 +253,7 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                                 ),
                                 child: EmptyState(
                                   icon: Icons.search_off,
-                                  title:
-                                      context.l10n.channels_noChannelsFound,
+                                  title: context.l10n.channels_noChannelsFound,
                                 ),
                               ),
                             ],
@@ -953,7 +952,11 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                               Channel.publicChannelPsk,
                             );
                             Navigator.pop(dialogContext);
-                            connector.setChannel(nextIndex, context.l10n.channels_public, psk);
+                            connector.setChannel(
+                              nextIndex,
+                              context.l10n.channels_public,
+                              psk,
+                            );
                             if (context.mounted) {
                               showDismissibleSnackBar(
                                 context,
@@ -1240,7 +1243,8 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                             child: FilledButton(
                               onPressed: () async {
                                 final name = nameController.text.trim();
-                                final publicLabel = context.l10n.channels_public;
+                                final publicLabel =
+                                    context.l10n.channels_public;
                                 if (name.isEmpty) {
                                   showDismissibleSnackBar(
                                     context,
@@ -1727,7 +1731,9 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                           ),
                           title: Text(community.name),
                           subtitle: Text(
-                            context.l10n.channels_communityShortId(community.shortCommunityId),
+                            context.l10n.channels_communityShortId(
+                              community.shortCommunityId,
+                            ),
                             style: TextStyle(
                               fontSize: 12,
                               color: Theme.of(
