@@ -1883,7 +1883,7 @@ class MeshCoreConnector extends ChangeNotifier {
               .connect(
                 timeout: connectTimeout,
                 mtu: null,
-                license: License.free,
+                license: License.nonprofit,
               )
               .timeout(
                 connectTimeout + const Duration(seconds: 2),
@@ -1979,7 +1979,7 @@ class MeshCoreConnector extends ChangeNotifier {
           return device.connect(
             timeout: connectTimeout,
             mtu: null,
-            license: License.free,
+            license: License.nonprofit,
           );
         }
 
@@ -2088,7 +2088,7 @@ class MeshCoreConnector extends ChangeNotifier {
           await device.connect(
             timeout: const Duration(seconds: 15),
             mtu: null,
-            license: License.free,
+            license: License.nonprofit,
           );
           services = await device.discoverServices();
         } else {

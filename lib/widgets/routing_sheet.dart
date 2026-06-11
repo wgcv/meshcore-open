@@ -232,8 +232,9 @@ class _RoutingSheetBodyState extends State<_RoutingSheetBody> {
       case _RoutingMode.auto:
         if (contact.pathLength < 0) return l10n.routing_noPathYet;
         if (contact.pathLength == 0) return l10n.routing_directNoHops;
-        if (contact.path.isEmpty)
+        if (contact.path.isEmpty) {
           return l10n.chat_hopsCount(contact.pathLength);
+        }
         return PathHelper.resolvePathNames(contact.path, connector.allContacts);
     }
   }
