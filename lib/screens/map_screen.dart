@@ -285,6 +285,27 @@ class _MapScreenState extends State<MapScreen> {
     );
   }
 
+  void _handleMapTap(BuildContext context, MeshCoreConnector connector, LatLng latLng) {
+    if (_isSelectingPoi) {
+      setState(() {
+        _isSelectingPoi = false;
+      });
+      _shareMarker(
+        context: context,
+        connector: connector,
+        position: latLng,
+        defaultLabel: context.l10n.map_pointOfInterest,
+        flags: 'poi',
+      );
+      return;
+    }
+    _showShareMarkerAtPositionSheet(
+      context: context,
+      connector: connector,
+      position: latLng,
+    );
+  }
+
   @override
   Widget build(BuildContext context) {
     return Builder(
@@ -708,24 +729,10 @@ class _MapScreenState extends State<MapScreen> {
                       }
                     },
                     onLongPress: (_, latLng) {
-                      if (_isSelectingPoi) {
-                        setState(() {
-                          _isSelectingPoi = false;
-                        });
-                        _shareMarker(
-                          context: context,
-                          connector: connector,
-                          position: latLng,
-                          defaultLabel: context.l10n.map_pointOfInterest,
-                          flags: 'poi',
-                        );
-                        return;
-                      }
-                      _showShareMarkerAtPositionSheet(
-                        context: context,
-                        connector: connector,
-                        position: latLng,
-                      );
+                      _handleMapTap(context, connector, latLng);
+                    },
+                    onSecondaryTap: (_, latLng) {
+                      _handleMapTap(context, connector, latLng);
                     },
                     onPositionChanged: (camera, hasGesture) {
                       // Track zoom in half-step buckets so cluster/marker
@@ -1184,6 +1191,9 @@ class _MapScreenState extends State<MapScreen> {
           onLongPress: () => _isBuildingPathTrace
               ? _showNodeInfo(context, guess.contact)
               : null,
+          onSecondaryTap: () => _isBuildingPathTrace 
+              ? _showNodeInfo(context, guess.contact) 
+              : null,
           onTap: () => _isBuildingPathTrace
               ? _addToPath(context, guess.contact, position: guess.position)
               : _selectNode(guess.contact, guessedPosition: guess.position),
@@ -1384,6 +1394,8 @@ class _MapScreenState extends State<MapScreen> {
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,
         onLongPress: () =>
+            _isBuildingPathTrace ? _showNodeInfo(context, contact) : null,
+        onSecondaryTap: () =>
             _isBuildingPathTrace ? _showNodeInfo(context, contact) : null,
         onTap: () => _isBuildingPathTrace
             ? _addToPath(context, contact)
