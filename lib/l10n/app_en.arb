@@ -143,6 +143,7 @@
   "scanner_chromeRequired": "Chrome Browser Required",
   "scanner_chromeRequiredMessage": "This web application requires Google Chrome or a Chromium-based browser for Bluetooth support.",
   "scanner_enableBluetooth": "Enable Bluetooth",
+  "scanner_bluetoothWebUnsupported": "Bluetooth isn't available in the browser. Connect over USB instead.",
   "device_quickSwitch": "Quick switch",
   "device_meshcore": "MeshCore",
   "settings_title": "Settings",

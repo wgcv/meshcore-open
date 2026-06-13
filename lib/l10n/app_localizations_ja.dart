@@ -309,6 +309,10 @@ class AppLocalizationsJa extends AppLocalizations {
   String get scanner_enableBluetooth => 'Bluetoothを有効にする';
 
   @override
+  String get scanner_bluetoothWebUnsupported =>
+      'Bluetooth isn\'t available in the browser. Connect over USB instead.';
+
+  @override
   String get device_quickSwitch => '素早い切り替え';
 
   @override

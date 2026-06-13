@@ -1,5 +1,6 @@
 {
   "bg": [
+    "scanner_bluetoothWebUnsupported",
     "map_searchHint",
     "map_activity",
     "map_online",
@@ -41,6 +42,7 @@
   ],
 
   "de": [
+    "scanner_bluetoothWebUnsupported",
     "map_searchHint",
     "map_activity",
     "map_online",
@@ -82,6 +84,7 @@
   ],
 
   "es": [
+    "scanner_bluetoothWebUnsupported",
     "map_searchHint",
     "map_activity",
     "map_online",
@@ -123,6 +126,7 @@
   ],
 
   "fr": [
+    "scanner_bluetoothWebUnsupported",
     "map_searchHint",
     "map_activity",
     "map_online",
@@ -164,6 +168,7 @@
   ],
 
   "hu": [
+    "scanner_bluetoothWebUnsupported",
     "map_searchHint",
     "map_activity",
     "map_online",
@@ -205,6 +210,7 @@
   ],
 
   "it": [
+    "scanner_bluetoothWebUnsupported",
     "map_searchHint",
     "map_activity",
     "map_online",
@@ -246,6 +252,7 @@
   ],
 
   "ja": [
+    "scanner_bluetoothWebUnsupported",
     "map_searchHint",
     "map_activity",
     "map_online",
@@ -287,6 +294,7 @@
   ],
 
   "ko": [
+    "scanner_bluetoothWebUnsupported",
     "map_searchHint",
     "map_activity",
     "map_online",
@@ -328,6 +336,7 @@
   ],
 
   "nl": [
+    "scanner_bluetoothWebUnsupported",
     "map_searchHint",
     "map_activity",
     "map_online",
@@ -369,6 +378,7 @@
   ],
 
   "pl": [
+    "scanner_bluetoothWebUnsupported",
     "map_searchHint",
     "map_activity",
     "map_online",
@@ -410,6 +420,7 @@
   ],
 
   "pt": [
+    "scanner_bluetoothWebUnsupported",
     "map_searchHint",
     "map_activity",
     "map_online",
@@ -451,6 +462,7 @@
   ],
 
   "ru": [
+    "scanner_bluetoothWebUnsupported",
     "map_searchHint",
     "map_activity",
     "map_online",
@@ -492,6 +504,7 @@
   ],
 
   "sk": [
+    "scanner_bluetoothWebUnsupported",
     "map_searchHint",
     "map_activity",
     "map_online",
@@ -533,6 +546,7 @@
   ],
 
   "sl": [
+    "scanner_bluetoothWebUnsupported",
     "map_searchHint",
     "map_activity",
     "map_online",
@@ -574,6 +588,7 @@
   ],
 
   "sv": [
+    "scanner_bluetoothWebUnsupported",
     "map_searchHint",
     "map_activity",
     "map_online",
@@ -615,6 +630,7 @@
   ],
 
   "uk": [
+    "scanner_bluetoothWebUnsupported",
     "map_searchHint",
     "map_activity",
     "map_online",
@@ -656,6 +672,7 @@
   ],
 
   "zh": [
+    "scanner_bluetoothWebUnsupported",
     "map_searchHint",
     "map_activity",
     "map_online",

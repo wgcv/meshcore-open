@@ -306,6 +306,10 @@ class AppLocalizationsZh extends AppLocalizations {
   String get scanner_enableBluetooth => '启用蓝牙';
 
   @override
+  String get scanner_bluetoothWebUnsupported =>
+      'Bluetooth isn\'t available in the browser. Connect over USB instead.';
+
+  @override
   String get device_quickSwitch => '快速切换';
 
   @override

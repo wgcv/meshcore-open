@@ -725,18 +725,26 @@ class _SettingsScreenState extends State<SettingsScreen> {
             onPressed: () => Navigator.pop(context),
             child: Text(l10n.common_cancel),
           ),
-          TextButton(
-            onPressed: () async {
-              Navigator.pop(context);
-              await connector.setNodeName(controller.text);
-              await connector.refreshDeviceInfo();
-              if (!context.mounted) return;
-              showDismissibleSnackBar(
-                context,
-                content: Text(l10n.settings_nodeNameUpdated),
+          ListenableBuilder(
+            listenable: controller,
+            builder: (context, _) {
+              final name = controller.text.trim();
+              return TextButton(
+                onPressed: name.isEmpty
+                    ? null
+                    : () async {
+                        Navigator.pop(context);
+                        await connector.setNodeName(name);
+                        await connector.refreshDeviceInfo();
+                        if (!context.mounted) return;
+                        showDismissibleSnackBar(
+                          context,
+                          content: Text(l10n.settings_nodeNameUpdated),
+                        );
+                      },
+                child: Text(l10n.common_save),
               );
             },
-            child: Text(l10n.common_save),
           ),
         ],
       ),

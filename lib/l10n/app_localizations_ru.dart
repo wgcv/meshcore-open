@@ -321,6 +321,10 @@ class AppLocalizationsRu extends AppLocalizations {
   String get scanner_enableBluetooth => 'Включите Bluetooth';
 
   @override
+  String get scanner_bluetoothWebUnsupported =>
+      'Bluetooth isn\'t available in the browser. Connect over USB instead.';
+
+  @override
   String get device_quickSwitch => 'Быстрое переключение';
 
   @override

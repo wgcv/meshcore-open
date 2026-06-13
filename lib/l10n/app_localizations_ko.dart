@@ -308,6 +308,10 @@ class AppLocalizationsKo extends AppLocalizations {
   String get scanner_enableBluetooth => '블루투스 활성화';
 
   @override
+  String get scanner_bluetoothWebUnsupported =>
+      'Bluetooth isn\'t available in the browser. Connect over USB instead.';
+
+  @override
   String get device_quickSwitch => '빠른 전환';
 
   @override

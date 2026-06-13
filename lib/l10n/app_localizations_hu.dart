@@ -319,6 +319,10 @@ class AppLocalizationsHu extends AppLocalizations {
   String get scanner_enableBluetooth => 'Engedje be a Bluetooth funkciót';
 
   @override
+  String get scanner_bluetoothWebUnsupported =>
+      'Bluetooth isn\'t available in the browser. Connect over USB instead.';
+
+  @override
   String get device_quickSwitch => 'Gyors váltás';
 
   @override

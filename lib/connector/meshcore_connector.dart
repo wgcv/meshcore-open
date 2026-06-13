@@ -328,6 +328,20 @@ class MeshCoreConnector extends ChangeNotifier {
   String? get deviceId => _deviceId;
   String get deviceIdLabel => _deviceId ?? 'Unknown';
 
+  /// Stable per-radio key for transport-agnostic per-device settings such as
+  /// battery chemistry. On BLE this is the existing remoteId (so previously
+  /// saved settings are preserved); on USB/TCP — where there is no BLE
+  /// remoteId — it falls back to the node's public key, which identifies the
+  /// same physical radio across transports. Null until a device identity is
+  /// known.
+  String? get batteryDeviceKey {
+    if (_deviceId != null) return _deviceId;
+    if (_selfPublicKey != null && _selfPublicKey!.isNotEmpty) {
+      return selfPublicKeyHex;
+    }
+    return null;
+  }
+
   MeshCoreTransportType get activeTransport => _activeTransport;
   String? get activeUsbPort => _usbManager.activePortKey;
   String? get activeUsbPortDisplayLabel => _usbManager.activePortDisplayLabel;
@@ -493,7 +507,7 @@ class MeshCoreConnector extends ChangeNotifier {
   }
 
   String _batteryChemistryForDevice() {
-    final deviceId = _device?.remoteId.toString();
+    final deviceId = batteryDeviceKey;
     if (deviceId == null || _appSettingsService == null) return 'nmc';
     return _appSettingsService!.batteryChemistryForDevice(deviceId);
   }
@@ -1607,6 +1621,20 @@ class MeshCoreConnector extends ChangeNotifier {
         await stopScan();
       }
       await Future<void>.delayed(const Duration(milliseconds: 200));
+
+      // The read pump can fail the instant the port opens (e.g. a device that
+      // re-enumerates on open). That error is emitted on a broadcast stream
+      // before the listener below attaches, so it would otherwise be lost and
+      // the connect would stall until the SELF_INFO timeout. Check transport
+      // liveness directly and abort fast with the real cause.
+      if (!_usbManager.isConnected) {
+        final cause = _usbManager.lastError;
+        throw StateError(
+          'USB device disconnected during connect'
+          '${cause == null ? '' : ': $cause'}',
+        );
+      }
+
       _usbFrameSubscription = _usbManager.frameStream.listen(
         _handleFrame,
         onError: (error, stackTrace) {
@@ -5737,7 +5765,9 @@ class MeshCoreConnector extends ChangeNotifier {
   ) {
     if (!isRoomServer) return null;
     if (!msg.isOutgoing) {
-      final senderContact = _contacts.cast<Contact?>().firstWhere(
+      // Saved contacts first, then discovery-only nodes, so reaction matching
+      // resolves the author's name even when they haven't been saved.
+      final senderContact = allContactsUnfiltered.cast<Contact?>().firstWhere(
         (c) =>
             c != null &&
             _matchesPrefix(c.publicKey, msg.fourByteRoomContactKey),

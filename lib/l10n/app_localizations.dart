@@ -694,6 +694,12 @@ abstract class AppLocalizations {
   /// **'Enable Bluetooth'**
   String get scanner_enableBluetooth;
 
+  /// No description provided for @scanner_bluetoothWebUnsupported.
+  ///
+  /// In en, this message translates to:
+  /// **'Bluetooth isn\'t available in the browser. Connect over USB instead.'**
+  String get scanner_bluetoothWebUnsupported;
+
   /// No description provided for @device_quickSwitch.
   ///
   /// In en, this message translates to:

@@ -607,7 +607,7 @@ class AppSettingsScreen extends StatelessWidget {
     AppSettingsService settingsService,
     MeshCoreConnector connector,
   ) {
-    final deviceId = connector.deviceId;
+    final deviceId = connector.batteryDeviceKey;
     final isConnected = connector.isConnected && deviceId != null;
     final selection = isConnected
         ? settingsService.batteryChemistryForDevice(deviceId)

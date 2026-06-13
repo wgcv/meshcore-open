@@ -207,6 +207,15 @@ class _ScannerScreenState extends State<ScannerScreen> {
   }
 
   void _toggleScan(MeshCoreConnector connector) {
+    if (PlatformInfo.isWeb) {
+      // flutter_blue_plus has no web backend, so a BLE scan silently no-ops in
+      // the browser. Tell the user instead of leaving them staring at a button.
+      showDismissibleSnackBar(
+        context,
+        content: Text(context.l10n.scanner_bluetoothWebUnsupported),
+      );
+      return;
+    }
     if (connector.state == MeshCoreConnectionState.scanning) {
       connector.stopScan();
     } else {

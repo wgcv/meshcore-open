@@ -1,4 +1,3 @@
-import 'dart:collection';
 import 'dart:math';
 
 import 'package:flutter/foundation.dart';
@@ -94,6 +93,11 @@ class _MapScreenState extends State<MapScreen> {
   String _searchQuery = '';
   List<_GuessedLocation> _cachedGuessedLocations = [];
   String _guessedLocationsCacheKey = '';
+  int? _sharedMarkersCacheSignature;
+  Locale? _sharedMarkersCacheLocale;
+  List<_SharedMarker> _cachedSharedMarkers = const [];
+  _NodeMarkersCacheKey? _nodeMarkersCacheKey;
+  List<Marker> _cachedNodeMarkers = const [];
 
   @override
   void dispose() {
@@ -283,11 +287,23 @@ class _MapScreenState extends State<MapScreen> {
 
   @override
   Widget build(BuildContext context) {
-    return Consumer3<MeshCoreConnector, AppSettingsService, PathHistoryService>(
-      builder: (context, connector, settingsService, pathHistory, child) {
+    return Builder(
+      builder: (context) {
+        final connectorSnapshot = context
+            .select<MeshCoreConnector, _MapConnectorSnapshot>(
+              _MapConnectorSnapshot.fromConnector,
+            );
+        final connector = connectorSnapshot.connector;
+        final settings = context.select<AppSettingsService, AppSettings>(
+          (service) => service.settings,
+        );
+        final pathHistoryVersion = context.select<PathHistoryService, int>(
+          (service) => service.version,
+        );
+        final settingsService = context.read<AppSettingsService>();
+        final pathHistory = context.read<PathHistoryService>();
         final tileCache = context.read<MapTileCacheService>();
         final isDesktop = _isDesktopPlatform(defaultTargetPlatform);
-        final settings = settingsService.settings;
         final allContacts = connector.allContacts;
 
         final contacts = settings.mapShowDiscoveryContacts
@@ -296,7 +312,10 @@ class _MapScreenState extends State<MapScreen> {
 
         final highlightPosition = widget.highlightPosition;
         final sharedMarkers = settings.mapShowMarkers
-            ? _collectSharedMarkers(connector)
+            ? _collectSharedMarkers(
+                    connector,
+                    connectorSnapshot.markerSignature,
+                  )
                   .where(
                     (marker) =>
                         !_hiddenMarkerIds.contains(marker.id) &&
@@ -347,9 +366,17 @@ class _MapScreenState extends State<MapScreen> {
             .where((c) => c.hasLocation)
             .toList();
 
+        // Guessed markers represent the same node types as known-location
+        // markers, so apply the node-type filters before estimating positions.
+        final guessCandidates = _filterContactsBySettings(
+          filteredByKeyPrefix,
+          settings,
+          noLocations: true,
+        );
+
         // Compute guessed locations with caching
         final maxRangeKm = _estimateLoRaRangeKm(connector);
-        final filteredKeys = filteredByKeyPrefix
+        final filteredKeys = guessCandidates
             .map((c) => '${c.publicKeyHex}:${c.path.join("-")}')
             .join(',');
         final anchorKeys = allContactsWithLocation
@@ -359,12 +386,12 @@ class _MapScreenState extends State<MapScreen> {
             )
             .join(',');
         final cacheKey =
-            '$filteredKeys|$anchorKeys|${pathHistory.version}:${connector.currentSf}:${connector.currentBwHz}:${connector.currentTxPower}:${settings.mapShowGuessedLocations}';
+            '$filteredKeys|$anchorKeys|$pathHistoryVersion:${connector.currentFreqHz}:${connector.currentSf}:${connector.currentBwHz}:${connector.currentTxPower}:${settings.mapShowGuessedLocations}';
         if (cacheKey != _guessedLocationsCacheKey) {
           _guessedLocationsCacheKey = cacheKey;
           _cachedGuessedLocations = settings.mapShowGuessedLocations
               ? _computeGuessedLocations(
-                  filteredByKeyPrefix,
+                  guessCandidates,
                   allContactsWithLocation,
                   pathHistory,
                   maxRangeKm,
@@ -759,9 +786,21 @@ class _MapScreenState extends State<MapScreen> {
                             guessedLocations,
                             showLabels: _showNodeLabels,
                           ),
-                        ..._buildNodeMarkers(
+                        ..._buildNodeMarkersCached(
                           visibleContacts,
                           settings,
+                          connectorSnapshot.contactsSignature,
+                          connectorSnapshot.batterySignature,
+                          _freshness,
+                          settings.mapTimeFilterHours,
+                          settings.mapKeyPrefixEnabled,
+                          settings.mapKeyPrefix,
+                          settings.mapShowDiscoveryContacts,
+                          Object.hashAllUnordered(
+                            settings.batteryChemistryByRepeaterId.entries.map(
+                              (entry) => Object.hash(entry.key, entry.value),
+                            ),
+                          ),
                           showLabels: _showNodeLabels,
                           selectedContact: selectedContact,
                         ),
@@ -871,6 +910,59 @@ class _MapScreenState extends State<MapScreen> {
         );
       },
     );
+  }
+
+  List<Marker> _buildNodeMarkersCached(
+    List<Contact> contacts,
+    AppSettings settings,
+    int contactsSignature,
+    int batterySignature,
+    _Freshness freshness,
+    double timeFilterHours,
+    bool keyPrefixEnabled,
+    String keyPrefix,
+    bool showDiscoveryContacts,
+    int batteryChemistrySignature, {
+    required bool showLabels,
+    Contact? selectedContact,
+  }) {
+    final visibleContactsSignature = Object.hashAll(
+      contacts.map(
+        (contact) =>
+            Object.hash(_mapContactSignature(contact), _ageOf(contact)),
+      ),
+    );
+    final key = _NodeMarkersCacheKey(
+      contactsSignature: contactsSignature,
+      visibleContactsSignature: visibleContactsSignature,
+      batterySignature: batterySignature,
+      freshness: freshness,
+      timeFilterHours: timeFilterHours,
+      keyPrefixEnabled: keyPrefixEnabled,
+      keyPrefix: keyPrefix,
+      showDiscoveryContacts: showDiscoveryContacts,
+      batteryChemistrySignature: batteryChemistrySignature,
+      showLabels: showLabels,
+      selectedKey: selectedContact?.publicKeyHex,
+      zoom: _zoom,
+      overlapsMode: settings.mapShowOverlaps,
+      showRepeaters: settings.mapShowRepeaters,
+      showChatNodes: settings.mapShowChatNodes,
+      showOtherNodes: settings.mapShowOtherNodes,
+      isBuildingPathTrace: _isBuildingPathTrace,
+    );
+    if (key != _nodeMarkersCacheKey) {
+      _nodeMarkersCacheKey = key;
+      _cachedNodeMarkers = List.unmodifiable(
+        _buildNodeMarkers(
+          contacts,
+          settings,
+          showLabels: showLabels,
+          selectedContact: selectedContact,
+        ),
+      );
+    }
+    return _cachedNodeMarkers;
   }
 
   List<_GuessedLocation> _computeGuessedLocations(
@@ -1146,17 +1238,18 @@ class _MapScreenState extends State<MapScreen> {
   }) {
     List<Contact> filtered = [];
     bool addContact = false;
+
     for (final contact in contacts) {
       addContact = false;
       if (!contact.hasLocation && !noLocations) {
         continue;
       }
 
-      // Apply node type filters
+      // Apply node type filters. The overlaps toggle is purely a visual
+      // highlight (applied in _buildNodeMarkers) and no longer affects which
+      // nodes are shown.
       if (contact.type == advTypeRepeater &&
-          (settings.mapShowRepeaters ||
-              _isBuildingPathTrace ||
-              settings.mapShowOverlaps)) {
+          (settings.mapShowRepeaters || _isBuildingPathTrace)) {
         addContact = true;
       }
       if (contact.type == advTypeChat &&
@@ -1165,33 +1258,12 @@ class _MapScreenState extends State<MapScreen> {
       }
       if (contact.type != advTypeChat &&
           contact.type != advTypeRepeater &&
-          (settings.mapShowOtherNodes ||
-              _isBuildingPathTrace ||
-              settings.mapShowOverlaps)) {
+          (settings.mapShowOtherNodes || _isBuildingPathTrace)) {
         addContact = true;
       }
 
       if (contact.type == advTypeChat && _isBuildingPathTrace) {
         addContact = false;
-      }
-
-      if (settings.mapShowOverlaps) {
-        final hasOverlap = contacts
-            .where(
-              (c) =>
-                  c.publicKeyHex != contact.publicKeyHex &&
-                  c.publicKey.first == contact.publicKey.first &&
-                  (c.type == advTypeRepeater || c.type == advTypeRoom) &&
-                  (contact.type == advTypeRepeater ||
-                      contact.type == advTypeRoom),
-            )
-            .firstOrNull;
-
-        if (hasOverlap == null &&
-            settings.mapShowOverlaps &&
-            !_isBuildingPathTrace) {
-          addContact = false;
-        }
       }
 
       if (addContact) {
@@ -1212,13 +1284,34 @@ class _MapScreenState extends State<MapScreen> {
     final selectedKey = selectedContact?.publicKeyHex;
     final items = contacts.where((c) => c.publicKeyHex != selectedKey).toList();
 
+    // Key-prefix overlaps are a visual highlight only: flag the repeaters/rooms
+    // whose first key byte collides with another repeater/room on the map.
+    final overlapPrefixes = <int>{};
+    if (overlapsMode) {
+      final counts = <int, int>{};
+      for (final contact in contacts) {
+        if (contact.type == advTypeRepeater || contact.type == advTypeRoom) {
+          final prefix = contact.publicKey.first;
+          counts[prefix] = (counts[prefix] ?? 0) + 1;
+        }
+      }
+      counts.forEach((prefix, count) {
+        if (count > 1) overlapPrefixes.add(prefix);
+      });
+    }
+    bool isOverlap(Contact contact) =>
+        overlapsMode &&
+        (contact.type == advTypeRepeater || contact.type == advTypeRoom) &&
+        overlapPrefixes.contains(contact.publicKey.first);
+
     void addNode(Contact contact, {bool dot = false}) {
-      markers.add(_nodeMarker(contact, overlapsMode: overlapsMode, dot: dot));
+      final overlap = isOverlap(contact);
+      markers.add(_nodeMarker(contact, overlapsMode: overlap, dot: dot));
       if (showLabels) {
         markers.add(
           _buildNodeLabelMarker(
             point: LatLng(contact.latitude!, contact.longitude!),
-            label: overlapsMode
+            label: overlap
                 ? "${contact.publicKeyHex.substring(0, 2)}:${contact.name}"
                 : contact.name,
           ),
@@ -1255,7 +1348,7 @@ class _MapScreenState extends State<MapScreen> {
       markers.add(
         _nodeMarker(
           selectedContact,
-          overlapsMode: overlapsMode,
+          overlapsMode: isOverlap(selectedContact),
           selected: true,
         ),
       );
@@ -2371,7 +2464,16 @@ class _MapScreenState extends State<MapScreen> {
     }
   }
 
-  List<_SharedMarker> _collectSharedMarkers(MeshCoreConnector connector) {
+  List<_SharedMarker> _collectSharedMarkers(
+    MeshCoreConnector connector,
+    int markerSignature,
+  ) {
+    final locale = Localizations.localeOf(context);
+    if (_sharedMarkersCacheSignature == markerSignature &&
+        _sharedMarkersCacheLocale == locale) {
+      return _cachedSharedMarkers;
+    }
+
     // Build a _SharedMarker per message (history empty), grouped by dedupe key.
     // Afterwards pick the latest per key and fill its history from older ones.
     final updatesByKey = <String, List<_SharedMarker>>{};
@@ -2463,7 +2565,10 @@ class _MapScreenState extends State<MapScreen> {
     });
 
     markers.sort((a, b) => b.timestamp.compareTo(a.timestamp));
-    return markers;
+    _sharedMarkersCacheSignature = markerSignature;
+    _sharedMarkersCacheLocale = locale;
+    _cachedSharedMarkers = List.unmodifiable(markers);
+    return _cachedSharedMarkers;
   }
 
   Marker _buildSharedMarker(_SharedMarker marker) {
@@ -3563,6 +3668,219 @@ class _MapScreenState extends State<MapScreen> {
 enum _NodeAge { online, recent, stale }
 
 enum _Freshness { all, online, recent, stale }
+
+int _bytesSignature(Iterable<int>? bytes) {
+  if (bytes == null) return 0;
+  return Object.hashAll(bytes);
+}
+
+int _mapContactSignature(Contact contact) {
+  return Object.hash(
+    contact.publicKeyHex,
+    contact.name,
+    contact.type,
+    contact.flags,
+    contact.pathLength,
+    _bytesSignature(contact.path),
+    contact.pathOverride,
+    _bytesSignature(contact.pathOverrideBytes),
+    contact.latitude,
+    contact.longitude,
+    contact.lastSeen.millisecondsSinceEpoch,
+    contact.lastMessageAt.millisecondsSinceEpoch,
+    contact.isActive,
+    contact.wasPulled,
+  );
+}
+
+class _MapConnectorSnapshot {
+  final MeshCoreConnector connector;
+  final int contactsSignature;
+  final int markerSignature;
+  final int batterySignature;
+  final int uiSignature;
+
+  const _MapConnectorSnapshot({
+    required this.connector,
+    required this.contactsSignature,
+    required this.markerSignature,
+    required this.batterySignature,
+    required this.uiSignature,
+  });
+
+  factory _MapConnectorSnapshot.fromConnector(MeshCoreConnector connector) {
+    final allContacts = connector.allContacts;
+    final contactsSignature = Object.hashAll(
+      allContacts.map(_mapContactSignature),
+    );
+    final batterySignature = Object.hashAll(
+      allContacts
+          .where((contact) => contact.type == advTypeRepeater)
+          .map(
+            (contact) => Object.hash(
+              contact.publicKeyHex,
+              connector.getRepeaterBatteryMillivolts(contact.publicKeyHex),
+            ),
+          ),
+    );
+
+    final markerParts = <Object?>[connector.selfName];
+    for (final contact in connector.contacts) {
+      markerParts.add(contact.publicKeyHex);
+      markerParts.add(contact.name);
+      for (final message in connector.getMessages(contact)) {
+        if (!message.text.trimLeft().startsWith('m:')) continue;
+        markerParts.add(
+          Object.hash(
+            message.messageId,
+            message.text,
+            message.timestamp.millisecondsSinceEpoch,
+            message.isOutgoing,
+          ),
+        );
+      }
+    }
+    for (final channel in connector.channels) {
+      markerParts.add(
+        Object.hash(
+          channel.index,
+          channel.name,
+          channel.isPublicChannel,
+          channel.isEmpty,
+        ),
+      );
+      for (final message in connector.getChannelMessages(channel)) {
+        if (!message.text.trimLeft().startsWith('m:')) continue;
+        markerParts.add(
+          Object.hash(
+            message.messageId,
+            message.text,
+            message.senderName,
+            message.timestamp.millisecondsSinceEpoch,
+          ),
+        );
+      }
+    }
+
+    return _MapConnectorSnapshot(
+      connector: connector,
+      contactsSignature: contactsSignature,
+      markerSignature: Object.hashAll(markerParts),
+      batterySignature: batterySignature,
+      uiSignature: Object.hash(
+        connector.isConnected,
+        connector.selfLatitude,
+        connector.selfLongitude,
+        connector.currentFreqHz,
+        connector.currentBwHz,
+        connector.currentSf,
+        connector.currentTxPower,
+        connector.getTotalContactsUnreadCount(),
+        connector.getTotalChannelsUnreadCount(),
+      ),
+    );
+  }
+
+  @override
+  bool operator ==(Object other) {
+    return other is _MapConnectorSnapshot &&
+        contactsSignature == other.contactsSignature &&
+        markerSignature == other.markerSignature &&
+        batterySignature == other.batterySignature &&
+        uiSignature == other.uiSignature;
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    contactsSignature,
+    markerSignature,
+    batterySignature,
+    uiSignature,
+  );
+}
+
+class _NodeMarkersCacheKey {
+  final int contactsSignature;
+  final int visibleContactsSignature;
+  final int batterySignature;
+  final _Freshness freshness;
+  final double timeFilterHours;
+  final bool keyPrefixEnabled;
+  final String keyPrefix;
+  final bool showDiscoveryContacts;
+  final int batteryChemistrySignature;
+  final bool showLabels;
+  final String? selectedKey;
+  final double zoom;
+  final bool overlapsMode;
+  final bool showRepeaters;
+  final bool showChatNodes;
+  final bool showOtherNodes;
+  final bool isBuildingPathTrace;
+
+  const _NodeMarkersCacheKey({
+    required this.contactsSignature,
+    required this.visibleContactsSignature,
+    required this.batterySignature,
+    required this.freshness,
+    required this.timeFilterHours,
+    required this.keyPrefixEnabled,
+    required this.keyPrefix,
+    required this.showDiscoveryContacts,
+    required this.batteryChemistrySignature,
+    required this.showLabels,
+    required this.selectedKey,
+    required this.zoom,
+    required this.overlapsMode,
+    required this.showRepeaters,
+    required this.showChatNodes,
+    required this.showOtherNodes,
+    required this.isBuildingPathTrace,
+  });
+
+  @override
+  bool operator ==(Object other) {
+    return other is _NodeMarkersCacheKey &&
+        contactsSignature == other.contactsSignature &&
+        visibleContactsSignature == other.visibleContactsSignature &&
+        batterySignature == other.batterySignature &&
+        freshness == other.freshness &&
+        timeFilterHours == other.timeFilterHours &&
+        keyPrefixEnabled == other.keyPrefixEnabled &&
+        keyPrefix == other.keyPrefix &&
+        showDiscoveryContacts == other.showDiscoveryContacts &&
+        batteryChemistrySignature == other.batteryChemistrySignature &&
+        showLabels == other.showLabels &&
+        selectedKey == other.selectedKey &&
+        zoom == other.zoom &&
+        overlapsMode == other.overlapsMode &&
+        showRepeaters == other.showRepeaters &&
+        showChatNodes == other.showChatNodes &&
+        showOtherNodes == other.showOtherNodes &&
+        isBuildingPathTrace == other.isBuildingPathTrace;
+  }
+
+  @override
+  int get hashCode => Object.hash(
+    contactsSignature,
+    visibleContactsSignature,
+    batterySignature,
+    freshness,
+    timeFilterHours,
+    keyPrefixEnabled,
+    keyPrefix,
+    showDiscoveryContacts,
+    batteryChemistrySignature,
+    showLabels,
+    selectedKey,
+    zoom,
+    overlapsMode,
+    showRepeaters,
+    showChatNodes,
+    showOtherNodes,
+    isBuildingPathTrace,
+  );
+}
 
 class _GuessedLocation {
   final Contact contact;

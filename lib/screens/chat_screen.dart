@@ -381,12 +381,14 @@ class _ChatScreenState extends State<ChatScreen> {
           }
           final messageIndex = index;
           Contact contact = _resolveContact(connector);
+          final bool isRoom = contact.type == advTypeRoom;
           final message = reversedMessages[messageIndex];
           String fourByteHex = '';
-          if (contact.type == advTypeRoom) {
+          Contact? roomAuthor;
+          if (isRoom) {
             // Room-server messages carry the original author's 4-byte prefix
             // separately from message.text; use it only for resolving the name.
-            contact = _resolveContactFrom4Bytes(
+            roomAuthor = _resolveContactFrom4Bytes(
               connector,
               message.fourByteRoomContactKey.isEmpty
                   ? Uint8List.fromList([0, 0, 0, 0])
@@ -396,6 +398,9 @@ class _ChatScreenState extends State<ChatScreen> {
                 .map((b) => b.toRadixString(16).padLeft(2, '0'))
                 .join()
                 .toUpperCase();
+            // Only adopt the author identity when we actually know them; never
+            // fall back to the room server's own name as the sender.
+            if (roomAuthor != null) contact = roomAuthor;
           }
 
           return Builder(
@@ -403,11 +408,12 @@ class _ChatScreenState extends State<ChatScreen> {
               final textScale = context.select<ChatTextScaleService, double>(
                 (service) => service.scale,
               );
-              final resolvedContact = _resolveContact(connector);
               final bubble = _MessageBubble(
                 message: message,
-                senderName: resolvedContact.type == advTypeRoom
-                    ? "${contact.name} [$fourByteHex]"
+                senderName: isRoom
+                    ? (roomAuthor != null
+                          ? "${roomAuthor.name} [$fourByteHex]"
+                          : "[$fourByteHex]")
                     : contact.name,
                 sourceId: widget.contact.publicKeyHex,
                 textScale: textScale,
@@ -755,13 +761,17 @@ class _ChatScreenState extends State<ChatScreen> {
     return connector.contacts[_resolveContactIndex];
   }
 
-  Contact _resolveContactFrom4Bytes(
+  Contact? _resolveContactFrom4Bytes(
     MeshCoreConnector connector,
     Uint8List key4Bytes,
   ) {
-    return connector.contacts.firstWhere(
-      (c) => listEquals(c.publicKey.sublist(0, 4), key4Bytes.sublist(0, 4)),
-      orElse: () => widget.contact,
+    // Match against saved contacts first, then nodes only seen via discovery —
+    // a room poster you haven't saved may still be in the discovered list.
+    return connector.allContactsUnfiltered.cast<Contact?>().firstWhere(
+      (c) =>
+          c != null &&
+          listEquals(c.publicKey.sublist(0, 4), key4Bytes.sublist(0, 4)),
+      orElse: () => null,
     );
   }
 
@@ -1049,7 +1059,11 @@ class _ChatScreenState extends State<ChatScreen> {
     if (message.isOutgoing) {
       senderName = connector.selfName ?? context.l10n.chat_me;
     } else if (_resolveContact(connector).type == advTypeRoom) {
-      senderName = "${contact.name} [$fourByteHex]";
+      // An unresolved author leaves `contact` as the room server itself; show
+      // only the prefix rather than mislabeling the post with the room's name.
+      senderName = contact.type == advTypeRoom
+          ? "[$fourByteHex]"
+          : "${contact.name} [$fourByteHex]";
     } else {
       senderName = _resolveContact(connector).name;
     }
