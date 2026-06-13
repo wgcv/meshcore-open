@@ -4459,24 +4459,27 @@ class MeshCoreConnector extends ChangeNotifier {
       secondsSinceLastRx: secSinceRx,
     );
     if (mlTimeout != null) {
-      // Use device est_timeout as an additional ceiling when available —
-      // the firmware computed it from real airtime, so it's better than
-      // a physics guess built on a 50 ms fallback.
-      final ceiling = deviceTimeoutMs != null && deviceTimeoutMs > physicsMin
+      // Use device est_timeout as a baseline floor when available —
+      // the firmware computed it from real airtime. Let the learned ML
+      // estimate widen above it up to the hard cap, but never below it.
+      final floor = deviceTimeoutMs != null && deviceTimeoutMs > physicsMin
           ? deviceTimeoutMs.clamp(physicsMin, _hardMaxTimeoutMs)
-          : physicsMax;
+          : physicsMin.clamp(0, _hardMaxTimeoutMs);
       if (pathLength < 0) {
-        // Flood: trust ML, only enforce firmware formula as floor
-        if (mlTimeout < physicsMin) {
-          return physicsMin.clamp(0, _hardMaxTimeoutMs);
+        // Flood: trust ML, only enforce firmware estimate as floor
+        if (mlTimeout < floor) {
+          return floor.clamp(0, _hardMaxTimeoutMs);
         }
       }
-      return mlTimeout.clamp(physicsMin, ceiling).clamp(0, _hardMaxTimeoutMs);
+      return mlTimeout.clamp(floor, _hardMaxTimeoutMs);
     }
 
     // No ML data — prefer device est_timeout (it used real airtime), then physics.
+    // Cap the floor to the hard maximum so slow-flood physicsMin cannot exceed
+    // the upper bound and make clamp() throw.
     if (deviceTimeoutMs != null && deviceTimeoutMs > 0) {
-      return deviceTimeoutMs.clamp(physicsMin, _hardMaxTimeoutMs);
+      final floor = physicsMin.clamp(0, _hardMaxTimeoutMs);
+      return deviceTimeoutMs.clamp(floor, _hardMaxTimeoutMs);
     }
     return physicsMax.clamp(0, _hardMaxTimeoutMs);
   }
