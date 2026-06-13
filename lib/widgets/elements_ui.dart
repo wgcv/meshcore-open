@@ -60,10 +60,7 @@ class _FeatureToggleRow extends State<FeatureToggleRow> {
           Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Switch(
-                value: widget.value,
-                onChanged: widget.onChanged,
-              ),
+              Switch(value: widget.value, onChanged: widget.onChanged),
               if (widget.hasRefreshing) ...[
                 const SizedBox(width: 4),
                 widget.isRefreshing

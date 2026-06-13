@@ -605,7 +605,8 @@ class _RepeaterStatusScreenState extends State<RepeaterStatusScreen> {
     final batteryMv =
         connector.getRepeaterBatteryMillivolts(widget.repeater.publicKeyHex) ??
         _batteryMv;
-    if (batteryMv == null) return Theme.of(context).colorScheme.onSurfaceVariant;
+    if (batteryMv == null)
+      return Theme.of(context).colorScheme.onSurfaceVariant;
     final percent = estimateBatteryPercentFromMillivolts(
       batteryMv,
       _batteryChemistry(),
@@ -624,12 +625,14 @@ class _RepeaterStatusScreenState extends State<RepeaterStatusScreen> {
       crossAxisSpacing: 8,
       childAspectRatio: 2.2,
       children: items
-          .map((item) => StatTile(
-                icon: item.icon,
-                label: item.label,
-                value: item.value,
-                color: item.color,
-              ))
+          .map(
+            (item) => StatTile(
+              icon: item.icon,
+              label: item.label,
+              value: item.value,
+              color: item.color,
+            ),
+          )
           .toList(),
     );
   }

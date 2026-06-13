@@ -332,19 +332,12 @@ class _RepeaterLoginDialogState extends State<RepeaterLoginDialog> {
                     Row(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        Icon(
-                          Icons.error,
-                          size: 18,
-                          color: scheme.error,
-                        ),
+                        Icon(Icons.error, size: 18, color: scheme.error),
                         const SizedBox(width: 8),
                         Expanded(
                           child: Text(
                             _loginError!,
-                            style: TextStyle(
-                              color: scheme.error,
-                              fontSize: 13,
-                            ),
+                            style: TextStyle(color: scheme.error, fontSize: 13),
                           ),
                         ),
                       ],
@@ -435,9 +428,7 @@ class _RepeaterLoginDialogState extends State<RepeaterLoginDialog> {
                                 Icon(
                                   Icons.auto_mode,
                                   size: 20,
-                                  color: !isFloodMode
-                                      ? scheme.primary
-                                      : null,
+                                  color: !isFloodMode ? scheme.primary : null,
                                 ),
                                 const SizedBox(width: 8),
                                 Text(
@@ -458,9 +449,7 @@ class _RepeaterLoginDialogState extends State<RepeaterLoginDialog> {
                                 Icon(
                                   Icons.waves,
                                   size: 20,
-                                  color: isFloodMode
-                                      ? scheme.primary
-                                      : null,
+                                  color: isFloodMode ? scheme.primary : null,
                                 ),
                                 const SizedBox(width: 8),
                                 Text(

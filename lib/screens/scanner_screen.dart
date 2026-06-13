@@ -482,30 +482,30 @@ class _ConnectionStatusHeader extends StatelessWidget {
 
     final (String label, Color color, bool pulse) = switch (connector.state) {
       MeshCoreConnectionState.scanning => (
-          l10n.scanner_scanning,
-          MeshPalette.blue,
-          true,
-        ),
+        l10n.scanner_scanning,
+        MeshPalette.blue,
+        true,
+      ),
       MeshCoreConnectionState.connecting => (
-          l10n.scanner_connecting,
-          MeshPalette.warn,
-          true,
-        ),
+        l10n.scanner_connecting,
+        MeshPalette.warn,
+        true,
+      ),
       MeshCoreConnectionState.connected => (
-          l10n.scanner_connectedTo(connector.deviceDisplayName),
-          MeshPalette.signal,
-          false,
-        ),
+        l10n.scanner_connectedTo(connector.deviceDisplayName),
+        MeshPalette.signal,
+        false,
+      ),
       MeshCoreConnectionState.disconnecting => (
-          l10n.scanner_disconnecting,
-          MeshPalette.warn,
-          true,
-        ),
+        l10n.scanner_disconnecting,
+        MeshPalette.warn,
+        true,
+      ),
       MeshCoreConnectionState.disconnected => (
-          l10n.scanner_notConnected,
-          scheme.onSurfaceVariant,
-          false,
-        ),
+        l10n.scanner_notConnected,
+        scheme.onSurfaceVariant,
+        false,
+      ),
     };
 
     return Padding(
@@ -515,11 +515,7 @@ class _ConnectionStatusHeader extends StatelessWidget {
         child: Align(
           key: ValueKey(connector.state),
           alignment: Alignment.centerLeft,
-          child: StatusChip(
-            label: label,
-            color: color,
-            pulse: pulse,
-          ),
+          child: StatusChip(label: label, color: color, pulse: pulse),
         ),
       ),
     );

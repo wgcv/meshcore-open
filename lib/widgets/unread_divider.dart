@@ -15,10 +15,7 @@ class UnreadDivider extends StatelessWidget {
       child: Row(
         children: [
           Expanded(
-            child: Container(
-              height: 1,
-              color: color.withValues(alpha: 0.25),
-            ),
+            child: Container(height: 1, color: color.withValues(alpha: 0.25)),
           ),
           const SizedBox(width: 10),
           Container(
@@ -39,10 +36,7 @@ class UnreadDivider extends StatelessWidget {
           ),
           const SizedBox(width: 10),
           Expanded(
-            child: Container(
-              height: 1,
-              color: color.withValues(alpha: 0.25),
-            ),
+            child: Container(height: 1, color: color.withValues(alpha: 0.25)),
           ),
         ],
       ),

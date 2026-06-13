@@ -30,7 +30,9 @@ class DeviceTile extends StatelessWidget {
     final name = device.platformName.isNotEmpty
         ? device.platformName
         : scanResult.advertisementData.advName;
-    final displayName = name.isNotEmpty ? name : context.l10n.common_unknownDevice;
+    final displayName = name.isNotEmpty
+        ? name
+        : context.l10n.common_unknownDevice;
     final mac = device.remoteId.toString();
     final scheme = Theme.of(context).colorScheme;
 
@@ -55,11 +57,7 @@ class DeviceTile extends StatelessWidget {
       padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 12),
       child: Row(
         children: [
-          AvatarCircle(
-            name: displayName,
-            size: 42,
-            icon: Icons.router,
-          ),
+          AvatarCircle(name: displayName, size: 42, icon: Icons.router),
           const SizedBox(width: 12),
           Expanded(
             child: Column(
@@ -107,10 +105,7 @@ class DeviceTile extends StatelessWidget {
                 const SizedBox(height: 3),
                 Text(
                   '$rssi dBm',
-                  style: MeshTheme.mono(
-                    fontSize: 10,
-                    color: signalUi.color,
-                  ),
+                  style: MeshTheme.mono(fontSize: 10, color: signalUi.color),
                 ),
               ],
             ),

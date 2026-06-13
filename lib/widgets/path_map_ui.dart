@@ -160,10 +160,7 @@ List<Polyline> buildPacketTrailPolylines(
 }
 
 /// The moving packet dot and the pulse ring at the hop it just reached.
-List<Marker> buildPacketMarkers(
-  PathPlaybackController playback,
-  Color color,
-) {
+List<Marker> buildPacketMarkers(PathPlaybackController playback, Color color) {
   if (!playback.started || !playback.hasPath) return const [];
   final markers = <Marker>[];
 
@@ -412,7 +409,9 @@ class PathAnimationControls extends StatelessWidget {
               ),
               controlButton(
                 icon: playback.playing ? Icons.pause : Icons.play_arrow,
-                tooltip: playback.playing ? l10n.pathMap_pause : l10n.pathMap_play,
+                tooltip: playback.playing
+                    ? l10n.pathMap_pause
+                    : l10n.pathMap_play,
                 onPressed: enabled ? playback.togglePlay : null,
               ),
               controlButton(
@@ -635,7 +634,10 @@ class PathSummaryList extends StatelessWidget {
                   parts.join(' · '),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
-                  style: MeshTheme.mono(fontSize: 10.5, color: MeshPalette.ink3),
+                  style: MeshTheme.mono(
+                    fontSize: 10.5,
+                    color: MeshPalette.ink3,
+                  ),
                 ),
               ),
             ),

@@ -30,87 +30,103 @@ class AppSettingsScreen extends StatelessWidget {
       ),
       body: SafeArea(
         top: false,
-        child: Consumer3<AppSettingsService, MeshCoreConnector,
-            TranslationService>(
-          builder: (
-            context,
-            settingsService,
-            connector,
-            translationService,
-            child,
-          ) {
-            return ListView(
-              padding: const EdgeInsets.fromLTRB(0, 8, 0, 24),
-              children: [
-                // APPEARANCE
-                SectionHeader(context.l10n.appSettings_appearance),
-                MeshCard(
-                  padding: EdgeInsets.zero,
-                  child: _buildAppearanceContent(context, settingsService),
-                ),
-
-                // NOTIFICATIONS
-                SectionHeader(context.l10n.appSettings_notifications),
-                MeshCard(
-                  padding: EdgeInsets.zero,
-                  child: _buildNotificationsContent(context, settingsService),
-                ),
-
-                // MESSAGING
-                SectionHeader(context.l10n.appSettings_messaging),
-                MeshCard(
-                  padding: EdgeInsets.zero,
-                  child: _buildMessagingContent(context, settingsService),
-                ),
-
-                // BATTERY
-                SectionHeader(context.l10n.appSettings_battery),
-                MeshCard(
-                  padding: const EdgeInsets.fromLTRB(16, 4, 16, 16),
-                  child: _buildBatteryContent(
+        child:
+            Consumer3<
+              AppSettingsService,
+              MeshCoreConnector,
+              TranslationService
+            >(
+              builder:
+                  (
                     context,
                     settingsService,
                     connector,
-                  ),
-                ),
+                    translationService,
+                    child,
+                  ) {
+                    return ListView(
+                      padding: const EdgeInsets.fromLTRB(0, 8, 0, 24),
+                      children: [
+                        // APPEARANCE
+                        SectionHeader(context.l10n.appSettings_appearance),
+                        MeshCard(
+                          padding: EdgeInsets.zero,
+                          child: _buildAppearanceContent(
+                            context,
+                            settingsService,
+                          ),
+                        ),
 
-                // MAP
-                SectionHeader(context.l10n.appSettings_mapDisplay),
-                MeshCard(
-                  padding: EdgeInsets.zero,
-                  child: _buildMapContent(context, settingsService),
-                ),
+                        // NOTIFICATIONS
+                        SectionHeader(context.l10n.appSettings_notifications),
+                        MeshCard(
+                          padding: EdgeInsets.zero,
+                          child: _buildNotificationsContent(
+                            context,
+                            settingsService,
+                          ),
+                        ),
 
-                // TRANSLATION (non-web only)
-                if (!kIsWeb) ...[
-                  SectionHeader(context.l10n.translation_title),
-                  MeshCard(
-                    padding: EdgeInsets.zero,
-                    child: _buildTranslationContent(
-                      context,
-                      settingsService,
-                      translationService,
-                    ),
-                  ),
-                ],
+                        // MESSAGING
+                        SectionHeader(context.l10n.appSettings_messaging),
+                        MeshCard(
+                          padding: EdgeInsets.zero,
+                          child: _buildMessagingContent(
+                            context,
+                            settingsService,
+                          ),
+                        ),
 
-                // CYR2LAT
-                SectionHeader(context.l10n.channels_cyr2latSettingsHeading),
-                MeshCard(
-                  padding: const EdgeInsets.fromLTRB(16, 4, 16, 16),
-                  child: _buildCyr2LatContent(context, settingsService),
-                ),
+                        // BATTERY
+                        SectionHeader(context.l10n.appSettings_battery),
+                        MeshCard(
+                          padding: const EdgeInsets.fromLTRB(16, 4, 16, 16),
+                          child: _buildBatteryContent(
+                            context,
+                            settingsService,
+                            connector,
+                          ),
+                        ),
 
-                // DEBUG
-                SectionHeader(context.l10n.appSettings_debugCard),
-                MeshCard(
-                  padding: EdgeInsets.zero,
-                  child: _buildDebugContent(context, settingsService),
-                ),
-              ],
-            );
-          },
-        ),
+                        // MAP
+                        SectionHeader(context.l10n.appSettings_mapDisplay),
+                        MeshCard(
+                          padding: EdgeInsets.zero,
+                          child: _buildMapContent(context, settingsService),
+                        ),
+
+                        // TRANSLATION (non-web only)
+                        if (!kIsWeb) ...[
+                          SectionHeader(context.l10n.translation_title),
+                          MeshCard(
+                            padding: EdgeInsets.zero,
+                            child: _buildTranslationContent(
+                              context,
+                              settingsService,
+                              translationService,
+                            ),
+                          ),
+                        ],
+
+                        // CYR2LAT
+                        SectionHeader(
+                          context.l10n.channels_cyr2latSettingsHeading,
+                        ),
+                        MeshCard(
+                          padding: const EdgeInsets.fromLTRB(16, 4, 16, 16),
+                          child: _buildCyr2LatContent(context, settingsService),
+                        ),
+
+                        // DEBUG
+                        SectionHeader(context.l10n.appSettings_debugCard),
+                        MeshCard(
+                          padding: EdgeInsets.zero,
+                          child: _buildDebugContent(context, settingsService),
+                        ),
+                      ],
+                    );
+                  },
+            ),
       ),
     );
   }
@@ -317,8 +333,7 @@ class AppSettingsScreen extends StatelessWidget {
           ),
           value: settingsService.settings.notifyOnNewChannelMessage,
           onChanged: notifEnabled
-              ? (value) =>
-                  settingsService.setNotifyOnNewChannelMessage(value)
+              ? (value) => settingsService.setNotifyOnNewChannelMessage(value)
               : null,
         ),
         const Divider(height: 1, indent: 16),
@@ -367,9 +382,7 @@ class AppSettingsScreen extends StatelessWidget {
           ),
           secondary: const Icon(Icons.refresh_outlined, size: 20),
           title: Text(context.l10n.appSettings_clearPathOnMaxRetry),
-          subtitle: Text(
-            context.l10n.appSettings_clearPathOnMaxRetrySubtitle,
-          ),
+          subtitle: Text(context.l10n.appSettings_clearPathOnMaxRetrySubtitle),
           value: settingsService.settings.clearPathOnMaxRetry,
           onChanged: (value) {
             settingsService.setClearPathOnMaxRetry(value);
@@ -472,9 +485,7 @@ class AppSettingsScreen extends StatelessWidget {
                               min: 0.5,
                               max: 5.0,
                               divisions: 9,
-                              label: settingsService
-                                  .settings
-                                  .initialRouteWeight
+                              label: settingsService.settings.initialRouteWeight
                                   .toStringAsFixed(1),
                               onChanged: (value) =>
                                   settingsService.setInitialRouteWeight(value),
@@ -485,9 +496,7 @@ class AppSettingsScreen extends StatelessWidget {
                       const Divider(height: 1),
                       ListTile(
                         title: Text(
-                          context
-                              .l10n
-                              .appSettings_routeWeightSuccessIncrement,
+                          context.l10n.appSettings_routeWeightSuccessIncrement,
                         ),
                         subtitle: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -517,9 +526,7 @@ class AppSettingsScreen extends StatelessWidget {
                       const Divider(height: 1),
                       ListTile(
                         title: Text(
-                          context
-                              .l10n
-                              .appSettings_routeWeightFailureDecrement,
+                          context.l10n.appSettings_routeWeightFailureDecrement,
                         ),
                         subtitle: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
@@ -548,9 +555,7 @@ class AppSettingsScreen extends StatelessWidget {
                       ),
                       const Divider(height: 1),
                       ListTile(
-                        title: Text(
-                          context.l10n.appSettings_maxMessageRetries,
-                        ),
+                        title: Text(context.l10n.appSettings_maxMessageRetries),
                         subtitle: Column(
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
@@ -560,16 +565,12 @@ class AppSettingsScreen extends StatelessWidget {
                                   .appSettings_maxMessageRetriesSubtitle,
                             ),
                             Slider(
-                              value: settingsService
-                                  .settings
-                                  .maxMessageRetries
+                              value: settingsService.settings.maxMessageRetries
                                   .toDouble(),
                               min: 2,
                               max: 10,
                               divisions: 8,
-                              label: settingsService
-                                  .settings
-                                  .maxMessageRetries
+                              label: settingsService.settings.maxMessageRetries
                                   .toString(),
                               onChanged: (value) => settingsService
                                   .setMaxMessageRetries(value.toInt()),
@@ -590,9 +591,7 @@ class AppSettingsScreen extends StatelessWidget {
           ),
           secondary: const Icon(Icons.location_searching, size: 20),
           title: Text(context.l10n.appSettings_enableMessageTracing),
-          subtitle: Text(
-            context.l10n.appSettings_enableMessageTracingSubtitle,
-          ),
+          subtitle: Text(context.l10n.appSettings_enableMessageTracingSubtitle),
           value: settingsService.settings.enableMessageTracing,
           onChanged: (value) {
             settingsService.setEnableMessageTracing(value);
@@ -765,9 +764,7 @@ class AppSettingsScreen extends StatelessWidget {
                         settingsService.settings.mapTimeFilterHours == 0
                             ? context.l10n.appSettings_timeFilterShowAll
                             : context.l10n.appSettings_timeFilterShowLast(
-                                settingsService
-                                    .settings
-                                    .mapTimeFilterHours
+                                settingsService.settings.mapTimeFilterHours
                                     .toInt(),
                               ),
                         style: textTheme.bodySmall?.copyWith(
@@ -925,15 +922,17 @@ class AppSettingsScreen extends StatelessWidget {
           title: Text(
             context.l10n.translation_autoIncomingTitle,
             style: TextStyle(
-              color:
-                  translationEnabled ? null : Theme.of(context).disabledColor,
+              color: translationEnabled
+                  ? null
+                  : Theme.of(context).disabledColor,
             ),
           ),
           subtitle: Text(
             context.l10n.translation_autoIncomingSubtitle,
             style: TextStyle(
-              color:
-                  translationEnabled ? null : Theme.of(context).disabledColor,
+              color: translationEnabled
+                  ? null
+                  : Theme.of(context).disabledColor,
             ),
           ),
           value: settings.autoTranslateIncomingMessages,
@@ -955,15 +954,17 @@ class AppSettingsScreen extends StatelessWidget {
           title: Text(
             context.l10n.translation_composerTitle,
             style: TextStyle(
-              color:
-                  translationEnabled ? null : Theme.of(context).disabledColor,
+              color: translationEnabled
+                  ? null
+                  : Theme.of(context).disabledColor,
             ),
           ),
           subtitle: Text(
             context.l10n.translation_composerSubtitle,
             style: TextStyle(
-              color:
-                  translationEnabled ? null : Theme.of(context).disabledColor,
+              color: translationEnabled
+                  ? null
+                  : Theme.of(context).disabledColor,
             ),
           ),
           value: settings.composerTranslationEnabled,
@@ -973,17 +974,12 @@ class AppSettingsScreen extends StatelessWidget {
         ),
         const Divider(height: 1, indent: 16),
         InkWell(
-          onTap: () =>
-              _showTranslationLanguageDialog(context, settingsService),
+          onTap: () => _showTranslationLanguageDialog(context, settingsService),
           child: Padding(
             padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
             child: Row(
               children: [
-                Icon(
-                  Icons.language,
-                  size: 20,
-                  color: scheme.onSurfaceVariant,
-                ),
+                Icon(Icons.language, size: 20, color: scheme.onSurfaceVariant),
                 const SizedBox(width: 12),
                 Expanded(
                   child: Column(
@@ -1106,7 +1102,8 @@ class AppSettingsScreen extends StatelessWidget {
                 ClipRRect(
                   borderRadius: BorderRadius.circular(2),
                   child: LinearProgressIndicator(
-                    value: translationService.downloadFileName ==
+                    value:
+                        translationService.downloadFileName ==
                             'Merging chunks...'
                         ? null
                         : translationService.downloadProgress,
@@ -1151,8 +1148,7 @@ class AppSettingsScreen extends StatelessWidget {
                         const SizedBox(width: 12),
                         Expanded(
                           child: InkWell(
-                            borderRadius:
-                                BorderRadius.circular(MeshRadii.xs),
+                            borderRadius: BorderRadius.circular(MeshRadii.xs),
                             onTap: () => settingsService
                                 .setTranslationSelectedModelId(model.id),
                             child: Column(
@@ -1194,9 +1190,7 @@ class AppSettingsScreen extends StatelessWidget {
                 const SizedBox(height: 8),
                 Text(
                   translationService.lastError!,
-                  style: TextStyle(
-                    color: Theme.of(context).colorScheme.error,
-                  ),
+                  style: TextStyle(color: Theme.of(context).colorScheme.error),
                 ),
               ],
             ],
@@ -1373,8 +1367,7 @@ class AppSettingsScreen extends StatelessWidget {
                   ctx,
                   label: context.l10n.appSettings_languageEn,
                   value: 'en',
-                  selected:
-                      settingsService.settings.languageOverride == 'en',
+                  selected: settingsService.settings.languageOverride == 'en',
                   onTap: () {
                     settingsService.setLanguageOverride('en');
                     Navigator.pop(ctx);
@@ -1384,8 +1377,7 @@ class AppSettingsScreen extends StatelessWidget {
                   ctx,
                   label: context.l10n.appSettings_languageFr,
                   value: 'fr',
-                  selected:
-                      settingsService.settings.languageOverride == 'fr',
+                  selected: settingsService.settings.languageOverride == 'fr',
                   onTap: () {
                     settingsService.setLanguageOverride('fr');
                     Navigator.pop(ctx);
@@ -1395,8 +1387,7 @@ class AppSettingsScreen extends StatelessWidget {
                   ctx,
                   label: context.l10n.appSettings_languageEs,
                   value: 'es',
-                  selected:
-                      settingsService.settings.languageOverride == 'es',
+                  selected: settingsService.settings.languageOverride == 'es',
                   onTap: () {
                     settingsService.setLanguageOverride('es');
                     Navigator.pop(ctx);
@@ -1406,8 +1397,7 @@ class AppSettingsScreen extends StatelessWidget {
                   ctx,
                   label: context.l10n.appSettings_languageDe,
                   value: 'de',
-                  selected:
-                      settingsService.settings.languageOverride == 'de',
+                  selected: settingsService.settings.languageOverride == 'de',
                   onTap: () {
                     settingsService.setLanguageOverride('de');
                     Navigator.pop(ctx);
@@ -1417,8 +1407,7 @@ class AppSettingsScreen extends StatelessWidget {
                   ctx,
                   label: context.l10n.appSettings_languagePl,
                   value: 'pl',
-                  selected:
-                      settingsService.settings.languageOverride == 'pl',
+                  selected: settingsService.settings.languageOverride == 'pl',
                   onTap: () {
                     settingsService.setLanguageOverride('pl');
                     Navigator.pop(ctx);
@@ -1428,8 +1417,7 @@ class AppSettingsScreen extends StatelessWidget {
                   ctx,
                   label: context.l10n.appSettings_languageSl,
                   value: 'sl',
-                  selected:
-                      settingsService.settings.languageOverride == 'sl',
+                  selected: settingsService.settings.languageOverride == 'sl',
                   onTap: () {
                     settingsService.setLanguageOverride('sl');
                     Navigator.pop(ctx);
@@ -1439,8 +1427,7 @@ class AppSettingsScreen extends StatelessWidget {
                   ctx,
                   label: context.l10n.appSettings_languagePt,
                   value: 'pt',
-                  selected:
-                      settingsService.settings.languageOverride == 'pt',
+                  selected: settingsService.settings.languageOverride == 'pt',
                   onTap: () {
                     settingsService.setLanguageOverride('pt');
                     Navigator.pop(ctx);
@@ -1450,8 +1437,7 @@ class AppSettingsScreen extends StatelessWidget {
                   ctx,
                   label: context.l10n.appSettings_languageIt,
                   value: 'it',
-                  selected:
-                      settingsService.settings.languageOverride == 'it',
+                  selected: settingsService.settings.languageOverride == 'it',
                   onTap: () {
                     settingsService.setLanguageOverride('it');
                     Navigator.pop(ctx);
@@ -1461,8 +1447,7 @@ class AppSettingsScreen extends StatelessWidget {
                   ctx,
                   label: context.l10n.appSettings_languageZh,
                   value: 'zh',
-                  selected:
-                      settingsService.settings.languageOverride == 'zh',
+                  selected: settingsService.settings.languageOverride == 'zh',
                   onTap: () {
                     settingsService.setLanguageOverride('zh');
                     Navigator.pop(ctx);
@@ -1472,8 +1457,7 @@ class AppSettingsScreen extends StatelessWidget {
                   ctx,
                   label: context.l10n.appSettings_languageSv,
                   value: 'sv',
-                  selected:
-                      settingsService.settings.languageOverride == 'sv',
+                  selected: settingsService.settings.languageOverride == 'sv',
                   onTap: () {
                     settingsService.setLanguageOverride('sv');
                     Navigator.pop(ctx);
@@ -1483,8 +1467,7 @@ class AppSettingsScreen extends StatelessWidget {
                   ctx,
                   label: context.l10n.appSettings_languageNl,
                   value: 'nl',
-                  selected:
-                      settingsService.settings.languageOverride == 'nl',
+                  selected: settingsService.settings.languageOverride == 'nl',
                   onTap: () {
                     settingsService.setLanguageOverride('nl');
                     Navigator.pop(ctx);
@@ -1494,8 +1477,7 @@ class AppSettingsScreen extends StatelessWidget {
                   ctx,
                   label: context.l10n.appSettings_languageSk,
                   value: 'sk',
-                  selected:
-                      settingsService.settings.languageOverride == 'sk',
+                  selected: settingsService.settings.languageOverride == 'sk',
                   onTap: () {
                     settingsService.setLanguageOverride('sk');
                     Navigator.pop(ctx);
@@ -1505,8 +1487,7 @@ class AppSettingsScreen extends StatelessWidget {
                   ctx,
                   label: context.l10n.appSettings_languageBg,
                   value: 'bg',
-                  selected:
-                      settingsService.settings.languageOverride == 'bg',
+                  selected: settingsService.settings.languageOverride == 'bg',
                   onTap: () {
                     settingsService.setLanguageOverride('bg');
                     Navigator.pop(ctx);
@@ -1516,8 +1497,7 @@ class AppSettingsScreen extends StatelessWidget {
                   ctx,
                   label: context.l10n.appSettings_languageRu,
                   value: 'ru',
-                  selected:
-                      settingsService.settings.languageOverride == 'ru',
+                  selected: settingsService.settings.languageOverride == 'ru',
                   onTap: () {
                     settingsService.setLanguageOverride('ru');
                     Navigator.pop(ctx);
@@ -1527,8 +1507,7 @@ class AppSettingsScreen extends StatelessWidget {
                   ctx,
                   label: context.l10n.appSettings_languageUk,
                   value: 'uk',
-                  selected:
-                      settingsService.settings.languageOverride == 'uk',
+                  selected: settingsService.settings.languageOverride == 'uk',
                   onTap: () {
                     settingsService.setLanguageOverride('uk');
                     Navigator.pop(ctx);
@@ -1538,8 +1517,7 @@ class AppSettingsScreen extends StatelessWidget {
                   ctx,
                   label: context.l10n.appSettings_languageHu,
                   value: 'hu',
-                  selected:
-                      settingsService.settings.languageOverride == 'hu',
+                  selected: settingsService.settings.languageOverride == 'hu',
                   onTap: () {
                     settingsService.setLanguageOverride('hu');
                     Navigator.pop(ctx);
@@ -1549,8 +1527,7 @@ class AppSettingsScreen extends StatelessWidget {
                   ctx,
                   label: context.l10n.appSettings_languageJa,
                   value: 'ja',
-                  selected:
-                      settingsService.settings.languageOverride == 'ja',
+                  selected: settingsService.settings.languageOverride == 'ja',
                   onTap: () {
                     settingsService.setLanguageOverride('ja');
                     Navigator.pop(ctx);
@@ -1560,8 +1537,7 @@ class AppSettingsScreen extends StatelessWidget {
                   ctx,
                   label: context.l10n.appSettings_languageKo,
                   value: 'ko',
-                  selected:
-                      settingsService.settings.languageOverride == 'ko',
+                  selected: settingsService.settings.languageOverride == 'ko',
                   onTap: () {
                     settingsService.setLanguageOverride('ko');
                     Navigator.pop(ctx);
@@ -1660,8 +1636,7 @@ class AppSettingsScreen extends StatelessWidget {
             ctx,
             label: context.l10n.appSettings_unitsMetric,
             value: UnitSystem.metric,
-            selected:
-                settingsService.settings.unitSystem == UnitSystem.metric,
+            selected: settingsService.settings.unitSystem == UnitSystem.metric,
             onTap: () {
               settingsService.setUnitSystem(UnitSystem.metric);
               Navigator.pop(ctx);
@@ -1874,9 +1849,7 @@ class AppSettingsScreen extends StatelessWidget {
               if (nameController.text.isEmpty) {
                 showDismissibleSnackBar(
                   context,
-                  content: Text(
-                    context.l10n.settings_cyr2latProfileNameEmpty,
-                  ),
+                  content: Text(context.l10n.settings_cyr2latProfileNameEmpty),
                 );
                 return;
               }
@@ -1964,9 +1937,7 @@ class AppSettingsScreen extends StatelessWidget {
               if (nameController.text.isEmpty) {
                 showDismissibleSnackBar(
                   context,
-                  content: Text(
-                    context.l10n.settings_cyr2latProfileNameEmpty,
-                  ),
+                  content: Text(context.l10n.settings_cyr2latProfileNameEmpty),
                 );
                 return;
               }

@@ -1574,7 +1574,8 @@ class _ContactTile extends StatelessWidget {
       case advTypeSensor:
         return const Color(0xFF4ACCC4); // teal
       default:
-        return MeshPalette.blue; // chat — AvatarCircle handles deterministic hue
+        return MeshPalette
+            .blue; // chat — AvatarCircle handles deterministic hue
     }
   }
 
@@ -1662,7 +1663,9 @@ class _ContactTile extends StatelessWidget {
                         Icon(
                           Icons.location_on,
                           size: 13,
-                          color: scheme.onSurfaceVariant.withValues(alpha: 0.55),
+                          color: scheme.onSurfaceVariant.withValues(
+                            alpha: 0.55,
+                          ),
                         ),
                       ],
                     ],

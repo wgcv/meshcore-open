@@ -801,9 +801,7 @@ class _PathTraceMapScreenState extends State<PathTraceMapScreen>
       final selected = _selectedPath;
       return selected != null ? [selected] : const [];
     }
-    return _displayPaths
-        .where((p) => !_hiddenPathIds.contains(p.id))
-        .toList();
+    return _displayPaths.where((p) => !_hiddenPathIds.contains(p.id)).toList();
   }
 
   /// Updates the playback path, but only when the selected path's geometry
@@ -1249,7 +1247,8 @@ class _PathTraceMapScreenState extends State<PathTraceMapScreen>
     final hex = hop.toRadixString(16).padLeft(2, '0').toUpperCase();
     showSharedNodeSheet(
       context,
-      title: '$hex: ${contact?.name ?? context.l10n.channelPath_unknownRepeater}',
+      title:
+          '$hex: ${contact?.name ?? context.l10n.channelPath_unknownRepeater}',
       paths: paths,
       onSelect: _selectPath,
     );
@@ -1539,9 +1538,8 @@ class _PathTraceMapScreenState extends State<PathTraceMapScreen>
                         tooltip: _panelCollapsed
                             ? l10n.pathMap_expandPanel
                             : l10n.pathMap_collapsePanel,
-                        onPressed: () => setState(
-                          () => _panelCollapsed = !_panelCollapsed,
-                        ),
+                        onPressed: () =>
+                            setState(() => _panelCollapsed = !_panelCollapsed),
                       ),
                     ],
                   ),

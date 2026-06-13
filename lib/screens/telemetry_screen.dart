@@ -604,66 +604,68 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
             crossAxisAlignment: CrossAxisAlignment.stretch,
             children: [
               _buildAutoRefreshNumberField(
-              controller: _autoRefreshIntervalController,
-              label: l10n.common_interval,
-              min: _autoRefreshMinIntervalSeconds,
-              max: _autoRefreshMaxIntervalSeconds,
-              fallback: _autoRefreshIntervalSeconds,
-            ),
-            const SizedBox(height: 12),
-            _buildAutoRefreshNumberField(
-              controller: _autoRefreshQuantityController,
-              label: l10n.telemetry_autoFetchQuantity,
-              min: _autoRefreshMinQuantity,
-              max: _autoRefreshMaxQuantity,
-              fallback: _autoRefreshDefaultQuantity,
-            ),
-            if (counterText != null) ...[
-              const SizedBox(height: 12),
-              Text(
-                counterText,
-                textAlign: TextAlign.center,
-                style: TextStyle(
-                  color: _autoRefreshLastAttemptFailed
-                      ? Theme.of(context).colorScheme.error
-                      : null,
-                  fontWeight: FontWeight.w600,
-                ),
+                controller: _autoRefreshIntervalController,
+                label: l10n.common_interval,
+                min: _autoRefreshMinIntervalSeconds,
+                max: _autoRefreshMaxIntervalSeconds,
+                fallback: _autoRefreshIntervalSeconds,
               ),
-            ],
-            const SizedBox(height: 12),
-            FilledButton(
-              onPressed: _isLoading && !_isAutoRefreshEnabled
-                  ? null
-                  : _toggleAutoRefresh,
-              child: _isAutoRefreshEnabled
-                  ? SizedBox(
-                      width: double.infinity,
-                      height: 20,
-                      child: Stack(
-                        alignment: Alignment.center,
-                        children: [
-                          Center(child: Text(l10n.common_disable)),
-                          Positioned(
-                            right: 0,
-                            child: SizedBox(
-                              width: 18,
-                              height: 18,
-                              child: CircularProgressIndicator(
-                                strokeWidth: 2,
-                                color: Theme.of(context).colorScheme.onPrimary,
+              const SizedBox(height: 12),
+              _buildAutoRefreshNumberField(
+                controller: _autoRefreshQuantityController,
+                label: l10n.telemetry_autoFetchQuantity,
+                min: _autoRefreshMinQuantity,
+                max: _autoRefreshMaxQuantity,
+                fallback: _autoRefreshDefaultQuantity,
+              ),
+              if (counterText != null) ...[
+                const SizedBox(height: 12),
+                Text(
+                  counterText,
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    color: _autoRefreshLastAttemptFailed
+                        ? Theme.of(context).colorScheme.error
+                        : null,
+                    fontWeight: FontWeight.w600,
+                  ),
+                ),
+              ],
+              const SizedBox(height: 12),
+              FilledButton(
+                onPressed: _isLoading && !_isAutoRefreshEnabled
+                    ? null
+                    : _toggleAutoRefresh,
+                child: _isAutoRefreshEnabled
+                    ? SizedBox(
+                        width: double.infinity,
+                        height: 20,
+                        child: Stack(
+                          alignment: Alignment.center,
+                          children: [
+                            Center(child: Text(l10n.common_disable)),
+                            Positioned(
+                              right: 0,
+                              child: SizedBox(
+                                width: 18,
+                                height: 18,
+                                child: CircularProgressIndicator(
+                                  strokeWidth: 2,
+                                  color: Theme.of(
+                                    context,
+                                  ).colorScheme.onPrimary,
+                                ),
                               ),
                             ),
-                          ),
-                        ],
-                      ),
-                    )
-                  : Text(l10n.common_enable),
-            ),
-          ],
+                          ],
+                        ),
+                      )
+                    : Text(l10n.common_enable),
+              ),
+            ],
+          ),
         ),
-      ),
-    ],
+      ],
     );
   }
 
@@ -912,10 +914,7 @@ class _TelemetryScreenState extends State<TelemetryScreen> {
           const SizedBox(width: 8),
           Text(
             value,
-            style: MeshTheme.mono(
-              fontSize: 13,
-              color: scheme.onSurface,
-            ),
+            style: MeshTheme.mono(fontSize: 13, color: scheme.onSurface),
             textAlign: TextAlign.end,
           ),
         ],

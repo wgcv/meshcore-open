@@ -70,9 +70,7 @@ class RepeaterHubScreen extends StatelessWidget {
                         children: [
                           Text(
                             repeater.name,
-                            style: Theme.of(context)
-                                .textTheme
-                                .titleMedium
+                            style: Theme.of(context).textTheme.titleMedium
                                 ?.copyWith(fontWeight: FontWeight.w700),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
@@ -88,9 +86,7 @@ class RepeaterHubScreen extends StatelessWidget {
                           const SizedBox(height: 4),
                           Text(
                             repeater.pathLabel(l10n),
-                            style: Theme.of(context)
-                                .textTheme
-                                .bodySmall
+                            style: Theme.of(context).textTheme.bodySmall
                                 ?.copyWith(color: scheme.onSurfaceVariant),
                           ),
                           if (repeater.hasLocation) ...[
@@ -122,7 +118,9 @@ class RepeaterHubScreen extends StatelessWidget {
                     ),
                     StatusChip(
                       label: isAdmin ? 'ADMIN' : 'GUEST',
-                      color: isAdmin ? MeshPalette.blue : scheme.onSurfaceVariant,
+                      color: isAdmin
+                          ? MeshPalette.blue
+                          : scheme.onSurfaceVariant,
                     ),
                   ],
                 ),
@@ -169,7 +167,9 @@ class RepeaterHubScreen extends StatelessWidget {
 
             // ── Tools ──────────────────────────────────────────────────────
             SectionHeader(
-              isAdmin ? l10n.repeater_managementTools : l10n.repeater_guestTools,
+              isAdmin
+                  ? l10n.repeater_managementTools
+                  : l10n.repeater_guestTools,
             ),
 
             _HubActionTile(
@@ -306,9 +306,7 @@ class _HubActionTile extends StatelessWidget {
               decoration: BoxDecoration(
                 color: accentColor.withValues(alpha: 0.12),
                 borderRadius: BorderRadius.circular(MeshRadii.md),
-                border: Border.all(
-                  color: accentColor.withValues(alpha: 0.3),
-                ),
+                border: Border.all(color: accentColor.withValues(alpha: 0.3)),
               ),
               alignment: Alignment.center,
               child: Icon(icon, size: 22, color: accentColor),
@@ -336,11 +334,7 @@ class _HubActionTile extends StatelessWidget {
                 ],
               ),
             ),
-            Icon(
-              Icons.chevron_right,
-              color: scheme.onSurfaceVariant,
-              size: 20,
-            ),
+            Icon(Icons.chevron_right, color: scheme.onSurfaceVariant, size: 20),
           ],
         ),
       ),

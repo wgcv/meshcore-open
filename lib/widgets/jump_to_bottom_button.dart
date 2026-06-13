@@ -29,10 +29,7 @@ class JumpToBottomButton extends StatelessWidget {
                 decoration: BoxDecoration(
                   shape: BoxShape.circle,
                   color: scheme.surfaceContainerHigh.withValues(alpha: 0.92),
-                  border: Border.all(
-                    color: scheme.outlineVariant,
-                    width: 1,
-                  ),
+                  border: Border.all(color: scheme.outlineVariant, width: 1),
                   boxShadow: [
                     BoxShadow(
                       color: Colors.black.withValues(alpha: 0.18),

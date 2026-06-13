@@ -108,9 +108,7 @@ class _UsbScreenState extends State<UsbScreen> {
                   child: AnimatedSwitcher(
                     duration: const Duration(milliseconds: 300),
                     child: Align(
-                      key: ValueKey(
-                        '${connector.state}_$_isLoadingPorts',
-                      ),
+                      key: ValueKey('${connector.state}_$_isLoadingPorts'),
                       alignment: Alignment.centerLeft,
                       child: _buildStatusChip(context, connector),
                     ),
@@ -230,17 +228,11 @@ class _UsbScreenState extends State<UsbScreen> {
     final l10n = context.l10n;
 
     if (_isLoadingPorts) {
-      return EmptyState(
-        icon: Icons.usb,
-        title: l10n.usbStatus_searching,
-      );
+      return EmptyState(icon: Icons.usb, title: l10n.usbStatus_searching);
     }
 
     if (_ports.isEmpty) {
-      return EmptyState(
-        icon: Icons.usb,
-        title: l10n.usbScreenEmptyState,
-      );
+      return EmptyState(icon: Icons.usb, title: l10n.usbScreenEmptyState);
     }
 
     final isConnecting =

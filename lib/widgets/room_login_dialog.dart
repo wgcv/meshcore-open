@@ -364,9 +364,7 @@ class _RoomLoginDialogState extends State<RoomLoginDialog> {
                                 Icon(
                                   Icons.auto_mode,
                                   size: 20,
-                                  color: !isFloodMode
-                                      ? scheme.primary
-                                      : null,
+                                  color: !isFloodMode ? scheme.primary : null,
                                 ),
                                 const SizedBox(width: 8),
                                 Text(
@@ -387,9 +385,7 @@ class _RoomLoginDialogState extends State<RoomLoginDialog> {
                                 Icon(
                                   Icons.waves,
                                   size: 20,
-                                  color: isFloodMode
-                                      ? scheme.primary
-                                      : null,
+                                  color: isFloodMode ? scheme.primary : null,
                                 ),
                                 const SizedBox(width: 8),
                                 Text(

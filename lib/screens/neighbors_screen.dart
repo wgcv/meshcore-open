@@ -351,10 +351,7 @@ class _NeighborsScreenState extends State<NeighborsScreen> {
         for (var i = 0; i < _parsedNeighbors!.length; i++)
           ListEntrance(
             index: i,
-            child: _buildNeighborRow(
-              _parsedNeighbors![i],
-              connector.currentSf,
-            ),
+            child: _buildNeighborRow(_parsedNeighbors![i], connector.currentSf),
           ),
       ],
     );

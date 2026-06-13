@@ -462,7 +462,9 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                           color: MeshPalette.magenta,
                           shape: BoxShape.circle,
                           border: Border.all(
-                            color: Theme.of(context).colorScheme.surfaceContainerLow,
+                            color: Theme.of(
+                              context,
+                            ).colorScheme.surfaceContainerLow,
                             width: 2,
                           ),
                         ),
@@ -488,9 +490,8 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                         Expanded(
                           child: Text(
                             channelLabel,
-                            style: Theme.of(context).textTheme.bodyMedium?.copyWith(
-                              fontWeight: FontWeight.w500,
-                            ),
+                            style: Theme.of(context).textTheme.bodyMedium
+                                ?.copyWith(fontWeight: FontWeight.w500),
                             maxLines: 1,
                             overflow: TextOverflow.ellipsis,
                           ),
@@ -544,8 +545,7 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                         ),
                         const SizedBox(width: 4),
                       ],
-                      if (unreadCount > 0)
-                        UnreadBadge(count: unreadCount),
+                      if (unreadCount > 0) UnreadBadge(count: unreadCount),
                     ],
                   ),
                 ],
@@ -806,12 +806,8 @@ class _ChannelsScreenState extends State<ChannelsScreen>
             return MeshCard(
               margin: const EdgeInsets.symmetric(horizontal: 16, vertical: 4),
               padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 10),
-              borderColor: isSelected && enabled
-                  ? MeshPalette.blueLine
-                  : null,
-              color: isSelected && enabled
-                  ? MeshPalette.blueBg
-                  : null,
+              borderColor: isSelected && enabled ? MeshPalette.blueLine : null,
+              color: isSelected && enabled ? MeshPalette.blueBg : null,
               onTap: enabled
                   ? () {
                       setSheetState(() {
@@ -828,7 +824,9 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                     name: title,
                     size: 38,
                     color: enabled
-                        ? (isSelected ? MeshPalette.blue : cardScheme.onSurfaceVariant)
+                        ? (isSelected
+                              ? MeshPalette.blue
+                              : cardScheme.onSurfaceVariant)
                         : cardScheme.outline,
                     icon: icon,
                   ),
@@ -840,17 +838,21 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                       children: [
                         Text(
                           title,
-                          style: Theme.of(sheetContext).textTheme.bodyMedium?.copyWith(
-                            fontWeight: FontWeight.w500,
-                            color: enabled ? null : cardScheme.outline,
-                          ),
+                          style: Theme.of(sheetContext).textTheme.bodyMedium
+                              ?.copyWith(
+                                fontWeight: FontWeight.w500,
+                                color: enabled ? null : cardScheme.outline,
+                              ),
                         ),
                         const SizedBox(height: 2),
                         Text(
                           subtitle,
-                          style: Theme.of(sheetContext).textTheme.bodySmall?.copyWith(
-                            color: enabled ? cardScheme.onSurfaceVariant : cardScheme.outline,
-                          ),
+                          style: Theme.of(sheetContext).textTheme.bodySmall
+                              ?.copyWith(
+                                color: enabled
+                                    ? cardScheme.onSurfaceVariant
+                                    : cardScheme.outline,
+                              ),
                           maxLines: 2,
                           overflow: TextOverflow.ellipsis,
                         ),
@@ -860,7 +862,9 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                   if (enabled)
                     Icon(
                       Icons.chevron_right,
-                      color: isSelected ? MeshPalette.blue : cardScheme.onSurfaceVariant,
+                      color: isSelected
+                          ? MeshPalette.blue
+                          : cardScheme.onSurfaceVariant,
                       size: 20,
                     ),
                 ],
@@ -998,9 +1002,7 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                                   showDismissibleSnackBar(
                                     context,
                                     content: Text(
-                                      sheetContext
-                                          .l10n
-                                          .channels_pskMustBe32Hex,
+                                      sheetContext.l10n.channels_pskMustBe32Hex,
                                     ),
                                   );
                                   return;
@@ -1313,9 +1315,7 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                           addPublicChannel = value ?? true;
                         });
                       },
-                      title: Text(
-                        sheetContext.l10n.community_addPublicChannel,
-                      ),
+                      title: Text(sheetContext.l10n.community_addPublicChannel),
                       subtitle: Text(
                         sheetContext.l10n.community_addPublicChannelHint,
                       ),
@@ -1418,9 +1418,7 @@ class _ChannelsScreenState extends State<ChannelsScreen>
             maxChildSize: 0.95,
             builder: (_, scrollController) => Column(
               children: [
-                BottomSheetHeader(
-                  title: sheetContext.l10n.channels_addChannel,
-                ),
+                BottomSheetHeader(title: sheetContext.l10n.channels_addChannel),
                 Expanded(
                   child: ListView(
                     controller: scrollController,
@@ -1519,7 +1517,9 @@ class _ChannelsScreenState extends State<ChannelsScreen>
           builder: (_, scrollController) => Column(
             children: [
               BottomSheetHeader(
-                title: sheetContext.l10n.channels_editChannelTitle(channel.index),
+                title: sheetContext.l10n.channels_editChannelTitle(
+                  channel.index,
+                ),
               ),
               Expanded(
                 child: ListView(
@@ -1569,7 +1569,9 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                     ),
                     SwitchListTile(
                       contentPadding: EdgeInsets.zero,
-                      title: Text(sheetContext.l10n.channels_cyr2latCompression),
+                      title: Text(
+                        sheetContext.l10n.channels_cyr2latCompression,
+                      ),
                       subtitle: Text(
                         sheetContext.l10n.channels_cyr2latCompressionDscr,
                       ),
@@ -1592,14 +1594,14 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                                 .channels_cyr2latSettingsSubheading,
                             border: const OutlineInputBorder(),
                           ),
-                          items: appSettingsService.settings.cyr2latProfiles.map((
-                            profile,
-                          ) {
-                            return DropdownMenuItem(
-                              value: profile.id,
-                              child: Text(profile.name),
-                            );
-                          }).toList(),
+                          items: appSettingsService.settings.cyr2latProfiles
+                              .map((profile) {
+                                return DropdownMenuItem(
+                                  value: profile.id,
+                                  child: Text(profile.name),
+                                );
+                              })
+                              .toList(),
                           onChanged: (value) => setSheetState(() {
                             selectedCyr2LatProfileId = value;
                           }),
@@ -1633,14 +1635,20 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                           } on FormatException {
                             showDismissibleSnackBar(
                               sheetContext,
-                              content: Text(sheetContext.l10n.channels_pskMustBe32Hex),
+                              content: Text(
+                                sheetContext.l10n.channels_pskMustBe32Hex,
+                              ),
                             );
                             return;
                           }
 
                           Navigator.pop(sheetContext);
                           try {
-                            await connector.setChannel(channel.index, name, psk);
+                            await connector.setChannel(
+                              channel.index,
+                              name,
+                              psk,
+                            );
                             await connector.setChannelSmazEnabled(
                               channel.index,
                               smazEnabled,
@@ -1656,7 +1664,9 @@ class _ChannelsScreenState extends State<ChannelsScreen>
                             if (!context.mounted) return;
                             showDismissibleSnackBar(
                               context,
-                              content: Text(context.l10n.channels_channelUpdated(name)),
+                              content: Text(
+                                context.l10n.channels_channelUpdated(name),
+                              ),
                             );
                           } catch (e, st) {
                             debugPrint(st.toString());
@@ -1732,7 +1742,9 @@ class _ChannelsScreenState extends State<ChannelsScreen>
             },
             child: Text(
               dialogContext.l10n.common_delete,
-              style: TextStyle(color: Theme.of(dialogContext).colorScheme.error),
+              style: TextStyle(
+                color: Theme.of(dialogContext).colorScheme.error,
+              ),
             ),
           ),
         ],
@@ -1975,7 +1987,9 @@ class _ChannelsScreenState extends State<ChannelsScreen>
             },
             child: Text(
               dialogContext.l10n.community_delete,
-              style: TextStyle(color: Theme.of(dialogContext).colorScheme.error),
+              style: TextStyle(
+                color: Theme.of(dialogContext).colorScheme.error,
+              ),
             ),
           ),
         ],

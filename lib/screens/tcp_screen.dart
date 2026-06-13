@@ -220,9 +220,7 @@ class _TcpScreenState extends State<TcpScreen> {
 
     if (connector.isTcpTransportConnected) {
       return StatusChip(
-        label: l10n.scanner_connectedTo(
-          connector.activeTcpEndpoint ?? 'TCP',
-        ),
+        label: l10n.scanner_connectedTo(connector.activeTcpEndpoint ?? 'TCP'),
         color: MeshPalette.signal,
       );
     } else if (connector.state == MeshCoreConnectionState.connecting &&

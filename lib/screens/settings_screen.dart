@@ -196,11 +196,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
         ),
         if (showChevron)
-          Icon(
-            Icons.chevron_right,
-            color: scheme.onSurfaceVariant,
-            size: 16,
-          ),
+          Icon(Icons.chevron_right, color: scheme.onSurfaceVariant, size: 16),
       ],
     );
   }
@@ -694,11 +690,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
                 ],
               ),
             ),
-            Icon(
-              Icons.chevron_right,
-              color: scheme.onSurfaceVariant,
-              size: 16,
-            ),
+            Icon(Icons.chevron_right, color: scheme.onSurfaceVariant, size: 16),
           ],
         ),
       ),

@@ -350,7 +350,9 @@ class RouteChip extends StatelessWidget {
   Widget build(BuildContext context) {
     final scheme = Theme.of(context).colorScheme;
     final label = isDirect
-        ? (hops == null || hops == 0 ? 'DIRECT' : '$hops HOP${hops == 1 ? '' : 'S'}')
+        ? (hops == null || hops == 0
+              ? 'DIRECT'
+              : '$hops HOP${hops == 1 ? '' : 'S'}')
         : 'FLOOD';
     return Container(
       padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
@@ -536,9 +538,7 @@ Future<T?> showMeshSheet<T>(
     useSafeArea: true,
     showDragHandle: false,
     builder: (context) => Padding(
-      padding: EdgeInsets.only(
-        bottom: MediaQuery.viewInsetsOf(context).bottom,
-      ),
+      padding: EdgeInsets.only(bottom: MediaQuery.viewInsetsOf(context).bottom),
       child: builder(context),
     ),
   );
@@ -574,10 +574,7 @@ class ErrorRetryCard extends StatelessWidget {
             ),
           ),
           if (onRetry != null)
-            TextButton(
-              onPressed: onRetry,
-              child: Text(retryLabel ?? 'Retry'),
-            ),
+            TextButton(onPressed: onRetry, child: Text(retryLabel ?? 'Retry')),
         ],
       ),
     );
@@ -610,10 +607,7 @@ class _ListEntranceState extends State<ListEntrance>
       vsync: this,
       duration: const Duration(milliseconds: 280),
     );
-    _curve = CurvedAnimation(
-      parent: _controller,
-      curve: Curves.easeOutCubic,
-    );
+    _curve = CurvedAnimation(parent: _controller, curve: Curves.easeOutCubic);
     final delay = Duration(milliseconds: 24 * widget.index.clamp(0, 12));
     Future.delayed(delay, () {
       if (mounted) _controller.forward();

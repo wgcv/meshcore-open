@@ -72,11 +72,7 @@ class _MessageStatusIconState extends State<MessageStatusIcon>
     if (widget.isFailed) {
       return Semantics(
         label: l10n.messageStatus_failed,
-        child: Icon(
-          Icons.cancel,
-          size: size,
-          color: colorScheme.error,
-        ),
+        child: Icon(Icons.cancel, size: size, color: colorScheme.error),
       );
     }
 

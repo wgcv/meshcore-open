@@ -44,7 +44,8 @@ class RetryServiceConfig {
     int messageBytes, {
     String? contactKey,
     int? deviceTimeoutMs,
-  })? calculateTimeout;
+  })?
+  calculateTimeout;
   final Uint8List? Function()? getSelfPublicKey;
   final String Function(Contact, String)? prepareContactOutboundText;
   final AppSettingsService? appSettingsService;
@@ -436,8 +437,7 @@ class MessageRetryService extends ChangeNotifier {
     final outboundTextForTimeout =
         config.prepareContactOutboundText?.call(contact, message.text) ??
         message.text;
-    final messageBytesForTimeout =
-        utf8.encode(outboundTextForTimeout).length;
+    final messageBytesForTimeout = utf8.encode(outboundTextForTimeout).length;
 
     int actualTimeout = timeoutMs;
     if (config.calculateTimeout != null) {
@@ -704,13 +704,11 @@ class MessageRetryService extends ChangeNotifier {
             tripTimeMs > 0 &&
             message.pathLength != null) {
           final outboundTextForObserved =
-              config!.prepareContactOutboundText?.call(
-                contact,
-                message.text,
-              ) ??
+              config!.prepareContactOutboundText?.call(contact, message.text) ??
               message.text;
-          final messageBytesForObserved =
-              utf8.encode(outboundTextForObserved).length;
+          final messageBytesForObserved = utf8
+              .encode(outboundTextForObserved)
+              .length;
           config.onDeliveryObserved!(
             contact.publicKeyHex,
             message.pathLength!,

@@ -1196,9 +1196,7 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
               const SizedBox(height: 12),
               DropdownButtonFormField<int>(
                 initialValue: _bandwidth,
-                decoration: InputDecoration(
-                  labelText: l10n.repeater_bandwidth,
-                ),
+                decoration: InputDecoration(labelText: l10n.repeater_bandwidth),
                 items: _bandwidthOptions.map((bw) {
                   return DropdownMenuItem(
                     value: bw,
@@ -1478,7 +1476,9 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
                     child: ListTile(
                       title: Text(l10n.repeater_localAdvertInterval),
                       subtitle: Text(
-                        l10n.repeater_localAdvertIntervalMinutes(_advertInterval),
+                        l10n.repeater_localAdvertIntervalMinutes(
+                          _advertInterval,
+                        ),
                       ),
                       trailing: Switch(
                         value: _advertEnable,
@@ -1516,7 +1516,9 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
                 min: 60,
                 max: 240,
                 divisions: 18,
-                label: l10n.repeater_localAdvertIntervalMinutes(_advertInterval),
+                label: l10n.repeater_localAdvertIntervalMinutes(
+                  _advertInterval,
+                ),
                 onChanged: _advertEnable
                     ? (value) {
                         setState(() {
@@ -2014,9 +2016,7 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
             ),
             subtitle: Text(
               l10n.repeater_rebootRepeaterSubtitle,
-              style: const TextStyle(
-                color: MeshPalette.warnDim,
-              ),
+              style: const TextStyle(color: MeshPalette.warnDim),
             ),
             onTap: () => _confirmAction(
               l10n.repeater_rebootRepeater,
@@ -2027,19 +2027,14 @@ class _RepeaterSettingsScreenState extends State<RepeaterSettingsScreen> {
           ),
           // Regenerate identity key - hidden until fully implemented
           ListTile(
-            leading: const Icon(
-              Icons.delete_forever,
-              color: MeshPalette.alert,
-            ),
+            leading: const Icon(Icons.delete_forever, color: MeshPalette.alert),
             title: Text(
               l10n.repeater_eraseFileSystem,
               style: const TextStyle(color: MeshPalette.alert),
             ),
             subtitle: Text(
               l10n.repeater_eraseFileSystemSubtitle,
-              style: const TextStyle(
-                color: MeshPalette.warnDim,
-              ),
+              style: const TextStyle(color: MeshPalette.warnDim),
             ),
             onTap: () => _confirmAction(
               l10n.repeater_eraseFileSystem,
