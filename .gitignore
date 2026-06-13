@@ -91,3 +91,6 @@ keystore.properties
 
 # Cloudflare Wrangler
 .wrangler
+
+# Claude Code local working dir (worktrees, jobs, settings)
+.claude/

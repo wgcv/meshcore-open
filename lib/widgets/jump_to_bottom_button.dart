@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
+
 import '../helpers/chat_scroll_controller.dart';
+import '../theme/mesh_theme.dart';
 
 class JumpToBottomButton extends StatelessWidget {
   final ChatScrollController scrollController;
@@ -8,6 +10,7 @@ class JumpToBottomButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
     return ValueListenableBuilder<bool>(
       valueListenable: scrollController.showJumpToBottom,
       builder: (context, show, _) {
@@ -15,9 +18,33 @@ class JumpToBottomButton extends StatelessWidget {
         return Positioned(
           right: 16,
           bottom: 16,
-          child: FloatingActionButton.small(
-            onPressed: scrollController.jumpToBottom,
-            child: const Icon(Icons.keyboard_arrow_down),
+          child: Material(
+            color: Colors.transparent,
+            child: InkWell(
+              onTap: scrollController.jumpToBottom,
+              borderRadius: BorderRadius.circular(MeshRadii.pill),
+              child: Container(
+                width: 40,
+                height: 40,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: scheme.surfaceContainerHigh.withValues(alpha: 0.92),
+                  border: Border.all(color: scheme.outlineVariant, width: 1),
+                  boxShadow: [
+                    BoxShadow(
+                      color: Colors.black.withValues(alpha: 0.18),
+                      blurRadius: 8,
+                      offset: const Offset(0, 2),
+                    ),
+                  ],
+                ),
+                child: Icon(
+                  Icons.keyboard_arrow_down,
+                  size: 22,
+                  color: scheme.primary,
+                ),
+              ),
+            ),
           ),
         );
       },

@@ -33,6 +33,8 @@
   "common_remove": "Usuń",
   "common_enable": "Włącz",
   "common_disable": "Wyłącz",
+  "common_autoRefresh": "Automatyczne odświeżanie",
+  "common_interval": "Interwał",
   "common_reboot": "Uruchom ponownie",
   "common_loading": "Ładowanie...",
   "common_notAvailable": "—",
@@ -1290,6 +1292,43 @@
       }
     }
   },
+  "telemetry_digitalInputLabel": "Wejście cyfrowe",
+  "telemetry_digitalOutputLabel": "Wyjście cyfrowe",
+  "telemetry_analogInputLabel": "Wejście analogowe",
+  "telemetry_analogOutputLabel": "Wyjście analogowe",
+  "telemetry_genericLabel": "Czujnik ogólny",
+  "telemetry_luminosityLabel": "Jasność",
+  "telemetry_presenceLabel": "Obecność",
+  "telemetry_humidityLabel": "Wilgotność",
+  "telemetry_accelerometerLabel": "Akcelerometr",
+  "telemetry_pressureLabel": "Ciśnienie",
+  "telemetry_altitudeLabel": "Wysokość",
+  "telemetry_frequencyLabel": "Częstotliwość",
+  "telemetry_percentageLabel": "Procent",
+  "telemetry_concentrationLabel": "Stężenie",
+  "telemetry_powerLabel": "Moc",
+  "telemetry_distanceLabel": "Odległość",
+  "telemetry_energyLabel": "Energia",
+  "telemetry_directionLabel": "Kierunek",
+  "telemetry_timeLabel": "Czas",
+  "telemetry_gyrometerLabel": "Żyrometr",
+  "telemetry_colourLabel": "Kolor",
+  "telemetry_gpsLabel": "GPS",
+  "telemetry_switchLabel": "Przełącznik",
+  "telemetry_polylineLabel": "Polilinia",
+  "telemetry_altitudeValue": "{meters} m",
+  "telemetry_frequencyValue": "{hertz} Hz",
+  "telemetry_pressureValue": "{hpa} hPa",
+  "telemetry_luminosityValue": "{lux} lx",
+  "telemetry_powerValue": "{watts} W",
+  "telemetry_distanceValue": "{meters} m",
+  "telemetry_energyValue": "{kilowattHours} kWh",
+  "telemetry_directionValue": "{degrees}°",
+  "telemetry_concentrationValue": "{ppm} ppm",
+  "telemetry_percentageValue": "{percent}%",
+  "telemetry_analogValue": "{value}",
+  "telemetry_autoFetchQuantity": "Liczba żądań",
+  "telemetry_error": "Nie udało się pobrać danych",
   "telemetry_noData": "Brak dostępnych danych telemetrycznych.",
   "telemetry_channelTitle": "Kanał {channel}",
   "@telemetry_channelTitle": {
@@ -2137,6 +2176,9 @@
   "translation_enableTitle": "Włącz tłumaczenie",
   "translation_enableSubtitle": "Tłumaczenie otrzymywanych wiadomości oraz umożliwienie tłumaczenia przed wysłaniem.",
   "translation_composerSubtitle": "Kontroluje domyślny stan ikony tłumaczenia w edytorze.",
+  "translation_autoIncomingTitle": "Automatycznie tłumacz wiadomości",
+  "translation_autoIncomingSubtitle": "Automatycznie tłumaczy wiadomości do powiadomień oraz do czatów lub kanałów.",
+  "translation_translateMessage": "Przetłumacz wiadomość",
   "translation_targetLanguage": "Język docelowy",
   "translation_useAppLanguage": "Użyj języka aplikacji",
   "translation_downloadedModelLabel": "Pobudowany model",
@@ -2349,5 +2391,98 @@
   "settings_companionDebugLogSubtitle": "Polecenia, odpowiedzi i surowe dane związane z protokołami BLE/TCP/USB",
   "chat_markAsUnread": "Oznacz jako nieprzeczytane",
   "settings_companionDebugLog": "Log debugowania (dla pomocy w rozwiązywaniu problemów)",
-  "repeater_chanUtil": "Wykorzystanie kanału"
+  "repeater_chanUtil": "Wykorzystanie kanału",
+  "@routing_lastWorked": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "@routing_deliveryCounts": {
+    "placeholders": {
+      "successes": {
+        "type": "int"
+      },
+      "failures": {
+        "type": "int"
+      }
+    }
+  },
+  "@pathEditor_hopCounter": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@pathEditor_invalidTokens": {
+    "placeholders": {
+      "tokens": {
+        "type": "String"
+      }
+    }
+  },
+  "@channels_communityShortId": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "messageStatus_sent": "Wysłane",
+  "messageStatus_delivered": "Dostarczone",
+  "messageStatus_pending": "Wysyłanie",
+  "common_undo": "Wycofaj",
+  "messageStatus_failed": "Nie udało się wysłać",
+  "messageStatus_repeated": "Usłyszałem to wielokrotnie",
+  "contacts_moreOptions": "Więcej opcji",
+  "contacts_searchOpen": "Wyszukaj kontakty",
+  "contacts_searchClose": "Zaawansowane wyszukiwanie",
+  "routing_title": "Planowanie tras",
+  "routing_modeAuto": "Samochód",
+  "routing_modeFlood": "Powódź",
+  "routing_modeManual": "Instrukcja obsługi",
+  "routing_modeAutoHint": "Automatycznie wybiera najpopularniejszą ścieżkę, a w przypadku braku znanej, przechodzi do trybu \"przepływu\".",
+  "routing_modeFloodHint": "Transmisje za pośrednictwem każdego repeatera. Najbardziej niezawodna metoda, ale zużywa więcej czasu transmisji.",
+  "routing_modeManualHint": "Zawsze prowadzi dokładnie po trasie, którą określiłeś.",
+  "routing_currentRoute": "Obecna trasa",
+  "routing_directNoHops": "Bezpośrednio – bez pośrednictwa repeaterów",
+  "routing_noPathYet": "Na razie nie ma żadnej ścieżki. Komunikacja trwa do momentu, gdy zostanie odkryta trasa.",
+  "routing_floodBroadcast": "Transmisja za pośrednictwem każdego urządzenia powielającego",
+  "routing_editPath": "Edytuj ścieżkę",
+  "routing_forgetPath": "Zapomnij o ścieżce",
+  "routing_knownPaths": "Znane trasy",
+  "routing_knownPathsHint": "Wybierz ścieżkę, aby przełączyć się na nią.",
+  "routing_inUse": "W użyciu",
+  "routing_qualityStrong": "Silny pierwszy skok",
+  "routing_qualityGood": "Świetny początek",
+  "routing_qualityFair": "Świetny pierwszy krzak",
+  "routing_qualityWorked": "Zostało dostarczone",
+  "routing_qualityFlood": "Usłyszano dzięki doniesieniom",
+  "routing_qualityUntested": "Nieużywany",
+  "routing_lastWorked": "pracował {when}",
+  "routing_neverWorked": "nigdy nie zostało potwierdzone",
+  "routing_floodDelivery": "Dostawa w przypadku powodzi",
+  "pathEditor_title": "Stworzenie ścieżki",
+  "pathEditor_hopCounter": "{count} z 64 rodzajów chmielu",
+  "pathEditor_noHops": "Na razie nie dodano żadnych chmielu. Aby dodać je w odpowiedniej kolejności, kliknij w odpowiednie przyciski poniżej, lub zapisz przepis bez chmielu, aby wysłać go bezpośrednio.",
+  "pathEditor_addHops": "Dodawaj chmiel zgodnie z kolejnością.",
+  "pathEditor_searchRepeaters": "Funkcje powtarzania",
+  "pathEditor_advancedHex": "Zaawansowane: ścieżka w formacie szesnastkowym",
+  "pathEditor_hexLabel": "Prefiksy heksadecymalne",
+  "pathEditor_hexHelper": "Dwa znaki szesnastkowe na każdym kroku, oddzielone przecinkami",
+  "pathEditor_invalidTokens": "Nieprawidłowe: {tokens}",
+  "pathEditor_tooManyHops": "Maksymalnie 64 hopów",
+  "pathEditor_usePath": "Użyj tej ścieżki.",
+  "pathEditor_removeHop": "Usuń dziką psiankę",
+  "pathEditor_unknownHop": "Nieznany repeater",
+  "map_zoomIn": "Przybliż",
+  "routing_deliveryCounts": "{successes} delivered, {failures} failed",
+  "map_zoomOut": "Przybliż z powrotem",
+  "map_centerMap": "Mapa centrum",
+  "chrome_bluetoothRequiresChromium": "Web Bluetooth wymaga przeglądarki Chromium.",
+  "channels_communityShortId": "ID: {id}...",
+  "pathTrace_legendGpsConfirmed": "GPS potwierdzone",
+  "pathTrace_legendInferred": "Wywnioskowana pozycja"
 }

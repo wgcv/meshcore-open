@@ -33,6 +33,8 @@
   "common_remove": "Izbrisati",
   "common_enable": "Omogoči",
   "common_disable": "Izklopiti",
+  "common_autoRefresh": "Samodejno osveževanje",
+  "common_interval": "Časovni interval",
   "common_reboot": "Ponoviti",
   "common_loading": "Naložanje...",
   "common_notAvailable": "—",
@@ -1280,6 +1282,43 @@
       }
     }
   },
+  "telemetry_digitalInputLabel": "Digitalni vhod",
+  "telemetry_digitalOutputLabel": "Digitalni izhod",
+  "telemetry_analogInputLabel": "Analogni vhod",
+  "telemetry_analogOutputLabel": "Analogni izhod",
+  "telemetry_genericLabel": "Splošni senzor",
+  "telemetry_luminosityLabel": "Osvetljenost",
+  "telemetry_presenceLabel": "Prisotnost",
+  "telemetry_humidityLabel": "Vlažnost",
+  "telemetry_accelerometerLabel": "Merilnik pospeška",
+  "telemetry_pressureLabel": "Tlak",
+  "telemetry_altitudeLabel": "Nadmorska višina",
+  "telemetry_frequencyLabel": "Frekvenca",
+  "telemetry_percentageLabel": "Odstotek",
+  "telemetry_concentrationLabel": "Koncentracija",
+  "telemetry_powerLabel": "Moč",
+  "telemetry_distanceLabel": "Razdalja",
+  "telemetry_energyLabel": "Energija",
+  "telemetry_directionLabel": "Smer",
+  "telemetry_timeLabel": "Čas",
+  "telemetry_gyrometerLabel": "Žiroskop",
+  "telemetry_colourLabel": "Barva",
+  "telemetry_gpsLabel": "GPS",
+  "telemetry_switchLabel": "Stikalo",
+  "telemetry_polylineLabel": "Polilinija",
+  "telemetry_altitudeValue": "{meters} m",
+  "telemetry_frequencyValue": "{hertz} Hz",
+  "telemetry_pressureValue": "{hpa} hPa",
+  "telemetry_luminosityValue": "{lux} lx",
+  "telemetry_powerValue": "{watts} W",
+  "telemetry_distanceValue": "{meters} m",
+  "telemetry_energyValue": "{kilowattHours} kWh",
+  "telemetry_directionValue": "{degrees}°",
+  "telemetry_concentrationValue": "{ppm} ppm",
+  "telemetry_percentageValue": "{percent}%",
+  "telemetry_analogValue": "{value}",
+  "telemetry_autoFetchQuantity": "Število zahtev",
+  "telemetry_error": "Podatkov ni bilo mogoče pridobiti",
   "telemetry_noData": "Niso na voljo podatki o telemetriji.",
   "telemetry_channelTitle": "Kanal {channel}",
   "@telemetry_channelTitle": {
@@ -2099,6 +2138,9 @@
   "translation_enableSubtitle": "Prevedite vstopne sporočila in omogočite predhodno prevajanje.",
   "translation_enableTitle": "Omogočite prevod",
   "translation_composerSubtitle": "Ureja privzeto stanje ikone za prevod, ki jo uporablja avtor.",
+  "translation_autoIncomingTitle": "Samodejno prevajaj sporočila",
+  "translation_autoIncomingSubtitle": "Samodejno prevaja sporočila za obvestila ter za klepete ali kanale.",
+  "translation_translateMessage": "Prevedi sporočilo",
   "translation_targetLanguage": "Ciljna jezika",
   "translation_useAppLanguage": "Uporabite jezik aplikacije",
   "translation_downloadedModelLabel": "Naložen model",
@@ -2311,5 +2353,98 @@
   "chat_markAsUnread": "Označiti kot neneobdelano",
   "chat_newMessages": "Nove novice",
   "settings_companionDebugLogSubtitle": "Navodila, odgovori in surova podatka za BLE/TCP/USB.",
-  "repeater_chanUtil": "Uporaba kanala"
+  "repeater_chanUtil": "Uporaba kanala",
+  "@routing_lastWorked": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "@routing_deliveryCounts": {
+    "placeholders": {
+      "successes": {
+        "type": "int"
+      },
+      "failures": {
+        "type": "int"
+      }
+    }
+  },
+  "@pathEditor_hopCounter": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@pathEditor_invalidTokens": {
+    "placeholders": {
+      "tokens": {
+        "type": "String"
+      }
+    }
+  },
+  "@channels_communityShortId": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "common_undo": "Preobrn",
+  "messageStatus_delivered": "Dostavljeno",
+  "messageStatus_sent": "Pošljeno",
+  "messageStatus_pending": "Pošiljanje",
+  "messageStatus_failed": "Uspešno ni bilo mogo, da se sporočilo pošlje",
+  "messageStatus_repeated": "Slišal sem večkrat",
+  "contacts_moreOptions": "Več možnosti",
+  "contacts_searchOpen": "Iskanje kontaktov",
+  "contacts_searchClose": "Izklopi iskanje",
+  "routing_title": "Navigacija",
+  "routing_modeAuto": "Avto",
+  "routing_modeFlood": "Poplavo",
+  "routing_modeManual": "Navodilo",
+  "routing_modeAutoHint": "Samodejno izbere najbolj poznano pot, in sicer, ko ni na voljo nobena.",
+  "routing_modeFloodHint": "Prenosi preko vseh repetitorjev. Najzanesljivejši način, vendar zahteva več časa.",
+  "routing_modeManualHint": "Vedno sledi natančni poti, ki jo ste določili.",
+  "routing_currentRoute": "Trenutna pot",
+  "routing_directNoHops": "Neposredno – brez prehodov",
+  "routing_noPathYet": "Žep trenutno ni mogoče najti. Naslednje sporočilo bo posredovano, dokler ne bo ugotovljeno, kje je pot.",
+  "routing_floodBroadcast": "Prenos preko vseh repetitiv",
+  "routing_editPath": "Uredi pot",
+  "routing_forgetPath": "Pozabi na pot",
+  "routing_knownPaths": "Poznati poti",
+  "routing_knownPathsHint": "Kliknite na pot, da jo izberete.",
+  "routing_inUse": "V uporabi",
+  "routing_qualityStrong": "Močan prvi korak",
+  "routing_qualityGood": "Prva uspešna faza",
+  "routing_qualityFair": "Prva, uspešna faza",
+  "routing_qualityWorked": "Izpolnil",
+  "routing_qualityFlood": "Slišano preko poplave",
+  "routing_qualityUntested": "Ne preizkušen",
+  "routing_lastWorked": "delal/a {when}",
+  "routing_neverWorked": "nikoli ni bilo potrjeno",
+  "routing_floodDelivery": "Dostava zaradi poplave",
+  "pathEditor_title": "Izgradnja poti",
+  "pathEditor_hopCounter": "{count} od 64 različnih sort hropa",
+  "pathEditor_noHops": "Še niso dodani hmelji. Za dodajanje hmelja v vrstnem redu kliknite na povezavo spodaj, ali pa shranite brez dodanega hmelja, da ga lahko posredujete neposredno.",
+  "pathEditor_addHops": "Dodajte suho travo v skladu s postopkom.",
+  "pathEditor_searchRepeaters": "Iskanje ponovitev",
+  "pathEditor_advancedHex": "Napredno: surovi šestnajstni pot",
+  "pathEditor_hexLabel": "Predfiks za heksadecimalno šifro",
+  "pathEditor_hexHelper": "Dva šestbitna znaka na vsak skok, ločena z vejico",
+  "pathEditor_invalidTokens": "Neveljaven: {tokens}",
+  "pathEditor_tooManyHops": "Največ 64 hopov",
+  "pathEditor_usePath": "Uporabite to poto",
+  "pathEditor_removeHop": "Odstranite hmelj",
+  "pathEditor_unknownHop": "Neznani ponovitelj",
+  "map_zoomIn": "Povečaj",
+  "routing_deliveryCounts": "{successes} delivered, {failures} failed",
+  "map_zoomOut": "Povečajte pogled",
+  "map_centerMap": "Krajšarska karta",
+  "chrome_bluetoothRequiresChromium": "Web Bluetooth zahteva brskalnik Chromium.",
+  "channels_communityShortId": "ID: {id}...",
+  "pathTrace_legendGpsConfirmed": "GPS potrdilo",
+  "pathTrace_legendInferred": "Izpeljana lokacija"
 }

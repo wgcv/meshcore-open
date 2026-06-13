@@ -93,6 +93,24 @@ class AppLocalizationsPt extends AppLocalizations {
   String get common_disable => 'Desativar';
 
   @override
+  String get common_undo => 'Desfazer';
+
+  @override
+  String get messageStatus_sent => 'Enviado';
+
+  @override
+  String get messageStatus_delivered => 'Entregue';
+
+  @override
+  String get messageStatus_pending => 'Enviar';
+
+  @override
+  String get messageStatus_failed => 'Falhou ao enviar';
+
+  @override
+  String get messageStatus_repeated => 'Ouvi repetidamente';
+
+  @override
   String get common_reboot => 'Reiniciar';
 
   @override
@@ -110,6 +128,12 @@ class AppLocalizationsPt extends AppLocalizations {
   String common_percentValue(int percent) {
     return '$percent%';
   }
+
+  @override
+  String get common_autoRefresh => 'Atualização automática';
+
+  @override
+  String get common_interval => 'Intervalo';
 
   @override
   String get scanner_title => 'MeshCore: Versão aberta';
@@ -295,6 +319,10 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get scanner_enableBluetooth => 'Ative o Bluetooth';
+
+  @override
+  String get scanner_bluetoothWebUnsupported =>
+      'Bluetooth isn\'t available in the browser. Connect over USB instead.';
 
   @override
   String get device_quickSwitch => 'Mudar rapidamente';
@@ -788,11 +816,6 @@ class AppLocalizationsPt extends AppLocalizations {
       'Número de tentativas de reenvio antes de classificar uma mensagem como falha.';
 
   @override
-  String path_routeWeight(String weight, String max) {
-    return '$weight/$max';
-  }
-
-  @override
   String get appSettings_battery => 'Bateria';
 
   @override
@@ -992,6 +1015,15 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get contacts_newGroup => 'Novo Grupo';
+
+  @override
+  String get contacts_moreOptions => 'Mais opções';
+
+  @override
+  String get contacts_searchOpen => 'Pesquisar contatos';
+
+  @override
+  String get contacts_searchClose => 'Pesquisa avançada';
 
   @override
   String get contacts_groupName => 'Nome do grupo';
@@ -1473,34 +1505,6 @@ class AppLocalizationsPt extends AppLocalizations {
   String get debugFrame_hexDump => 'Espaço Hexadecimal:';
 
   @override
-  String get chat_pathManagement => 'Gerenciamento de Caminhos';
-
-  @override
-  String get chat_ShowAllPaths => 'Mostrar todos os caminhos';
-
-  @override
-  String get chat_routingMode => 'Modo de roteamento';
-
-  @override
-  String get chat_autoUseSavedPath => 'Auto (usar caminho salvo)';
-
-  @override
-  String get chat_forceFloodMode => 'Modo de Inundação Forçado';
-
-  @override
-  String get chat_recentAckPaths => 'Rotas de ACK Recentes (toque para usar):';
-
-  @override
-  String get chat_pathHistoryFull =>
-      'O histórico está cheio. Remova entradas para adicionar novas.';
-
-  @override
-  String get chat_hopSingular => 'pule';
-
-  @override
-  String get chat_hopPlural => 'salta';
-
-  @override
   String chat_hopsCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
@@ -1512,12 +1516,6 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
-  String get chat_successes => 'Sucessos';
-
-  @override
-  String get chat_score => 'Score';
-
-  @override
   String get chat_removePath => 'Remover caminho';
 
   @override
@@ -1525,51 +1523,146 @@ class AppLocalizationsPt extends AppLocalizations {
       'Ainda não há histórico de caminhos.\nEnvie uma mensagem para descobrir caminhos.';
 
   @override
-  String get chat_pathActions => 'Ações do Caminho:';
-
-  @override
-  String get chat_setCustomPath => 'Definir Caminho Personalizado';
-
-  @override
-  String get chat_setCustomPathSubtitle =>
-      'Especifique manualmente o caminho de roteamento';
-
-  @override
-  String get chat_clearPath => 'Limpar Caminho';
-
-  @override
-  String get chat_clearPathSubtitle =>
-      'Forçar a descoberta na próxima transmissão';
-
-  @override
   String get chat_pathCleared =>
       'Caminho limpo. A próxima mensagem redescobrirá a rota.';
-
-  @override
-  String get chat_floodModeSubtitle =>
-      'Use a chave de roteamento na barra de ferramentas';
-
-  @override
-  String get chat_floodModeEnabled =>
-      'Modo de inundação ativado. Desative-o novamente através do ícone de roteamento na barra de ferramentas.';
 
   @override
   String get chat_fullPath => 'Caminho Completo';
 
   @override
-  String get chat_pathDetailsNotAvailable =>
-      'Os detalhes do caminho ainda não estão disponíveis. Tente enviar uma mensagem para atualizar.';
+  String get routing_title => 'Rotas';
 
   @override
-  String chat_pathSetHops(int hopCount, String status) {
-    String _temp0 = intl.Intl.pluralLogic(
-      hopCount,
-      locale: localeName,
-      other: 'hops',
-      one: 'hop',
-    );
-    return 'Caminho definido: $hopCount $_temp0 - $status';
+  String get routing_modeAuto => 'Carro';
+
+  @override
+  String get routing_modeFlood => 'Inundação';
+
+  @override
+  String get routing_modeManual => 'Manual';
+
+  @override
+  String get routing_modeAutoHint =>
+      'Seleciona automaticamente o caminho mais conhecido, e, se nenhum caminho conhecido for encontrado, utiliza a estratégia de \"inundação\".';
+
+  @override
+  String get routing_modeFloodHint =>
+      'Transmissão através de todos os repetidores. É a opção mais confiável, mas utiliza mais tempo de transmissão.';
+
+  @override
+  String get routing_modeManualHint =>
+      'Sempre segue exatamente o caminho que você define.';
+
+  @override
+  String get routing_currentRoute => 'Rota atual';
+
+  @override
+  String get routing_directNoHops => 'Direto – sem saltos de repetidor';
+
+  @override
+  String get routing_noPathYet =>
+      'Ainda não há um caminho definido. A mensagem continua a ser enviada até que uma rota seja encontrada.';
+
+  @override
+  String get routing_floodBroadcast =>
+      'Transmissão através de todos os repetidores';
+
+  @override
+  String get routing_editPath => 'Editar caminho';
+
+  @override
+  String get routing_forgetPath => 'Esqueça o caminho';
+
+  @override
+  String get routing_knownPaths => 'Rotas conhecidas';
+
+  @override
+  String get routing_knownPathsHint =>
+      'Toque em um caminho para alternar para ele.';
+
+  @override
+  String get routing_inUse => 'Em uso';
+
+  @override
+  String get routing_qualityStrong => 'Primeiro salto notável';
+
+  @override
+  String get routing_qualityGood => 'Primeiro salto bem-sucedido';
+
+  @override
+  String get routing_qualityFair => 'Primeira etapa bem-sucedida';
+
+  @override
+  String get routing_qualityWorked => 'Foi entregue';
+
+  @override
+  String get routing_qualityFlood =>
+      'Informação obtida através de relatos generalizados.';
+
+  @override
+  String get routing_qualityUntested => 'Não testado';
+
+  @override
+  String routing_lastWorked(String when) {
+    return 'worked $when';
   }
+
+  @override
+  String get routing_neverWorked => 'nunca confirmado';
+
+  @override
+  String routing_deliveryCounts(int successes, int failures) {
+    return '$successes delivered, $failures failed';
+  }
+
+  @override
+  String get routing_floodDelivery =>
+      'Entrega em áreas afetadas por inundações';
+
+  @override
+  String get pathEditor_title => 'Criar Caminho';
+
+  @override
+  String pathEditor_hopCounter(int count) {
+    return '$count de 64 gramas de lúpulo';
+  }
+
+  @override
+  String get pathEditor_noHops =>
+      'Ainda não há lúpulos adicionados. Clique nos repetidores abaixo para adicioná-los na ordem desejada, ou salve sem adicionar lúpulos para enviar diretamente.';
+
+  @override
+  String get pathEditor_addHops => 'Adicione os lúpulos na seguinte ordem.';
+
+  @override
+  String get pathEditor_searchRepeaters => 'Encontrar repetidores';
+
+  @override
+  String get pathEditor_advancedHex => 'Avançado: caminho hexadecimal bruto';
+
+  @override
+  String get pathEditor_hexLabel => 'Prefixos hexadecimais';
+
+  @override
+  String get pathEditor_hexHelper =>
+      'Dois caracteres hexadecimais por salto, separados por vírgulas.';
+
+  @override
+  String pathEditor_invalidTokens(String tokens) {
+    return 'Inválido: $tokens';
+  }
+
+  @override
+  String get pathEditor_tooManyHops => 'Máximo de 64 saltos';
+
+  @override
+  String get pathEditor_usePath => 'Utilize este caminho.';
+
+  @override
+  String get pathEditor_removeHop => 'Remova o lúpulo';
+
+  @override
+  String get pathEditor_unknownHop => 'Repetidor desconhecido';
 
   @override
   String get chat_pathSavedLocally =>
@@ -1644,6 +1737,39 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get map_title => 'Mapa de Nós';
+
+  @override
+  String get map_searchHint => 'Search node name or ID';
+
+  @override
+  String get map_activity => 'Activity';
+
+  @override
+  String get map_online => 'Online';
+
+  @override
+  String get map_recent => 'Recent';
+
+  @override
+  String get map_stale => 'Stale';
+
+  @override
+  String get map_visible => 'Visible';
+
+  @override
+  String get map_hidden => 'Hidden';
+
+  @override
+  String get map_centerOnNode => 'Center on node';
+
+  @override
+  String get map_details => 'Details';
+
+  @override
+  String get map_noGps => 'No GPS';
+
+  @override
+  String get map_noResults => 'No matching nodes';
 
   @override
   String get map_lineOfSight => 'Linha de visão';
@@ -2039,64 +2165,11 @@ class AppLocalizationsPt extends AppLocalizations {
   String get common_clear => 'Limpar';
 
   @override
-  String path_currentPath(String path) {
-    return 'Caminho atual: $path';
-  }
-
-  @override
-  String path_usingHopsPath(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: 'hops',
-      one: 'hop',
-    );
-    return 'Usando $count $_temp0 caminho';
-  }
-
-  @override
-  String get path_enterCustomPath => 'Insira Caminho Personalizado';
-
-  @override
   String get path_currentPathLabel => 'Caminho atual';
-
-  @override
-  String get path_hexPrefixInstructions =>
-      'Insira os prefixos hexadecimais de 2 caracteres para cada salto, separados por vírgulas.';
-
-  @override
-  String get path_hexPrefixExample =>
-      'A1,F2,3C (cada nó usa o primeiro byte de sua chave pública)';
-
-  @override
-  String get path_labelHexPrefixes => 'Prefixo Hexadecimal';
-
-  @override
-  String get path_helperMaxHops =>
-      'Máximo de 64 saltos. Cada prefixo tem 2 caracteres hexadecimais (1 byte)';
-
-  @override
-  String get path_selectFromContacts => 'Ou selecione de contatos:';
 
   @override
   String get path_noRepeatersFound =>
       'Não foram encontrados repetidores ou servidores de sala.';
-
-  @override
-  String get path_customPathsRequire =>
-      'Caminhos personalizados exigem saltos intermediários que podem transmitir mensagens.';
-
-  @override
-  String path_invalidHexPrefixes(String prefixes) {
-    return 'Prefixos hexadecimais inválidos: $prefixes';
-  }
-
-  @override
-  String get path_tooLong =>
-      'Caminho muito longo. Máximo de 64 saltos permitidos.';
-
-  @override
-  String get path_setPath => 'Definir Caminho';
 
   @override
   String get repeater_management => 'Gerenciamento de Repetidor';
@@ -2161,15 +2234,6 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get repeater_routingMode => 'Modo de roteamento';
-
-  @override
-  String get repeater_autoUseSavedPath => 'Auto (usar caminho salvo)';
-
-  @override
-  String get repeater_forceFloodMode => 'Modo de Inundação Forçado';
-
-  @override
-  String get repeater_pathManagement => 'Gerenciamento de caminhos';
 
   @override
   String get repeater_refresh => 'Atualizar';
@@ -3270,6 +3334,139 @@ class AppLocalizationsPt extends AppLocalizations {
   }
 
   @override
+  String get telemetry_digitalInputLabel => 'Entrada digital';
+
+  @override
+  String get telemetry_digitalOutputLabel => 'Saída digital';
+
+  @override
+  String get telemetry_analogInputLabel => 'Entrada analógica';
+
+  @override
+  String get telemetry_analogOutputLabel => 'Saída analógica';
+
+  @override
+  String get telemetry_genericLabel => 'Sensor genérico';
+
+  @override
+  String get telemetry_luminosityLabel => 'Luminosidade';
+
+  @override
+  String get telemetry_presenceLabel => 'Presença';
+
+  @override
+  String get telemetry_humidityLabel => 'Humidade';
+
+  @override
+  String get telemetry_accelerometerLabel => 'Acelerómetro';
+
+  @override
+  String get telemetry_pressureLabel => 'Pressão';
+
+  @override
+  String get telemetry_altitudeLabel => 'Altitude';
+
+  @override
+  String get telemetry_frequencyLabel => 'Frequência';
+
+  @override
+  String get telemetry_percentageLabel => 'Percentagem';
+
+  @override
+  String get telemetry_concentrationLabel => 'Concentração';
+
+  @override
+  String get telemetry_powerLabel => 'Potência';
+
+  @override
+  String get telemetry_distanceLabel => 'Distância';
+
+  @override
+  String get telemetry_energyLabel => 'Energia';
+
+  @override
+  String get telemetry_directionLabel => 'Direção';
+
+  @override
+  String get telemetry_timeLabel => 'Hora';
+
+  @override
+  String get telemetry_gyrometerLabel => 'Girómetro';
+
+  @override
+  String get telemetry_colourLabel => 'Cor';
+
+  @override
+  String get telemetry_gpsLabel => 'GPS';
+
+  @override
+  String get telemetry_switchLabel => 'Interruptor';
+
+  @override
+  String get telemetry_polylineLabel => 'Polilinha';
+
+  @override
+  String telemetry_altitudeValue(String meters) {
+    return '$meters m';
+  }
+
+  @override
+  String telemetry_frequencyValue(String hertz) {
+    return '$hertz Hz';
+  }
+
+  @override
+  String telemetry_pressureValue(String hpa) {
+    return '$hpa hPa';
+  }
+
+  @override
+  String telemetry_luminosityValue(String lux) {
+    return '$lux lx';
+  }
+
+  @override
+  String telemetry_powerValue(String watts) {
+    return '$watts W';
+  }
+
+  @override
+  String telemetry_distanceValue(String meters) {
+    return '$meters m';
+  }
+
+  @override
+  String telemetry_energyValue(String kilowattHours) {
+    return '$kilowattHours kWh';
+  }
+
+  @override
+  String telemetry_directionValue(String degrees) {
+    return '$degrees°';
+  }
+
+  @override
+  String telemetry_concentrationValue(String ppm) {
+    return '$ppm ppm';
+  }
+
+  @override
+  String telemetry_percentageValue(String percent) {
+    return '$percent%';
+  }
+
+  @override
+  String telemetry_analogValue(String value) {
+    return '$value';
+  }
+
+  @override
+  String get telemetry_autoFetchQuantity => 'Número de solicitações';
+
+  @override
+  String get telemetry_error => 'Não foi possível obter os dados';
+
+  @override
   String get neighbors_receivedData => 'Dados dos Vizinhos Recebidos';
 
   @override
@@ -4160,6 +4357,17 @@ class AppLocalizationsPt extends AppLocalizations {
       'Controla o estado padrão do ícone de tradução do compositor.';
 
   @override
+  String get translation_autoIncomingTitle =>
+      'Traduzir mensagens automaticamente';
+
+  @override
+  String get translation_autoIncomingSubtitle =>
+      'Traduz automaticamente mensagens para notificações e para chats ou canais.';
+
+  @override
+  String get translation_translateMessage => 'Traduzir mensagem';
+
+  @override
   String get translation_targetLanguage => 'Língua-alvo';
 
   @override
@@ -4285,4 +4493,135 @@ class AppLocalizationsPt extends AppLocalizations {
 
   @override
   String get contact_typeUnknown => 'Unknown';
+
+  @override
+  String get map_zoomIn => 'Ampliar';
+
+  @override
+  String get map_zoomOut => 'Ampliar';
+
+  @override
+  String get map_centerMap => 'Mapa do centro';
+
+  @override
+  String get chrome_bluetoothRequiresChromium =>
+      'O Web Bluetooth requer um navegador Chromium.';
+
+  @override
+  String channels_communityShortId(String id) {
+    return 'ID: $id...';
+  }
+
+  @override
+  String get pathTrace_legendGpsConfirmed => 'GPS confirmado';
+
+  @override
+  String get pathTrace_legendInferred => 'Posição inferida';
+
+  @override
+  String get pathMap_viewSingle => 'Single';
+
+  @override
+  String get pathMap_viewCombined => 'Combined';
+
+  @override
+  String get pathMap_play => 'Play';
+
+  @override
+  String get pathMap_pause => 'Pause';
+
+  @override
+  String get pathMap_replay => 'Replay';
+
+  @override
+  String get pathMap_stepBack => 'Previous hop';
+
+  @override
+  String get pathMap_stepForward => 'Next hop';
+
+  @override
+  String get pathMap_animationOn => 'Show packet animation';
+
+  @override
+  String get pathMap_animationOff => 'Hide packet animation';
+
+  @override
+  String pathMap_hopOf(int current, int total) {
+    return 'Hop $current of $total';
+  }
+
+  @override
+  String pathMap_observedPaths(int count) {
+    return 'Observed paths: $count';
+  }
+
+  @override
+  String get pathMap_primary => 'Primary';
+
+  @override
+  String pathMap_alternate(int index) {
+    return 'Alt $index';
+  }
+
+  @override
+  String pathMap_hopCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count hops',
+      one: '1 hop',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String pathMap_gpsCount(int confirmed, int total) {
+    return '$confirmed/$total GPS';
+  }
+
+  @override
+  String get pathMap_legendShared => 'Shared segment';
+
+  @override
+  String get pathMap_legendEstimated => 'Estimated segment';
+
+  @override
+  String pathMap_sharedNodeCount(int count) {
+    return 'Used by $count paths';
+  }
+
+  @override
+  String pathMap_partialAnimation(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count hops have no location — the shown path is partial',
+      one: '1 hop has no location — the shown path is partial',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get pathMap_showAllPaths => 'Show all';
+
+  @override
+  String get pathMap_hidePath => 'Hide path';
+
+  @override
+  String get pathMap_showPath => 'Show path';
+
+  @override
+  String get pathMap_collapsePanel => 'Collapse panel';
+
+  @override
+  String get pathMap_expandPanel => 'Expand panel';
+
+  @override
+  String get pathMap_noLocation => 'No location';
+
+  @override
+  String get pathMap_followPacket => 'Lock view to packet';
+
+  @override
+  String get pathMap_unfollowPacket => 'Unlock view from packet';
 }

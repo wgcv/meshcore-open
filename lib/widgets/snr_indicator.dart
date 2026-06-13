@@ -5,6 +5,8 @@ import '../connector/meshcore_connector.dart';
 import '../connector/meshcore_protocol.dart';
 import '../l10n/l10n.dart';
 import '../models/contact.dart';
+import '../theme/mesh_theme.dart';
+import 'mesh_ui.dart';
 import 'signal_ui.dart';
 
 Contact? _getRepeaterPrefixMatchNearLocation(
@@ -166,7 +168,7 @@ class _SNRIndicatorState extends State<SNRIndicator> {
                   style: TextStyle(
                     fontSize: 12,
                     fontWeight: FontWeight.w500,
-                    color: Colors.grey,
+                    color: Theme.of(context).colorScheme.onSurfaceVariant,
                   ),
                   maxLines: 1,
                   overflow: TextOverflow.ellipsis,
@@ -218,10 +220,6 @@ class _SNRIndicatorState extends State<SNRIndicator> {
               separatorBuilder: (_, _) => const Divider(height: 1),
               itemBuilder: (context, index) {
                 final repeater = directBestRepeaters[index];
-                final snrUi = snrUiFromSNR(
-                  repeater.snr,
-                  widget.connector.currentSf,
-                );
                 final allContacts = widget.connector.allContacts;
 
                 final selfLat = widget.connector.selfLatitude;
@@ -242,22 +240,47 @@ class _SNRIndicatorState extends State<SNRIndicator> {
                 );
 
                 final name = contact?.name;
+                final hex = repeater.pubkeyFirstByte
+                    .toRadixString(16)
+                    .padLeft(2, '0');
+                final snrColor = MeshTheme.snrColor(
+                  repeater.snr,
+                  blocked: false,
+                );
 
-                return Column(
-                  children: [
-                    ListTile(
-                      leading: Icon(snrUi.icon, color: snrUi.color),
-                      title: Text(
-                        name ??
-                            repeater.pubkeyFirstByte
-                                .toRadixString(16)
-                                .padLeft(2, '0'),
+                return Padding(
+                  padding: const EdgeInsets.symmetric(
+                    horizontal: 16,
+                    vertical: 10,
+                  ),
+                  child: Row(
+                    children: [
+                      AvatarCircle(
+                        name: name ?? hex,
+                        size: 36,
+                        color: snrColor,
                       ),
-                      subtitle: Text(
-                        'SNR: ${repeater.snr.toStringAsFixed(1)} dB\n${l10n.snrIndicator_lastSeen}: ${_formatLastUpdated(repeater.lastUpdated)}',
+                      const SizedBox(width: 12),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Text(
+                              name ?? hex,
+                              style: Theme.of(context).textTheme.bodyMedium,
+                            ),
+                            Text(
+                              '${repeater.snr.toStringAsFixed(1)} dB • ${_formatLastUpdated(repeater.lastUpdated)}',
+                              style: MeshTheme.mono(
+                                fontSize: 11,
+                                color: snrColor,
+                              ),
+                            ),
+                          ],
+                        ),
                       ),
-                    ),
-                  ],
+                    ],
+                  ),
                 );
               },
             ),

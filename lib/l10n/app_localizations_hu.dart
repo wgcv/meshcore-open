@@ -93,6 +93,24 @@ class AppLocalizationsHu extends AppLocalizations {
   String get common_disable => 'Leteteszt';
 
   @override
+  String get common_undo => 'Még egyszer';
+
+  @override
+  String get messageStatus_sent => 'Elküldve';
+
+  @override
+  String get messageStatus_delivered => 'Szállítva';
+
+  @override
+  String get messageStatus_pending => 'Elküldés';
+
+  @override
+  String get messageStatus_failed => 'Nem sikerült elküldeni';
+
+  @override
+  String get messageStatus_repeated => 'Ismételtem';
+
+  @override
   String get common_reboot => 'Újraindítás';
 
   @override
@@ -110,6 +128,12 @@ class AppLocalizationsHu extends AppLocalizations {
   String common_percentValue(int percent) {
     return '$percent%';
   }
+
+  @override
+  String get common_autoRefresh => 'Automatikus frissítés';
+
+  @override
+  String get common_interval => 'Intervallum';
 
   @override
   String get scanner_title => 'MeshCore nyitott';
@@ -293,6 +317,10 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get scanner_enableBluetooth => 'Engedje be a Bluetooth funkciót';
+
+  @override
+  String get scanner_bluetoothWebUnsupported =>
+      'Bluetooth isn\'t available in the browser. Connect over USB instead.';
 
   @override
   String get device_quickSwitch => 'Gyors váltás';
@@ -790,11 +818,6 @@ class AppLocalizationsHu extends AppLocalizations {
       'A próbálkozások száma, mielőtt egy üzenetet hibásnak jelölünk.';
 
   @override
-  String path_routeWeight(String weight, String max) {
-    return '$weight/$max';
-  }
-
-  @override
   String get appSettings_battery => 'Akku';
 
   @override
@@ -996,6 +1019,15 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get contacts_newGroup => 'Új csoport';
+
+  @override
+  String get contacts_moreOptions => 'További lehetőségek';
+
+  @override
+  String get contacts_searchOpen => 'Keresssz kapcsolatokat';
+
+  @override
+  String get contacts_searchClose => 'Teljesítse a keresést';
 
   @override
   String get contacts_groupName => 'Csoport neve';
@@ -1483,36 +1515,6 @@ class AppLocalizationsHu extends AppLocalizations {
   String get debugFrame_hexDump => 'Hex-dump:';
 
   @override
-  String get chat_pathManagement => 'Útvonal-kezelés';
-
-  @override
-  String get chat_ShowAllPaths => 'Mutasson meg minden útvonalat';
-
-  @override
-  String get chat_routingMode => 'Útvonal-kezelési mód';
-
-  @override
-  String get chat_autoUseSavedPath =>
-      'Automatikus (az eddigi útvonal használata)';
-
-  @override
-  String get chat_forceFloodMode => 'Erőforrás-alapú áramlás mód';
-
-  @override
-  String get chat_recentAckPaths =>
-      'Legutóbbi használt útvonalak (gombra kattintva):';
-
-  @override
-  String get chat_pathHistoryFull =>
-      'Az előző lépések listája teljes. Törölj ki a bejegyzéseket, hogy újokat hozzáadhatsd.';
-
-  @override
-  String get chat_hopSingular => 'ugor';
-
-  @override
-  String get chat_hopPlural => 'babér';
-
-  @override
   String chat_hopsCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
@@ -1524,12 +1526,6 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
-  String get chat_successes => 'sikerek';
-
-  @override
-  String get chat_score => 'Score';
-
-  @override
   String get chat_removePath => 'Törölje a elérési útvonalat';
 
   @override
@@ -1537,50 +1533,146 @@ class AppLocalizationsHu extends AppLocalizations {
       'Még nincs útvonal-történet.\nKüldjön egy üzenetet, hogy megtudja a lehetséges útvonalakat.';
 
   @override
-  String get chat_pathActions => 'Céltúrások:';
-
-  @override
-  String get chat_setCustomPath => 'Beállítsd a saját útvonalat';
-
-  @override
-  String get chat_setCustomPathSubtitle => 'Kézzel megadott útvonal';
-
-  @override
-  String get chat_clearPath => 'Egyértelmű út';
-
-  @override
-  String get chat_clearPathSubtitle =>
-      'A parancs új küldéskor újra kell aktivizálnia.';
-
-  @override
   String get chat_pathCleared =>
       'Útvonal cleared. A következő üzenet újból feltérképezheti az útvonalat.';
-
-  @override
-  String get chat_floodModeSubtitle =>
-      'Használja a \"útvonal\" kapcsolót az alkalmazás sávjában.';
-
-  @override
-  String get chat_floodModeEnabled =>
-      'Árvízvédelmi mód bekapcsolva. A visszaállítás a alkalmazásban található útvonal ikon segítségével.';
 
   @override
   String get chat_fullPath => 'Teljes elérési út';
 
   @override
-  String get chat_pathDetailsNotAvailable =>
-      'Az útvonal részletei még nem elérhetők. Próbálja meg küldeni egy üzenetet, hogy frissítse az információkat.';
+  String get routing_title => 'Útvonal meghatározás';
 
   @override
-  String chat_pathSetHops(int hopCount, String status) {
-    String _temp0 = intl.Intl.pluralLogic(
-      hopCount,
-      locale: localeName,
-      other: 'hops',
-      one: 'hop',
-    );
-    return 'Path set: $hopCount $_temp0 - $status';
+  String get routing_modeAuto => 'Autó';
+
+  @override
+  String get routing_modeFlood => 'Áradás';
+
+  @override
+  String get routing_modeManual => 'Használati útmutató';
+
+  @override
+  String get routing_modeAutoHint =>
+      'Automatikusan kiválasztja a legismertebb útvonalat, és ha egyik sem ismert, akkor \"vízzel\" tölti ki.';
+
+  @override
+  String get routing_modeFloodHint =>
+      'Átvisszaadások minden erősítőn keresztül. A legmegbízhatóbb megoldás, de több időt igényel.';
+
+  @override
+  String get routing_modeManualHint =>
+      'Mindig pontosan az útvonalat követi, amelyet megad.';
+
+  @override
+  String get routing_currentRoute => 'Jelenlegi útvonal';
+
+  @override
+  String get routing_directNoHops => 'Közvetlen – nincs átjáró állomás';
+
+  @override
+  String get routing_noPathYet =>
+      'Még nincs útvonal. A következő üzenet a keresésig vár.';
+
+  @override
+  String get routing_floodBroadcast =>
+      'Azonnali továbbítás minden erősítőn keresztül.';
+
+  @override
+  String get routing_editPath => 'Útvonal szerkesztése';
+
+  @override
+  String get routing_forgetPath => 'Felejtsd el a útvonalat';
+
+  @override
+  String get routing_knownPaths => 'Jellegzetes útvonalak';
+
+  @override
+  String get routing_knownPathsHint =>
+      'Készíts egy útvonalat, hogy átválhass rá.';
+
+  @override
+  String get routing_inUse => 'Használatban';
+
+  @override
+  String get routing_qualityStrong => 'Erős első lépés';
+
+  @override
+  String get routing_qualityGood => 'Jó első lépés';
+
+  @override
+  String get routing_qualityFair => 'Jó első lépés';
+
+  @override
+  String get routing_qualityWorked => 'Előállított';
+
+  @override
+  String get routing_qualityFlood =>
+      'Információt hallottam a katasztrófa miatt.';
+
+  @override
+  String get routing_qualityUntested => 'Vizsgálatnak nem подвержен';
+
+  @override
+  String routing_lastWorked(String when) {
+    return 'worked $when';
   }
+
+  @override
+  String get routing_neverWorked => 'sosem megerősítve';
+
+  @override
+  String routing_deliveryCounts(int successes, int failures) {
+    return '$successes delivered, $failures failed';
+  }
+
+  @override
+  String get routing_floodDelivery => 'Vízparti szállítás';
+
+  @override
+  String get pathEditor_title => 'Út megépítése';
+
+  @override
+  String pathEditor_hopCounter(int count) {
+    return '$count db 64-ből';
+  }
+
+  @override
+  String get pathEditor_noHops =>
+      'Még nem adtam hozzá a bazsalikomot. A lent található gombokat használhatod, hogy sorrendben adjd hozzá, vagy mentheted anélkül, hogy bazsalikomot adnál hozzá, hogy közvetlenül elküldd.';
+
+  @override
+  String get pathEditor_addHops =>
+      'Adja hozzá a bazsaidat a megfelelő sorrendben.';
+
+  @override
+  String get pathEditor_searchRepeaters => 'Ismétlő eszközök keresése';
+
+  @override
+  String get pathEditor_advancedHex => 'Haladó szint: alapvető hex-út';
+
+  @override
+  String get pathEditor_hexLabel => 'Hex előtagok';
+
+  @override
+  String get pathEditor_hexHelper =>
+      'Két hatjegyű szám minden lépésen, amelyek egymástól elválasztják a kommák.';
+
+  @override
+  String pathEditor_invalidTokens(String tokens) {
+    return 'Érvénytelen: $tokens';
+  }
+
+  @override
+  String get pathEditor_tooManyHops => 'A maximális szám 64.';
+
+  @override
+  String get pathEditor_usePath => 'Használja ezt az útvonalat.';
+
+  @override
+  String get pathEditor_removeHop => 'Távolítsa el a bazsalikomot';
+
+  @override
+  String get pathEditor_unknownHop => 'Tudatlan erősítő';
 
   @override
   String get chat_pathSavedLocally =>
@@ -1655,6 +1747,39 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get map_title => 'Grafikus ábrázás';
+
+  @override
+  String get map_searchHint => 'Search node name or ID';
+
+  @override
+  String get map_activity => 'Activity';
+
+  @override
+  String get map_online => 'Online';
+
+  @override
+  String get map_recent => 'Recent';
+
+  @override
+  String get map_stale => 'Stale';
+
+  @override
+  String get map_visible => 'Visible';
+
+  @override
+  String get map_hidden => 'Hidden';
+
+  @override
+  String get map_centerOnNode => 'Center on node';
+
+  @override
+  String get map_details => 'Details';
+
+  @override
+  String get map_noGps => 'No GPS';
+
+  @override
+  String get map_noResults => 'No matching nodes';
 
   @override
   String get map_lineOfSight => 'Látási vonal';
@@ -2053,65 +2178,11 @@ class AppLocalizationsHu extends AppLocalizations {
   String get common_clear => 'Egyértelmű';
 
   @override
-  String path_currentPath(String path) {
-    return 'Jelenlegi útvonal: $path';
-  }
-
-  @override
-  String path_usingHopsPath(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: 'ugrások',
-      one: 'ugrás',
-    );
-    return '$count $_temp0 útvonal használata';
-  }
-
-  @override
-  String get path_enterCustomPath => 'Adja meg a saját elérési útvonalat';
-
-  @override
   String get path_currentPathLabel => 'Jelenlegi útvonal';
-
-  @override
-  String get path_hexPrefixInstructions =>
-      'Adja meg a 2 karakteres hexadecimális előtagokat minden lépéshez, tagolva kommával.';
-
-  @override
-  String get path_hexPrefixExample =>
-      'Példa: A1, F2, 3C (minden csomó az első részét használja a nyilvános kulcsából)';
-
-  @override
-  String get path_labelHexPrefixes => 'Út (hex-prefixek)';
-
-  @override
-  String get path_helperMaxHops =>
-      'A maximális hossz 64 karakter. Minden előző rész 2 hatos számjegyből áll (1 bájt).';
-
-  @override
-  String get path_selectFromContacts =>
-      'Válasszon a kontaktlista elembek közül:';
 
   @override
   String get path_noRepeatersFound =>
       'Nincs megtalálva semmilyen ismétlődő vagy helyiség-szolgáltató szervert.';
-
-  @override
-  String get path_customPathsRequire =>
-      'Az egyedi útvonalaknak szükségük van átjáró pontokra, amelyek képesek üzeneteket továbbítani.';
-
-  @override
-  String path_invalidHexPrefixes(String prefixes) {
-    return 'Érvénytelen hexadecimális előtagok: $prefixes';
-  }
-
-  @override
-  String get path_tooLong =>
-      'Az út túl hosszú. A maximális engedélyezett lépések száma 64.';
-
-  @override
-  String get path_setPath => 'Útvonal meghatározása';
 
   @override
   String get repeater_management => 'Adatkapcsolás kezelése';
@@ -2177,16 +2248,6 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get repeater_routingMode => 'Útvonal-kezelési mód';
-
-  @override
-  String get repeater_autoUseSavedPath =>
-      'Automatikus (az eddigi útvonal használata)';
-
-  @override
-  String get repeater_forceFloodMode => 'Erőforrás-alapú áramlás mód';
-
-  @override
-  String get repeater_pathManagement => 'Útvonal-kezelés';
 
   @override
   String get repeater_refresh => 'Újrafriszol';
@@ -3287,6 +3348,139 @@ class AppLocalizationsHu extends AppLocalizations {
   }
 
   @override
+  String get telemetry_digitalInputLabel => 'Digitális bemenet';
+
+  @override
+  String get telemetry_digitalOutputLabel => 'Digitális kimenet';
+
+  @override
+  String get telemetry_analogInputLabel => 'Analóg bemenet';
+
+  @override
+  String get telemetry_analogOutputLabel => 'Analóg kimenet';
+
+  @override
+  String get telemetry_genericLabel => 'Általános érzékelő';
+
+  @override
+  String get telemetry_luminosityLabel => 'Fényerő';
+
+  @override
+  String get telemetry_presenceLabel => 'Jelenlét';
+
+  @override
+  String get telemetry_humidityLabel => 'Páratartalom';
+
+  @override
+  String get telemetry_accelerometerLabel => 'Gyorsulásmérő';
+
+  @override
+  String get telemetry_pressureLabel => 'Nyomás';
+
+  @override
+  String get telemetry_altitudeLabel => 'Magasság';
+
+  @override
+  String get telemetry_frequencyLabel => 'Frekvencia';
+
+  @override
+  String get telemetry_percentageLabel => 'Százalék';
+
+  @override
+  String get telemetry_concentrationLabel => 'Koncentráció';
+
+  @override
+  String get telemetry_powerLabel => 'Teljesítmény';
+
+  @override
+  String get telemetry_distanceLabel => 'Távolság';
+
+  @override
+  String get telemetry_energyLabel => 'Energia';
+
+  @override
+  String get telemetry_directionLabel => 'Irány';
+
+  @override
+  String get telemetry_timeLabel => 'Idő';
+
+  @override
+  String get telemetry_gyrometerLabel => 'Giroszkóp';
+
+  @override
+  String get telemetry_colourLabel => 'Szín';
+
+  @override
+  String get telemetry_gpsLabel => 'GPS';
+
+  @override
+  String get telemetry_switchLabel => 'Kapcsoló';
+
+  @override
+  String get telemetry_polylineLabel => 'Töröttvonal';
+
+  @override
+  String telemetry_altitudeValue(String meters) {
+    return '$meters m';
+  }
+
+  @override
+  String telemetry_frequencyValue(String hertz) {
+    return '$hertz Hz';
+  }
+
+  @override
+  String telemetry_pressureValue(String hpa) {
+    return '$hpa hPa';
+  }
+
+  @override
+  String telemetry_luminosityValue(String lux) {
+    return '$lux lx';
+  }
+
+  @override
+  String telemetry_powerValue(String watts) {
+    return '$watts W';
+  }
+
+  @override
+  String telemetry_distanceValue(String meters) {
+    return '$meters m';
+  }
+
+  @override
+  String telemetry_energyValue(String kilowattHours) {
+    return '$kilowattHours kWh';
+  }
+
+  @override
+  String telemetry_directionValue(String degrees) {
+    return '$degrees°';
+  }
+
+  @override
+  String telemetry_concentrationValue(String ppm) {
+    return '$ppm ppm';
+  }
+
+  @override
+  String telemetry_percentageValue(String percent) {
+    return '$percent%';
+  }
+
+  @override
+  String telemetry_analogValue(String value) {
+    return '$value';
+  }
+
+  @override
+  String get telemetry_autoFetchQuantity => 'Kérések száma';
+
+  @override
+  String get telemetry_error => 'Nem sikerült lekérni az adatokat';
+
+  @override
   String get neighbors_receivedData => 'Kapott szomszédok adatait';
 
   @override
@@ -4182,6 +4376,16 @@ class AppLocalizationsHu extends AppLocalizations {
       'Ellenőrzi a zeneszerző fordítási ikon alapértékét.';
 
   @override
+  String get translation_autoIncomingTitle => 'Üzenetek automatikus fordítása';
+
+  @override
+  String get translation_autoIncomingSubtitle =>
+      'Automatikusan lefordítja az üzeneteket az értesítésekhez, valamint a csevegésekhez vagy csatornákhoz.';
+
+  @override
+  String get translation_translateMessage => 'Üzenet fordítása';
+
+  @override
   String get translation_targetLanguage => 'Célnyelv';
 
   @override
@@ -4309,4 +4513,135 @@ class AppLocalizationsHu extends AppLocalizations {
 
   @override
   String get contact_typeUnknown => 'Unknown';
+
+  @override
+  String get map_zoomIn => 'Nagyítva';
+
+  @override
+  String get map_zoomOut => 'Kicsökkentett nézet';
+
+  @override
+  String get map_centerMap => 'Központi tér térkép';
+
+  @override
+  String get chrome_bluetoothRequiresChromium =>
+      'A Web Bluetooth-hoz egy Chromium-alapú böngésző szükséges.';
+
+  @override
+  String channels_communityShortId(String id) {
+    return 'Az azonosító: $id...';
+  }
+
+  @override
+  String get pathTrace_legendGpsConfirmed => 'GPS-en megerősítve';
+
+  @override
+  String get pathTrace_legendInferred => 'Feltehető helyzet';
+
+  @override
+  String get pathMap_viewSingle => 'Single';
+
+  @override
+  String get pathMap_viewCombined => 'Combined';
+
+  @override
+  String get pathMap_play => 'Play';
+
+  @override
+  String get pathMap_pause => 'Pause';
+
+  @override
+  String get pathMap_replay => 'Replay';
+
+  @override
+  String get pathMap_stepBack => 'Previous hop';
+
+  @override
+  String get pathMap_stepForward => 'Next hop';
+
+  @override
+  String get pathMap_animationOn => 'Show packet animation';
+
+  @override
+  String get pathMap_animationOff => 'Hide packet animation';
+
+  @override
+  String pathMap_hopOf(int current, int total) {
+    return 'Hop $current of $total';
+  }
+
+  @override
+  String pathMap_observedPaths(int count) {
+    return 'Observed paths: $count';
+  }
+
+  @override
+  String get pathMap_primary => 'Primary';
+
+  @override
+  String pathMap_alternate(int index) {
+    return 'Alt $index';
+  }
+
+  @override
+  String pathMap_hopCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count hops',
+      one: '1 hop',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String pathMap_gpsCount(int confirmed, int total) {
+    return '$confirmed/$total GPS';
+  }
+
+  @override
+  String get pathMap_legendShared => 'Shared segment';
+
+  @override
+  String get pathMap_legendEstimated => 'Estimated segment';
+
+  @override
+  String pathMap_sharedNodeCount(int count) {
+    return 'Used by $count paths';
+  }
+
+  @override
+  String pathMap_partialAnimation(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count hops have no location — the shown path is partial',
+      one: '1 hop has no location — the shown path is partial',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get pathMap_showAllPaths => 'Show all';
+
+  @override
+  String get pathMap_hidePath => 'Hide path';
+
+  @override
+  String get pathMap_showPath => 'Show path';
+
+  @override
+  String get pathMap_collapsePanel => 'Collapse panel';
+
+  @override
+  String get pathMap_expandPanel => 'Expand panel';
+
+  @override
+  String get pathMap_noLocation => 'No location';
+
+  @override
+  String get pathMap_followPacket => 'Lock view to packet';
+
+  @override
+  String get pathMap_unfollowPacket => 'Unlock view from packet';
 }

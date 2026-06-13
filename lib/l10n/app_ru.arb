@@ -39,6 +39,8 @@
   "common_notAvailable": "—",
   "common_voltageValue": "{volts} В",
   "common_percentValue": "{percent}%",
+  "common_autoRefresh": "Автообновление",
+  "common_interval": "Интервал",
   "scanner_title": "MeshCore Open",
   "scanner_scanning": "Поиск устройств...",
   "scanner_connecting": "Подключение...",
@@ -686,6 +688,43 @@
   "telemetry_voltageValue": "{volts}В",
   "telemetry_currentValue": "{amps}А",
   "telemetry_temperatureValue": "{celsius}°C / {fahrenheit}°F",
+  "telemetry_digitalInputLabel": "Цифровой вход",
+  "telemetry_digitalOutputLabel": "Цифровой выход",
+  "telemetry_analogInputLabel": "Аналоговый вход",
+  "telemetry_analogOutputLabel": "Аналоговый выход",
+  "telemetry_genericLabel": "Общий датчик",
+  "telemetry_luminosityLabel": "Освещённость",
+  "telemetry_presenceLabel": "Присутствие",
+  "telemetry_humidityLabel": "Влажность",
+  "telemetry_accelerometerLabel": "Акселерометр",
+  "telemetry_pressureLabel": "Давление",
+  "telemetry_altitudeLabel": "Высота",
+  "telemetry_frequencyLabel": "Частота",
+  "telemetry_percentageLabel": "Процент",
+  "telemetry_concentrationLabel": "Концентрация",
+  "telemetry_powerLabel": "Мощность",
+  "telemetry_distanceLabel": "Расстояние",
+  "telemetry_energyLabel": "Энергия",
+  "telemetry_directionLabel": "Направление",
+  "telemetry_timeLabel": "Время",
+  "telemetry_gyrometerLabel": "Гирометр",
+  "telemetry_colourLabel": "Цвет",
+  "telemetry_gpsLabel": "GPS",
+  "telemetry_switchLabel": "Переключатель",
+  "telemetry_polylineLabel": "Полилиния",
+  "telemetry_altitudeValue": "{meters} м",
+  "telemetry_frequencyValue": "{hertz} Гц",
+  "telemetry_pressureValue": "{hpa} гПа",
+  "telemetry_luminosityValue": "{lux} лк",
+  "telemetry_powerValue": "{watts} Вт",
+  "telemetry_distanceValue": "{meters} м",
+  "telemetry_energyValue": "{kilowattHours} кВт⋅ч",
+  "telemetry_directionValue": "{degrees}°",
+  "telemetry_concentrationValue": "{ppm} ppm",
+  "telemetry_percentageValue": "{percent}%",
+  "telemetry_analogValue": "{value}",
+  "telemetry_autoFetchQuantity": "Количество запросов",
+  "telemetry_error": "Не удалось получить данные",
   "neighbors_receivedData": "Полученные данные о соседях",
   "neighbors_requestTimedOut": "Время ожидания данных о соседях истекло.",
   "neighbors_errorLoading": "Ошибка загрузки соседей: {error}",
@@ -1268,6 +1307,9 @@
   "translation_title": "Перевод",
   "translation_enableTitle": "Включить перевод",
   "translation_composerSubtitle": "Управляет исходным состоянием значка перевода, предоставляемого редактором.",
+  "translation_autoIncomingTitle": "Автоматически переводить сообщения",
+  "translation_autoIncomingSubtitle": "Автоматически переводит сообщения для уведомлений, а также для чатов и каналов.",
+  "translation_translateMessage": "Перевести сообщение",
   "translation_targetLanguage": "Целевой язык",
   "translation_useAppLanguage": "Используйте язык приложения",
   "translation_downloadedModelLabel": "Загруженная модель",
@@ -1614,5 +1656,98 @@
   "repeater_cliHelpStatsCore": "(Только для серийного оборудования) Отображает основные статистические данные прошивки.",
   "settings_companionDebugLogSubtitle": "Команды, ответы и необработанные данные, используемые для протоколов BLE, TCP и USB.",
   "repeater_chanUtil": "Использование канала",
-  "settings_companionDebugLog": "Журнал отладки (для сопутствующего приложения)"
+  "settings_companionDebugLog": "Журнал отладки (для сопутствующего приложения)",
+  "@routing_lastWorked": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "@routing_deliveryCounts": {
+    "placeholders": {
+      "successes": {
+        "type": "int"
+      },
+      "failures": {
+        "type": "int"
+      }
+    }
+  },
+  "@pathEditor_hopCounter": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@pathEditor_invalidTokens": {
+    "placeholders": {
+      "tokens": {
+        "type": "String"
+      }
+    }
+  },
+  "@channels_communityShortId": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "messageStatus_pending": "Отправка",
+  "common_undo": "Отменить",
+  "messageStatus_delivered": "Доставлено",
+  "messageStatus_sent": "Отправлено",
+  "messageStatus_failed": "Не удалось отправить",
+  "messageStatus_repeated": "Услышал несколько раз",
+  "contacts_moreOptions": "Больше вариантов",
+  "contacts_searchOpen": "Найти контакты",
+  "contacts_searchClose": "Закрыть поиск",
+  "routing_title": "Маршрутизация",
+  "routing_modeAuto": "Авто",
+  "routing_modeFlood": "Наводнение",
+  "routing_modeManual": "Инструкция",
+  "routing_modeAutoHint": "Автоматически выбирает наиболее известный путь, и если такой путь неизвестен, использует алгоритм поиска пути.",
+  "routing_modeFloodHint": "Передача сигнала через все ретрансляторы. Самый надежный способ, но требует больше времени на передачу.",
+  "routing_modeManualHint": "Всегда следует точно по указанному вами маршруту.",
+  "routing_currentRoute": "Текущий маршрут",
+  "routing_directNoHops": "Прямое соединение – без использования ретрансляторов",
+  "routing_noPathYet": "Пока нет пути. Следующее сообщение будет отправлено до тех пор, пока не будет обнаружен маршрут.",
+  "routing_floodBroadcast": "Транслируется через все ретрансляторы",
+  "routing_editPath": "Изменить путь",
+  "routing_forgetPath": "Забудьте о маршруте",
+  "routing_knownPaths": "Известные маршруты",
+  "routing_knownPathsHint": "Создайте маршрут для переключения на этот пункт.",
+  "routing_inUse": "В эксплуатации",
+  "routing_qualityStrong": "Сильный первый скачок",
+  "routing_qualityGood": "Хорошее начало",
+  "routing_qualityFair": "Первый хороший урожай",
+  "routing_qualityWorked": "Осуществлено",
+  "routing_qualityFlood": "Узнал из новостей, распространяющихся в интернете.",
+  "routing_qualityUntested": "Непроверенный",
+  "routing_neverWorked": "никогда не было подтверждено",
+  "routing_floodDelivery": "Доставка при затоплении",
+  "pathEditor_title": "Создать маршрут",
+  "pathEditor_hopCounter": "{count} из 64 хмеля",
+  "pathEditor_noHops": "На данный момент хмель еще не добавлен. Чтобы добавить его, нажмите на соответствующие кнопки ниже в нужном порядке, или сохраните рецепт без хмеля, чтобы отправить его напрямую.",
+  "pathEditor_addHops": "Добавляйте хмель в соответствии с указанным порядком.",
+  "pathEditor_searchRepeaters": "Поиск повторителей",
+  "pathEditor_advancedHex": "Продвинутый уровень: прямой путь в шестнадцатеричном формате",
+  "pathEditor_hexLabel": "Префиксы шестнадцатеричной системы",
+  "pathEditor_hexHelper": "Два шестнадцатеричных символа на каждом шаге, разделенные запятыми.",
+  "pathEditor_invalidTokens": "Неверно: {tokens}",
+  "routing_lastWorked": "worked {when}",
+  "routing_deliveryCounts": "{successes} delivered, {failures} failed",
+  "pathEditor_tooManyHops": "Максимальное количество ингредиентов – 64",
+  "pathEditor_usePath": "Используйте этот путь",
+  "pathEditor_removeHop": "Удалить хмель",
+  "pathEditor_unknownHop": "Неизвестный ретранслятор",
+  "map_zoomIn": "Увеличить масштаб",
+  "map_zoomOut": "Увеличить масштаб",
+  "map_centerMap": "Карта центра",
+  "chrome_bluetoothRequiresChromium": "Для работы Web Bluetooth требуется браузер на основе Chromium.",
+  "channels_communityShortId": "Идентификатор: {id}...",
+  "pathTrace_legendGpsConfirmed": "GPS подтверждено",
+  "pathTrace_legendInferred": "Выведенная позиция"
 }

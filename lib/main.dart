@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_localizations/flutter_localizations.dart';
 import 'package:flutter/foundation.dart';
+import 'package:flutter/services.dart';
 import 'l10n/app_localizations.dart';
 import 'package:provider/provider.dart';
 
@@ -23,10 +24,20 @@ import 'services/translation_service.dart';
 import 'services/ui_view_state_service.dart';
 import 'services/timeout_prediction_service.dart';
 import 'storage/prefs_manager.dart';
+import 'theme/mesh_theme.dart';
 import 'utils/app_logger.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();
+
+  // On desktop, debugPrint is not suppressed in release builds and every
+  // call is a synchronous stdout write. The connector logs heavily on hot
+  // paths (frame handling, queue/channel sync), which shows up as syscall
+  // overhead on low-end Linux machines (issue #202). The in-app debug log
+  // screens are unaffected — they store entries themselves.
+  if (kReleaseMode) {
+    debugPrint = (String? message, {int? wrapWidth}) {};
+  }
 
   // Initialize SharedPreferences cache
   await PrefsManager.initialize();
@@ -190,23 +201,8 @@ class MeshCoreApp extends StatelessWidget {
             locale: _localeFromSetting(
               settingsService.settings.languageOverride,
             ),
-            theme: ThemeData(
-              colorScheme: ColorScheme.fromSeed(seedColor: Colors.blue),
-              useMaterial3: true,
-              snackBarTheme: const SnackBarThemeData(
-                behavior: SnackBarBehavior.floating,
-              ),
-            ),
-            darkTheme: ThemeData(
-              colorScheme: ColorScheme.fromSeed(
-                seedColor: Colors.blue,
-                brightness: Brightness.dark,
-              ),
-              useMaterial3: true,
-              snackBarTheme: const SnackBarThemeData(
-                behavior: SnackBarBehavior.floating,
-              ),
-            ),
+            theme: MeshTheme.light(),
+            darkTheme: MeshTheme.dark(),
             themeMode: _themeModeFromSetting(
               settingsService.settings.themeMode,
             ),
@@ -214,7 +210,10 @@ class MeshCoreApp extends StatelessWidget {
               // Update notification service with resolved locale
               final locale = Localizations.localeOf(context);
               NotificationService().setLocale(locale);
-              return child ?? const SizedBox.shrink();
+              return AnnotatedRegion<SystemUiOverlayStyle>(
+                value: _systemUiOverlayStyle(context),
+                child: child ?? const SizedBox.shrink(),
+              );
             },
             home: (PlatformInfo.isWeb && !PlatformInfo.isChrome)
                 ? const ChromeRequiredScreen()
@@ -234,6 +233,24 @@ class MeshCoreApp extends StatelessWidget {
       default:
         return ThemeMode.system;
     }
+  }
+
+  SystemUiOverlayStyle _systemUiOverlayStyle(BuildContext context) {
+    final theme = Theme.of(context);
+    final colorScheme = theme.colorScheme;
+    final isDark = theme.brightness == Brightness.dark;
+    final iconBrightness = isDark ? Brightness.light : Brightness.dark;
+
+    // Keep Android system bars aligned with the resolved Flutter theme.
+    return SystemUiOverlayStyle(
+      statusBarColor: Colors.transparent,
+      statusBarIconBrightness: iconBrightness,
+      statusBarBrightness: isDark ? Brightness.dark : Brightness.light,
+      systemNavigationBarColor: colorScheme.surface,
+      systemNavigationBarIconBrightness: iconBrightness,
+      systemNavigationBarDividerColor: colorScheme.surface,
+      systemNavigationBarContrastEnforced: false,
+    );
   }
 
   Locale? _localeFromSetting(String? languageCode) {

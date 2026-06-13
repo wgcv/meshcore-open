@@ -224,6 +224,12 @@ const int reqTypeGetTelemetry = 0x03;
 const int reqTypeGetAccessList = 0x05;
 const int reqTypeGetNeighbors = 0x06;
 
+Uint8List buildTelemetryBinaryPayload() {
+  // Room servers/repeaters read byte 1 as an inverse telemetry permission mask.
+  // Zero means "request every telemetry field allowed for this contact".
+  return Uint8List.fromList([reqTypeGetTelemetry, 0x00, 0x00, 0x00, 0x00]);
+}
+
 // Repeater response codes
 const int respServerLoginOk = 0;
 
@@ -451,8 +457,13 @@ String pubKeyToHex(Uint8List pubKey) {
 
 // Helper to convert hex string to public key
 Uint8List hexToPubKey(String hex) {
+  if (hex.length != pubKeySize * 2) {
+    throw FormatException(
+      'Public key hex must be ${pubKeySize * 2} chars, got ${hex.length}',
+    );
+  }
   final result = Uint8List(pubKeySize);
-  for (int i = 0; i < pubKeySize && i * 2 + 1 < hex.length; i++) {
+  for (int i = 0; i < pubKeySize; i++) {
     result[i] = int.parse(hex.substring(i * 2, i * 2 + 2), radix: 16);
   }
   return result;
@@ -945,7 +956,7 @@ Uint8List buildSendTelemetryReq(Uint8List? pubKey) {
     writer.writeBytes(Uint8List(3)); // reserved bytes
     writer.writeBytes(pubKey);
   } else {
-    writer.writeBytes(Uint8List(4)); // reserved bytes
+    writer.writeBytes(Uint8List(3)); // reserved bytes
   }
   return writer.toBytes();
 }

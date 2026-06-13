@@ -34,6 +34,8 @@
   "common_remove": "Прибрати",
   "common_enable": "Увімкнути",
   "common_disable": "Вимкнути",
+  "common_autoRefresh": "Автооновлення",
+  "common_interval": "Інтервал",
   "common_reboot": "Перезавантажити",
   "common_loading": "Завантаження...",
   "common_notAvailable": "—",
@@ -1291,6 +1293,43 @@
       }
     }
   },
+  "telemetry_digitalInputLabel": "Цифровий вхід",
+  "telemetry_digitalOutputLabel": "Цифровий вихід",
+  "telemetry_analogInputLabel": "Аналоговий вхід",
+  "telemetry_analogOutputLabel": "Аналоговий вихід",
+  "telemetry_genericLabel": "Загальний датчик",
+  "telemetry_luminosityLabel": "Освітленість",
+  "telemetry_presenceLabel": "Присутність",
+  "telemetry_humidityLabel": "Вологість",
+  "telemetry_accelerometerLabel": "Акселерометр",
+  "telemetry_pressureLabel": "Тиск",
+  "telemetry_altitudeLabel": "Висота",
+  "telemetry_frequencyLabel": "Частота",
+  "telemetry_percentageLabel": "Відсоток",
+  "telemetry_concentrationLabel": "Концентрація",
+  "telemetry_powerLabel": "Потужність",
+  "telemetry_distanceLabel": "Відстань",
+  "telemetry_energyLabel": "Енергія",
+  "telemetry_directionLabel": "Напрямок",
+  "telemetry_timeLabel": "Час",
+  "telemetry_gyrometerLabel": "Гірометр",
+  "telemetry_colourLabel": "Колір",
+  "telemetry_gpsLabel": "GPS",
+  "telemetry_switchLabel": "Перемикач",
+  "telemetry_polylineLabel": "Полілінія",
+  "telemetry_altitudeValue": "{meters} м",
+  "telemetry_frequencyValue": "{hertz} Гц",
+  "telemetry_pressureValue": "{hpa} гПа",
+  "telemetry_luminosityValue": "{lux} лк",
+  "telemetry_powerValue": "{watts} Вт",
+  "telemetry_distanceValue": "{meters} м",
+  "telemetry_energyValue": "{kilowattHours} кВт⋅год",
+  "telemetry_directionValue": "{degrees}°",
+  "telemetry_concentrationValue": "{ppm} ppm",
+  "telemetry_percentageValue": "{percent}%",
+  "telemetry_analogValue": "{value}",
+  "telemetry_autoFetchQuantity": "Кількість запитів",
+  "telemetry_error": "Не вдалося отримати дані",
   "telemetry_noData": "Дані телеметрії недоступні.",
   "telemetry_channelTitle": "Канал {channel}",
   "@telemetry_channelTitle": {
@@ -2109,6 +2148,9 @@
   "translation_enableTitle": "Увімкнути переклад",
   "translation_enableSubtitle": "Перекладати отримані повідомлення та дозволяти попередній переклад перед відправкою.",
   "translation_composerSubtitle": "Контролює стан ікон перекладу, який використовується за замовчуванням.",
+  "translation_autoIncomingTitle": "Автоматично перекладати повідомлення",
+  "translation_autoIncomingSubtitle": "Автоматично перекладає повідомлення для сповіщень, а також для чатів і каналів.",
+  "translation_translateMessage": "Перекласти повідомлення",
   "translation_targetLanguage": "Цільова мова",
   "translation_useAppLanguage": "Використовувати мову застосунку",
   "translation_downloadedModelLabel": "Завантажений шаблон",
@@ -2291,5 +2333,98 @@
   "settings_companionDebugLogSubtitle": "Команди, відповіді та необроблена інформація для протоколів BLE/TCP/USB",
   "chat_newMessages": "Нові повідомлення",
   "chat_markAsUnread": "Позначити як непрочитане",
-  "repeater_chanUtil": "Використання каналу"
+  "repeater_chanUtil": "Використання каналу",
+  "@routing_lastWorked": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "@routing_deliveryCounts": {
+    "placeholders": {
+      "successes": {
+        "type": "int"
+      },
+      "failures": {
+        "type": "int"
+      }
+    }
+  },
+  "@pathEditor_hopCounter": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@pathEditor_invalidTokens": {
+    "placeholders": {
+      "tokens": {
+        "type": "String"
+      }
+    }
+  },
+  "@channels_communityShortId": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "messageStatus_delivered": "Доставлено",
+  "messageStatus_sent": "Надіслано",
+  "common_undo": "Скасувати",
+  "messageStatus_pending": "Надсилання",
+  "messageStatus_failed": "Не вдалося надіслати",
+  "messageStatus_repeated": "Почув неодноразово",
+  "contacts_moreOptions": "Більше можливостей",
+  "contacts_searchOpen": "Пошук контактів",
+  "contacts_searchClose": "Закрити пошук",
+  "routing_title": "Маршрутизація",
+  "routing_modeAuto": "Автомобіль",
+  "routing_modeFlood": "Повені",
+  "routing_modeManual": "Інструкція",
+  "routing_modeAutoHint": "Автоматично обирає найкращий відомий шлях, та у разі відсутності відомого шляху, використовує алгоритм \"занурення\".",
+  "routing_modeFloodHint": "Передавання через усі ретранслятори. Найбільш надійний спосіб, але потребує більше часу.",
+  "routing_modeManualHint": "Завжди доставляє точно за вказаним вами маршрутом.",
+  "routing_currentRoute": "Поточний маршрут",
+  "routing_directNoHops": "Пряме з'єднання – без проміжних ретрансляторів",
+  "routing_noPathYet": "Поки що немає жодного шляху. Повідомлення продовжуються надходити, поки не буде знайдено маршрут.",
+  "routing_floodBroadcast": "Поширення через усі ретранслятори",
+  "routing_editPath": "Редагувати шлях",
+  "routing_forgetPath": "Забудь про шлях",
+  "routing_knownPaths": "Відомі маршрути",
+  "routing_knownPathsHint": "Виберіть опцію, щоб переключитися на неї.",
+  "routing_inUse": "У робочому стані",
+  "routing_qualityStrong": "Сильний перший стрибок",
+  "routing_qualityGood": "Чудова перша спроба",
+  "routing_qualityFair": "Перший, але вдалий, крок",
+  "routing_qualityWorked": "Доставлено",
+  "routing_qualityFlood": "Дізнався через новини",
+  "routing_qualityUntested": "Не протестовано",
+  "routing_neverWorked": "ніколи не підтверджено",
+  "routing_floodDelivery": "Доставка під час повені",
+  "pathEditor_title": "Створити маршрут",
+  "pathEditor_hopCounter": "{count} з 64 штук хмелю",
+  "pathEditor_noHops": "Ще не додано хміль. Натисніть на відповідні кнопки, щоб додати його в потрібному порядку, або збережіть рецепт без хмілю, щоб відправити його безпосередньо.",
+  "pathEditor_addHops": "Додавайте хміль у наступній послідовності.",
+  "pathEditor_searchRepeaters": "Пошук повторювачів",
+  "pathEditor_advancedHex": "Просунутий рівень: пряма шлях у форматі шестнадцяткової системи.",
+  "pathEditor_hexLabel": "Префікси для шестнадцяткової системи числення",
+  "pathEditor_hexHelper": "Два шестизначні символи на кожний крок, розділені комами",
+  "pathEditor_invalidTokens": "Неправильно: {tokens}",
+  "routing_lastWorked": "worked {when}",
+  "routing_deliveryCounts": "{successes} delivered, {failures} failed",
+  "pathEditor_tooManyHops": "Максимум 64 хмелеві колоди",
+  "pathEditor_usePath": "Використовуйте цей шлях",
+  "pathEditor_removeHop": "Видалити хміль",
+  "pathEditor_unknownHop": "Невідомий ретранслятор",
+  "map_zoomIn": "Увійти в режим збільшення",
+  "map_zoomOut": "Видалити зум",
+  "map_centerMap": "Карта центру",
+  "chrome_bluetoothRequiresChromium": "Web Bluetooth вимагає браузера на основі Chromium",
+  "channels_communityShortId": "ID: {id}...",
+  "pathTrace_legendGpsConfirmed": "GPS підтверджено",
+  "pathTrace_legendInferred": "Висновок щодо положення"
 }

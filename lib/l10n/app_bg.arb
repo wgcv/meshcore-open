@@ -33,6 +33,8 @@
   "common_remove": "Изтрий",
   "common_enable": "Активирай",
   "common_disable": "Деактивирай",
+  "common_autoRefresh": "Автоматично обновяване",
+  "common_interval": "Интервал",
   "common_reboot": "Рестартирай",
   "common_loading": "Зареждане...",
   "common_notAvailable": "—",
@@ -1280,6 +1282,43 @@
       }
     }
   },
+  "telemetry_digitalInputLabel": "Цифров вход",
+  "telemetry_digitalOutputLabel": "Цифров изход",
+  "telemetry_analogInputLabel": "Аналогов вход",
+  "telemetry_analogOutputLabel": "Аналогов изход",
+  "telemetry_genericLabel": "Общ сензор",
+  "telemetry_luminosityLabel": "Осветеност",
+  "telemetry_presenceLabel": "Присъствие",
+  "telemetry_humidityLabel": "Влажност",
+  "telemetry_accelerometerLabel": "Акселерометър",
+  "telemetry_pressureLabel": "Налягане",
+  "telemetry_altitudeLabel": "Надморска височина",
+  "telemetry_frequencyLabel": "Честота",
+  "telemetry_percentageLabel": "Процент",
+  "telemetry_concentrationLabel": "Концентрация",
+  "telemetry_powerLabel": "Мощност",
+  "telemetry_distanceLabel": "Разстояние",
+  "telemetry_energyLabel": "Енергия",
+  "telemetry_directionLabel": "Посока",
+  "telemetry_timeLabel": "Време",
+  "telemetry_gyrometerLabel": "Жироскоп",
+  "telemetry_colourLabel": "Цвят",
+  "telemetry_gpsLabel": "GPS",
+  "telemetry_switchLabel": "Превключвател",
+  "telemetry_polylineLabel": "Полилиния",
+  "telemetry_altitudeValue": "{meters} m",
+  "telemetry_frequencyValue": "{hertz} Hz",
+  "telemetry_pressureValue": "{hpa} hPa",
+  "telemetry_luminosityValue": "{lux} lx",
+  "telemetry_powerValue": "{watts} W",
+  "telemetry_distanceValue": "{meters} m",
+  "telemetry_energyValue": "{kilowattHours} kWh",
+  "telemetry_directionValue": "{degrees}°",
+  "telemetry_concentrationValue": "{ppm} ppm",
+  "telemetry_percentageValue": "{percent}%",
+  "telemetry_analogValue": "{value}",
+  "telemetry_autoFetchQuantity": "Брой заявки",
+  "telemetry_error": "Неуспешно получаване на данни",
   "telemetry_noData": "Няма налични данни за телеметрията.",
   "telemetry_channelTitle": "Канал {channel}",
   "@telemetry_channelTitle": {
@@ -2099,6 +2138,9 @@
   "translation_composerTitle": "Преведете преди да изпратите",
   "translation_enableSubtitle": "Превеждайте входящите съобщения и позволявайте предварително превеждане преди изпращане.",
   "translation_composerSubtitle": "Контролира началния статус на иконата за превод, създадена от композитора.",
+  "translation_autoIncomingTitle": "Автоматичен превод на съобщения",
+  "translation_autoIncomingSubtitle": "Превежда автоматично съобщенията за известия, както и за чатове или канали.",
+  "translation_translateMessage": "Преведи съобщението",
   "translation_targetLanguage": "Целеви език",
   "translation_useAppLanguage": "Използвайте езика на приложението",
   "translation_downloadedModelLabel": "Изтегнат модел",
@@ -2311,5 +2353,98 @@
   "settings_companionDebugLogSubtitle": "Команди, отговори и сурови данни за протоколите BLE/TCP/USB",
   "chat_newMessages": "Нови съобщения",
   "settings_companionDebugLog": "Лог за отстраняване на грешки (за съпътстваща програма)",
-  "repeater_chanUtil": "Използване на канала"
+  "repeater_chanUtil": "Използване на канала",
+  "@routing_lastWorked": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "@routing_deliveryCounts": {
+    "placeholders": {
+      "successes": {
+        "type": "int"
+      },
+      "failures": {
+        "type": "int"
+      }
+    }
+  },
+  "@pathEditor_hopCounter": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@pathEditor_invalidTokens": {
+    "placeholders": {
+      "tokens": {
+        "type": "String"
+      }
+    }
+  },
+  "@channels_communityShortId": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "messageStatus_pending": "Изпращане",
+  "common_undo": "Отмяни",
+  "messageStatus_delivered": "Доставен",
+  "messageStatus_sent": "Изпратено",
+  "messageStatus_failed": "Не успях да изпратя",
+  "messageStatus_repeated": "Слушах го многократно",
+  "contacts_moreOptions": "Повече възможности",
+  "contacts_searchOpen": "Търсене на контакти",
+  "contacts_searchClose": "Затвори търсене",
+  "routing_title": "Маршрутизиране",
+  "routing_modeAuto": "Автомобил",
+  "routing_modeFlood": "Наводнение",
+  "routing_modeManual": "Ръководство",
+  "routing_modeAutoHint": "Автоматично избира най-известния път, като при липса на информация, използва стратегия за \"запълване\" на празните пространства.",
+  "routing_modeFloodHint": "Излъчване през всички ретранслатори. Най-надежният начин, но изисква повече време на въздуха.",
+  "routing_modeManualHint": "Винаги следва точно пътя, който сте определили.",
+  "routing_currentRoute": "Текущ маршрут",
+  "routing_directNoHops": "Директ – без превключватели",
+  "routing_noPathYet": "Все още няма път. Съобщението продължава да се изпраща, докато не бъде открит маршрут.",
+  "routing_floodBroadcast": "Предаване през всички ретранслатори",
+  "routing_editPath": "Редактиране на пътя",
+  "routing_forgetPath": "Забравете за пътя",
+  "routing_knownPaths": "Известни маршрути",
+  "routing_knownPathsHint": "Натиснете бутона, за да превключите към него.",
+  "routing_inUse": "В експлоатация",
+  "routing_qualityStrong": "Силен първи скок",
+  "routing_qualityGood": "Добър първи опит",
+  "routing_qualityFair": "Първият добър скок",
+  "routing_qualityWorked": "Беше изпълнено/Доведено до край",
+  "routing_qualityFlood": "Получено чрез информация, разпространена в резултат на навод.",
+  "routing_qualityUntested": "Не тестван",
+  "routing_neverWorked": "никога не е потвърдено",
+  "routing_floodDelivery": "Доставка при навод",
+  "pathEditor_title": "Създаване на път",
+  "pathEditor_hopCounter": "{count} от 64 различни вида малц",
+  "pathEditor_noHops": "Все още няма добавени хмел. Можете да използвате бутоните по-долу, за да ги добавите по ред, или да запазите рецептата без хмел, за да я изпратите директно.",
+  "pathEditor_addHops": "Добавете хмела в реда, в който е посочено.",
+  "pathEditor_searchRepeaters": "Търсене на повтори",
+  "pathEditor_advancedHex": "Разширено: необработен шестничен път",
+  "pathEditor_hexLabel": "Префикси на шестнадесетична система",
+  "pathEditor_hexHelper": "Два шест-символни идентификатора на скок, разделени със запетаи",
+  "pathEditor_invalidTokens": "Невалидно: {tokens}",
+  "routing_lastWorked": "worked {when}",
+  "routing_deliveryCounts": "{successes} delivered, {failures} failed",
+  "pathEditor_tooManyHops": "Максимум 64 крачета",
+  "pathEditor_usePath": "Използвайте този маршрут.",
+  "pathEditor_removeHop": "Премахнете хмела",
+  "pathEditor_unknownHop": "Неизвестен репитер",
+  "map_zoomIn": "Увеличи",
+  "map_zoomOut": "Приближете се по-малко",
+  "map_centerMap": "Карта на центъра",
+  "chrome_bluetoothRequiresChromium": "Web Bluetooth изисква браузър, базиран на Chromium.",
+  "channels_communityShortId": "Идентификационен номер: {id}...",
+  "pathTrace_legendGpsConfirmed": "GPS потвърдено",
+  "pathTrace_legendInferred": "Извлечена позиция"
 }

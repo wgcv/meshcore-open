@@ -39,7 +39,12 @@ class RetryServiceConfig {
   final void Function(Message) updateMessage;
   final Function(Contact)? clearContactPath;
   final Function(Contact, Uint8List, int)? setContactPath;
-  final int Function(int pathLength, int messageBytes, {String? contactKey})?
+  final int Function(
+    int pathLength,
+    int messageBytes, {
+    String? contactKey,
+    int? deviceTimeoutMs,
+  })?
   calculateTimeout;
   final Uint8List? Function()? getSelfPublicKey;
   final String Function(Contact, String)? prepareContactOutboundText;
@@ -74,6 +79,12 @@ class RetryServiceConfig {
 
 class MessageRetryService extends ChangeNotifier {
   static const int maxAckHistorySize = 100;
+
+  /// Global cap on concurrent in-flight messages across ALL contacts.
+  /// The firmware's expected_ack_table is a single 8-entry circular buffer
+  /// shared globally; cap at 6 to leave two slots of headroom.
+  static const int _maxGlobalInFlight = 6;
+
   int _maxRetries = 5;
   int get maxRetries => _maxRetries;
 
@@ -170,8 +181,9 @@ class MessageRetryService extends ChangeNotifier {
 
     _config?.addMessage(contact.publicKeyHex, message);
 
-    // Queue per contact — only one message in-flight at a time to avoid
-    // overflowing the firmware's 8-entry expected_ack_table.
+    // Queue per contact — one message in-flight per contact at a time, and
+    // bounded globally by _maxGlobalInFlight across all contacts so we never
+    // overflow the firmware's 8-entry global expected_ack_table.
     final contactKey = contact.publicKeyHex;
     _sendQueue[contactKey] ??= [];
     _sendQueue[contactKey]!.add(messageId);
@@ -184,6 +196,11 @@ class MessageRetryService extends ChangeNotifier {
   }
 
   void _sendNextForContact(String contactKey) {
+    // Enforce the global in-flight cap before starting a new send.
+    // The firmware's expected_ack_table is a single 8-entry circular buffer
+    // shared across all contacts; exceeding it silently evicts an older slot.
+    if (_activeMessages.length >= _maxGlobalInFlight) return;
+
     final queue = _sendQueue[contactKey];
     if (queue == null) return;
 
@@ -211,7 +228,16 @@ class MessageRetryService extends ChangeNotifier {
     if (_resolvedMessages.contains(messageId)) return;
     _resolvedMessages.add(messageId);
     _activeMessages.remove(messageId);
+    // Pump this contact's queue first, then any other contacts that are waiting.
     _sendNextForContact(contactKey);
+    for (final key in _sendQueue.keys) {
+      if (key == contactKey) continue;
+      if (_activeMessages.length >= _maxGlobalInFlight) break;
+      final queue = _sendQueue[key];
+      if (queue != null && queue.isNotEmpty) {
+        _sendNextForContact(key);
+      }
+    }
   }
 
   PathSelection? _selectPathForAttempt(Message message, Contact contact) {
@@ -352,6 +378,10 @@ class MessageRetryService extends ChangeNotifier {
   }
 
   bool updateMessageFromSent(int ackHash, int timeoutMs) {
+    // Firmware sets expected_ack = 0 for CLI/command sends (TXT_TYPE_CLI_DATA).
+    // No ACK will ever be issued for these, so arming a retry timer is wrong.
+    if (ackHash == 0) return false;
+
     final config = _config;
     if (config == null) return false;
 
@@ -404,13 +434,18 @@ class MessageRetryService extends ChangeNotifier {
 
     // Calculate timeout: prefer ML prediction, then device-provided, then physics fallback
     final pathLengthValue = message.pathLength ?? contact.pathLength;
+    final outboundTextForTimeout =
+        config.prepareContactOutboundText?.call(contact, message.text) ??
+        message.text;
+    final messageBytesForTimeout = utf8.encode(outboundTextForTimeout).length;
 
     int actualTimeout = timeoutMs;
     if (config.calculateTimeout != null) {
       actualTimeout = config.calculateTimeout!(
         pathLengthValue,
-        message.text.length,
+        messageBytesForTimeout,
         contactKey: contact.publicKeyHex,
+        deviceTimeoutMs: timeoutMs > 0 ? timeoutMs : null,
       );
     }
 
@@ -447,6 +482,11 @@ class MessageRetryService extends ChangeNotifier {
     _timeoutTimers[messageId] = Timer(Duration(milliseconds: timeoutMs), () {
       _handleTimeout(messageId);
     });
+  }
+
+  void untrack(String messageId) {
+    _timeoutTimers[messageId]?.cancel();
+    _cleanupMessage(messageId);
   }
 
   void _cleanupMessage(String messageId) {
@@ -612,7 +652,6 @@ class MessageRetryService extends ChangeNotifier {
         for (final expectedHash in expectedHashes) {
           if (expectedHash == ackHash) {
             matchedMessageId = messageId;
-            matchedAttemptIndex = expectedHashes.indexOf(expectedHash);
             break;
           }
         }
@@ -664,10 +703,16 @@ class MessageRetryService extends ChangeNotifier {
         if (config?.onDeliveryObserved != null &&
             tripTimeMs > 0 &&
             message.pathLength != null) {
-          config!.onDeliveryObserved!(
+          final outboundTextForObserved =
+              config!.prepareContactOutboundText?.call(contact, message.text) ??
+              message.text;
+          final messageBytesForObserved = utf8
+              .encode(outboundTextForObserved)
+              .length;
+          config.onDeliveryObserved!(
             contact.publicKeyHex,
             message.pathLength!,
-            message.text.length,
+            messageBytesForObserved,
             tripTimeMs,
           );
         }

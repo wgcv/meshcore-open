@@ -27,6 +27,8 @@
   "common_remove": "Eltávolít",
   "common_enable": "Engedélyezés",
   "common_disable": "Leteteszt",
+  "common_autoRefresh": "Automatikus frissítés",
+  "common_interval": "Intervallum",
   "common_reboot": "Újraindítás",
   "common_loading": "Betöltés...",
   "common_notAvailable": "—",
@@ -1466,6 +1468,43 @@
       }
     }
   },
+  "telemetry_digitalInputLabel": "Digitális bemenet",
+  "telemetry_digitalOutputLabel": "Digitális kimenet",
+  "telemetry_analogInputLabel": "Analóg bemenet",
+  "telemetry_analogOutputLabel": "Analóg kimenet",
+  "telemetry_genericLabel": "Általános érzékelő",
+  "telemetry_luminosityLabel": "Fényerő",
+  "telemetry_presenceLabel": "Jelenlét",
+  "telemetry_humidityLabel": "Páratartalom",
+  "telemetry_accelerometerLabel": "Gyorsulásmérő",
+  "telemetry_pressureLabel": "Nyomás",
+  "telemetry_altitudeLabel": "Magasság",
+  "telemetry_frequencyLabel": "Frekvencia",
+  "telemetry_percentageLabel": "Százalék",
+  "telemetry_concentrationLabel": "Koncentráció",
+  "telemetry_powerLabel": "Teljesítmény",
+  "telemetry_distanceLabel": "Távolság",
+  "telemetry_energyLabel": "Energia",
+  "telemetry_directionLabel": "Irány",
+  "telemetry_timeLabel": "Idő",
+  "telemetry_gyrometerLabel": "Giroszkóp",
+  "telemetry_colourLabel": "Szín",
+  "telemetry_gpsLabel": "GPS",
+  "telemetry_switchLabel": "Kapcsoló",
+  "telemetry_polylineLabel": "Töröttvonal",
+  "telemetry_altitudeValue": "{meters} m",
+  "telemetry_frequencyValue": "{hertz} Hz",
+  "telemetry_pressureValue": "{hpa} hPa",
+  "telemetry_luminosityValue": "{lux} lx",
+  "telemetry_powerValue": "{watts} W",
+  "telemetry_distanceValue": "{meters} m",
+  "telemetry_energyValue": "{kilowattHours} kWh",
+  "telemetry_directionValue": "{degrees}°",
+  "telemetry_concentrationValue": "{ppm} ppm",
+  "telemetry_percentageValue": "{percent}%",
+  "telemetry_analogValue": "{value}",
+  "telemetry_autoFetchQuantity": "Kérések száma",
+  "telemetry_error": "Nem sikerült lekérni az adatokat",
   "telemetry_noData": "Nincsenek elérhető telemetriadatok.",
   "telemetry_channelTitle": "{channel} csatorna",
   "@telemetry_channelTitle": {
@@ -2137,6 +2176,9 @@
   "translation_enableSubtitle": "Fordítsa az érkező üzeneteket, és lehetővé tegye a küldés előtti fordítást.",
   "translation_composerTitle": "Fordítsa el, mielőtt elküldi",
   "translation_composerSubtitle": "Ellenőrzi a zeneszerző fordítási ikon alapértékét.",
+  "translation_autoIncomingTitle": "Üzenetek automatikus fordítása",
+  "translation_autoIncomingSubtitle": "Automatikusan lefordítja az üzeneteket az értesítésekhez, valamint a csevegésekhez vagy csatornákhoz.",
+  "translation_translateMessage": "Üzenet fordítása",
   "translation_targetLanguage": "Célnyelv",
   "translation_useAppLanguage": "Használja az alkalmazás nyelvének beállítását.",
   "translation_downloadedModelLabel": "Letöltött modell",
@@ -2349,5 +2391,98 @@
   "chat_newMessages": "Új üzenetek",
   "settings_companionDebugLog": "Párhuzamos hibakeresési napló",
   "settings_companionDebugLogSubtitle": "BLE/TCP/USB parancsok, válaszok és alapvető adatok",
-  "repeater_chanUtil": "Csatorna-használat"
+  "repeater_chanUtil": "Csatorna-használat",
+  "@routing_lastWorked": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "@routing_deliveryCounts": {
+    "placeholders": {
+      "successes": {
+        "type": "int"
+      },
+      "failures": {
+        "type": "int"
+      }
+    }
+  },
+  "@pathEditor_hopCounter": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@pathEditor_invalidTokens": {
+    "placeholders": {
+      "tokens": {
+        "type": "String"
+      }
+    }
+  },
+  "@channels_communityShortId": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "messageStatus_delivered": "Szállítva",
+  "common_undo": "Még egyszer",
+  "messageStatus_sent": "Elküldve",
+  "messageStatus_pending": "Elküldés",
+  "messageStatus_failed": "Nem sikerült elküldeni",
+  "messageStatus_repeated": "Ismételtem",
+  "contacts_moreOptions": "További lehetőségek",
+  "contacts_searchOpen": "Keresssz kapcsolatokat",
+  "contacts_searchClose": "Teljesítse a keresést",
+  "routing_title": "Útvonal meghatározás",
+  "routing_modeAuto": "Autó",
+  "routing_modeFlood": "Áradás",
+  "routing_modeManual": "Használati útmutató",
+  "routing_modeAutoHint": "Automatikusan kiválasztja a legismertebb útvonalat, és ha egyik sem ismert, akkor \"vízzel\" tölti ki.",
+  "routing_modeFloodHint": "Átvisszaadások minden erősítőn keresztül. A legmegbízhatóbb megoldás, de több időt igényel.",
+  "routing_modeManualHint": "Mindig pontosan az útvonalat követi, amelyet megad.",
+  "routing_currentRoute": "Jelenlegi útvonal",
+  "routing_directNoHops": "Közvetlen – nincs átjáró állomás",
+  "routing_noPathYet": "Még nincs útvonal. A következő üzenet a keresésig vár.",
+  "routing_floodBroadcast": "Azonnali továbbítás minden erősítőn keresztül.",
+  "routing_editPath": "Útvonal szerkesztése",
+  "routing_forgetPath": "Felejtsd el a útvonalat",
+  "routing_knownPaths": "Jellegzetes útvonalak",
+  "routing_knownPathsHint": "Készíts egy útvonalat, hogy átválhass rá.",
+  "routing_inUse": "Használatban",
+  "routing_qualityStrong": "Erős első lépés",
+  "routing_qualityGood": "Jó első lépés",
+  "routing_qualityFair": "Jó első lépés",
+  "routing_qualityWorked": "Előállított",
+  "routing_qualityFlood": "Információt hallottam a katasztrófa miatt.",
+  "routing_qualityUntested": "Vizsgálatnak nem подвержен",
+  "routing_neverWorked": "sosem megerősítve",
+  "routing_floodDelivery": "Vízparti szállítás",
+  "pathEditor_title": "Út megépítése",
+  "pathEditor_hopCounter": "{count} db 64-ből",
+  "pathEditor_noHops": "Még nem adtam hozzá a bazsalikomot. A lent található gombokat használhatod, hogy sorrendben adjd hozzá, vagy mentheted anélkül, hogy bazsalikomot adnál hozzá, hogy közvetlenül elküldd.",
+  "pathEditor_addHops": "Adja hozzá a bazsaidat a megfelelő sorrendben.",
+  "pathEditor_searchRepeaters": "Ismétlő eszközök keresése",
+  "pathEditor_advancedHex": "Haladó szint: alapvető hex-út",
+  "pathEditor_hexLabel": "Hex előtagok",
+  "pathEditor_hexHelper": "Két hatjegyű szám minden lépésen, amelyek egymástól elválasztják a kommák.",
+  "pathEditor_invalidTokens": "Érvénytelen: {tokens}",
+  "routing_lastWorked": "worked {when}",
+  "routing_deliveryCounts": "{successes} delivered, {failures} failed",
+  "pathEditor_tooManyHops": "A maximális szám 64.",
+  "pathEditor_usePath": "Használja ezt az útvonalat.",
+  "pathEditor_removeHop": "Távolítsa el a bazsalikomot",
+  "pathEditor_unknownHop": "Tudatlan erősítő",
+  "map_zoomIn": "Nagyítva",
+  "map_zoomOut": "Kicsökkentett nézet",
+  "map_centerMap": "Központi tér térkép",
+  "chrome_bluetoothRequiresChromium": "A Web Bluetooth-hoz egy Chromium-alapú böngésző szükséges.",
+  "channels_communityShortId": "Az azonosító: {id}...",
+  "pathTrace_legendGpsConfirmed": "GPS-en megerősítve",
+  "pathTrace_legendInferred": "Feltehető helyzet"
 }

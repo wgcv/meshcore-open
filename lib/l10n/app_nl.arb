@@ -33,6 +33,8 @@
   "common_remove": "Verwijderen",
   "common_enable": "Activeren",
   "common_disable": "Uitschakelen",
+  "common_autoRefresh": "Automatisch vernieuwen",
+  "common_interval": "Tijdsinterval",
   "common_reboot": "Herstarten",
   "common_loading": "Laden...",
   "common_notAvailable": "—",
@@ -1280,6 +1282,43 @@
       }
     }
   },
+  "telemetry_digitalInputLabel": "Digitale ingang",
+  "telemetry_digitalOutputLabel": "Digitale uitgang",
+  "telemetry_analogInputLabel": "Analoge ingang",
+  "telemetry_analogOutputLabel": "Analoge uitgang",
+  "telemetry_genericLabel": "Algemene sensor",
+  "telemetry_luminosityLabel": "Lichtsterkte",
+  "telemetry_presenceLabel": "Aanwezigheid",
+  "telemetry_humidityLabel": "Luchtvochtigheid",
+  "telemetry_accelerometerLabel": "Versnellingsmeter",
+  "telemetry_pressureLabel": "Druk",
+  "telemetry_altitudeLabel": "Hoogte",
+  "telemetry_frequencyLabel": "Frequentie",
+  "telemetry_percentageLabel": "Percentage",
+  "telemetry_concentrationLabel": "Concentratie",
+  "telemetry_powerLabel": "Vermogen",
+  "telemetry_distanceLabel": "Afstand",
+  "telemetry_energyLabel": "Energie",
+  "telemetry_directionLabel": "Richting",
+  "telemetry_timeLabel": "Tijd",
+  "telemetry_gyrometerLabel": "Gyrometer",
+  "telemetry_colourLabel": "Kleur",
+  "telemetry_gpsLabel": "GPS",
+  "telemetry_switchLabel": "Schakelaar",
+  "telemetry_polylineLabel": "Polylijn",
+  "telemetry_altitudeValue": "{meters} m",
+  "telemetry_frequencyValue": "{hertz} Hz",
+  "telemetry_pressureValue": "{hpa} hPa",
+  "telemetry_luminosityValue": "{lux} lx",
+  "telemetry_powerValue": "{watts} W",
+  "telemetry_distanceValue": "{meters} m",
+  "telemetry_energyValue": "{kilowattHours} kWh",
+  "telemetry_directionValue": "{degrees}°",
+  "telemetry_concentrationValue": "{ppm} ppm",
+  "telemetry_percentageValue": "{percent}%",
+  "telemetry_analogValue": "{value}",
+  "telemetry_autoFetchQuantity": "Aantal aanvragen",
+  "telemetry_error": "Kan gegevens niet ophalen",
   "telemetry_noData": "Geen telemetriedata beschikbaar.",
   "telemetry_channelTitle": "Kanaal {channel}",
   "@telemetry_channelTitle": {
@@ -2101,6 +2140,9 @@
   "translation_composerTitle": "Vertaal voor verzending",
   "translation_composerSubtitle": "Stelt de standaardstatus van het pictogram voor de vertaling van de componist in.",
   "translation_useAppLanguage": "Gebruik de taal van de app",
+  "translation_autoIncomingTitle": "Berichten automatisch vertalen",
+  "translation_autoIncomingSubtitle": "Vertaalt berichten automatisch voor meldingen en voor chats of kanalen.",
+  "translation_translateMessage": "Bericht vertalen",
   "translation_targetLanguage": "Doeltaal",
   "translation_downloadedModelLabel": "Gedownloade model",
   "translation_presetModelLabel": "Voorgeprogrammeerd Hugging Face-model",
@@ -2311,5 +2353,98 @@
   "chat_newMessages": "Nieuwe berichten",
   "chat_markAsUnread": "Markeer als ongelezen",
   "settings_companionDebugLogSubtitle": "BLE/TCP/USB commando's, antwoorden en ruwe data",
-  "repeater_chanUtil": "Gebruik van het kanaal"
+  "repeater_chanUtil": "Gebruik van het kanaal",
+  "@routing_lastWorked": {
+    "placeholders": {
+      "when": {
+        "type": "String"
+      }
+    }
+  },
+  "@routing_deliveryCounts": {
+    "placeholders": {
+      "successes": {
+        "type": "int"
+      },
+      "failures": {
+        "type": "int"
+      }
+    }
+  },
+  "@pathEditor_hopCounter": {
+    "placeholders": {
+      "count": {
+        "type": "int"
+      }
+    }
+  },
+  "@pathEditor_invalidTokens": {
+    "placeholders": {
+      "tokens": {
+        "type": "String"
+      }
+    }
+  },
+  "@channels_communityShortId": {
+    "placeholders": {
+      "id": {
+        "type": "String"
+      }
+    }
+  },
+  "messageStatus_sent": "Verzonden",
+  "common_undo": "Achterhalen/Annuleren",
+  "messageStatus_delivered": "Leverd",
+  "messageStatus_pending": "Verzenden",
+  "messageStatus_failed": "Niet verzonden",
+  "messageStatus_repeated": "Hearsay, herhaald",
+  "contacts_moreOptions": "Meer opties",
+  "contacts_searchOpen": "Zoek contactpersonen",
+  "contacts_searchClose": "Zoeken",
+  "routing_title": "Routeplanning",
+  "routing_modeAuto": "Auto",
+  "routing_modeFlood": "Overstroming",
+  "routing_modeManual": "Handleiding",
+  "routing_modeAutoHint": "Selecteert automatisch het bekendste pad, en gebruikt een flood-algoritme als er geen bekend pad is.",
+  "routing_modeFloodHint": "Uitzendingen via elke zender. De meest betrouwbare methode, maar vereist meer uitzendtijd.",
+  "routing_modeManualHint": "Stuurt altijd de exacte route die u heeft aangegeven.",
+  "routing_currentRoute": "Huidige route",
+  "routing_directNoHops": "Direct – zonder tussenliggende schakels",
+  "routing_noPathYet": "Er is nog geen route gevonden. De berichten blijven binnenkomen totdat een route is ontdekt.",
+  "routing_floodBroadcast": "Uitgestoten via elke zender.",
+  "routing_editPath": "Pad bewerken",
+  "routing_forgetPath": "Vergeet het pad",
+  "routing_knownPaths": "Bekende routes",
+  "routing_knownPathsHint": "Maak een route om er naartoe te gaan.",
+  "routing_inUse": "In gebruik",
+  "routing_qualityStrong": "Sterke eerste sprong",
+  "routing_qualityGood": "Een goede eerste stap",
+  "routing_qualityFair": "Een goede eerste hop",
+  "routing_qualityWorked": "Is geleverd",
+  "routing_qualityFlood": "Hears via een overstroming",
+  "routing_qualityUntested": "Niet getest",
+  "routing_neverWorked": "nooit bevestigd",
+  "routing_deliveryCounts": "{successes} zijn behaald, {failures} zijn mislukt",
+  "routing_floodDelivery": "Levering bij overstroming",
+  "pathEditor_title": "Pad creëren",
+  "pathEditor_hopCounter": "{count} van 64 hopgranen",
+  "pathEditor_noHops": "Er zijn nog geen hop toegevoegd. Klik op de onderstaande knoppen om ze in de juiste volgorde toe te voegen, of sla de bestelling op zonder hop om deze direct te versturen.",
+  "pathEditor_addHops": "Voeg hop toe in de juiste volgorde.",
+  "pathEditor_searchRepeaters": "Zoek naar herhaaldelijke zenders",
+  "pathEditor_advancedHex": "Geavanceerd: ruwe hex-pad",
+  "pathEditor_hexLabel": "Hex-voorkanten",
+  "pathEditor_hexHelper": "Twee hex-tekens per stap, gescheiden door komma's",
+  "pathEditor_invalidTokens": "Ongeldig: {tokens}",
+  "pathEditor_tooManyHops": "Maximaal 64 hopken",
+  "pathEditor_usePath": "Gebruik deze route.",
+  "pathEditor_removeHop": "Verwijder de hop",
+  "pathEditor_unknownHop": "Onbekend type zender",
+  "map_zoomIn": "Inzoomen",
+  "routing_lastWorked": "worked {when}",
+  "map_zoomOut": "Inzoomen",
+  "map_centerMap": "Centraal overzicht",
+  "chrome_bluetoothRequiresChromium": "Web Bluetooth vereist een Chromium-browser.",
+  "channels_communityShortId": "ID: {id}...",
+  "pathTrace_legendGpsConfirmed": "GPS-locatie bevestigd",
+  "pathTrace_legendInferred": "Afgeleide positie"
 }

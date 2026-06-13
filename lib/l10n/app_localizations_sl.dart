@@ -93,6 +93,25 @@ class AppLocalizationsSl extends AppLocalizations {
   String get common_disable => 'Izklopiti';
 
   @override
+  String get common_undo => 'Preobrn';
+
+  @override
+  String get messageStatus_sent => 'Pošljeno';
+
+  @override
+  String get messageStatus_delivered => 'Dostavljeno';
+
+  @override
+  String get messageStatus_pending => 'Pošiljanje';
+
+  @override
+  String get messageStatus_failed =>
+      'Uspešno ni bilo mogo, da se sporočilo pošlje';
+
+  @override
+  String get messageStatus_repeated => 'Slišal sem večkrat';
+
+  @override
   String get common_reboot => 'Ponoviti';
 
   @override
@@ -110,6 +129,12 @@ class AppLocalizationsSl extends AppLocalizations {
   String common_percentValue(int percent) {
     return '$percent %';
   }
+
+  @override
+  String get common_autoRefresh => 'Samodejno osveževanje';
+
+  @override
+  String get common_interval => 'Časovni interval';
 
   @override
   String get scanner_title => 'MeshCore – Odprto';
@@ -292,6 +317,10 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get scanner_enableBluetooth => 'Omogočite Bluetooth';
+
+  @override
+  String get scanner_bluetoothWebUnsupported =>
+      'Bluetooth isn\'t available in the browser. Connect over USB instead.';
 
   @override
   String get device_quickSwitch => 'Hitro preklop';
@@ -778,11 +807,6 @@ class AppLocalizationsSl extends AppLocalizations {
       'Število poskusov ponovnega poslanja, preden se sporočilo označuje kot neuspešno';
 
   @override
-  String path_routeWeight(String weight, String max) {
-    return '$weight/$max';
-  }
-
-  @override
   String get appSettings_battery => 'Baterija';
 
   @override
@@ -980,6 +1004,15 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get contacts_newGroup => 'Nova skupina';
+
+  @override
+  String get contacts_moreOptions => 'Več možnosti';
+
+  @override
+  String get contacts_searchOpen => 'Iskanje kontaktov';
+
+  @override
+  String get contacts_searchClose => 'Izklopi iskanje';
 
   @override
   String get contacts_groupName => 'Ime skupine';
@@ -1461,34 +1494,6 @@ class AppLocalizationsSl extends AppLocalizations {
   String get debugFrame_hexDump => 'Izpis heksadecimalnih vrednosti:';
 
   @override
-  String get chat_pathManagement => 'Upravljanje poti';
-
-  @override
-  String get chat_ShowAllPaths => 'Prikaži vse poti';
-
-  @override
-  String get chat_routingMode => 'Navodilo za usmerjevalni način';
-
-  @override
-  String get chat_autoUseSavedPath => 'Avto (uporabi shranjeno pot)';
-
-  @override
-  String get chat_forceFloodMode => 'Nasilje obvezati v način';
-
-  @override
-  String get chat_recentAckPaths => 'Nedavni poti ACK (tap za uporabo):';
-
-  @override
-  String get chat_pathHistoryFull =>
-      'Zapiske o poti so popolni. Izbriši vnose, da dodaš nove.';
-
-  @override
-  String get chat_hopSingular => 'skok';
-
-  @override
-  String get chat_hopPlural => 'skokov';
-
-  @override
   String chat_hopsCount(int count) {
     String _temp0 = intl.Intl.pluralLogic(
       count,
@@ -1500,12 +1505,6 @@ class AppLocalizationsSl extends AppLocalizations {
   }
 
   @override
-  String get chat_successes => 'Uspešni';
-
-  @override
-  String get chat_score => 'Score';
-
-  @override
   String get chat_removePath => 'Izbriši pot';
 
   @override
@@ -1513,49 +1512,142 @@ class AppLocalizationsSl extends AppLocalizations {
       'Ni shranjenih poti.\nPošlji sporočilo za odkrivanje poti.';
 
   @override
-  String get chat_pathActions => 'Potni ukazi:';
-
-  @override
-  String get chat_setCustomPath => 'Nastavi Prilozeno Pot';
-
-  @override
-  String get chat_setCustomPathSubtitle => 'Ročno določite potniško pot.';
-
-  @override
-  String get chat_clearPath => 'Počisti pot';
-
-  @override
-  String get chat_clearPathSubtitle => 'Ob naslednji pošiljanju znova zbrati.';
-
-  @override
   String get chat_pathCleared =>
       'Pot je očiščena. Naslednje sporočilo bo ponovno odkril pot.';
-
-  @override
-  String get chat_floodModeSubtitle =>
-      'Uporabi tipko usmerjevanja v meniju aplikacije.';
-
-  @override
-  String get chat_floodModeEnabled =>
-      'Narejena je bila omrežna modaliteta. Vklopi jo znova preko ikone v meniju aplikacije.';
 
   @override
   String get chat_fullPath => 'Polna pot';
 
   @override
-  String get chat_pathDetailsNotAvailable =>
-      'Podrobnosti poti zaenkrat niso na voljo. Poskusite poslati sporočilo za osvežitev.';
+  String get routing_title => 'Navigacija';
 
   @override
-  String chat_pathSetHops(int hopCount, String status) {
-    String _temp0 = intl.Intl.pluralLogic(
-      hopCount,
-      locale: localeName,
-      other: 'hops',
-      one: 'hop',
-    );
-    return 'Pot nastavljen: $hopCount $_temp0 - $status';
+  String get routing_modeAuto => 'Avto';
+
+  @override
+  String get routing_modeFlood => 'Poplavo';
+
+  @override
+  String get routing_modeManual => 'Navodilo';
+
+  @override
+  String get routing_modeAutoHint =>
+      'Samodejno izbere najbolj poznano pot, in sicer, ko ni na voljo nobena.';
+
+  @override
+  String get routing_modeFloodHint =>
+      'Prenosi preko vseh repetitorjev. Najzanesljivejši način, vendar zahteva več časa.';
+
+  @override
+  String get routing_modeManualHint =>
+      'Vedno sledi natančni poti, ki jo ste določili.';
+
+  @override
+  String get routing_currentRoute => 'Trenutna pot';
+
+  @override
+  String get routing_directNoHops => 'Neposredno – brez prehodov';
+
+  @override
+  String get routing_noPathYet =>
+      'Žep trenutno ni mogoče najti. Naslednje sporočilo bo posredovano, dokler ne bo ugotovljeno, kje je pot.';
+
+  @override
+  String get routing_floodBroadcast => 'Prenos preko vseh repetitiv';
+
+  @override
+  String get routing_editPath => 'Uredi pot';
+
+  @override
+  String get routing_forgetPath => 'Pozabi na pot';
+
+  @override
+  String get routing_knownPaths => 'Poznati poti';
+
+  @override
+  String get routing_knownPathsHint => 'Kliknite na pot, da jo izberete.';
+
+  @override
+  String get routing_inUse => 'V uporabi';
+
+  @override
+  String get routing_qualityStrong => 'Močan prvi korak';
+
+  @override
+  String get routing_qualityGood => 'Prva uspešna faza';
+
+  @override
+  String get routing_qualityFair => 'Prva, uspešna faza';
+
+  @override
+  String get routing_qualityWorked => 'Izpolnil';
+
+  @override
+  String get routing_qualityFlood => 'Slišano preko poplave';
+
+  @override
+  String get routing_qualityUntested => 'Ne preizkušen';
+
+  @override
+  String routing_lastWorked(String when) {
+    return 'delal/a $when';
   }
+
+  @override
+  String get routing_neverWorked => 'nikoli ni bilo potrjeno';
+
+  @override
+  String routing_deliveryCounts(int successes, int failures) {
+    return '$successes delivered, $failures failed';
+  }
+
+  @override
+  String get routing_floodDelivery => 'Dostava zaradi poplave';
+
+  @override
+  String get pathEditor_title => 'Izgradnja poti';
+
+  @override
+  String pathEditor_hopCounter(int count) {
+    return '$count od 64 različnih sort hropa';
+  }
+
+  @override
+  String get pathEditor_noHops =>
+      'Še niso dodani hmelji. Za dodajanje hmelja v vrstnem redu kliknite na povezavo spodaj, ali pa shranite brez dodanega hmelja, da ga lahko posredujete neposredno.';
+
+  @override
+  String get pathEditor_addHops => 'Dodajte suho travo v skladu s postopkom.';
+
+  @override
+  String get pathEditor_searchRepeaters => 'Iskanje ponovitev';
+
+  @override
+  String get pathEditor_advancedHex => 'Napredno: surovi šestnajstni pot';
+
+  @override
+  String get pathEditor_hexLabel => 'Predfiks za heksadecimalno šifro';
+
+  @override
+  String get pathEditor_hexHelper =>
+      'Dva šestbitna znaka na vsak skok, ločena z vejico';
+
+  @override
+  String pathEditor_invalidTokens(String tokens) {
+    return 'Neveljaven: $tokens';
+  }
+
+  @override
+  String get pathEditor_tooManyHops => 'Največ 64 hopov';
+
+  @override
+  String get pathEditor_usePath => 'Uporabite to poto';
+
+  @override
+  String get pathEditor_removeHop => 'Odstranite hmelj';
+
+  @override
+  String get pathEditor_unknownHop => 'Neznani ponovitelj';
 
   @override
   String get chat_pathSavedLocally =>
@@ -1630,6 +1722,39 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get map_title => 'Mapa omrežja';
+
+  @override
+  String get map_searchHint => 'Search node name or ID';
+
+  @override
+  String get map_activity => 'Activity';
+
+  @override
+  String get map_online => 'Online';
+
+  @override
+  String get map_recent => 'Recent';
+
+  @override
+  String get map_stale => 'Stale';
+
+  @override
+  String get map_visible => 'Visible';
+
+  @override
+  String get map_hidden => 'Hidden';
+
+  @override
+  String get map_centerOnNode => 'Center on node';
+
+  @override
+  String get map_details => 'Details';
+
+  @override
+  String get map_noGps => 'No GPS';
+
+  @override
+  String get map_noResults => 'No matching nodes';
 
   @override
   String get map_lineOfSight => 'Linija vida';
@@ -2027,63 +2152,11 @@ class AppLocalizationsSl extends AppLocalizations {
   String get common_clear => 'Ponoviti';
 
   @override
-  String path_currentPath(String path) {
-    return 'Trenutna pot: $path';
-  }
-
-  @override
-  String path_usingHopsPath(int count) {
-    String _temp0 = intl.Intl.pluralLogic(
-      count,
-      locale: localeName,
-      other: 'hops',
-      one: 'hop',
-    );
-    return 'Uporablja $count $_temp0 pot';
-  }
-
-  @override
-  String get path_enterCustomPath => 'Vnesite prilagojeno pot';
-
-  @override
   String get path_currentPathLabel => 'Trenutna pot';
-
-  @override
-  String get path_hexPrefixInstructions =>
-      'Vnesite 2-karakterne heksadecimalne prefixe za vsako skopo, ločeno z zvezekami.';
-
-  @override
-  String get path_hexPrefixExample =>
-      'Primer: A1,F2,3C (vsak notranji element uporablja prvi bajt svojega javnega ključa)';
-
-  @override
-  String get path_labelHexPrefixes => 'Pot (heksafixne skrajšave)';
-
-  @override
-  String get path_helperMaxHops =>
-      'Maksimalno 64 skokov. Vsak prefiks je 2 heksadecimalna znamenja (1 bajt).';
-
-  @override
-  String get path_selectFromContacts => 'Izberi iz kontaktov:';
 
   @override
   String get path_noRepeatersFound =>
       'Ne najdenih ponoviteljev ali strežnikov sob.';
-
-  @override
-  String get path_customPathsRequire =>
-      'Prilojene poti zahtevajo medhodne prenose, ki lahko prenašajo sporočila.';
-
-  @override
-  String path_invalidHexPrefixes(String prefixes) {
-    return 'Neveljačni šesteročlenski prefiksi: $prefixes';
-  }
-
-  @override
-  String get path_tooLong => 'Pot je prevelika. Dovoljeno največ 64 skokov.';
-
-  @override
-  String get path_setPath => 'Nastavi Pot';
 
   @override
   String get repeater_management => 'Upravljanje ponovitve';
@@ -2149,15 +2222,6 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get repeater_routingMode => 'Navodilo za usmerjevalni način';
-
-  @override
-  String get repeater_autoUseSavedPath => 'Avto (uporabi shranjeno pot)';
-
-  @override
-  String get repeater_forceFloodMode => 'Nasilje obvezati v način';
-
-  @override
-  String get repeater_pathManagement => 'Upravljanje poti';
 
   @override
   String get repeater_refresh => 'Ponovno obnavljati';
@@ -3251,6 +3315,139 @@ class AppLocalizationsSl extends AppLocalizations {
   }
 
   @override
+  String get telemetry_digitalInputLabel => 'Digitalni vhod';
+
+  @override
+  String get telemetry_digitalOutputLabel => 'Digitalni izhod';
+
+  @override
+  String get telemetry_analogInputLabel => 'Analogni vhod';
+
+  @override
+  String get telemetry_analogOutputLabel => 'Analogni izhod';
+
+  @override
+  String get telemetry_genericLabel => 'Splošni senzor';
+
+  @override
+  String get telemetry_luminosityLabel => 'Osvetljenost';
+
+  @override
+  String get telemetry_presenceLabel => 'Prisotnost';
+
+  @override
+  String get telemetry_humidityLabel => 'Vlažnost';
+
+  @override
+  String get telemetry_accelerometerLabel => 'Merilnik pospeška';
+
+  @override
+  String get telemetry_pressureLabel => 'Tlak';
+
+  @override
+  String get telemetry_altitudeLabel => 'Nadmorska višina';
+
+  @override
+  String get telemetry_frequencyLabel => 'Frekvenca';
+
+  @override
+  String get telemetry_percentageLabel => 'Odstotek';
+
+  @override
+  String get telemetry_concentrationLabel => 'Koncentracija';
+
+  @override
+  String get telemetry_powerLabel => 'Moč';
+
+  @override
+  String get telemetry_distanceLabel => 'Razdalja';
+
+  @override
+  String get telemetry_energyLabel => 'Energija';
+
+  @override
+  String get telemetry_directionLabel => 'Smer';
+
+  @override
+  String get telemetry_timeLabel => 'Čas';
+
+  @override
+  String get telemetry_gyrometerLabel => 'Žiroskop';
+
+  @override
+  String get telemetry_colourLabel => 'Barva';
+
+  @override
+  String get telemetry_gpsLabel => 'GPS';
+
+  @override
+  String get telemetry_switchLabel => 'Stikalo';
+
+  @override
+  String get telemetry_polylineLabel => 'Polilinija';
+
+  @override
+  String telemetry_altitudeValue(String meters) {
+    return '$meters m';
+  }
+
+  @override
+  String telemetry_frequencyValue(String hertz) {
+    return '$hertz Hz';
+  }
+
+  @override
+  String telemetry_pressureValue(String hpa) {
+    return '$hpa hPa';
+  }
+
+  @override
+  String telemetry_luminosityValue(String lux) {
+    return '$lux lx';
+  }
+
+  @override
+  String telemetry_powerValue(String watts) {
+    return '$watts W';
+  }
+
+  @override
+  String telemetry_distanceValue(String meters) {
+    return '$meters m';
+  }
+
+  @override
+  String telemetry_energyValue(String kilowattHours) {
+    return '$kilowattHours kWh';
+  }
+
+  @override
+  String telemetry_directionValue(String degrees) {
+    return '$degrees°';
+  }
+
+  @override
+  String telemetry_concentrationValue(String ppm) {
+    return '$ppm ppm';
+  }
+
+  @override
+  String telemetry_percentageValue(String percent) {
+    return '$percent%';
+  }
+
+  @override
+  String telemetry_analogValue(String value) {
+    return '$value';
+  }
+
+  @override
+  String get telemetry_autoFetchQuantity => 'Število zahtev';
+
+  @override
+  String get telemetry_error => 'Podatkov ni bilo mogoče pridobiti';
+
+  @override
   String get neighbors_receivedData => 'Prejeto podatke o sosedih';
 
   @override
@@ -4140,6 +4337,16 @@ class AppLocalizationsSl extends AppLocalizations {
       'Ureja privzeto stanje ikone za prevod, ki jo uporablja avtor.';
 
   @override
+  String get translation_autoIncomingTitle => 'Samodejno prevajaj sporočila';
+
+  @override
+  String get translation_autoIncomingSubtitle =>
+      'Samodejno prevaja sporočila za obvestila ter za klepete ali kanale.';
+
+  @override
+  String get translation_translateMessage => 'Prevedi sporočilo';
+
+  @override
   String get translation_targetLanguage => 'Ciljna jezika';
 
   @override
@@ -4267,4 +4474,135 @@ class AppLocalizationsSl extends AppLocalizations {
 
   @override
   String get contact_typeUnknown => 'Unknown';
+
+  @override
+  String get map_zoomIn => 'Povečaj';
+
+  @override
+  String get map_zoomOut => 'Povečajte pogled';
+
+  @override
+  String get map_centerMap => 'Krajšarska karta';
+
+  @override
+  String get chrome_bluetoothRequiresChromium =>
+      'Web Bluetooth zahteva brskalnik Chromium.';
+
+  @override
+  String channels_communityShortId(String id) {
+    return 'ID: $id...';
+  }
+
+  @override
+  String get pathTrace_legendGpsConfirmed => 'GPS potrdilo';
+
+  @override
+  String get pathTrace_legendInferred => 'Izpeljana lokacija';
+
+  @override
+  String get pathMap_viewSingle => 'Single';
+
+  @override
+  String get pathMap_viewCombined => 'Combined';
+
+  @override
+  String get pathMap_play => 'Play';
+
+  @override
+  String get pathMap_pause => 'Pause';
+
+  @override
+  String get pathMap_replay => 'Replay';
+
+  @override
+  String get pathMap_stepBack => 'Previous hop';
+
+  @override
+  String get pathMap_stepForward => 'Next hop';
+
+  @override
+  String get pathMap_animationOn => 'Show packet animation';
+
+  @override
+  String get pathMap_animationOff => 'Hide packet animation';
+
+  @override
+  String pathMap_hopOf(int current, int total) {
+    return 'Hop $current of $total';
+  }
+
+  @override
+  String pathMap_observedPaths(int count) {
+    return 'Observed paths: $count';
+  }
+
+  @override
+  String get pathMap_primary => 'Primary';
+
+  @override
+  String pathMap_alternate(int index) {
+    return 'Alt $index';
+  }
+
+  @override
+  String pathMap_hopCount(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count hops',
+      one: '1 hop',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String pathMap_gpsCount(int confirmed, int total) {
+    return '$confirmed/$total GPS';
+  }
+
+  @override
+  String get pathMap_legendShared => 'Shared segment';
+
+  @override
+  String get pathMap_legendEstimated => 'Estimated segment';
+
+  @override
+  String pathMap_sharedNodeCount(int count) {
+    return 'Used by $count paths';
+  }
+
+  @override
+  String pathMap_partialAnimation(int count) {
+    String _temp0 = intl.Intl.pluralLogic(
+      count,
+      locale: localeName,
+      other: '$count hops have no location — the shown path is partial',
+      one: '1 hop has no location — the shown path is partial',
+    );
+    return '$_temp0';
+  }
+
+  @override
+  String get pathMap_showAllPaths => 'Show all';
+
+  @override
+  String get pathMap_hidePath => 'Hide path';
+
+  @override
+  String get pathMap_showPath => 'Show path';
+
+  @override
+  String get pathMap_collapsePanel => 'Collapse panel';
+
+  @override
+  String get pathMap_expandPanel => 'Expand panel';
+
+  @override
+  String get pathMap_noLocation => 'No location';
+
+  @override
+  String get pathMap_followPacket => 'Lock view to packet';
+
+  @override
+  String get pathMap_unfollowPacket => 'Unlock view from packet';
 }
