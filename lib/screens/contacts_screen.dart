@@ -16,6 +16,7 @@ import '../models/contact.dart';
 import '../l10n/contact_localization.dart';
 import '../models/contact_group.dart';
 import '../services/ui_view_state_service.dart';
+import '../theme/mesh_theme.dart';
 import '../utils/contact_search.dart';
 import '../storage/contact_group_store.dart';
 import '../utils/dialog_utils.dart';
@@ -24,12 +25,12 @@ import '../utils/emoji_utils.dart';
 import '../utils/route_transitions.dart';
 import '../widgets/list_filter_widget.dart';
 import '../widgets/empty_state.dart';
+import '../widgets/mesh_ui.dart';
 import '../widgets/quick_switch_bar.dart';
 import '../widgets/repeater_login_dialog.dart';
 import '../widgets/room_login_dialog.dart';
 import '../widgets/sync_progress_overlay.dart';
 import '../widgets/unread_badge.dart';
-import '../helpers/contact_ui.dart';
 import '../helpers/snack_bar_builder.dart';
 import 'channels_screen.dart';
 import 'chat_screen.dart';
@@ -472,12 +473,13 @@ class _ContactsScreenState extends State<ContactsScreen>
   }
 
   void _showAddContactSheet(BuildContext context) {
-    showModalBottomSheet(
-      context: context,
+    showMeshSheet(
+      context,
       builder: (sheetContext) => SafeArea(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            BottomSheetHeader(title: context.l10n.contacts_title),
             ListTile(
               leading: const Icon(Icons.paste),
               title: Text(context.l10n.contacts_addContactFromClipboard),
@@ -499,6 +501,7 @@ class _ContactsScreenState extends State<ContactsScreen>
                 );
               },
             ),
+            const SizedBox(height: 8),
           ],
         ),
       ),
@@ -909,7 +912,8 @@ class _ContactsScreenState extends State<ContactsScreen>
                       final unreadCount = connector.getUnreadCountForContact(
                         contact,
                       );
-                      return _ContactTile(
+                      return _ContactTileEntrance(
+                        index: index,
                         contact: contact,
                         lastSeen: _resolveLastSeen(contact),
                         unreadCount: unreadCount,
@@ -1343,17 +1347,22 @@ class _ContactsScreenState extends State<ContactsScreen>
     final isRoom = contact.type == advTypeRoom;
     final isFavorite = contact.isFavorite;
 
-    showModalBottomSheet(
-      context: context,
+    showMeshSheet(
+      context,
       builder: (sheetContext) => SafeArea(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            BottomSheetHeader(
+              title: contact.name,
+              subtitle: contact.typeLabel(context.l10n),
+            ),
             if (isRepeater) ...[
               ListTile(
-                leading: const Icon(Icons.radar, color: Colors.green),
+                leading: Icon(Icons.radar, color: MeshPalette.signal),
                 title: Text(context.l10n.contacts_ping),
                 onTap: () {
+                  Navigator.pop(sheetContext);
                   final hw = context
                       .read<MeshCoreConnector>()
                       .pathHashByteWidth;
@@ -1371,7 +1380,7 @@ class _ContactsScreenState extends State<ContactsScreen>
                 },
               ),
               ListTile(
-                leading: const Icon(Icons.cell_tower, color: Colors.orange),
+                leading: Icon(Icons.cell_tower, color: MeshPalette.warn),
                 title: Text(context.l10n.contacts_manageRepeater),
                 onTap: () {
                   Navigator.pop(sheetContext);
@@ -1380,9 +1389,10 @@ class _ContactsScreenState extends State<ContactsScreen>
               ),
             ] else if (isRoom) ...[
               ListTile(
-                leading: const Icon(Icons.radar, color: Colors.green),
+                leading: Icon(Icons.radar, color: MeshPalette.signal),
                 title: Text(context.l10n.contacts_pathTrace),
                 onTap: () {
+                  Navigator.pop(sheetContext);
                   final hw = context
                       .read<MeshCoreConnector>()
                       .pathHashByteWidth;
@@ -1405,7 +1415,7 @@ class _ContactsScreenState extends State<ContactsScreen>
                 },
               ),
               ListTile(
-                leading: const Icon(Icons.room, color: Colors.blue),
+                leading: Icon(Icons.meeting_room, color: MeshPalette.blue),
                 title: Text(context.l10n.contacts_roomLogin),
                 onTap: () {
                   Navigator.pop(sheetContext);
@@ -1413,10 +1423,7 @@ class _ContactsScreenState extends State<ContactsScreen>
                 },
               ),
               ListTile(
-                leading: const Icon(
-                  Icons.room_preferences,
-                  color: Colors.orange,
-                ),
+                leading: Icon(Icons.room_preferences, color: MeshPalette.warn),
                 title: Text(context.l10n.room_management),
                 onTap: () {
                   Navigator.pop(sheetContext);
@@ -1430,9 +1437,10 @@ class _ContactsScreenState extends State<ContactsScreen>
             ] else ...[
               if (contact.pathLength > 0)
                 ListTile(
-                  leading: const Icon(Icons.radar, color: Colors.green),
+                  leading: Icon(Icons.radar, color: MeshPalette.signal),
                   title: Text(context.l10n.contacts_chatTraceRoute),
                   onTap: () {
+                    Navigator.pop(sheetContext);
                     final hw = context
                         .read<MeshCoreConnector>()
                         .pathHashByteWidth;
@@ -1456,7 +1464,7 @@ class _ContactsScreenState extends State<ContactsScreen>
             ListTile(
               leading: Icon(
                 isFavorite ? Icons.star : Icons.star_border,
-                color: Colors.amber[700],
+                color: MeshPalette.warn,
               ),
               title: Text(
                 isFavorite
@@ -1501,6 +1509,7 @@ class _ContactsScreenState extends State<ContactsScreen>
                 _confirmDelete(context, connector, contact);
               },
             ),
+            const SizedBox(height: 8),
           ],
         ),
       ),
@@ -1555,82 +1564,173 @@ class _ContactTile extends StatelessWidget {
     required this.onLongPress,
   });
 
-  @override
-  Widget build(BuildContext context) {
-    return GestureDetector(
-      onSecondaryTapUp: PlatformInfo.isDesktop ? (_) => onLongPress() : null,
-      child: ListTile(
-        leading: CircleAvatar(
-          backgroundColor: contactTypeColor(contact.type),
-          child: _buildContactAvatar(contact),
-        ),
-        title: Text(contact.name, maxLines: 1, overflow: TextOverflow.ellipsis),
-        subtitle: Text(
-          contact.pathLabel(context.l10n),
-          maxLines: 1,
-          overflow: TextOverflow.ellipsis,
-        ),
-        // Clamp text scaling in trailing section to prevent overflow while
-        // maintaining accessibility. Primary content (title/subtitle) scales normally.
-        trailing: MediaQuery(
-          data: MediaQuery.of(context).copyWith(
-            textScaler: TextScaler.linear(
-              MediaQuery.textScalerOf(context).scale(1.0).clamp(1.0, 1.3),
-            ),
-          ),
-          child: SizedBox(
-            width: 96,
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.end,
-              children: [
-                if (unreadCount > 0) ...[
-                  UnreadBadge(count: unreadCount),
-                  const SizedBox(height: 4),
-                ],
-                Text(
-                  _formatLastSeen(context, lastSeen),
-                  maxLines: 1,
-                  overflow: TextOverflow.ellipsis,
-                  textAlign: TextAlign.right,
-                  style: TextStyle(
-                    fontSize: 12,
-                    color: Theme.of(context).colorScheme.onSurfaceVariant,
-                  ),
-                ),
-                Row(
-                  mainAxisSize: MainAxisSize.min,
-                  children: [
-                    if (isFavorite)
-                      Icon(Icons.star, size: 14, color: Colors.amber[700]),
-                    if (isFavorite && contact.hasLocation)
-                      const SizedBox(width: 2),
-                    if (contact.hasLocation)
-                      Icon(
-                        Icons.location_on,
-                        size: 14,
-                        color: Theme.of(
-                          context,
-                        ).colorScheme.onSurfaceVariant.withValues(alpha: 0.6),
-                      ),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        ),
-        onTap: onTap,
-        onLongPress: onLongPress,
-      ),
-    );
+  /// Node-type avatar color per design language.
+  Color _avatarColor() {
+    switch (contact.type) {
+      case advTypeRepeater:
+        return MeshPalette.warn;
+      case advTypeRoom:
+        return MeshPalette.magenta;
+      case advTypeSensor:
+        return const Color(0xFF4ACCC4); // teal
+      default:
+        return MeshPalette.blue; // chat — AvatarCircle handles deterministic hue
+    }
   }
 
-  Widget _buildContactAvatar(Contact contact) {
-    final emoji = firstEmoji(contact.name);
-    if (emoji != null) {
-      return Text(emoji, style: const TextStyle(fontSize: 18));
+  /// Node-type avatar icon. Returns null for chat nodes so AvatarCircle shows initials.
+  IconData? _avatarIcon() {
+    switch (contact.type) {
+      case advTypeRepeater:
+        return Icons.cell_tower;
+      case advTypeRoom:
+        return Icons.meeting_room;
+      case advTypeSensor:
+        return Icons.sensors;
+      default:
+        return null; // chat uses initials
     }
-    return Icon(contactTypeIcon(contact.type), color: Colors.white, size: 20);
+  }
+
+  @override
+  Widget build(BuildContext context) {
+    final scheme = Theme.of(context).colorScheme;
+    final emoji = firstEmoji(contact.name);
+    final isChat = contact.type == advTypeChat;
+    final pathLen = contact.pathBytesForDisplay.length;
+    final isDirect = contact.pathLength >= 0;
+    final hasPath = pathLen > 0 || contact.pathLength == 0;
+
+    return GestureDetector(
+      onSecondaryTapUp: PlatformInfo.isDesktop ? (_) => onLongPress() : null,
+      child: MeshCard(
+        onTap: onTap,
+        onLongPress: onLongPress,
+        padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
+        child: Row(
+          children: [
+            // Avatar
+            if (emoji != null)
+              Container(
+                width: 42,
+                height: 42,
+                decoration: BoxDecoration(
+                  shape: BoxShape.circle,
+                  color: scheme.surfaceContainerHigh,
+                  border: Border.all(color: scheme.outlineVariant),
+                ),
+                alignment: Alignment.center,
+                child: Text(emoji, style: const TextStyle(fontSize: 20)),
+              )
+            else
+              AvatarCircle(
+                name: contact.name,
+                size: 42,
+                color: isChat ? null : _avatarColor(),
+                icon: _avatarIcon(),
+              ),
+            const SizedBox(width: 12),
+            // Main content
+            Expanded(
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  // Name row + route chip
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          contact.name,
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontWeight: unreadCount > 0
+                                ? FontWeight.w700
+                                : FontWeight.w500,
+                            fontSize: 15,
+                            color: scheme.onSurface,
+                          ),
+                        ),
+                      ),
+                      if (isFavorite) ...[
+                        const SizedBox(width: 4),
+                        Icon(Icons.star, size: 13, color: MeshPalette.warn),
+                      ],
+                      if (contact.hasLocation) ...[
+                        const SizedBox(width: 4),
+                        Icon(
+                          Icons.location_on,
+                          size: 13,
+                          color: scheme.onSurfaceVariant.withValues(alpha: 0.55),
+                        ),
+                      ],
+                    ],
+                  ),
+                  const SizedBox(height: 3),
+                  // Path / subtitle row
+                  Row(
+                    children: [
+                      Expanded(
+                        child: Text(
+                          contact.pathLabel(context.l10n),
+                          maxLines: 1,
+                          overflow: TextOverflow.ellipsis,
+                          style: TextStyle(
+                            fontSize: 12,
+                            color: scheme.onSurfaceVariant,
+                          ),
+                        ),
+                      ),
+                      if (hasPath) ...[
+                        const SizedBox(width: 6),
+                        RouteChip(
+                          isDirect: isDirect,
+                          hops: isDirect ? contact.pathLength : null,
+                        ),
+                      ],
+                    ],
+                  ),
+                ],
+              ),
+            ),
+            const SizedBox(width: 10),
+            // Trailing: time + unread badge
+            // Clamp text scale to prevent overflow in trailing section.
+            MediaQuery(
+              data: MediaQuery.of(context).copyWith(
+                textScaler: TextScaler.linear(
+                  MediaQuery.textScalerOf(context).scale(1.0).clamp(1.0, 1.3),
+                ),
+              ),
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.end,
+                mainAxisSize: MainAxisSize.min,
+                children: [
+                  if (unreadCount > 0) ...[
+                    UnreadBadge(count: unreadCount),
+                    const SizedBox(height: 4),
+                  ],
+                  Text(
+                    _formatLastSeen(context, lastSeen),
+                    maxLines: 1,
+                    overflow: TextOverflow.ellipsis,
+                    textAlign: TextAlign.right,
+                    style: MeshTheme.mono(
+                      fontSize: 11,
+                      color: unreadCount > 0
+                          ? MeshPalette.blue
+                          : scheme.onSurfaceVariant,
+                    ),
+                  ),
+                ],
+              ),
+            ),
+          ],
+        ),
+      ),
+    );
   }
 
   String _formatLastSeen(BuildContext context, DateTime lastSeen) {
@@ -1653,5 +1753,41 @@ class _ContactTile extends StatelessWidget {
     return days == 1
         ? context.l10n.contacts_lastSeenDayAgo
         : context.l10n.contacts_lastSeenDaysAgo(days);
+  }
+}
+
+// Wrap each contact tile with staggered entrance.
+class _ContactTileEntrance extends StatelessWidget {
+  final int index;
+  final Contact contact;
+  final DateTime lastSeen;
+  final int unreadCount;
+  final bool isFavorite;
+  final VoidCallback onTap;
+  final VoidCallback onLongPress;
+
+  const _ContactTileEntrance({
+    required this.index,
+    required this.contact,
+    required this.lastSeen,
+    required this.unreadCount,
+    required this.isFavorite,
+    required this.onTap,
+    required this.onLongPress,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ListEntrance(
+      index: index,
+      child: _ContactTile(
+        contact: contact,
+        lastSeen: lastSeen,
+        unreadCount: unreadCount,
+        isFavorite: isFavorite,
+        onTap: onTap,
+        onLongPress: onLongPress,
+      ),
+    );
   }
 }

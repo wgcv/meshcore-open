@@ -30,7 +30,6 @@ import '../widgets/chat_zoom_wrapper.dart';
 import '../widgets/byte_count_input.dart';
 import 'channel_message_path_screen.dart';
 import 'map_screen.dart';
-import '../helpers/contact_ui.dart';
 import '../widgets/emoji_picker.dart';
 import '../widgets/gif_message.dart';
 import '../widgets/jump_to_bottom_button.dart';
@@ -43,6 +42,8 @@ import '../widgets/translated_message_content.dart';
 import '../l10n/l10n.dart';
 import '../helpers/snack_bar_builder.dart';
 import '../widgets/unread_divider.dart';
+import '../theme/mesh_theme.dart';
+import '../widgets/mesh_ui.dart';
 import 'telemetry_screen.dart';
 
 class ChatScreen extends StatefulWidget {
@@ -448,119 +449,157 @@ class _ChatScreenState extends State<ChatScreen> {
 
   Widget _buildInputBar(MeshCoreConnector connector) {
     final maxBytes = maxContactMessageBytes();
-    final colorScheme = Theme.of(context).colorScheme;
+    final scheme = Theme.of(context).colorScheme;
     final settings = context.watch<AppSettingsService>().settings;
     return Container(
-      padding: const EdgeInsets.all(8),
       decoration: BoxDecoration(
-        color: colorScheme.surface,
-        border: Border(top: BorderSide(color: Theme.of(context).dividerColor)),
+        color: scheme.surface,
+        border: Border(top: BorderSide(color: scheme.outlineVariant, width: 1)),
       ),
       child: SafeArea(
-        child: Row(
-          children: [
-            IconButton(
-              icon: const Icon(Icons.gif_box),
-              onPressed: () => _showGifPicker(context),
-              tooltip: context.l10n.chat_sendGif,
-            ),
-            if (settings.translationEnabled)
-              MessageTranslationButton(
-                enabled: settings.composerTranslationEnabled,
-                languageCode: settings.translationTargetLanguageCode,
-                onPressed: _showTranslationOptions,
+        child: Padding(
+          padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.center,
+            children: [
+              IconButton(
+                icon: const Icon(Icons.gif_box),
+                onPressed: () => _showGifPicker(context),
+                tooltip: context.l10n.chat_sendGif,
               ),
-            Expanded(
-              child: ValueListenableBuilder<TextEditingValue>(
-                valueListenable: _textController,
-                builder: (context, value, child) {
-                  final gifId = GifHelper.parseGif(value.text);
-                  if (gifId != null) {
-                    return Focus(
-                      autofocus: true,
-                      onKeyEvent: (node, event) {
-                        if (event is KeyDownEvent &&
-                            (event.logicalKey == LogicalKeyboardKey.enter ||
-                                event.logicalKey ==
-                                    LogicalKeyboardKey.numpadEnter)) {
-                          _sendMessage(connector);
-                          return KeyEventResult.handled;
-                        }
-                        return KeyEventResult.ignored;
-                      },
-                      child: Row(
-                        children: [
-                          Expanded(
-                            child: ClipRRect(
-                              borderRadius: BorderRadius.circular(12),
-                              child: GifMessage(
-                                url:
-                                    'https://media.giphy.com/media/$gifId/giphy.gif',
-                                backgroundColor:
-                                    colorScheme.surfaceContainerHighest,
-                                fallbackTextColor: colorScheme.onSurface
-                                    .withValues(alpha: 0.6),
-                                maxSize: 160,
+              if (settings.translationEnabled)
+                MessageTranslationButton(
+                  enabled: settings.composerTranslationEnabled,
+                  languageCode: settings.translationTargetLanguageCode,
+                  onPressed: _showTranslationOptions,
+                ),
+              Expanded(
+                child: ValueListenableBuilder<TextEditingValue>(
+                  valueListenable: _textController,
+                  builder: (context, value, child) {
+                    final gifId = GifHelper.parseGif(value.text);
+                    if (gifId != null) {
+                      return Focus(
+                        autofocus: true,
+                        onKeyEvent: (node, event) {
+                          if (event is KeyDownEvent &&
+                              (event.logicalKey == LogicalKeyboardKey.enter ||
+                                  event.logicalKey ==
+                                      LogicalKeyboardKey.numpadEnter)) {
+                            _sendMessage(connector);
+                            return KeyEventResult.handled;
+                          }
+                          return KeyEventResult.ignored;
+                        },
+                        child: Row(
+                          children: [
+                            Expanded(
+                              child: ClipRRect(
+                                borderRadius: BorderRadius.circular(12),
+                                child: GifMessage(
+                                  url:
+                                      'https://media.giphy.com/media/$gifId/giphy.gif',
+                                  backgroundColor:
+                                      scheme.surfaceContainerHighest,
+                                  fallbackTextColor: scheme.onSurface
+                                      .withValues(alpha: 0.6),
+                                  maxSize: 160,
+                                ),
                               ),
                             ),
+                            const SizedBox(width: 8),
+                            IconButton(
+                              icon: const Icon(Icons.close),
+                              onPressed: () {
+                                _textController.clear();
+                                _textFieldFocusNode.requestFocus();
+                              },
+                            ),
+                          ],
+                        ),
+                      );
+                    }
+                    return ByteCountedTextField(
+                      maxBytes: maxBytes,
+                      controller: _textController,
+                      focusNode: _textFieldFocusNode,
+                      hintText: context.l10n.chat_typeMessage,
+                      onSubmitted: (_) => _sendMessage(connector),
+                      encoder:
+                          (connector.isContactSmazEnabled(
+                                widget.contact.publicKeyHex,
+                              ) ||
+                              connector.isContactCyr2LatEnabled(
+                                widget.contact.publicKeyHex,
+                              ))
+                          ? (text) => connector.prepareContactOutboundText(
+                              widget.contact,
+                              text,
+                            )
+                          : null,
+                      decoration: InputDecoration(
+                        hintText: context.l10n.chat_typeMessage,
+                        border: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(MeshRadii.pill),
+                          borderSide: BorderSide(color: scheme.outlineVariant),
+                        ),
+                        enabledBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(MeshRadii.pill),
+                          borderSide: BorderSide(color: scheme.outlineVariant),
+                        ),
+                        focusedBorder: OutlineInputBorder(
+                          borderRadius: BorderRadius.circular(MeshRadii.pill),
+                          borderSide: BorderSide(
+                            color: scheme.primary,
+                            width: 1.5,
                           ),
-                          const SizedBox(width: 8),
-                          IconButton(
-                            icon: const Icon(Icons.close),
-                            onPressed: () {
-                              _textController.clear();
-                              _textFieldFocusNode.requestFocus();
-                            },
-                          ),
-                        ],
+                        ),
+                        filled: true,
+                        fillColor: scheme.surfaceContainerLow,
+                        contentPadding: const EdgeInsets.symmetric(
+                          horizontal: 18,
+                          vertical: 12,
+                        ),
                       ),
                     );
-                  }
-                  return ByteCountedTextField(
-                    maxBytes: maxBytes,
-                    controller: _textController,
-                    focusNode: _textFieldFocusNode,
-                    hintText: context.l10n.chat_typeMessage,
-                    onSubmitted: (_) => _sendMessage(connector),
-                    encoder:
-                        (connector.isContactSmazEnabled(
-                              widget.contact.publicKeyHex,
-                            ) ||
-                            connector.isContactCyr2LatEnabled(
-                              widget.contact.publicKeyHex,
-                            ))
-                        ? (text) => connector.prepareContactOutboundText(
-                            widget.contact,
-                            text,
-                          )
-                        : null,
-                    decoration: InputDecoration(
-                      hintText: context.l10n.chat_typeMessage,
-                      border: OutlineInputBorder(
-                        borderRadius: BorderRadius.circular(24),
+                  },
+                ),
+              ),
+              const SizedBox(width: 6),
+              ValueListenableBuilder<TextEditingValue>(
+                valueListenable: _textController,
+                builder: (context, value, _) {
+                  final hasText = value.text.trim().isNotEmpty;
+                  return AnimatedContainer(
+                    duration: const Duration(milliseconds: 180),
+                    curve: Curves.easeInOut,
+                    child: IconButton.filled(
+                      icon: const Icon(Icons.send, size: 20),
+                      tooltip: context.l10n.chat_sendMessageTo(
+                        _resolveContact(connector).name,
                       ),
-                      filled: true,
-                      fillColor: Theme.of(
-                        context,
-                      ).colorScheme.surfaceContainerLow,
-                      contentPadding: const EdgeInsets.symmetric(
-                        horizontal: 20,
-                        vertical: 14,
+                      style: IconButton.styleFrom(
+                        backgroundColor: hasText
+                            ? scheme.primary
+                            : scheme.surfaceContainerHighest,
+                        foregroundColor: hasText
+                            ? scheme.onPrimary
+                            : scheme.onSurfaceVariant,
+                        minimumSize: const Size(40, 40),
+                        shape: const CircleBorder(),
                       ),
+                      onPressed: hasText
+                          ? () {
+                              HapticFeedback.lightImpact();
+                              _sendMessage(connector);
+                            }
+                          : null,
                     ),
                   );
                 },
               ),
-            ),
-            const SizedBox(width: 8),
-            IconButton.filled(
-              icon: const Icon(Icons.send),
-              tooltip: context.l10n.chat_sendMessageTo(
-                _resolveContact(connector).name,
-              ),
-              onPressed: () => _sendMessage(connector),
-            ),
-          ],
+            ],
+          ),
         ),
       ),
     );
@@ -1043,12 +1082,17 @@ class _ChatScreenState extends State<ChatScreen> {
         ) &&
         (message.translatedText?.trim().isEmpty ?? true);
 
-    showModalBottomSheet(
-      context: context,
+    showMeshSheet(
+      context,
       builder: (sheetContext) => SafeArea(
         child: Column(
           mainAxisSize: MainAxisSize.min,
           children: [
+            BottomSheetHeader(
+              title: message.text.length > 40
+                  ? '${message.text.substring(0, 40)}…'
+                  : message.text,
+            ),
             // Can't react to your own messages
             if (!message.isOutgoing)
               ListTile(
@@ -1118,7 +1162,7 @@ class _ChatScreenState extends State<ChatScreen> {
                   _openChat(context, contact);
                 },
               ),
-            const Divider(),
+            const Divider(height: 1),
             ListTile(
               leading: Icon(
                 Icons.delete_outline,
@@ -1133,6 +1177,7 @@ class _ChatScreenState extends State<ChatScreen> {
                 await _deleteMessage(message);
               },
             ),
+            const SizedBox(height: 8),
           ],
         ),
       ),
@@ -1221,20 +1266,45 @@ class _MessageBubble extends StatelessWidget {
     final settingsService = context.watch<AppSettingsService>();
     final enableTracing = settingsService.settings.enableMessageTracing;
     final isOutgoing = message.isOutgoing;
-    final colorScheme = Theme.of(context).colorScheme;
+    final scheme = Theme.of(context).colorScheme;
     final gifId = GifHelper.parseGif(message.text);
     final poi = parseMarkerText(message.text);
     final isFailed = message.status == MessageStatus.failed;
+
+    // Bubble colors — outgoing uses MeshPalette.me / meBorder / meInk.
     final bubbleColor = isFailed
-        ? colorScheme.errorContainer
-        : (isOutgoing
-              ? colorScheme.primary
-              : colorScheme.surfaceContainerHighest);
+        ? scheme.errorContainer
+        : isOutgoing
+        ? MeshPalette.me
+        : scheme.surfaceContainerLow;
+    final bubbleBorder = isFailed
+        ? scheme.error
+        : isOutgoing
+        ? MeshPalette.meBorder
+        : scheme.outlineVariant;
     final textColor = isFailed
-        ? colorScheme.onErrorContainer
-        : (isOutgoing ? colorScheme.onPrimary : colorScheme.onSurface);
-    final metaColor = textColor.withValues(alpha: 0.7);
+        ? scheme.onErrorContainer
+        : isOutgoing
+        ? MeshPalette.meInk
+        : scheme.onSurface;
+    final metaColor = textColor.withValues(alpha: 0.65);
     const bodyFontSize = 14.0;
+
+    // Asymmetric radius: outgoing — top-left large, others also large; outgoing bottom-right tight.
+    final borderRadius = isOutgoing
+        ? const BorderRadius.only(
+            topLeft: Radius.circular(MeshRadii.lg),
+            topRight: Radius.circular(MeshRadii.lg),
+            bottomLeft: Radius.circular(MeshRadii.lg),
+            bottomRight: Radius.circular(MeshRadii.xs),
+          )
+        : const BorderRadius.only(
+            topLeft: Radius.circular(MeshRadii.xs),
+            topRight: Radius.circular(MeshRadii.lg),
+            bottomLeft: Radius.circular(MeshRadii.lg),
+            bottomRight: Radius.circular(MeshRadii.lg),
+          );
+
     // Do not strip room-server author bytes here: the parser stores them in
     // fourByteRoomContactKey, so message.text is safe to render as-is.
     final messageText = message.text;
@@ -1246,8 +1316,9 @@ class _MessageBubble extends StatelessWidget {
     final originalDisplayText = isOutgoing
         ? message.originalText
         : (translatedDisplayText != messageText ? messageText : null);
+
     return Padding(
-      padding: const EdgeInsets.symmetric(vertical: 4),
+      padding: const EdgeInsets.symmetric(vertical: 3),
       child: Column(
         crossAxisAlignment: isOutgoing
             ? CrossAxisAlignment.end
@@ -1263,11 +1334,11 @@ class _MessageBubble extends StatelessWidget {
                 mainAxisAlignment: isOutgoing
                     ? MainAxisAlignment.end
                     : MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.end,
                 children: [
                   if (!isOutgoing) ...[
-                    _buildAvatar(senderName, colorScheme),
-                    const SizedBox(width: 8),
+                    _buildAvatar(senderName),
+                    const SizedBox(width: 6),
                   ],
                   Flexible(
                     child: Container(
@@ -1278,14 +1349,12 @@ class _MessageBubble extends StatelessWidget {
                               vertical: 8,
                             ),
                       constraints: BoxConstraints(
-                        maxWidth: constraints.maxWidth * 0.65,
+                        maxWidth: constraints.maxWidth * 0.72,
                       ),
                       decoration: BoxDecoration(
                         color: bubbleColor,
-                        borderRadius: BorderRadius.circular(16),
-                        border: isFailed
-                            ? Border.all(color: colorScheme.error)
-                            : null,
+                        borderRadius: borderRadius,
+                        border: Border.all(color: bubbleBorder, width: 1),
                       ),
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
@@ -1301,14 +1370,14 @@ class _MessageBubble extends StatelessWidget {
                                   : EdgeInsets.zero,
                               child: Text(
                                 senderName,
-                                style: TextStyle(
-                                  fontSize: 12,
-                                  fontWeight: FontWeight.bold,
-                                  color: colorScheme.primary,
+                                style: MeshTheme.mono(
+                                  fontSize: 11,
+                                  fontWeight: FontWeight.w700,
+                                  color: _colorForName(senderName),
                                 ),
                               ),
                             ),
-                            if (gifId == null) const SizedBox(height: 4),
+                            if (gifId == null) const SizedBox(height: 2),
                           ],
                           if (poi != null)
                             _buildPoiMessage(
@@ -1349,7 +1418,7 @@ class _MessageBubble extends StatelessWidget {
                                       fontSize: bodyFontSize * textScale,
                                     ),
                                     originalStyle: TextStyle(
-                                      color: textColor.withValues(alpha: 0.78),
+                                      color: textColor.withValues(alpha: 0.72),
                                       fontSize: bodyFontSize * textScale,
                                     ),
                                   ),
@@ -1359,7 +1428,7 @@ class _MessageBubble extends StatelessWidget {
                           if (enableTracing &&
                               isOutgoing &&
                               message.retryCount > 0) ...[
-                            const SizedBox(height: 4),
+                            const SizedBox(height: 3),
                             Padding(
                               padding: gifId != null
                                   ? const EdgeInsets.symmetric(horizontal: 8)
@@ -1372,15 +1441,15 @@ class _MessageBubble extends StatelessWidget {
                                       .settings
                                       .maxMessageRetries,
                                 ),
-                                style: TextStyle(
-                                  fontSize: 10 * textScale,
+                                style: MeshTheme.mono(
+                                  fontSize: 9.5 * textScale,
                                   color: metaColor,
-                                  fontWeight: FontWeight.w500,
                                 ),
                               ),
                             ),
                           ],
-                          const SizedBox(height: 4),
+                          const SizedBox(height: 3),
+                          // Meta row: timestamp + status icon + optional tracing
                           Padding(
                             padding: gifId != null
                                 ? const EdgeInsets.only(
@@ -1395,13 +1464,13 @@ class _MessageBubble extends StatelessWidget {
                               children: [
                                 Text(
                                   _formatTime(message.timestamp),
-                                  style: TextStyle(
+                                  style: MeshTheme.mono(
                                     fontSize: 10 * textScale,
                                     color: metaColor,
                                   ),
                                 ),
                                 if (isOutgoing) ...[
-                                  const SizedBox(width: 4),
+                                  const SizedBox(width: 2),
                                   MessageStatusIcon(
                                     size: 12 * textScale,
                                     onColor: metaColor,
@@ -1418,25 +1487,21 @@ class _MessageBubble extends StatelessWidget {
                                     message.tripTimeMs != null &&
                                     message.status ==
                                         MessageStatus.delivered) ...[
-                                  const SizedBox(width: 4),
+                                  const SizedBox(width: 2),
                                   Icon(
                                     Icons.speed,
                                     size: 10 * textScale,
                                     color: isOutgoing
                                         ? metaColor
-                                        : Theme.of(
-                                            context,
-                                          ).colorScheme.tertiary,
+                                        : scheme.tertiary,
                                   ),
                                   Text(
                                     '${(message.tripTimeMs! / 1000).toStringAsFixed(1)}s',
-                                    style: TextStyle(
+                                    style: MeshTheme.mono(
                                       fontSize: 9 * textScale,
                                       color: isOutgoing
                                           ? metaColor
-                                          : Theme.of(
-                                              context,
-                                            ).colorScheme.tertiary,
+                                          : scheme.tertiary,
                                     ),
                                   ),
                                 ],
@@ -1454,8 +1519,8 @@ class _MessageBubble extends StatelessWidget {
           if (message.reactions.isNotEmpty) ...[
             const SizedBox(height: 4),
             Padding(
-              padding: EdgeInsets.only(left: isOutgoing ? 0 : 48),
-              child: _buildReactionsDisplay(context, message, colorScheme),
+              padding: EdgeInsets.only(left: isOutgoing ? 0 : 42),
+              child: _buildReactionsDisplay(context, message, scheme),
             ),
           ],
         ],
@@ -1532,7 +1597,7 @@ class _MessageBubble extends StatelessWidget {
   Widget _buildReactionsDisplay(
     BuildContext context,
     Message message,
-    ColorScheme colorScheme,
+    ColorScheme scheme,
   ) {
     return Wrap(
       spacing: 6,
@@ -1555,28 +1620,33 @@ class _MessageBubble extends StatelessWidget {
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 4),
               decoration: BoxDecoration(
                 color: isFailed
-                    ? colorScheme.errorContainer
-                    : colorScheme.secondaryContainer,
-                borderRadius: BorderRadius.circular(12),
+                    ? scheme.errorContainer
+                    : scheme.surfaceContainerHigh,
+                borderRadius: BorderRadius.circular(MeshRadii.pill),
                 border: Border.all(
-                  color: isFailed
-                      ? colorScheme.error
-                      : colorScheme.outline.withValues(alpha: 0.3),
+                  color: isFailed ? scheme.error : scheme.outlineVariant,
                   width: 1,
                 ),
               ),
               child: Row(
                 mainAxisSize: MainAxisSize.min,
                 children: [
-                  Text(emoji, style: const TextStyle(fontSize: 16)),
+                  Text(
+                    emoji,
+                    style: MeshTheme.emoji(fontSize: 16),
+                    textHeightBehavior: const TextHeightBehavior(
+                      applyHeightToFirstAscent: false,
+                      applyHeightToLastDescent: false,
+                    ),
+                  ),
                   if (count > 1) ...[
                     const SizedBox(width: 4),
                     Text(
                       '$count',
-                      style: TextStyle(
-                        fontSize: 12,
-                        fontWeight: FontWeight.bold,
-                        color: colorScheme.onSecondaryContainer,
+                      style: MeshTheme.mono(
+                        fontSize: 11,
+                        fontWeight: FontWeight.w700,
+                        color: scheme.onSurface,
                       ),
                     ),
                   ],
@@ -1587,13 +1657,13 @@ class _MessageBubble extends StatelessWidget {
                       height: 8,
                       child: CircularProgressIndicator(
                         strokeWidth: 1.5,
-                        color: colorScheme.onSecondaryContainer,
+                        color: scheme.primary,
                       ),
                     ),
                   ],
                   if (isFailed) ...[
                     const SizedBox(width: 2),
-                    Icon(Icons.replay, size: 10, color: colorScheme.error),
+                    Icon(Icons.replay, size: 10, color: scheme.error),
                   ],
                 ],
               ),
@@ -1604,22 +1674,8 @@ class _MessageBubble extends StatelessWidget {
     );
   }
 
-  Widget _buildAvatar(String senderName, ColorScheme colorScheme) {
-    final initial = firstCharacterOrEmoji(senderName);
-    final color = colorForName(senderName);
-
-    return CircleAvatar(
-      radius: 18,
-      backgroundColor: color.withValues(alpha: 0.2),
-      child: Text(
-        initial,
-        style: TextStyle(
-          fontSize: 14,
-          fontWeight: FontWeight.bold,
-          color: color,
-        ),
-      ),
-    );
+  Widget _buildAvatar(String senderName) {
+    return AvatarCircle(name: senderName, size: 32);
   }
 
   String _formatTime(DateTime time) {
@@ -1627,4 +1683,21 @@ class _MessageBubble extends StatelessWidget {
     final minute = time.minute.toString().padLeft(2, '0');
     return '$hour:$minute';
   }
+}
+
+/// Deterministic name-to-hue mapping consistent with [AvatarCircle].
+Color _colorForName(String name) {
+  const hues = [
+    MeshPalette.blue,
+    MeshPalette.magenta,
+    MeshPalette.signal,
+    MeshPalette.warn,
+    Color(0xFF8FA8F0),
+    Color(0xFF6FD9CE),
+  ];
+  var h = 0;
+  for (final c in name.codeUnits) {
+    h = (h * 31 + c) & 0x7fffffff;
+  }
+  return hues[h % hues.length];
 }
