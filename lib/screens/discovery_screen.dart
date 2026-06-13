@@ -176,18 +176,32 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
     return ListEntrance(
       index: index,
       child: MeshCard(
-        onTap: () {
-          connector.importDiscoveredContact(contact);
-          showDismissibleSnackBar(
-            context,
-            content: Text(
-              context.l10n.discoveredContacts_contactAdded,
-            ),
-            action: SnackBarAction(
-              label: context.l10n.common_undo,
-              onPressed: () => connector.removeContact(contact),
-            ),
-          );
+        onTap: () async {
+          try {
+            final imported = await connector.importDiscoveredContact(contact);
+            if (!context.mounted) return;
+            if (!imported) {
+              showDismissibleSnackBar(
+                context,
+                content: Text(context.l10n.contacts_contactImportFailed),
+              );
+              return;
+            }
+            showDismissibleSnackBar(
+              context,
+              content: Text(context.l10n.discoveredContacts_contactAdded),
+              action: SnackBarAction(
+                label: context.l10n.common_undo,
+                onPressed: () => connector.removeContact(contact),
+              ),
+            );
+          } catch (_) {
+            if (!context.mounted) return;
+            showDismissibleSnackBar(
+              context,
+              content: Text(context.l10n.contacts_contactImportFailed),
+            );
+          }
         },
         onLongPress: () => _showContactContextMenu(contact, connector),
         padding: const EdgeInsets.symmetric(horizontal: 14, vertical: 10),
@@ -247,7 +261,9 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
                         Icon(
                           Icons.location_on,
                           size: 13,
-                          color: scheme.onSurfaceVariant.withValues(alpha: 0.55),
+                          color: scheme.onSurfaceVariant.withValues(
+                            alpha: 0.55,
+                          ),
                         ),
                       ],
                       if (contact.rawPacket != null) ...[
@@ -255,7 +271,9 @@ class _DiscoveryScreenState extends State<DiscoveryScreen> {
                         Icon(
                           Icons.cell_tower,
                           size: 13,
-                          color: scheme.onSurfaceVariant.withValues(alpha: 0.55),
+                          color: scheme.onSurfaceVariant.withValues(
+                            alpha: 0.55,
+                          ),
                         ),
                       ],
                     ],
