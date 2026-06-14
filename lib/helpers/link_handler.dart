@@ -20,6 +20,7 @@ class LinkHandler {
     required String text,
     required TextStyle style,
     TextStyle? linkStyle,
+    VoidCallback? onSecondaryTap,
   }) {
     final effectiveLinkStyle = linkStyle ?? defaultLinkStyle(context, style);
     const options = LinkifyOptions(humanize: false, defaultToHttps: false);
@@ -27,13 +28,21 @@ class LinkHandler {
     void onOpen(LinkableElement link) => handleLinkTap(context, link.url);
 
     if (PlatformInfo.isDesktop) {
-      return SelectableLinkify(
+      final linkify = SelectableLinkify(
         text: text,
         style: style,
         linkStyle: effectiveLinkStyle,
         options: options,
         linkifiers: linkifiers,
         onOpen: onOpen,
+      );
+      if (onSecondaryTap == null) return linkify;
+      return Listener(
+        onPointerDown: (event) {
+          if (event.buttons == 2) onSecondaryTap();
+        },
+        behavior: HitTestBehavior.translucent,
+        child: linkify,
       );
     }
     return Linkify(

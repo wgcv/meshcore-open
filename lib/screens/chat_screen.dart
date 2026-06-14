@@ -1435,6 +1435,9 @@ class _MessageBubble extends StatelessWidget {
                                       color: textColor.withValues(alpha: 0.72),
                                       fontSize: bodyFontSize * textScale,
                                     ),
+                                    onSecondaryTap: PlatformInfo.isDesktop
+                                        ? onLongPress
+                                        : null,
                                   ),
                                 ),
                               ],
