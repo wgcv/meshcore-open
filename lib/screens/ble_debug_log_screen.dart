@@ -133,6 +133,7 @@ class _BleDebugLogScreenState extends State<BleDebugLogScreen> {
                               return GestureDetector(
                                 onTap: copyHex,
                                 onLongPress: copyHex,
+                                onSecondaryTap: copyHex,
                                 child: Container(
                                   color: MeshPalette.bg,
                                   padding: const EdgeInsets.symmetric(
