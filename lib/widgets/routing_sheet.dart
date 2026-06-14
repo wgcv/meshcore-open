@@ -1,5 +1,4 @@
 import 'package:flutter/foundation.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
@@ -536,14 +535,10 @@ class _RoutingSheetBodyState extends State<_RoutingSheetBody> {
       l10n.routing_deliveryCounts(record.successCount, record.failureCount),
     ];
 
-    return Listener(
+    return GestureDetector(
       behavior: HitTestBehavior.opaque,
-      onPointerDown: PlatformInfo.isDesktop && hasBytes
-          ? (event) {
-              if (event.buttons & kSecondaryMouseButton != 0) {
-                _showPathDetail(context, connector, contact, record.pathBytes);
-              }
-            }
+      onSecondaryTapUp: PlatformInfo.isDesktop && hasBytes
+          ? (_) => _showPathDetail(context, connector, contact, record.pathBytes)
           : null,
       child: Card(
         margin: const EdgeInsets.symmetric(vertical: 4),
