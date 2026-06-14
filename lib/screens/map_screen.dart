@@ -1188,12 +1188,12 @@ class _MapScreenState extends State<MapScreen> {
         width: 48,
         height: 48,
         child: GestureDetector(
-          onLongPress: () => _isBuildingPathTrace
-              ? _showNodeInfo(context, guess.contact)
-              : null,
-          onSecondaryTap: () => _isBuildingPathTrace
-              ? _showNodeInfo(context, guess.contact)
-              : null,
+          onLongPress: () {
+            if (_isBuildingPathTrace) _showNodeInfo(context, guess.contact);
+          },
+          onSecondaryTap: () {
+            if (_isBuildingPathTrace) _showNodeInfo(context, guess.contact);
+          },
           onTap: () => _isBuildingPathTrace
               ? _addToPath(context, guess.contact, position: guess.position)
               : _selectNode(guess.contact, guessedPosition: guess.position),
@@ -1393,10 +1393,12 @@ class _MapScreenState extends State<MapScreen> {
       height: size,
       child: GestureDetector(
         behavior: HitTestBehavior.opaque,
-        onLongPress: () =>
-            _isBuildingPathTrace ? _showNodeInfo(context, contact) : null,
-        onSecondaryTap: () =>
-            _isBuildingPathTrace ? _showNodeInfo(context, contact) : null,
+        onLongPress: () {
+          if (_isBuildingPathTrace) _showNodeInfo(context, contact);
+        },
+        onSecondaryTap: () {
+          if (_isBuildingPathTrace) _showNodeInfo(context, contact);
+        },
         onTap: () => _isBuildingPathTrace
             ? _addToPath(context, contact)
             : _selectNode(contact),
