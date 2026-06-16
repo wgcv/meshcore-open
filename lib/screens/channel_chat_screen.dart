@@ -646,6 +646,9 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                                     fontStyle: FontStyle.italic,
                                     color: textColor.withValues(alpha: 0.72),
                                   ),
+                                  onSecondaryTap: PlatformInfo.isDesktop
+                                      ? () => _showMessageActions(message)
+                                      : null,
                                 ),
                               ),
                             ],
