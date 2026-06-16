@@ -515,7 +515,9 @@ class _RegionManagementScreenState extends State<RegionManagementScreen> {
             },
             child: Text(
               context.l10n.common_delete,
-              style: TextStyle(color: Theme.of(dialogContext).colorScheme.error),
+              style: TextStyle(
+                color: Theme.of(dialogContext).colorScheme.error,
+              ),
             ),
           ),
         ],
