@@ -117,6 +117,8 @@ flutter_launcher_icons:
   ios: true
   image_path: "mesh-icon.png"
   remove_alpha_ios: true
+  adaptive_icon_background: "#9F9D95"
+  adaptive_icon_foreground: "assets/icons/ic_foreground.png"
 
   # To add assets to your application, add an assets section, like this:
   # assets:
