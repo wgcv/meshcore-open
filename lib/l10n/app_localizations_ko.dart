@@ -1323,6 +1323,9 @@ class AppLocalizationsKo extends AppLocalizations {
   String get chat_addReaction => '댓글 추가';
 
   @override
+  String get chat_addForm => '양식 추가';
+
+  @override
   String get chat_me => '나';
 
   @override

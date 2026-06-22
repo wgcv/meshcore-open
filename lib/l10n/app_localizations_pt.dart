@@ -1388,6 +1388,9 @@ class AppLocalizationsPt extends AppLocalizations {
   String get chat_addReaction => 'Adicionar Reação';
 
   @override
+  String get chat_addForm => 'Adicionar formulário';
+
+  @override
   String get chat_me => 'Eu';
 
   @override

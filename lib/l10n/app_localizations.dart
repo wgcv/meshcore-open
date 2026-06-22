@@ -2560,6 +2560,12 @@ abstract class AppLocalizations {
   /// **'Add Reaction'**
   String get chat_addReaction;
 
+  /// No description provided for @chat_addForm.
+  ///
+  /// In en, this message translates to:
+  /// **'Add Form'**
+  String get chat_addForm;
+
   /// No description provided for @chat_me.
   ///
   /// In en, this message translates to:

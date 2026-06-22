@@ -1384,6 +1384,9 @@ class AppLocalizationsHu extends AppLocalizations {
   String get chat_addReaction => 'Reakció hozzáadása';
 
   @override
+  String get chat_addForm => 'Űrlap hozzáadása';
+
+  @override
   String get chat_me => 'Nekem';
 
   @override

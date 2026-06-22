@@ -1362,6 +1362,9 @@ class AppLocalizationsEn extends AppLocalizations {
   String get chat_addReaction => 'Add Reaction';
 
   @override
+  String get chat_addForm => 'Add Form';
+
+  @override
   String get chat_me => 'Me';
 
   @override

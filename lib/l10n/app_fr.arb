@@ -495,6 +495,7 @@
   "chat_sendGif": "Envoyer un GIF",
   "chat_reply": "Répondre",
   "chat_addReaction": "Ajouter une réaction",
+  "chat_addForm": "Ajouter un formulaire",
   "chat_me": "Moi",
   "emojiCategorySmileys": "Émojis",
   "emojiCategoryGestures": "Gestes",

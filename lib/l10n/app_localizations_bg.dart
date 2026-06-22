@@ -1392,6 +1392,9 @@ class AppLocalizationsBg extends AppLocalizations {
   String get chat_addReaction => 'Добави Реакция';
 
   @override
+  String get chat_addForm => 'Добави формуляр';
+
+  @override
   String get chat_me => 'Аз';
 
   @override

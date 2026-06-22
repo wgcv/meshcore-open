@@ -690,6 +690,7 @@
   "chat_sendGif": "Send GIF",
   "chat_reply": "Reply",
   "chat_addReaction": "Add Reaction",
+  "chat_addForm": "Add Form",
   "chat_me": "Me",
   "emojiCategorySmileys": "Smileys",
   "emojiCategoryGestures": "Gestures",

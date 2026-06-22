@@ -1370,6 +1370,9 @@ class AppLocalizationsSv extends AppLocalizations {
   String get chat_addReaction => 'Lägg till reaktion';
 
   @override
+  String get chat_addForm => 'Lägg till formulär';
+
+  @override
   String get chat_me => 'Mig';
 
   @override

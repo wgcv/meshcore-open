@@ -1378,6 +1378,9 @@ class AppLocalizationsNl extends AppLocalizations {
   String get chat_addReaction => 'Reactie toevoegen';
 
   @override
+  String get chat_addForm => 'Formulier toevoegen';
+
+  @override
   String get chat_me => 'Mijn';
 
   @override

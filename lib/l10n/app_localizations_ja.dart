@@ -1321,6 +1321,9 @@ class AppLocalizationsJa extends AppLocalizations {
   String get chat_addReaction => 'リアクションを追加';
 
   @override
+  String get chat_addForm => 'フォームを追加';
+
+  @override
   String get chat_me => '私';
 
   @override

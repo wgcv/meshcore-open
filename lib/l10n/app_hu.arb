@@ -645,6 +645,7 @@
   "chat_sendGif": "GIF küldése",
   "chat_reply": "Válasz",
   "chat_addReaction": "Reakció hozzáadása",
+  "chat_addForm": "Űrlap hozzáadása",
   "chat_me": "Nekem",
   "emojiCategorySmileys": "Hangulatjelek",
   "emojiCategoryGestures": "Gesztusok",

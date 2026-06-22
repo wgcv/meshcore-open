@@ -500,6 +500,7 @@
   "chat_sendGif": "发送 GIF",
   "chat_reply": "回复",
   "chat_addReaction": "添加表情",
+  "chat_addForm": "添加表单",
   "chat_me": "我",
   "emojiCategorySmileys": "表情",
   "emojiCategoryGestures": "手势",

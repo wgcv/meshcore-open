@@ -1390,6 +1390,9 @@ class AppLocalizationsIt extends AppLocalizations {
   String get chat_addReaction => 'Aggiungi Reazione';
 
   @override
+  String get chat_addForm => 'Aggiungi modulo';
+
+  @override
   String get chat_me => 'Io';
 
   @override

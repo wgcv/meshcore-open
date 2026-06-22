@@ -1378,6 +1378,9 @@ class AppLocalizationsSk extends AppLocalizations {
   String get chat_addReaction => 'Pridať Reakciu';
 
   @override
+  String get chat_addForm => 'Pridať formulár';
+
+  @override
   String get chat_me => 'Mne';
 
   @override
