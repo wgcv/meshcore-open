@@ -6,6 +6,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter/scheduler.dart';
 import 'package:flutter/services.dart';
 import 'package:intl/intl.dart' hide TextDirection;
+import 'package:meshcore_open/widgets/form_picker.dart';
 import 'package:provider/provider.dart';
 
 import '../connector/meshcore_connector.dart';
@@ -42,6 +43,8 @@ import '../theme/mesh_theme.dart';
 import '../widgets/mesh_ui.dart';
 import 'channel_message_path_screen.dart';
 import 'map_screen.dart';
+
+const double _composerControlHeight = 48;
 
 class ChannelChatScreen extends StatefulWidget {
   final Channel channel;
@@ -1012,6 +1015,18 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
     );
   }
 
+  void _showFormPicker(BuildContext context) {
+    Navigator.of(context).push(
+      MaterialPageRoute<void>(
+        fullscreenDialog: true,
+        builder: (context) => FormPicker(
+          onFormSelected: (formId) {
+            _textController.text = formId;
+          },
+        ),
+      ),
+    );
+  }
   Widget _buildAvatar(String senderName) {
     return AvatarCircle(name: senderName, size: 32);
   }
@@ -1095,18 +1110,38 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
               child: Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  IconButton(
-                    icon: const Icon(Icons.gif_box),
-                    onPressed: () => _showGifPicker(context),
-                    tooltip: context.l10n.chat_sendGif,
+                  SizedBox(
+                    height: _composerControlHeight,
+                    child: Center(
+                      child: IconButton(
+                        icon: const Icon(Icons.gif_box),
+                        onPressed: () => _showGifPicker(context),
+                        tooltip: context.l10n.chat_sendGif,
+                      ),
+                    ),
+                  ),
+                  SizedBox(
+                    height: _composerControlHeight,
+                    child: Center(
+                      child: IconButton(
+                        icon: const Icon(Icons.assignment_add),
+                        onPressed: () => _showFormPicker(context),
+                        tooltip: context.l10n.chat_addForm,
+                      ),
+                    ),
                   ),
                   if (settings.translationEnabled)
-                    MessageTranslationButton(
-                      enabled: settings.composerTranslationEnabled,
-                      languageCode: settings.translationTargetLanguageCode,
-                      onPressed: _showTranslationOptions,
+                    SizedBox(
+                      height: _composerControlHeight,
+                      child: Center(
+                        child: MessageTranslationButton(
+                          enabled: settings.composerTranslationEnabled,
+                          languageCode: settings.translationTargetLanguageCode,
+                          onPressed: _showTranslationOptions,
+                        ),
+                      ),
                     ),
                   Expanded(
                     child: ValueListenableBuilder<TextEditingValue>(
@@ -1160,6 +1195,8 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                           controller: _textController,
                           focusNode: _textFieldFocusNode,
                           hintText: context.l10n.chat_typeMessage,
+                          minLines: 1,
+                          maxLines: 4,
                           onSubmitted: (_) => _sendMessage(),
                           encoder:
                               (connector.isChannelSmazEnabled(
@@ -1177,7 +1214,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                             hintText: context.l10n.chat_typeMessage,
                             border: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(
-                                MeshRadii.pill,
+                                MeshRadii.xl,
                               ),
                               borderSide: BorderSide(
                                 color: scheme.outlineVariant,
@@ -1185,7 +1222,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                             ),
                             enabledBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(
-                                MeshRadii.pill,
+                                MeshRadii.xl,
                               ),
                               borderSide: BorderSide(
                                 color: scheme.outlineVariant,
@@ -1193,7 +1230,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                             ),
                             focusedBorder: OutlineInputBorder(
                               borderRadius: BorderRadius.circular(
-                                MeshRadii.pill,
+                                MeshRadii.xl,
                               ),
                               borderSide: BorderSide(
                                 color: scheme.primary,
@@ -1216,28 +1253,33 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
                     valueListenable: _textController,
                     builder: (context, value, _) {
                       final hasText = value.text.trim().isNotEmpty;
-                      return AnimatedContainer(
-                        duration: const Duration(milliseconds: 180),
-                        curve: Curves.easeInOut,
-                        child: IconButton.filled(
-                          icon: const Icon(Icons.send, size: 20),
-                          tooltip: context.l10n.chat_sendMessage,
-                          style: IconButton.styleFrom(
-                            backgroundColor: hasText
-                                ? scheme.primary
-                                : scheme.surfaceContainerHighest,
-                            foregroundColor: hasText
-                                ? scheme.onPrimary
-                                : scheme.onSurfaceVariant,
-                            minimumSize: const Size(40, 40),
-                            shape: const CircleBorder(),
+                      return SizedBox(
+                        height: _composerControlHeight,
+                        child: Center(
+                          child: AnimatedContainer(
+                            duration: const Duration(milliseconds: 180),
+                            curve: Curves.easeInOut,
+                            child: IconButton.filled(
+                              icon: const Icon(Icons.send, size: 20),
+                              tooltip: context.l10n.chat_sendMessage,
+                              style: IconButton.styleFrom(
+                                backgroundColor: hasText
+                                    ? scheme.primary
+                                    : scheme.surfaceContainerHighest,
+                                foregroundColor: hasText
+                                    ? scheme.onPrimary
+                                    : scheme.onSurfaceVariant,
+                                minimumSize: const Size(40, 40),
+                                shape: const CircleBorder(),
+                              ),
+                              onPressed: hasText
+                                  ? () {
+                                      HapticFeedback.lightImpact();
+                                      _sendMessage();
+                                    }
+                                  : null,
+                            ),
                           ),
-                          onPressed: hasText
-                              ? () {
-                                  HapticFeedback.lightImpact();
-                                  _sendMessage();
-                                }
-                              : null,
                         ),
                       );
                     },

@@ -46,6 +46,8 @@ import '../theme/mesh_theme.dart';
 import '../widgets/mesh_ui.dart';
 import 'telemetry_screen.dart';
 
+const double _composerControlHeight = 48;
+
 class ChatScreen extends StatefulWidget {
   final Contact contact;
   final int initialUnreadCount;
@@ -466,18 +468,28 @@ class _ChatScreenState extends State<ChatScreen> {
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 8, vertical: 6),
           child: Row(
-            crossAxisAlignment: CrossAxisAlignment.center,
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
-              IconButton(
-                icon: const Icon(Icons.gif_box),
-                onPressed: () => _showGifPicker(context),
-                tooltip: context.l10n.chat_sendGif,
+              SizedBox(
+                height: _composerControlHeight,
+                child: Center(
+                  child: IconButton(
+                    icon: const Icon(Icons.gif_box),
+                    onPressed: () => _showGifPicker(context),
+                    tooltip: context.l10n.chat_sendGif,
+                  ),
+                ),
               ),
               if (settings.translationEnabled)
-                MessageTranslationButton(
-                  enabled: settings.composerTranslationEnabled,
-                  languageCode: settings.translationTargetLanguageCode,
-                  onPressed: _showTranslationOptions,
+                SizedBox(
+                  height: _composerControlHeight,
+                  child: Center(
+                    child: MessageTranslationButton(
+                      enabled: settings.composerTranslationEnabled,
+                      languageCode: settings.translationTargetLanguageCode,
+                      onPressed: _showTranslationOptions,
+                    ),
+                  ),
                 ),
               Expanded(
                 child: ValueListenableBuilder<TextEditingValue>(
@@ -576,30 +588,35 @@ class _ChatScreenState extends State<ChatScreen> {
                 valueListenable: _textController,
                 builder: (context, value, _) {
                   final hasText = value.text.trim().isNotEmpty;
-                  return AnimatedContainer(
-                    duration: const Duration(milliseconds: 180),
-                    curve: Curves.easeInOut,
-                    child: IconButton.filled(
-                      icon: const Icon(Icons.send, size: 20),
-                      tooltip: context.l10n.chat_sendMessageTo(
-                        _resolveContact(connector).name,
+                  return SizedBox(
+                    height: _composerControlHeight,
+                    child: Center(
+                      child: AnimatedContainer(
+                        duration: const Duration(milliseconds: 180),
+                        curve: Curves.easeInOut,
+                        child: IconButton.filled(
+                          icon: const Icon(Icons.send, size: 20),
+                          tooltip: context.l10n.chat_sendMessageTo(
+                            _resolveContact(connector).name,
+                          ),
+                          style: IconButton.styleFrom(
+                            backgroundColor: hasText
+                                ? scheme.primary
+                                : scheme.surfaceContainerHighest,
+                            foregroundColor: hasText
+                                ? scheme.onPrimary
+                                : scheme.onSurfaceVariant,
+                            minimumSize: const Size(40, 40),
+                            shape: const CircleBorder(),
+                          ),
+                          onPressed: hasText
+                              ? () {
+                                  HapticFeedback.lightImpact();
+                                  _sendMessage(connector);
+                                }
+                              : null,
+                        ),
                       ),
-                      style: IconButton.styleFrom(
-                        backgroundColor: hasText
-                            ? scheme.primary
-                            : scheme.surfaceContainerHighest,
-                        foregroundColor: hasText
-                            ? scheme.onPrimary
-                            : scheme.onSurfaceVariant,
-                        minimumSize: const Size(40, 40),
-                        shape: const CircleBorder(),
-                      ),
-                      onPressed: hasText
-                          ? () {
-                              HapticFeedback.lightImpact();
-                              _sendMessage(connector);
-                            }
-                          : null,
                     ),
                   );
                 },

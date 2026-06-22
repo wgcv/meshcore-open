@@ -37,6 +37,12 @@ class ByteCountedTextField extends StatelessWidget {
   /// Text capitalisation forwarded to the inner [TextField].
   final TextCapitalization textCapitalization;
 
+  /// Minimum number of visible lines for the inner [TextField].
+  final int? minLines;
+
+  /// Maximum number of visible lines before the inner [TextField] scrolls.
+  final int? maxLines;
+
   /// Optional full [InputDecoration] override.  When provided, [hintText] is
   /// ignored – set it inside the decoration instead.
   final InputDecoration? decoration;
@@ -64,6 +70,8 @@ class ByteCountedTextField extends StatelessWidget {
     this.onSubmitted,
     this.extraFormatters = const [],
     this.textCapitalization = TextCapitalization.sentences,
+    this.minLines,
+    this.maxLines,
     this.decoration,
     this.warningThreshold = 0.7,
     this.errorThreshold = 0.9,
@@ -94,7 +102,8 @@ class ByteCountedTextField extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.stretch,
           children: [
             TextField(
-              maxLines: null,
+              minLines: minLines,
+              maxLines: maxLines,
               controller: controller,
               focusNode: focusNode,
               inputFormatters: [
