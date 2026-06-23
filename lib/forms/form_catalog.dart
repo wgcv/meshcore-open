@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:meshcore_open/widgets/forms/checking/checking_form.dart';
+import 'package:meshcore_open/forms/checking/checking_form.dart';
 
 class FormCatalogGroup {
   final String title;

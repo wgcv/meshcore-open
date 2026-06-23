@@ -1,9 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:meshcore_open/l10n/l10n.dart';
-import 'package:meshcore_open/widgets/forms/form_catalog.dart';
+import 'package:meshcore_open/forms/form_catalog.dart';
 
 class FormPicker extends StatefulWidget {
-  final Function(String formId) onFormSelected;
+  final Function(List<String> formText) onFormSelected;
 
   const FormPicker({super.key, required this.onFormSelected});
 
@@ -18,7 +18,7 @@ class _FormPickerState extends State<FormPicker> {
 
     final formText = await Navigator.of(
       context,
-    ).push<String>(MaterialPageRoute<String>(builder: builder));
+    ).push<List<String>>(MaterialPageRoute<List<String>>(builder: builder));
 
     if (!mounted || formText == null) return;
 

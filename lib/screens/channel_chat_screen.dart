@@ -1021,7 +1021,7 @@ class _ChannelChatScreenState extends State<ChannelChatScreen> {
         fullscreenDialog: true,
         builder: (context) => FormPicker(
           onFormSelected: (formId) {
-            _textController.text = formId;
+            _textController.text = formId.toString();
           },
         ),
       ),

@@ -73,6 +73,7 @@ dependencies:
   ml_dataframe: ^1.0.0
   llamadart: ^0.8.0
   flutter_langdetect: ^0.0.1
+  geolocator: ^14.0.3
 
 hooks:
   user_defines:

@@ -32,5 +32,9 @@
 	<string>MeshCore needs Bluetooth to communicate with LoRa mesh devices</string>
 	<key>NSCameraUsageDescription</key>
 	<string>This app uses the camera to scan QR codes for joining communities.</string>
+		<key>NSLocationWhenInUseUsageDescription</key>
+		<string>This app uses your location to populate GPS coordinates in forms.</string>
+		<key>NSLocationUsageDescription</key>
+		<string>This app uses your location to populate GPS coordinates in forms.</string>
 </dict>
 </plist>

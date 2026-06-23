@@ -37,6 +37,8 @@
 	<string>This app uses Bluetooth to communicate with MeshCore devices.</string>
 	<key>NSCameraUsageDescription</key>
 	<string>This app uses the camera to scan QR codes for joining communities.</string>
+		<key>NSLocationWhenInUseUsageDescription</key>
+		<string>This app uses your location to populate GPS coordinates in forms.</string>
 	<key>UIApplicationSceneManifest</key>
 	<dict>
 		<key>UIApplicationSupportsMultipleScenes</key>
